@@ -1,64 +1,67 @@
 = Cahier des Charges d'Utilisation (CDCU)
 Version: 1.0
-Date: {docdate}
-
-Membres de l'équipe : Enzo Fournet, Julien Couderc, Yannis Gibert +
-Équipe: 2B2 +
-Projet: DailyBank
-
+Date: 2023-05-10
 :doctype: book
 :toc: left
-:toc-title: Sommaire
+:toc-title: Table des matières
 :sectnums:
-:icons: font
 
-[.cover-page]
-== Page de garde
+Équipe: 2B2 +
+Membres de l'équipe : Enzo Fournet, Julien Couderc, Yannis Gibert +
+Projet: DailyBank
 
-[.cover-title]
-=== Cahier des Charges d'Utilisation (CDCU)
-
-[.cover-info]
-Version: 1.0 +
-Date: {docdate} +
-Équipe: Nom de l'équipe +
-Projet: Nom du projet
-
-== Sommaire
-toc::[]
+'''
 
 == Présentation du sujet
 
-Le contenu de la présentation du sujet commence ici.
+DailyBank est une application de gestion bancaire permettant aux guichetiers et responsables d'agence de gérer les opérations bancaires de manière efficace et sécurisée.
 
 === Contexte
 
-Le contenu du contexte commence ici.
+Dans un contexte de digitalisation croissante des services bancaires, il est essentiel de proposer des outils performants et ergonomiques aux employés des agences bancaires. DailyBank a pour objectif de faciliter la gestion des opérations bancaires et de permettre un meilleur suivi des comptes clients.
 
 === Objectifs
 
-Le contenu des objectifs commence ici.
+- Simplifier la gestion des opérations bancaires pour les guichetiers et responsables d'agence
+- Améliorer la sécurité des transactions
+- Faciliter le suivi des comptes clients
+- Optimiser l'efficacité des employés de l'agence
+- Optimiser la getion des emplye par le responsable d'agence
 
 === Problématique
 
-Le contenu de la problématique commence ici.
+Comment concevoir une application de gestion bancaire qui réponde aux besoins des guichetiers et responsables d'agence tout en garantissant la sécurité des transactions et la confidentialité des données ?
 
 == Analyse de l'existant
 
-Le contenu de l'analyse de l'existant commence ici.
+Plusieurs solutions de gestion bancaire existent sur le marché, mais elles présentent des lacunes en termes d'ergonomie, de fonctionnalités ou de sécurité. Une analyse approfondie des solutions existantes permettra d'identifier les points d'amélioration pour DailyBank.
 
 == Analyse des besoins incluant V0 et V1
 
-Le contenu de l'analyse des besoins commence ici.
+V0 :
+
+- Authentification sécurisée pour les guichetiers et responsables d'agence
+- Visualisation des comptes clients et des transactions
+- Gestion des opérations bancaires de base (virements, dépôts, retraits)
+
+V1 :
+
+- Gestion avancée des comptes clients (création, modification, clôture)
+- Intégration d'un module de reporting pour les responsables d'agence
+- Amélioration de l'ergonomie et de l'expérience utilisateur
 
 == Analyse des contraintes
 
-Le contenu de l'analyse des contraintes commence ici.
-
 === Contraintes techniques
 
-Le contenu des contraintes techniques commence ici.
+- Compatibilité avec les systèmes d'information bancaires existants si nécessaire
+- Respect des normes de sécurité en matière de transactions financières et de protection des données
+- Fiabilité et performance de l'application pour garantir une utilisation fluide et efficace
 
 === Contraintes organisationnelles
 
-Le contenu des contraintes organisationnelles commence ici.
+- Formation des guichetiers et responsables d'agence à l'utilisation de l'application : Il sera nécessaire d'organiser des sessions de formation pour les employés des agences bancaires afin de leur permettre de maîtriser les fonctionnalités de DailyBank et de l'utiliser efficacement dans leur travail quotidien.
+
+- Mise en place d'un support technique pour les utilisateurs : Un support technique devra être mis en place pour accompagner les utilisateurs en cas de problèmes ou de questions sur l'utilisation de l'application. Ce support pourra être assuré par une équipe dédiée ou par le biais d'une assistance en ligne.
+
+- Intégration de l'application au sein des processus internes de l'agence : L'application devra être conçue de manière à s'intégrer facilement aux processus existants au sein des agences bancaires, tels que la gestion des comptes clients, le suivi des transactions ou le reporting. Cette intégration pourra nécessiter des ajustements dans les procédures de travail des employés ou dans les systèmes d'information de l'agence.
