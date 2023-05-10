@@ -2,15 +2,14 @@
 Version: 1.0
 Date: {docdate}
 
-Membres de l'équipe : Enzo Fournet, Julien Couderc, Yannis Gibert
-Équipe: 2B2
+Membres de l'équipe : Enzo Fournet, Julien Couderc, Yannis Gibert +
+Équipe: 2B2 +
 Projet: DailyBank
 
 :doctype: book
 :toc: left
 :toc-title: Sommaire
 :sectnums:
-:stylesheet: styles.css
 :icons: font
 
 [.cover-page]
