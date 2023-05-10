@@ -1,0 +1,65 @@
+= Cahier des Charges d'Utilisation (CDCU)
+Version: 1.0
+Date: {docdate}
+
+Membres de l'équipe : Enzo Fournet, Julien Couderc, Yannis Gibert
+Équipe: 2B2
+Projet: DailyBank
+
+:doctype: book
+:toc: left
+:toc-title: Sommaire
+:sectnums:
+:stylesheet: styles.css
+:icons: font
+
+[.cover-page]
+== Page de garde
+
+[.cover-title]
+=== Cahier des Charges d'Utilisation (CDCU)
+
+[.cover-info]
+Version: 1.0 +
+Date: {docdate} +
+Équipe: Nom de l'équipe +
+Projet: Nom du projet
+
+== Sommaire
+toc::[]
+
+== Présentation du sujet
+
+Le contenu de la présentation du sujet commence ici.
+
+=== Contexte
+
+Le contenu du contexte commence ici.
+
+=== Objectifs
+
+Le contenu des objectifs commence ici.
+
+=== Problématique
+
+Le contenu de la problématique commence ici.
+
+== Analyse de l'existant
+
+Le contenu de l'analyse de l'existant commence ici.
+
+== Analyse des besoins incluant V0 et V1
+
+Le contenu de l'analyse des besoins commence ici.
+
+== Analyse des contraintes
+
+Le contenu de l'analyse des contraintes commence ici.
+
+=== Contraintes techniques
+
+Le contenu des contraintes techniques commence ici.
+
+=== Contraintes organisationnelles
+
+Le contenu des contraintes organisationnelles commence ici.
