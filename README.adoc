@@ -1,6 +1,18 @@
-=== Exemple readme étudiant
+=== Readme projet
 
 ==== Présentation de l'équipe et rôles respectifs
+
+===== Rôles en V0 :
+  - Responsable Gthub : Yannis Gibert 
+  - Chef de projet  Julien Couderc 
+  - Responsable de la documentation: Enzo Fournet
+
+===== Rôles en V1 :
+  - Developpeur en chef : Yannis Gibert 
+  - Chef de projet et developpeur : Julien Couderc 
+  - Responsable de la documentation et developpeur : Enzo Fournet
+  
+===== Rôles en V2 :
 
 
 ==== Répartition des tâches et état d'avancement
