@@ -1,0 +1,33 @@
+= Documentation utilateur de l'application DailyBank V0
+Auteurs: Yannis Gibert, Julien Couderc, Enzo Fournet
+
+Date: {docdate}
+
+== Introduction
+
+Cette documentation est destinée à guider les utilisateurs de l'application DailyBank dans son utilisation seulement.
+
+== Prérequis
+
+Vos identifiants de connexion à l'application.
+
+Un ordinateur capable d'executer un fichier .jar, compiler sous java 17.
+
+== Utilisation de l'application
+
+Pour lancer l'application il vous dsuffit donc de vous munir d'un ordinateur capable d'executer un fichier .jar et de lancer le fichier DailyBank.jar. Puis de vous connecter avec vos identifiants.
+
+Page de connexion :
+
+[horizontal]
+image::RessourcesAdoc/img/PageConnexion.png[Alt Page de connexion, 50%]
+image::RessourcesAdoc/img/Connexion.png[Alt Page de connexion, 50%]
+
+=== Connectée entant que chef d'agence
+
+
+=== Connectée entant que guichetier
+
+== Nous contacter
+
+Si vous avez des questions ou si vous avez besoin d'aide, n'hésitez pas à nous contacter à l'adresse suivante: support@DailyBank.com

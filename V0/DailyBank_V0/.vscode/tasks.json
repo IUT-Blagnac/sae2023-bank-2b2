@@ -1,0 +1,60 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "jar",
+        "type": "shell",
+        "command": "mvn",
+        "args": [
+          "clean",
+          "package"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": false
+        },
+        "presentation": {
+          "reveal": "always",
+          "panel": "dedicated"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "run",
+        "type": "shell",
+        "command": "mvn",
+        "args": [
+          "clean",
+          "javafx:run"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "presentation": {
+          "reveal": "always",
+          "panel": "dedicated"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "norun",
+        "type": "shell",
+        "command": "mvn",
+        "args": [
+            "clean",
+            "compile"
+        ],
+        "group": {
+            "kind": "build",
+            "isDefault": false
+        },
+        "presentation": {
+            "reveal": "always",
+            "panel": "dedicated"
+        },
+        "problemMatcher": []
+    }
+    ]
+  }
+  
