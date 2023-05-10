@@ -10,23 +10,33 @@ Date: 2023-05-10
 Membres de l'équipe : Enzo Fournet, Julien Couderc, Yannis Gibert +
 Projet: DailyBank
 
-'''
+---
 
 == Présentation du sujet
 
-DailyBank est une application de gestion bancaire permettant aux guichetiers et responsables d'agence de gérer les opérations bancaires de manière efficace et sécurisée.
+Le sujet abordé concerne le développement d'une application JAVA-Oracle de gestion des comptes clients pour DailyBank. Cette initiative s'inscrit dans le cadre plus large de la transformation numérique des services bancaires en France, où les banques cherchent à répondre aux attentes croissantes des clients en matière de rapidité et d'efficacité des opérations bancaires. Les banques françaises ont investi massivement dans la modernisation de leurs outils et services afin de proposer des solutions bancaires plus rapides et accessibles.
 
-=== Contexte
+=== Contexte général
 
-Dans un contexte de digitalisation croissante des services bancaires, il est essentiel de proposer des outils performants et ergonomiques aux employés des agences bancaires. DailyBank a pour objectif de faciliter la gestion des opérations bancaires et de permettre un meilleur suivi des comptes clients.
+Le secteur bancaire français s'adapte aux exigences croissantes de ses clients en matière de services instantanés en investissant massivement dans la transformation digitale. Les banques cherchent à moderniser leurs outils, automatiser les tâches et restructurer leurs réseaux pour offrir des services bancaires plus rapides et efficaces. Par exemple, La Banque Postale a lancé une banque mobile appelée "Ma French Bank" et d'autres banques ont également entrepris des initiatives similaires.
+
+Dans cette dynamique, la banque DailyBank souhaite développer une application JAVA-Oracle de gestion des comptes clients pour remplacer plusieurs outils obsolètes. Cette initiative s'inscrit dans le cadre de la restructuration de ses services bancaires et l'application sera déployée dans les 100 agences de son réseau.
 
 === Objectifs
 
-- Simplifier la gestion des opérations bancaires pour les guichetiers et responsables d'agence
-- Améliorer la sécurité des transactions
-- Faciliter le suivi des comptes clients
-- Optimiser l'efficacité des employés de l'agence
-- Optimiser la getion des emplye par le responsable d'agence
+Dans le cadre de ce projet, nous avons identifié quatre objectifs clés visant à améliorer la gestion des opérations bancaires pour les guichetiers et responsables d'agence, ainsi que la sécurité des transactions, le suivi des comptes clients et l'optimisation de la gestion des employés par le responsable d'agence.
+
+Pour commencer, notre premier objectif est de simplifier la gestion des opérations bancaires pour les guichetiers et responsables d'agence. Dans cette optique, nous nous efforçons de faciliter la création, la modification et la clôture de comptes clients. Nous envisageons de mettre en place des processus intuitifs et conviviaux qui permettront aux utilisateurs de gérer ces opérations de manière efficace. De plus, nous prévoyons d'automatiser les tâches répétitives et de simplifier les procédures internes afin de libérer du temps pour les activités à plus forte valeur ajoutée. Enfin, nous nous engageons à fournir une interface utilisateur intuitive et ergonomique, spécialement conçue pour répondre aux besoins spécifiques des guichetiers et responsables d'agence.
+
+En ce qui concerne la sécurité des transactions, notre deuxième objectif consiste à renforcer les mesures de sécurité. Nous prévoyons d'assurer une authentification sécurisée pour les guichetiers et responsables d'agence, en mettant en place des protocoles de sécurité robustes pour protéger les données sensibles et les transactions financières. De plus, nous envisageons de garantir la traçabilité des opérations bancaires afin de prévenir les fraudes et de détecter rapidement toute activité suspecte.
+
+Notre troisième objectif est de faciliter le suivi des comptes clients. Pour cela, nous prévoyons de centraliser les informations relatives aux comptes clients et aux transactions dans une base de données unique. Cette centralisation permettra aux utilisateurs d'accéder rapidement et facilement aux informations pertinentes grâce à des outils de recherche et de filtrage efficaces. De plus, nous offrirons des fonctionnalités de reporting et de suivi des transactions qui faciliteront la gestion des comptes clients et aideront à prendre des décisions éclairées.
+
+Enfin, notre quatrième objectif vise à optimiser la gestion des employés par le responsable d'agence. Pour atteindre cet objectif, nous cherchons à réduire le temps consacré aux tâches administratives et répétitives en automatisant certaines tâches. Nous prévoyons également de faciliter la communication et la collaboration entre les guichetiers et les responsables d'agence grâce à des outils intégrés. De plus, nous offrirons aux responsables d'agence des outils de gestion des employés tels que la création, la modification et la suppression de profils d'accès, ainsi que la facilitation de la planification des horaires de travail et la répartition des tâches entre les guichetiers. Enfin, nous proposerons des indicateurs de performance pour évaluer et améliorer la qualité du service et l'efficacité des employés, permettant ainsi une gestion optimale de l'équipe.
+
+En résumé, notre projet vise à apporter des améliorations significatives dans la gestion des opérations bancaires pour les guichetiers et responsables d'agence. En simplifiant les tâches administratives, en optimisant les procédures internes et en offrant une interface conviviale, nous cherchons à faciliter leur travail au quotidien. Parallèlement, nous mettons l'accent sur la sécurité des transactions, en mettant en place des mesures de protection avancées et une traçabilité rigoureuse pour garantir la confidentialité et la fiabilité des opérations financières. De plus, nous nous engageons à faciliter le suivi des comptes clients en centralisant les informations et en fournissant des outils de recherche et de reporting efficaces. Enfin, en optimisant la gestion des employés, nous visons à améliorer l'efficacité opérationnelle, la communication interne et la planification des ressources, contribuant ainsi à la qualité du service et à la satisfaction des clients.
+
+Notre approche professionnelle et nos objectifs clairement définis reflètent notre engagement envers le développement d'une solution bancaire efficace, sécurisée et axée sur les besoins des utilisateurs. Nous mettons tout en œuvre pour fournir une plateforme performante qui soutiendra les activités bancaires et renforcera la compétitivité de votre institution dans un environnement en constante évolution.
 
 === Problématique
 
@@ -34,7 +44,7 @@ Comment concevoir une application de gestion bancaire qui réponde aux besoins d
 
 == Analyse de l'existant
 
-Plusieurs solutions de gestion bancaire existent sur le marché, mais elles présentent des lacunes en termes d'ergonomie, de fonctionnalités ou de sécurité. Une analyse approfondie des solutions existantes permettra d'identifier les points d'amélioration pour DailyBank.
+Dans la version existante (V0), un guichetier peut modifier les informations client, créer un nouveau client, consulter un compte et débiter un compte. Un chef d'agence peut rendre inactif un client.
 
 == Analyse des besoins incluant V0 et V1
 
@@ -49,19 +59,31 @@ V1 :
 - Gestion avancée des comptes clients (création, modification, clôture)
 - Intégration d'un module de reporting pour les responsables d'agence
 - Amélioration de l'ergonomie et de l'expérience utilisateur
+- Créditer/débiter un compte (Java et BD avec procédure stockée)
+- Créer un compte
+- Effectuer un virement de compte à compte
+- Gérer (faire le « CRUD ») les employés (guichetier et chef d'agence)
 
 == Analyse des contraintes
 
-=== Contraintes techniques
+Analyse des contraintes techniques et organisationnelles :
 
-- Compatibilité avec les systèmes d'information bancaires existants si nécessaire
-- Respect des normes de sécurité en matière de transactions financières et de protection des données
-- Fiabilité et performance de l'application pour garantir une utilisation fluide et efficace
+Dans le cadre du développement de l'application JAVA-Oracle de gestion des comptes clients pour la banque DailyBank, il est important de tenir compte des contraintes techniques et organisationnelles qui peuvent avoir un impact sur la réalisation du projet.
+
+Compatibilité avec les systèmes d'information bancaires existants : Pour assurer l'interopérabilité avec les systèmes existants, il sera important de prendre en compte les formats de données, les protocoles de communication et les interfaces utilisées. Il faudra également veiller à la compatibilité avec les différents systèmes d'exploitation, les navigateurs web et les versions de logiciels utilisées dans les agences bancaires.
+
+Respect des normes de sécurité : La sécurité des transactions financières et des données des clients est une priorité absolue. Il faudra donc mettre en place des mécanismes de sécurité robustes pour protéger les informations sensibles. Cela peut inclure l'utilisation de protocoles de cryptage, d'authentification forte, de pare-feu, de surveillance en temps réel des activités suspectes, etc. Il sera également important de se conformer aux normes et réglementations en vigueur en matière de sécurité, comme PCI DSS, RGPD, etc.
+
+Fiabilité et performance : Pour garantir une utilisation fluide et efficace de l'application, il faudra s'assurer de sa fiabilité et de sa performance. Cela peut inclure des tests de charge pour simuler des situations de pic d'utilisation, des tests de résistance pour mesurer la capacité de l'application à résister à des pannes ou des défaillances, des tests de récupération pour mesurer le temps de reprise après une panne, etc. Il faudra également mettre en place des mécanismes de surveillance et d'alerte pour détecter rapidement les problèmes et y remédier.
+
+Utilisation de Java et Oracle : En utilisant Java et Oracle pour le développement de l'application, il sera possible de bénéficier des avantages de ces technologies, comme la portabilité, la performance, la sécurité, la stabilité, etc. Il faudra cependant veiller à respecter les bonnes pratiques de développement pour optimiser l'utilisation de ces outils, comme l'utilisation de frameworks, l'optimisation des requêtes SQL, la mise en cache des données, etc.
 
 === Contraintes organisationnelles
 
-- Formation des guichetiers et responsables d'agence à l'utilisation de l'application : Il sera nécessaire d'organiser des sessions de formation pour les employés des agences bancaires afin de leur permettre de maîtriser les fonctionnalités de DailyBank et de l'utiliser efficacement dans leur travail quotidien.
+Formation des guichetiers et responsables d'agence à l'utilisation de l'application : Les employés des agences bancaires devront être formés à l'utilisation de DailyBank afin de maîtriser les fonctionnalités de l'application et de l'utiliser efficacement dans leur travail quotidien. Des sessions de formation devront être organisées pour garantir une bonne prise en main de l'outil par les utilisateurs.
 
-- Mise en place d'un support technique pour les utilisateurs : Un support technique devra être mis en place pour accompagner les utilisateurs en cas de problèmes ou de questions sur l'utilisation de l'application. Ce support pourra être assuré par une équipe dédiée ou par le biais d'une assistance en ligne.
+Mise en place d'un support technique pour les utilisateurs : Un support technique devra être mis en place pour accompagner les utilisateurs en cas de problèmes ou de questions sur l'utilisation de l'application. Ce support pourra être assuré par une équipe dédiée ou par le biais d'une assistance en ligne, afin de garantir un service rapide et efficace pour les utilisateurs en cas de besoin.
 
-- Intégration de l'application au sein des processus internes de l'agence : L'application devra être conçue de manière à s'intégrer facilement aux processus existants au sein des agences bancaires, tels que la gestion des comptes clients, le suivi des transactions ou le reporting. Cette intégration pourra nécessiter des ajustements dans les procédures de travail des employés ou dans les systèmes d'information de l'agence.
+Intégration de l'application au sein des processus internes de l'agence : L'application devra être conçue de manière à s'intégrer facilement aux processus existants au sein des agences bancaires, tels que la gestion des comptes clients, le suivi des transactions ou le reporting. Cette intégration pourra nécessiter des ajustements dans les procédures de travail des employés ou dans les systèmes d'information de l'agence. Il sera donc important de travailler en étroite collaboration avec les différentes équipes et de prévoir des phases de tests pour s'assurer que l'application s'intègre correctement aux processus internes de l'agence.
+
+Planification et respect des différentes phases de développement de la version V1 : Les développeurs devront suivre l'ordre de développement des cas d'utilisation pour la version du logiciel (V1), en respectant les délais impartis pour chaque phase. Il sera donc important de planifier ces différentes phases en amont et de s'assurer que les développements sont réalisés dans les temps pour garantir une livraison de l'application dans les délais impartis.
