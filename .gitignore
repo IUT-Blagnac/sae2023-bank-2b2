@@ -3,3 +3,4 @@
 
 # Ignorer le dossier .vscode
 .vscode/
+target/
