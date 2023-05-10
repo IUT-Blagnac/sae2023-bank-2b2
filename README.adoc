@@ -4,7 +4,7 @@
 
 ===== Rôles en V0 :
   - Responsable Gthub : Yannis Gibert 
-  - Chef de projet  Julien Couderc 
+  - Chef de projet :  Julien Couderc 
   - Responsable de la documentation et création du repo GitHub : Enzo Fournet
 
 ===== Rôles en V1 :
