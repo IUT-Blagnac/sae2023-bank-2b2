@@ -97,6 +97,11 @@ public class OperationsManagementController {
 
 	@FXML
 	private void doCredit() {
+		Operation op = this.omDialogController.enregistrerCredit();
+		if (op != null) {
+			this.updateInfoCompteClient();
+			this.validateComponentState();
+		}
 	}
 
 	@FXML
@@ -105,7 +110,7 @@ public class OperationsManagementController {
 
 	private void validateComponentState() {
 		// Non implémenté => désactivé
-		this.btnCredit.setDisable(true);
+		this.btnCredit.setDisable(false);
 		this.btnDebit.setDisable(false);
 	}
 
