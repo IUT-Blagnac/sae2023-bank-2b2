@@ -66,19 +66,21 @@ Si l'utilisateur se connecte en tant que chef d'agence, une fonctionnalité de g
 
 V0 :
 
-- Authentification sécurisée pour les guichetiers et responsables d'agence
-- Visualisation des comptes clients et des transactions
-- Gestion des opérations bancaires de base (virements, dépôts, retraits)
+Le cahier des charges de la version 0 met l'accent sur les fonctionnalités de base nécessaires pour assurer le bon fonctionnement du système bancaire. Tout d'abord, il est primordial de mettre en place un système d'authentification sécurisé pour les guichetiers et les responsables d'agence. Cela garantira que seules les personnes autorisées auront accès aux fonctionnalités du système.
+
+Ensuite, la visualisation des comptes clients et des transactions sera essentielle pour les utilisateurs autorisés. Ils pourront ainsi consulter les informations relatives aux comptes clients, y compris les soldes et les transactions effectuées. Cette fonctionnalité permettra de fournir un aperçu clair et précis des activités financières des clients.
+
+De plus, la gestion des opérations bancaires de base telles que les virements, les dépôts et les retraits doit être prise en compte dans cette version initiale du système. Cela permettra aux utilisateurs d'effectuer les opérations courantes de manière efficace et sécurisée.
 
 V1 :
 
-- Gestion avancée des comptes clients (création, modification, clôture)
-- Intégration d'un module de reporting pour les responsables d'agence
-- Amélioration de l'ergonomie et de l'expérience utilisateur
-- Créditer/débiter un compte (Java et BD avec procédure stockée)
-- Créer un compte
-- Effectuer un virement de compte à compte
-- Gérer (faire le « CRUD ») les employés (guichetier et chef d'agence)
+La version 1 du projet vise à étendre les fonctionnalités de base du système bancaire pour répondre à des besoins plus avancés. Tout d'abord, une gestion avancée des comptes clients sera mise en place, permettant la création, la modification et la clôture des comptes. Cela offrira une plus grande flexibilité aux utilisateurs et facilitera la gestion des comptes clients.
+
+En outre, il est prévu d'intégrer un module de reporting spécialement conçu pour les responsables d'agence. Ce module leur permettra de générer des rapports détaillés sur les activités financières, les tendances et les performances des clients. Ces informations seront précieuses pour prendre des décisions éclairées et optimiser les opérations bancaires.
+
+L'ergonomie et l'expérience utilisateur seront également améliorées dans cette version. Des efforts seront déployés pour rendre l'interface utilisateur conviviale, intuitive et facile à naviguer. Cela permettra aux utilisateurs d'interagir de manière fluide avec le système et d'effectuer leurs tâches plus rapidement et efficacement.
+
+Enfin, des fonctionnalités spécifiques seront développées, telles que la possibilité de créditer/débiter un compte en utilisant Java et une base de données avec des procédures stockées. De plus, la création de nouveaux comptes et les virements de compte à compte seront également intégrés. Enfin, la gestion des employés, notamment le "CRUD" (Create, Read, Update, Delete), des guichetiers et des chefs d'agence sera prise en compte pour faciliter la gestion du personnel.
 
 == Analyse des contraintes
 
