@@ -12,8 +12,7 @@ public class Employe {
 
 	public int idAg;
 
-	public Employe(int idEmploye, String nom, String prenom, String droitsAccess, String login, String motPasse,
-			int idAg) {
+	public Employe(int idEmploye, String nom, String prenom, String droitsAccess, String login, String motPasse, int idAg) {
 		super();
 		this.idEmploye = idEmploye;
 		this.nom = nom;
