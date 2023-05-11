@@ -78,8 +78,8 @@ public class EmployesManagement {
 
 	public Employe nouvelEmploye() {
 		Employe employe;
-		EmployeEditorPane cep = new EmployeEditorPane(this.primaryStage, this.dailyBankState);
-		employe = cep.doEmployeEditorDialog(null, EditionMode.CREATION);
+		EmployeEditorPane eep = new EmployeEditorPane(this.primaryStage, this.dailyBankState);
+		employe = eep.doEmployeEditorDialog(null, EditionMode.CREATION);
 		if (employe != null) {
 			try {
 				Access_BD_Employe ae = new Access_BD_Employe();
@@ -96,5 +96,43 @@ public class EmployesManagement {
 			}
 		}
 		return employe;
+	}
+
+	public Employe modifierEmploye(Employe c) {
+		EmployeEditorPane eep = new EmployeEditorPane(this.primaryStage, this.dailyBankState);
+		Employe result = eep.doEmployeEditorDialog(c, EditionMode.MODIFICATION);
+		if (result != null) {
+			try {  
+				Access_BD_Employe ec = new Access_BD_Employe();
+				ec.updateEmploye(result);
+			} catch (DatabaseConnexionException e) {
+				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
+				ed.doExceptionDialog();
+				result = null;
+				this.primaryStage.close();
+			} catch (ApplicationException ae) {
+				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, ae);
+				ed.doExceptionDialog();
+				result = null;
+			}
+		}
+		return result;
+	}
+
+	public boolean supprimerEmploye(Employe employe) {
+		try {
+			Access_BD_Employe ec = new Access_BD_Employe();
+			ec.deleteEmploye(employe);
+		} catch (DatabaseConnexionException e) {
+			ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
+			ed.doExceptionDialog();
+			this.primaryStage.close();
+			return false;
+		} catch (ApplicationException ae) {
+			ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, ae);
+			ed.doExceptionDialog();
+			return false;
+		}
+		return true;
 	}
 }

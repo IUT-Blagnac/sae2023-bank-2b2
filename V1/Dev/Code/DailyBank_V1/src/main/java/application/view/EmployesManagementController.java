@@ -94,7 +94,14 @@ public class EmployesManagementController {
 	}
 
     private void validateComponentState() {
-		// Non implémenté => désactivé
+		int selectedIndice = this.lvEmployes.getSelectionModel().getSelectedIndex();
+		if (selectedIndice >= 0) {
+			this.btnModifEmploye.setDisable(false);
+			this.btnSuprEmploye.setDisable(false);
+		} else {
+			this.btnModifEmploye.setDisable(true);
+			this.btnSuprEmploye.setDisable(true);
+		}
 	}
 
     @FXML
@@ -146,28 +153,29 @@ public class EmployesManagementController {
 
 	@FXML
 	private void doModifierEmploye() {
-		System.out.println("doModifierEmploye");
-        // Non implémenté => désactivé
-		// int selectedIndice = this.lvEmployes.getSelectionModel().getSelectedIndex();
-		// if (selectedIndice >= 0) {
-		// 	Employe cliMod = this.oListEmployes.get(selectedIndice);
-		// 	Employe result = this.emDialogController.modifier(cliMod);
-		// 	if (result != null) {
-		// 		this.oListClients.set(selectedIndice, result);
-		// 	}
-		// }
+		int selectedIndice = this.lvEmployes.getSelectionModel().getSelectedIndex();
+		if (selectedIndice >= 0) {
+			Employe cliMod = this.oListEmployes.get(selectedIndice);
+			Employe result = this.emDialogController.modifierEmploye(cliMod);
+			if (result != null) {
+				this.oListEmployes.set(selectedIndice, result);
+			}
+		}
 	}
 
 	@FXML
 	private void doSupprimerEmploye() {
-		System.out.println("doSuppirmerEmploye");
-        // Non implémenté => désactivé
+		int selectedIndice = this.lvEmployes.getSelectionModel().getSelectedIndex();
+		if (selectedIndice >= 0) {
+			Employe cliSup = this.oListEmployes.get(selectedIndice);
+			if (this.emDialogController.supprimerEmploye(cliSup)) {
+				this.oListEmployes.remove(selectedIndice);
+			}
+		}
 	}
 
 	@FXML
 	private void doNouvelEmploye() {
-		System.out.println("doNouvelEmploye");
-        // Non implémenté => désactivé
 		Employe client;
 		client = this.emDialogController.nouvelEmploye();
 		if (client != null) {

@@ -232,8 +232,7 @@ public class Access_BD_Client {
 	 *                                           mal formée ou autre)
 	 * @throws DatabaseConnexionException        Erreur de connexion
 	 */
-	public void updateClient(Client client)
-			throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException {
+	public void updateClient(Client client) throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException {
 		try {
 			Connection con = LogToDatabase.getConnexion();
 
