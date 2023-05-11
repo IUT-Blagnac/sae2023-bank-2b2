@@ -44,19 +44,23 @@ Comment concevoir une application de gestion bancaire qui réponde aux besoins d
 
 == Analyse de l'existant
 
-Il existe une version V0 du projet comprenant plusieurs fichiers de code et d'interfaces homme-machine (IHM) dédiés à la gestion d'une agence bancaire. Cette version permet aux utilisateurs de se connecter en utilisant un login et un mot de passe.
+Dans ce porjet, il existe une première version V0 du projet, comprenant différents fichiers de code et d'interfaces homme-machine (IHM) dédiés à la gestion d'une agence bancaire.
 
-Une fois connecté en tant qu'employé, l'utilisateur est dirigé vers une page d'accueil affichant le nom de l'agence ainsi que le nom de l'employé associé au compte. À partir de cette page, il a la possibilité de se déconnecter ou d'accéder aux fonctionnalités de gestion des clients.
+La fonctionnalité de connexion est déjà mise en place, permettant aux utilisateurs de se connecter à l'aide d'un login et d'un mot de passe. Une fois connecté en tant qu'employé, l'utilisateur est redirigé vers une page d'accueil affichant le nom de l'agence et le nom de l'employé associé au compte.
 
-La gestion des clients comprend plusieurs fonctionnalités. D'une part, il est possible d'ajouter de nouveaux comptes clients à l'agence. D'autre part, une fonction de recherche permet à l'utilisateur de retrouver des comptes clients déjà présents dans l'agence. Cette recherche peut être effectuée en utilisant le numéro, le nom ou le prénom du client. Si la recherche est laissée vide, toutes les informations des clients de l'agence sont affichées.
+À partir de cette page, plusieurs fonctionnalités de gestion des clients sont disponibles. Il est possible d'ajouter un nouveau compte client à l'agence, ainsi que de rechercher des comptes clients existants. La recherche peut être effectuée en utilisant le numéro, le nom et le prénom du client. Cependant, il n'est pas possible de rechercher un client uniquement par son prénom. Si la recherche est laissée vide, tous les clients de l'agence sont affichés.
 
-Lorsque l'utilisateur clique sur un client, il peut alors observer les informations détaillées de ses comptes ou modifier ses informations personnelles. Les informations disponibles comprennent le nom, le prénom, l'identifiant, le solde et le découvert autorisé des comptes clients. Par ailleurs, en cliquant sur la ligne du solde, une fonctionnalité permet de consulter les opérations effectuées sur le compte. Une nouvelle fenêtre s'ouvre, affichant les dates, les types d'opérations (dépôt ou retrait) et les montants associés.
+En cliquant sur un client, l'utilisateur peut accéder aux informations détaillées de ses comptes et modifier ses informations personnelles. Les informations disponibles comprennent le nom, le prénom, l'identifiant, le numéro de compte, le solde et le découvert autorisé.
 
-En plus de la consultation des opérations, l'utilisateur a la possibilité d'enregistrer un débit sur le compte client. En cliquant sur un bouton dédié, il peut choisir entre un retrait en espèces ou un retrait par carte bleue. Il peut ensuite saisir le montant et effectuer le retrait.
+Une fonctionnalité "Nouveau compte" est mentionnée, mais elle n'est pas encore implémentée dans la version actuelle du projet. Elle devrait permettre de créer un nouveau compte en demandant le découvert autorisé et le solde.
 
-En ce qui concerne la modification des informations du client, l'utilisateur peut aisément mettre à jour les données personnelles telles que le nom, le prénom, l'adresse, le numéro de téléphone et l'e-mail.
+Lorsque l'utilisateur clique sur le compte d'un client, une fonctionnalité lui permet de visualiser les opérations effectuées sur ce compte. Une nouvelle fenêtre s'ouvre, présentant les dates des opérations, le type (dépôt ou retrait) et le montant de chaque opération.
 
-Il convient de noter que si l'utilisateur se connecte en tant que chef d'agence, une fonctionnalité de gestion des employés est prévue, mais n'a pas encore été développée dans la version actuelle du projet.
+La possibilité d'enregistrer un débit est également mentionnée. En cliquant sur un bouton dédié, l'utilisateur peut choisir entre un retrait en espèces ou un retrait par carte bleue, ainsi que spécifier le montant du retrait.
+
+De retour à la gestion du client, il est possible de modifier les informations personnelles telles que le nom, le prénom, l'adresse, le numéro de téléphone et l'e-mail.
+
+Si l'utilisateur se connecte en tant que chef d'agence, une fonctionnalité de gestion des employés est prévue, mais elle n'a pas encore été développée dans la version actuelle du projet.
 
 == Analyse des besoins incluant V0 et V1
 
