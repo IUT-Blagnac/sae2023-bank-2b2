@@ -11,7 +11,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
@@ -53,7 +56,7 @@ public class EmployeEditorPaneController {
 		this.editionMode = mode;
 		if (employe == null) {
 			//construction d'un employé par défaut
-			this.employeEdite = new Employe();
+			this.employeEdite = new Employe(0, "", "", "", "", "", this.dailyBankState.getAgenceActuelle().idAg);
 		} else {
 			this.employeEdite = new Employe(employe);
 		}
@@ -63,10 +66,10 @@ public class EmployeEditorPaneController {
 			this.txtIdEmpl.setDisable(true);
 			this.txtNom.setDisable(false);
 			this.txtPrenom.setDisable(false);
-			this.txtDroitAccess.setDisable(false);
+			this.menuBtnDroitAccess.setDisable(false);
 			this.txtLogin.setDisable(false);
 			this.txtMotPasse.setDisable(false);
-			this.txtIdAgence.setDisable(false);
+			this.txtIdAgence.setDisable(true);
 			
 			this.lblMessage.setText("Informations sur le nouvel employé");
 			this.butOk.setText("Ajouter");
@@ -76,10 +79,10 @@ public class EmployeEditorPaneController {
 			this.txtIdEmpl.setDisable(true);
 			this.txtNom.setDisable(false);
 			this.txtPrenom.setDisable(false);
-			this.txtDroitAccess.setDisable(false);
+			this.menuBtnDroitAccess.setDisable(false);
 			this.txtLogin.setDisable(false);
 			this.txtMotPasse.setDisable(false);
-			this.txtIdAgence.setDisable(false);
+			this.txtIdAgence.setDisable(true);
 			
 			this.lblMessage.setText("Informations employé");
 			this.butOk.setText("Modifier");
@@ -98,7 +101,6 @@ public class EmployeEditorPaneController {
 		this.txtIdEmpl.setText("" + this.employeEdite.idEmploye);
 		this.txtNom.setText(this.employeEdite.nom);
 		this.txtPrenom.setText(this.employeEdite.prenom);
-		this.txtDroitAccess.setText(this.employeEdite.droitsAccess);
 		this.txtLogin.setText(this.employeEdite.login);
 		this.txtMotPasse.setText(this.employeEdite.motPasse);
 		this.txtIdAgence.setText("" + this.employeEdite.idAg);
@@ -129,7 +131,13 @@ public class EmployeEditorPaneController {
 	@FXML
 	private TextField txtPrenom;
 	@FXML
-	private TextField txtDroitAccess;
+	private MenuButton menuBtnDroitAccess;
+	@FXML
+	private ToggleGroup toggleGroupDroitAccess;
+	@FXML
+	private RadioMenuItem radioBtnChefAgence;
+	@FXML
+	private RadioMenuItem radioBtnEmploye;
 	@FXML
 	private TextField txtLogin;
 	@FXML
@@ -173,7 +181,15 @@ public class EmployeEditorPaneController {
 	private boolean isSaisieValide() {
 		this.employeEdite.nom = this.txtNom.getText().trim();
 		this.employeEdite.prenom = this.txtPrenom.getText().trim();
-		this.employeEdite.droitsAccess = this.txtDroitAccess.getText().trim();
+		if (toggleGroupDroitAccess.getSelectedToggle() != null) {
+			RadioMenuItem rb = (RadioMenuItem) toggleGroupDroitAccess.getSelectedToggle();
+			
+			if (rb.getText().equals("Chef d'agence")) {
+				this.employeEdite.droitsAccess = "chefAgence";
+			} else {
+				this.employeEdite.droitsAccess = "employe";
+			}
+		}
 		this.employeEdite.login = this.txtLogin.getText().trim();
 		this.employeEdite.motPasse = this.txtMotPasse.getText().trim();
 		this.employeEdite.idAg = Integer.parseInt(this.txtIdAgence.getText().trim());
@@ -190,9 +206,34 @@ public class EmployeEditorPaneController {
 			this.txtPrenom.requestFocus();
 			return false;
 		}
-
-		//AJOUTER UNE VERIFICATION
-
+		if(toggleGroupDroitAccess.getSelectedToggle() == null) {
+			AlertUtilities.showAlert(this.primaryStage, "Erreur de saisie", null, "Un droit d'accès doit être sélectionné",
+					AlertType.WARNING);
+			this.txtPrenom.requestFocus();
+			return false;
+		}
+		if (this.employeEdite.login.isEmpty()) {
+			AlertUtilities.showAlert(this.primaryStage, "Erreur de saisie", null, "Le login ne doit pas être vide",
+					AlertType.WARNING);
+			this.txtLogin.requestFocus();
+			return false;
+		}
+		if (this.employeEdite.motPasse.isEmpty()) {
+			AlertUtilities.showAlert(this.primaryStage, "Erreur de saisie", null, "Le mot de passe ne doit pas être vide",
+					AlertType.WARNING);
+			this.txtMotPasse.requestFocus();
+			return false;
+		}
 		return true;
 	}
+
+	@FXML
+	private void radioBtnChefAgence() {
+		this.menuBtnDroitAccess.setText(radioBtnChefAgence.getText());
+	}
+	@FXML
+	private void radioBtnEmploye() {
+		this.menuBtnDroitAccess.setText(radioBtnEmploye.getText());
+	}
+
 }

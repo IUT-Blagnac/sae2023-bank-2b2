@@ -78,10 +78,6 @@ public class CompteEditorPaneController {
 			this.lblSolde.setText("Solde ");
 			this.btnOk.setText("Supprimer");
 			this.btnCancel.setText("Annuler");
-			//AlertUtilities.showAlert(primaryStage, "Supression du compte", "Souhaitez vous supprimer le compte ?", "Attention la suppression du compte est définitive", AlertType.CONFIRMATION);
-//			AlertUtilities.showAlert(this.primaryStage, "Non implémenté", "Suppression de compte n'est pas implémenté",
-//					null, AlertType.ERROR);
-//			return null;
 			break;
 		}
 

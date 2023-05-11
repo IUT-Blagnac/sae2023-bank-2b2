@@ -79,12 +79,11 @@ public class EmployesManagement {
 	public Employe nouvelEmploye() {
 		Employe employe;
 		EmployeEditorPane cep = new EmployeEditorPane(this.primaryStage, this.dailyBankState);
-		employe = cep.doClientEditorDialog(null, EditionMode.CREATION);
+		employe = cep.doEmployeEditorDialog(null, EditionMode.CREATION);
 		if (employe != null) {
 			try {
 				Access_BD_Employe ae = new Access_BD_Employe();
-
-				ae.insertEmploye(employe);
+				ae.insertEmploye(employe); //ICI
 			} catch (DatabaseConnexionException e) {
 				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
 				ed.doExceptionDialog();

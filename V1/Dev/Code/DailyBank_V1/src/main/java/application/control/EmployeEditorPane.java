@@ -45,7 +45,7 @@ public class EmployeEditorPane {
 		}
 	}
 
-	public Employe doClientEditorDialog(Employe client, EditionMode em) {
+	public Employe doEmployeEditorDialog(Employe client, EditionMode em) {
 		return this.eepcViewController.displayDialog(client, em);
 	}
 }

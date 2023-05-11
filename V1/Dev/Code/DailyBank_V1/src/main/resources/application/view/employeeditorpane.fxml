@@ -3,7 +3,10 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.RadioMenuItem?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -66,7 +69,6 @@
             <TextField fx:id="txtIdEmpl" editable="false" GridPane.columnIndex="1" />
             <TextField fx:id="txtNom" layoutX="171.0" layoutY="23.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="txtPrenom" layoutX="171.0" layoutY="58.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="txtDroitAccess" layoutX="171.0" layoutY="93.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="txtMotPasse" layoutX="171.0" layoutY="128.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="Mot de passe" GridPane.rowIndex="5">
                <GridPane.margin>
@@ -85,6 +87,16 @@
                </GridPane.margin>
             </Label>
             <TextField fx:id="txtIdAgence" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <MenuButton fx:id="menuBtnDroitAccess" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="26.0" prefWidth="393.0" text="Droit" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3">
+              <items>
+                  <RadioMenuItem fx:id="radioBtnChefAgence" mnemonicParsing="false" onAction="#radioBtnChefAgence" text="Chef d'agence">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="toggleGroupDroitAccess" />
+                     </toggleGroup>
+                  </RadioMenuItem>
+                  <RadioMenuItem fx:id="radioBtnEmploye" mnemonicParsing="false" onAction="#radioBtnEmploye" text="Guichetier" toggleGroup="$toggleGroupDroitAccess" />
+              </items>
+            </MenuButton>
          </children>
       </GridPane>
    </center>

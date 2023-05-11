@@ -193,16 +193,14 @@ public class Access_BD_Employe {
 
 			Connection con = LogToDatabase.getConnexion();
 
-			String query = "INSERT INTO EMPLOYE VALUES (" + "seq_id_employe.NEXTVAL" + ", " + "?" + ", " + "?" + ", "
-					+ "?" + ", " + "?" + ", " + "?" + ", " + "?" + ")";
+			String query = "INSERT INTO EMPLOYE VALUES (" + "seq_id_employe.NEXTVAL" + ", " + "?" + ", " + "?" + ", "+ "?" + ", " + "?" + ", " + "?" + ", " + "?" + ")";
 			PreparedStatement pst = con.prepareStatement(query);
-			pst.setInt(1, employe.idEmploye);
-			pst.setString(2, employe.nom);
-			pst.setString(3, employe.prenom);
-			pst.setString(4, employe.droitsAccess);
-			pst.setString(5, employe.login);
-			pst.setString(6, employe.motPasse);
-			pst.setInt(7, employe.idAg);
+			pst.setString(1, employe.nom);
+			pst.setString(2, employe.prenom);
+			pst.setString(3, employe.droitsAccess);
+			pst.setString(4, employe.login);
+			pst.setString(5, employe.motPasse);
+			pst.setInt(6, employe.idAg);
 
 
 			System.err.println(query);
