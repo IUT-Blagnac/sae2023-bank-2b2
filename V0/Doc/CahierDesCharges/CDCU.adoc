@@ -44,7 +44,7 @@ Comment concevoir une application de gestion bancaire qui réponde aux besoins d
 
 == Analyse de l'existant
 
-Dans ce porjet, il existe une première version V0 du projet, comprenant différents fichiers de code et d'interfaces homme-machine (IHM) dédiés à la gestion d'une agence bancaire.
+Dans ce projet, il existe une première version V0 du projet, comprenant différents fichiers de code et d'interfaces homme-machine (IHM) dédiés à la gestion d'une agence bancaire.
 
 La fonctionnalité de connexion est déjà mise en place, permettant aux utilisateurs de se connecter à l'aide d'un login et d'un mot de passe. Une fois connecté en tant qu'employé, l'utilisateur est redirigé vers une page d'accueil affichant le nom de l'agence et le nom de l'employé associé au compte.
 
