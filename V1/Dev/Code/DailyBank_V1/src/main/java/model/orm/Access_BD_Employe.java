@@ -122,6 +122,7 @@ public class Access_BD_Employe {
 				query += " droitsAccess = ? ";
 			}
 			query += " order by idEmploye";
+			
 			System.out.println(query);
 
 
@@ -160,12 +161,6 @@ public class Access_BD_Employe {
 				un = _droit;
 			}
 
-			System.out.println("un =" + un + " deux =" + deux + " trois =" + trois + " quatre =" + quatre);
-			
-		
-
-			System.out.println("coucou");
-			System.out.println(query);
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {
 				int idEmploye = rs.getInt("idEmploye");
@@ -176,7 +171,6 @@ public class Access_BD_Employe {
 				String motPasse = rs.getString("motPasse");
 				int idAg = rs.getInt("idAg");
 				Employe employe = new Employe(idEmploye, nom, prenom, droitsAccess, login, motPasse, idAg);
-				System.out.println(employe);
 				alResult.add(employe);
 			}
 			rs.close();
