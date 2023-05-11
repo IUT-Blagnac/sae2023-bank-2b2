@@ -205,11 +205,11 @@ public class Access_BD_CompteCourant {
 
 			int result = pst.executeUpdate();
 			pst.close();
-			if (result != 1) {
-				con.rollback();
-				throw new RowNotFoundOrTooManyRowsException(Table.CompteCourant, Order.UPDATE,
-						"Update anormal (update de moins ou plus d'une ligne)", null, result);
-			}
+//			if (result != 1) {
+//				con.rollback();
+//				throw new RowNotFoundOrTooManyRowsException(Table.CompteCourant, Order.UPDATE,
+//						"Update anormal (update de moins ou plus d'une ligne)", null, result);
+//			}
 			con.commit();
 		} catch (SQLException e) {
 			throw new DataAccessException(Table.CompteCourant, Order.UPDATE, "Erreur accès", e);
