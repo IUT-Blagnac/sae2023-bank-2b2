@@ -82,11 +82,11 @@ public class EmployesManagementController {
 	@FXML
 	private ListView<Employe> lvEmployes;
 	@FXML
-	private Button btnDesactClient;
+	private Button btnSuprEmploye;
 	@FXML
-	private Button btnModifClient;
+	private Button btnModifEmploye;
 	@FXML
-	private Button btnComptesClient;
+	private Button btnNouvelEmploye;
 
     @FXML
 	private void doCancel() {
@@ -145,23 +145,34 @@ public class EmployesManagementController {
 	}
 
 	@FXML
-	private void doComptesClient() {
+	private void doModifierEmploye() {
+		System.out.println("doModifierEmploye");
+        // Non implémenté => désactivé
+		// int selectedIndice = this.lvEmployes.getSelectionModel().getSelectedIndex();
+		// if (selectedIndice >= 0) {
+		// 	Employe cliMod = this.oListEmployes.get(selectedIndice);
+		// 	Employe result = this.emDialogController.modifier(cliMod);
+		// 	if (result != null) {
+		// 		this.oListClients.set(selectedIndice, result);
+		// 	}
+		// }
+	}
+
+	@FXML
+	private void doSupprimerEmploye() {
+		System.out.println("doSuppirmerEmploye");
         // Non implémenté => désactivé
 	}
 
 	@FXML
-	private void doModifierClient() {
+	private void doNouvelEmploye() {
+		System.out.println("doNouvelEmploye");
         // Non implémenté => désactivé
-	}
-
-	@FXML
-	private void doDesactiverClient() {
-        // Non implémenté => désactivé
-	}
-
-	@FXML
-	private void doNouveauClient() {
-        // Non implémenté => désactivé
+		Employe client;
+		client = this.emDialogController.nouvelEmploye();
+		if (client != null) {
+			this.oListEmployes.add(client);
+		}
 	}
 
 	@FXML

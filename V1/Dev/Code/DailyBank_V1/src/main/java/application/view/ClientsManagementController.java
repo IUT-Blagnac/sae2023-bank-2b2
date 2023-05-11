@@ -137,7 +137,6 @@ public class ClientsManagementController {
 
 	@FXML
 	private void doModifierClient() {
-
 		int selectedIndice = this.lvClients.getSelectionModel().getSelectedIndex();
 		if (selectedIndice >= 0) {
 			Client cliMod = this.oListClients.get(selectedIndice);

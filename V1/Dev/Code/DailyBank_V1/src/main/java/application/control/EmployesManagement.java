@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import application.DailyBankApp;
 import application.DailyBankState;
+import application.tools.EditionMode;
 import application.tools.StageManagement;
 import application.view.EmployesManagementController;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +14,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.data.Employe;
-import model.orm.Access_BD_Client;
+import model.orm.Access_BD_Employe;
 import model.orm.exception.ApplicationException;
 import model.orm.exception.DatabaseConnexionException;
 
@@ -56,12 +57,12 @@ public class EmployesManagement {
     public ArrayList<Employe> getlisteEmployes(int _numEmploye, String _debutNom, String _debutPrenom, String _droit){
         ArrayList<Employe> listeEmpl = new ArrayList<>();
 		try {
-			// Recherche des clients en BD. cf. AccessClient > getClients(.)
+			// Recherche des employés en BD. cf. AccessEmployé > getEmployé(.)
 			// numCompte != -1 => recherche sur numCompte
 			// numCompte == -1 et debutNom non vide => recherche nom/prenom
-			// numCompte == -1 et debutNom vide => recherche tous les clients
-			Access_BD_Client ac = new Access_BD_Client();
-			listeEmpl = ac.getEmployes(_numEmploye, _debutNom, _debutPrenom, _droit);
+			// numCompte == -1 et debutNom vide => recherche tous les Employé
+			Access_BD_Employe ae = new Access_BD_Employe();
+			listeEmpl = ae.getEmployes(_numEmploye, _debutNom, _debutPrenom, _droit);
 		} catch (DatabaseConnexionException e) {
 			ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
 			ed.doExceptionDialog();
@@ -74,4 +75,27 @@ public class EmployesManagement {
 		}
 		return listeEmpl;
     }
+
+	public Employe nouvelEmploye() {
+		Employe employe;
+		EmployeEditorPane cep = new EmployeEditorPane(this.primaryStage, this.dailyBankState);
+		employe = cep.doClientEditorDialog(null, EditionMode.CREATION);
+		if (employe != null) {
+			try {
+				Access_BD_Employe ae = new Access_BD_Employe();
+
+				ae.insertEmploye(employe);
+			} catch (DatabaseConnexionException e) {
+				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
+				ed.doExceptionDialog();
+				this.primaryStage.close();
+				employe = null;
+			} catch (ApplicationException ae) {
+				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, ae);
+				ed.doExceptionDialog();
+				employe = null;
+			}
+		}
+		return employe;
+	}
 }

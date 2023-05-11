@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import model.data.Employe;
 import model.orm.exception.DataAccessException;
@@ -78,6 +79,159 @@ public class Access_BD_Employe {
 			return employeTrouve;
 		} catch (SQLException e) {
 			throw new DataAccessException(Table.Employe, Order.SELECT, "Erreur accès", e);
+		}
+	}
+
+	public ArrayList<Employe> getEmployes(int _idEmploye, String _debutNom, String _debutPrenom, String _droit) throws DataAccessException, DatabaseConnexionException {
+		ArrayList<Employe> alResult = new ArrayList<Employe>();
+		try {
+			Connection con = LogToDatabase.getConnexion();
+			Boolean first = true;
+
+			PreparedStatement pst;
+
+			String query = "SELECT * FROM Employe";
+			if (_idEmploye != -1) {
+				if (first) {
+					query += " where ";
+					first = false;
+				}	
+				query += " idEmploye = ? ";
+				if (!_debutNom.equals("") || !_droit.equals("")) {
+					query += " and ";
+				}
+			} 
+			if(!_debutNom.equals("")) {
+				if (first) {
+					query += " where ";
+					first = false;
+				}	
+				_debutNom = _debutNom.toUpperCase() + "%";
+				_debutPrenom = _debutPrenom.toUpperCase() + "%";
+				query += " UPPER(nom) like ? ";
+				query += " and UPPER(prenom) like ? ";
+				if (!_droit.equals("")) {
+					query += " and ";
+				}
+			}
+			if(!_droit.equals("")) {
+				if (first) {
+					query += " where ";
+					first = false;
+				}	
+				query += " droitsAccess = ? ";
+			}
+			query += " order by idEmploye";
+			System.out.println(query);
+
+
+			String un = "";
+			String deux = "";
+			String trois = "";
+			String quatre = "";
+			pst = con.prepareStatement(query);
+			if(_idEmploye != -1) {
+				pst.setInt(1, _idEmploye);
+				un = _idEmploye + "";
+				if (!_debutNom.equals("")) {
+					pst.setString(2, _debutNom);
+					deux = _debutNom;
+					pst.setString(3, _debutPrenom);
+					trois = _debutPrenom;
+					if (!_droit.equals("")) {
+						pst.setString(4, _droit);
+						quatre = _droit;
+					}
+				}else if(!_droit.equals("")) {
+					pst.setString(2, _droit);
+					deux = _droit;
+				}
+			} else if(!_debutNom.equals("")) {
+				pst.setString(1, _debutNom);
+				un = _debutNom;
+				pst.setString(2, _debutPrenom);
+				deux = _debutPrenom;
+				if (!_droit.equals("")) {
+					pst.setString(3, _droit);
+					trois = _droit;
+				}
+			} else if(!_droit.equals("")) {
+				pst.setString(1, _droit);
+				un = _droit;
+			}
+
+			System.out.println("un =" + un + " deux =" + deux + " trois =" + trois + " quatre =" + quatre);
+			
+		
+
+			System.out.println("coucou");
+			System.out.println(query);
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				int idEmploye = rs.getInt("idEmploye");
+				String nom = rs.getString("nom");
+				String prenom = rs.getString("prenom");
+				String droitsAccess = rs.getString("droitsAccess");
+				String login = rs.getString("login");
+				String motPasse = rs.getString("motPasse");
+				int idAg = rs.getInt("idAg");
+				Employe employe = new Employe(idEmploye, nom, prenom, droitsAccess, login, motPasse, idAg);
+				System.out.println(employe);
+				alResult.add(employe);
+			}
+			rs.close();
+			pst.close();
+		}catch (SQLException e) {
+			throw new DataAccessException(Table.Employe, Order.SELECT, "Erreur accès", e);
+		}
+		return alResult;
+	}
+
+	public void insertEmploye(Employe employe)
+			throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException {
+		try {
+
+			Connection con = LogToDatabase.getConnexion();
+
+			String query = "INSERT INTO EMPLOYE VALUES (" + "seq_id_employe.NEXTVAL" + ", " + "?" + ", " + "?" + ", "
+					+ "?" + ", " + "?" + ", " + "?" + ", " + "?" + ")";
+			PreparedStatement pst = con.prepareStatement(query);
+			pst.setInt(1, employe.idEmploye);
+			pst.setString(2, employe.nom);
+			pst.setString(3, employe.prenom);
+			pst.setString(4, employe.droitsAccess);
+			pst.setString(5, employe.login);
+			pst.setString(6, employe.motPasse);
+			pst.setInt(7, employe.idAg);
+
+
+			System.err.println(query);
+
+			int result = pst.executeUpdate();
+			pst.close();
+
+			if (result != 1) {
+				con.rollback();
+				throw new RowNotFoundOrTooManyRowsException(Table.Employe, Order.INSERT,
+						"Insert anormal (insert de moins ou plus d'une ligne)", null, result);
+			}
+
+			query = "SELECT seq_id_employe.CURRVAL from DUAL";
+
+			System.err.println(query);
+			PreparedStatement pst2 = con.prepareStatement(query);
+
+			ResultSet rs = pst2.executeQuery();
+			rs.next();
+			int numEmplBase = rs.getInt(1);
+
+			con.commit();
+			rs.close();
+			pst2.close();
+
+			employe.idEmploye = numEmplBase;
+		} catch (SQLException e) {
+			throw new DataAccessException(Table.Employe, Order.INSERT, "Erreur accès", e);
 		}
 	}
 }
