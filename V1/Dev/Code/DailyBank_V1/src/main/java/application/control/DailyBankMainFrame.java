@@ -8,7 +8,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import model.data.Employe;
+import model.orm.Access_BD_Employe;
 import model.orm.LogToDatabase;
+import model.orm.exception.ApplicationException;
 import model.orm.exception.DatabaseConnexionException;
 
 /**
@@ -50,28 +53,28 @@ public class DailyBankMainFrame extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Fenêtre Principale");
 
-			/*
-			 * // En mise au point : // Forcer une connexion existante pour rentrer dans
-			 * l'appli en mode connecté
-			 * 
-			 * try { Employe e; Access_BD_Employe ae = new Access_BD_Employe();
-			 * 
-			 * e = ae.getEmploye("Tuff", "Lejeune");
-			 * 
-			 * if (e == null) { System.out.println("\n\nPB DE CONNEXION\n\n"); } else {
-			 * this.dailyBankState.setEmployeActuel(e); } } catch
-			 * (DatabaseConnexionException e) { ExceptionDialog ed = new
-			 * ExceptionDialog(primaryStage, this.dailyBankState, e);
-			 * ed.doExceptionDialog(); this.dailyBankState.setEmployeActuel(null); } catch
-			 * (ApplicationException ae) { ExceptionDialog ed = new
-			 * ExceptionDialog(primaryStage, this.dailyBankState, ae);
-			 * ed.doExceptionDialog(); this.dailyBankState.setEmployeActuel(null); }
-			 * 
-			 * if (this.dailyBankState.getEmployeActuel() != null) {
-			 * this.dailyBankState.setEmployeActuel(this.dailyBankState.getEmployeActuel());
-			 * }
-			 * 
-			 */
+			
+			 // En mise au point : Forcer une connexion existante pour rentrer dansl'appli en mode connecté
+			 
+			try { Employe e; Access_BD_Employe ae = new Access_BD_Employe();
+			  
+			e = ae.getEmploye("Tuff", "Lejeune");
+			
+			if (e == null) { System.out.println("\n\nPB DE CONNEXION\n\n"); } else {
+			this.dailyBankState.setEmployeActuel(e); } } catch
+			(DatabaseConnexionException e) { ExceptionDialog ed = new
+			ExceptionDialog(primaryStage, this.dailyBankState, e);
+			ed.doExceptionDialog(); this.dailyBankState.setEmployeActuel(null); } catch
+			(ApplicationException ae) { ExceptionDialog ed = new
+			ExceptionDialog(primaryStage, this.dailyBankState, ae);
+			ed.doExceptionDialog(); this.dailyBankState.setEmployeActuel(null); }
+			
+			if (this.dailyBankState.getEmployeActuel() != null) {
+			this.dailyBankState.setEmployeActuel(this.dailyBankState.getEmployeActuel());
+			}
+			// fin connexion auto
+			
+			
 
 			// Récupération du contrôleur et initialisation (stage, contrôleur de dialogue,
 			// état courant)
