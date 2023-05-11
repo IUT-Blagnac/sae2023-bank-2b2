@@ -44,7 +44,19 @@ Comment concevoir une application de gestion bancaire qui réponde aux besoins d
 
 == Analyse de l'existant
 
-Dans la version existante (V0), un guichetier peut modifier les informations client, créer un nouveau client, consulter un compte et débiter un compte. Un chef d'agence peut rendre inactif un client.
+Il existe une version V0 du projet comprenant plusieurs fichiers de code et d'interfaces homme-machine (IHM) dédiés à la gestion d'une agence bancaire. Cette version permet aux utilisateurs de se connecter en utilisant un login et un mot de passe.
+
+Une fois connecté en tant qu'employé, l'utilisateur est dirigé vers une page d'accueil affichant le nom de l'agence ainsi que le nom de l'employé associé au compte. À partir de cette page, il a la possibilité de se déconnecter ou d'accéder aux fonctionnalités de gestion des clients.
+
+La gestion des clients comprend plusieurs fonctionnalités. D'une part, il est possible d'ajouter de nouveaux comptes clients à l'agence. D'autre part, une fonction de recherche permet à l'utilisateur de retrouver des comptes clients déjà présents dans l'agence. Cette recherche peut être effectuée en utilisant le numéro, le nom ou le prénom du client. Si la recherche est laissée vide, toutes les informations des clients de l'agence sont affichées.
+
+Lorsque l'utilisateur clique sur un client, il peut alors observer les informations détaillées de ses comptes ou modifier ses informations personnelles. Les informations disponibles comprennent le nom, le prénom, l'identifiant, le solde et le découvert autorisé des comptes clients. Par ailleurs, en cliquant sur la ligne du solde, une fonctionnalité permet de consulter les opérations effectuées sur le compte. Une nouvelle fenêtre s'ouvre, affichant les dates, les types d'opérations (dépôt ou retrait) et les montants associés.
+
+En plus de la consultation des opérations, l'utilisateur a la possibilité d'enregistrer un débit sur le compte client. En cliquant sur un bouton dédié, il peut choisir entre un retrait en espèces ou un retrait par carte bleue. Il peut ensuite saisir le montant et effectuer le retrait.
+
+En ce qui concerne la modification des informations du client, l'utilisateur peut aisément mettre à jour les données personnelles telles que le nom, le prénom, l'adresse, le numéro de téléphone et l'e-mail.
+
+Il convient de noter que si l'utilisateur se connecte en tant que chef d'agence, une fonctionnalité de gestion des employés est prévue, mais n'a pas encore été développée dans la version actuelle du projet.
 
 == Analyse des besoins incluant V0 et V1
 
