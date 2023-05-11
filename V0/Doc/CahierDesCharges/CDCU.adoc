@@ -6,7 +6,7 @@ Date: 2023-05-10
 :toc-title: Table des matières
 :sectnums:
 
-Équipe: 2B2 +
+Équipe : 2B2 +
 Membres de l'équipe : Enzo Fournet, Julien Couderc, Yannis Gibert +
 Projet: DailyBank
 
