@@ -60,7 +60,7 @@ La possibilité d'enregistrer un débit est également mentionnée. En cliquant 
 
 De retour à la gestion du client, il est possible de modifier les informations personnelles telles que le nom, le prénom, l'adresse, le numéro de téléphone et l'e-mail.
 
-Si l'utilisateur se connecte en tant que chef d'agence, une fonctionnalité de gestion des employés est prévue, mais elle n'a pas encore été développée dans la version actuelle du projet.
+Si l'utilisateur se connecte en tant que chef d'agence, une fonctionnalité de gestion des employés est prévue, mais elle n'a pas encore été développée dans la version actuelle du projet. De plus, il peut rendre un client inactif.
 
 == Analyse des besoins incluant V0 et V1
 

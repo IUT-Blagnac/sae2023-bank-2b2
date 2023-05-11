@@ -117,6 +117,104 @@ public class Access_BD_CompteCourant {
 			throw new DataAccessException(Table.CompteCourant, Order.SELECT, "Erreur accès", e);
 		}
 	}
+	
+	/**
+	 * Insertion d'un compte.
+	 *
+	 * @param compte IN/OUT Tous les attributs IN sauf idNumCli en OUT
+	 * @throws RowNotFoundOrTooManyRowsException La requête insère 0 ou plus de 1
+	 *                                           ligne
+	 * @throws DataAccessException               Erreur d'accès aux données (requête
+	 *                                           mal formée ou autre)
+	 * @throws DatabaseConnexionException        Erreur de connexion
+	 */
+	public void insertCompte(CompteCourant compte)
+			throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException {
+		try {
+
+			Connection con = LogToDatabase.getConnexion();
+
+			String query = "INSERT INTO COMPTECOURANT VALUES (" + "seq_id_compte.NEXTVAL" + ", " + "?" + ", " + "?" + ", "
+					+ "?" + ", " + "?" + ")";
+			PreparedStatement pst = con.prepareStatement(query);
+			pst.setInt(1, compte.debitAutorise);
+			pst.setDouble(2,compte.solde);
+			pst.setInt(3, compte.idNumCli);
+			pst.setString(4, "" + compte.estCloture.charAt(0));
+
+			System.err.println(query);
+
+			int result = pst.executeUpdate();
+			pst.close();
+
+			if (result != 1) {
+				con.rollback();
+				throw new RowNotFoundOrTooManyRowsException(Table.CompteCourant, Order.INSERT,
+						"Insert anormal (insert de moins ou plus d'une ligne)", null, result);
+			}
+
+			query = "SELECT seq_id_compte.CURRVAL from DUAL";
+
+			System.err.println(query);
+			PreparedStatement pst4 = con.prepareStatement(query);
+
+			ResultSet rs = pst4.executeQuery();
+			rs.next();
+			int numCliBase = rs.getInt(1);
+
+			con.commit();
+			rs.close();
+			pst4.close();
+
+			compte.idNumCli = numCliBase;
+		} catch (SQLException e) {
+			throw new DataAccessException(Table.CompteCourant, Order.INSERT, "Erreur accès", e);
+		}
+	}
+	
+	/**
+	 * Mise à jour d'un CompteCourant.
+	 *
+	 * cc.idNumCompte (clé primaire) doit exister seul cc.debitAutorise est mis à
+	 * jour cc.solde non mis à jour (ne peut se faire que par une opération)
+	 * cc.idNumCli non mis à jour (un cc ne change pas de client)
+	 *
+	 * @param cc IN cc.idNumCompte (clé primaire) doit exister seul
+	 * @throws RowNotFoundOrTooManyRowsException La requête modifie 0 ou plus de 1
+	 *                                           ligne
+	 * @throws DataAccessException               Erreur d'accès aux données (requête
+	 *                                           mal formée ou autre)
+	 * @throws DatabaseConnexionException        Erreur de connexion
+	 * @throws ManagementRuleViolation           Erreur sur le solde courant par
+	 *                                           rapport au débitAutorisé (solde <
+	 *                                           débitAutorisé)
+	 */
+	public void deleteCompteCourant(CompteCourant cc) throws RowNotFoundOrTooManyRowsException, DataAccessException,
+			DatabaseConnexionException, ManagementRuleViolation {
+		try {
+
+			Connection con = LogToDatabase.getConnexion();
+
+			String query = "UPDATE CompteCourant SET " + "estCloture = ? " + "WHERE idNumCompte = ?";
+
+			PreparedStatement pst = con.prepareStatement(query);
+			pst.setString(1, ""+cc.estCloture.charAt(0));
+			pst.setInt(2, cc.idNumCompte);
+			System.out.println("" + cc.estCloture.charAt(0));
+			System.err.println(query);
+
+			int result = pst.executeUpdate();
+			pst.close();
+			if (result != 1) {
+				con.rollback();
+				throw new RowNotFoundOrTooManyRowsException(Table.CompteCourant, Order.UPDATE,
+						"Update anormal (update de moins ou plus d'une ligne)", null, result);
+			}
+			con.commit();
+		} catch (SQLException e) {
+			throw new DataAccessException(Table.CompteCourant, Order.UPDATE, "Erreur accès", e);
+		}
+	}
 
 	/**
 	 * Mise à jour d'un CompteCourant.
@@ -154,7 +252,7 @@ public class Access_BD_CompteCourant {
 			PreparedStatement pst = con.prepareStatement(query);
 			pst.setInt(1, cc.debitAutorise);
 			pst.setInt(2, cc.idNumCompte);
-
+			
 			System.err.println(query);
 
 			int result = pst.executeUpdate();

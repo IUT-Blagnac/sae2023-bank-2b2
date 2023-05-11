@@ -1,8 +1,12 @@
 package model.data;
 
+import application.control.CompteEditorPane;
+
 /*
  * Attributs mis en public car cette classe ne fait que "véhiculer" des données.
  */
+
+ //qopicdoihzdocnznc
 
 public class CompteCourant {
 
@@ -10,7 +14,7 @@ public class CompteCourant {
 	public int debitAutorise;
 	public double solde;
 	public String estCloture; // "O" ou "N"
-
+	public CompteEditorPane cep;
 	public int idNumCli;
 
 	public CompteCourant(int idNumCompte, int debitAutorise, double solde, String estCloture, int idNumCli) {
@@ -40,6 +44,19 @@ public class CompteCourant {
 			s = s + (this.estCloture.equals("N") ? " (Ouvert)" : " (Cloture)");
 		}
 		return s;
+	}
+	
+	public void setEditor(CompteEditorPane pane) {
+		this.cep = pane;
+	}
+	
+	public CompteEditorPane getEditor() {
+		return this.cep;
+				
+	}
+	
+	public void setCloture(String etat) {
+		this.estCloture = etat;
 	}
 
 }

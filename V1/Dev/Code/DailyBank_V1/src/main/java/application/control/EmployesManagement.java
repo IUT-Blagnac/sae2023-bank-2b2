@@ -53,17 +53,15 @@ public class EmployesManagement {
 		this.emcViewController.displayDialog();
 	}
 
-    public ArrayList<Employe> getlisteEmployes(){
+    public ArrayList<Employe> getlisteEmployes(int _numEmploye, String _debutNom, String _debutPrenom, String _droit){
         ArrayList<Employe> listeEmpl = new ArrayList<>();
 		try {
 			// Recherche des clients en BD. cf. AccessClient > getClients(.)
 			// numCompte != -1 => recherche sur numCompte
 			// numCompte == -1 et debutNom non vide => recherche nom/prenom
 			// numCompte == -1 et debutNom vide => recherche tous les clients
-
 			Access_BD_Client ac = new Access_BD_Client();
-			listeEmpl = ac.getEmployes();
-
+			listeEmpl = ac.getEmployes(_numEmploye, _debutNom, _debutPrenom, _droit);
 		} catch (DatabaseConnexionException e) {
 			ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
 			ed.doExceptionDialog();

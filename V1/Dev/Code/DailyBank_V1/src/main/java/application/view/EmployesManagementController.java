@@ -1,6 +1,8 @@
 package application.view;
 
+import java.lang.reflect.Array;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import application.DailyBankState;
@@ -11,18 +13,20 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.data.Employe;
 
-public class EmployesManagementController implements Initializable{
+public class EmployesManagementController {
     // Etat courant de l'application
 	private DailyBankState dailyBankState;
 
 	// Contrôleur de Dialogue associé à EmployesManagementController
-	private EmployesManagement cmDialogController;
+	private EmployesManagement emDialogController;
 
 	// Fenêtre physique ou est la scène contenant le fichier xml contrôlé par this
 	private Stage primaryStage;
@@ -32,10 +36,11 @@ public class EmployesManagementController implements Initializable{
 
     // Manipulation de la fenêtre
 	public void initContext(Stage _containingStage, EmployesManagement _em, DailyBankState _dbstate) {
-		this.cmDialogController = _em;
+		this.emDialogController = _em;
 		this.primaryStage = _containingStage;
 		this.dailyBankState = _dbstate;
 		this.configure();
+        this.oListEmployes.addAll(emDialogController.getlisteEmployes(-1, "", "", ""));
 	}
 
     private void configure() {
@@ -67,6 +72,14 @@ public class EmployesManagementController implements Initializable{
 	@FXML
 	private TextField txtPrenom;
 	@FXML
+	private MenuButton menuDroit;
+	@FXML
+	private RadioMenuItem droitChef;
+	@FXML
+	private RadioMenuItem droitGuichetier;
+	@FXML
+	private RadioMenuItem droitAucun;
+	@FXML
 	private ListView<Employe> lvEmployes;
 	@FXML
 	private Button btnDesactClient;
@@ -86,7 +99,49 @@ public class EmployesManagementController implements Initializable{
 
     @FXML
 	private void doRechercher() {
-        // Non implémenté => désactivé
+        int numEmploye;
+		try {
+			String nc = this.txtNum.getText();
+			if (nc.equals("")) {
+				numEmploye = -1;
+			} else {
+				numEmploye = Integer.parseInt(nc);
+				if (numEmploye < 0) {
+					this.txtNum.setText("");
+					numEmploye = -1;
+				}
+			}
+		} catch (NumberFormatException nfe) {
+			this.txtNum.setText("");
+			numEmploye = -1;
+		}
+
+		String debutNom = this.txtNom.getText();
+		String debutPrenom = this.txtPrenom.getText();
+
+		if (numEmploye != -1) {
+			this.txtNom.setText("");
+			this.txtPrenom.setText("");
+		} else {
+			if (debutNom.equals("") && !debutPrenom.equals("")) {
+				this.txtPrenom.setText("");
+			}
+		}
+
+		String droit;
+
+		if(this.droitChef.isSelected()) {
+			droit = "chefAgence";
+		} else if(this.droitGuichetier.isSelected()) {
+			droit = "guichetier";
+		} else {
+			droit = "";
+		}
+
+		ArrayList<Employe> listeEmployes;
+		listeEmployes = this.emDialogController.getlisteEmployes(numEmploye, debutNom, debutPrenom, droit);
+		this.oListEmployes.clear();
+		this.oListEmployes.addAll(listeEmployes);
 	}
 
 	@FXML
@@ -109,8 +164,16 @@ public class EmployesManagementController implements Initializable{
         // Non implémenté => désactivé
 	}
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        
-    }
+	@FXML
+	private void droitChef() {
+		menuDroit.setText(this.droitChef.getText());
+	} 
+	@FXML
+	private void droitGuichetier() {
+		menuDroit.setText(this.droitGuichetier.getText());
+	}
+	@FXML
+	private void droitAucun() {
+		menuDroit.setText(this.droitAucun.getText());
+	}
 }

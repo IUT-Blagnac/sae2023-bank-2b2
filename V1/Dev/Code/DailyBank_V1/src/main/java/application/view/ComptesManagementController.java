@@ -101,10 +101,18 @@ public class ComptesManagementController {
 
 	@FXML
 	private void doModifierCompte() {
+
 	}
 
 	@FXML
 	private void doSupprimerCompte() {
+		int selectedItem = this.lvComptes.getSelectionModel().getSelectedIndex();
+		if(selectedItem >= 0) {
+			CompteCourant compte = this.oListCompteCourant.get(selectedItem);
+			this.cmDialogController.supprimerCompte(compte);	
+		}
+		this.loadList();
+		this.validateComponentState();
 	}
 
 	@FXML
@@ -125,14 +133,17 @@ public class ComptesManagementController {
 
 	private void validateComponentState() {
 		// Non implémenté => désactivé
-		this.btnModifierCompte.setDisable(true);
-		this.btnSupprCompte.setDisable(true);
+
 
 		int selectedIndice = this.lvComptes.getSelectionModel().getSelectedIndex();
 		if (selectedIndice >= 0) {
 			this.btnVoirOpes.setDisable(false);
+			this.btnModifierCompte.setDisable(false);
+			this.btnSupprCompte.setDisable(false);
 		} else {
 			this.btnVoirOpes.setDisable(true);
+			this.btnModifierCompte.setDisable(true);
+			this.btnSupprCompte.setDisable(true);
 		}
 	}
 }
