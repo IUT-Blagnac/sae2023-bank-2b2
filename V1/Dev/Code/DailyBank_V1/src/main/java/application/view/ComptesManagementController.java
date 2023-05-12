@@ -8,9 +8,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.data.Client;
@@ -82,6 +86,7 @@ public class ComptesManagementController {
 	private Button btnModifierCompte;
 	@FXML
 	private Button btnSupprCompte;
+	private ContextMenu contextMenu = new ContextMenu();
 
 	@FXML
 	private void doCancel() {
@@ -135,6 +140,38 @@ public class ComptesManagementController {
 			this.oListCompteCourant.add(compte);
 		}
 	}
+
+	@FXML
+    private void onClicList(MouseEvent event) {
+		int selectedIndice = this.lvComptes.getSelectionModel().getSelectedIndex();
+        if(lvComptes.getItems().size() != 0 && selectedIndice >= 0) {
+            MouseButton mb = event.getButton();
+            if(MouseButton.SECONDARY==mb) {
+				contextMenu.hide();
+                contextMenu = new ContextMenu();
+				MenuItem menuItem1 = new MenuItem("Voir les opérations");
+				MenuItem menuItem2 = new MenuItem("Modifier");
+				MenuItem menuItem3 = new MenuItem("Supprimer");
+				menuItem1.setOnAction(e -> {
+					doVoirOperations();
+				});
+				menuItem2.setOnAction(e -> {
+					doModifierCompte();
+				});
+				menuItem3.setOnAction(e -> {
+					doSupprimerCompte();
+				});
+				contextMenu.getItems().addAll(menuItem1 ,menuItem2, menuItem3);
+                contextMenu.show(lvComptes , event.getScreenX(), event.getScreenY());
+            }
+            if(MouseButton.PRIMARY==mb) {
+                contextMenu.hide();
+                if(event.getClickCount() > 1) {
+						doModifierCompte();
+                }
+            }
+        }
+    }
 
 	private void loadList() {
 		ArrayList<CompteCourant> listeCpt;
