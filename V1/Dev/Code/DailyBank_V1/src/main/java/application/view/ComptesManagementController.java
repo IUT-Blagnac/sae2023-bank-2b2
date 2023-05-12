@@ -98,10 +98,20 @@ public class ComptesManagementController {
 		this.loadList();
 		this.validateComponentState();
 	}
-
+	
+	//Modification d'un compte
 	@FXML
 	private void doModifierCompte() {
-
+		int selectedIndice = this.lvComptes.getSelectionModel().getSelectedIndex();
+		if (selectedIndice >= 0) {
+			CompteCourant compteMod = this.oListCompteCourant.get(selectedIndice);
+			CompteCourant result = this.cmDialogController.modifierCompte(compteMod);
+			if (result != null) {
+				this.oListCompteCourant.set(selectedIndice, result);
+			}
+		}
+		this.loadList();
+		this.validateComponentState();
 	}
 
 	//Suppression d'un compte courant

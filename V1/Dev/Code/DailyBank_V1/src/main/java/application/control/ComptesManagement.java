@@ -8,6 +8,7 @@ import application.tools.AlertUtilities;
 import application.tools.EditionMode;
 import application.tools.StageManagement;
 import application.view.ComptesManagementController;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
@@ -75,6 +76,27 @@ public class ComptesManagement {
 				Access_BD_CompteCourant ac = new Access_BD_CompteCourant();
 				compte.setCloture("O");
 				ac.deleteCompteCourant(compte);
+			} catch (DatabaseConnexionException e) {
+				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
+				ed.doExceptionDialog();
+				result = null;
+				this.primaryStage.close();
+			} catch (ApplicationException ae) {
+				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, ae);
+				ed.doExceptionDialog();
+				result = null;
+			}
+		}
+		return result;
+	}
+	
+	public CompteCourant modifierCompte(CompteCourant c) {
+		CompteEditorPane cep = new CompteEditorPane(this.primaryStage, this.dailyBankState);
+		CompteCourant result = cep.doCompteEditorDialog(this.clientDesComptes,c, EditionMode.MODIFICATION);
+		if (result != null) {
+			try {
+				Access_BD_CompteCourant ac = new Access_BD_CompteCourant();
+				ac.updateCompteCourant(result);
 			} catch (DatabaseConnexionException e) {
 				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
 				ed.doExceptionDialog();
