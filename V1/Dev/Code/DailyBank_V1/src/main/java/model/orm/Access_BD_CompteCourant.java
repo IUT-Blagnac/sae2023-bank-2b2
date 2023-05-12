@@ -121,7 +121,7 @@ public class Access_BD_CompteCourant {
 	/**
 	 * Insertion d'un compte.
 	 *
-	 * @param compte IN/OUT Tous les attributs IN sauf idNumCli en OUT
+	 * @param compte IN/OUT Tous les attributs IN sauf idNumCompte en OUT
 	 * @throws RowNotFoundOrTooManyRowsException La requête insère 0 ou plus de 1
 	 *                                           ligne
 	 * @throws DataAccessException               Erreur d'accès aux données (requête
@@ -160,23 +160,23 @@ public class Access_BD_CompteCourant {
 
 			ResultSet rs = pst4.executeQuery();
 			rs.next();
-			int numCliBase = rs.getInt(1);
+			int numCompteBase = rs.getInt(1);
 
 			con.commit();
 			rs.close();
 			pst4.close();
 
-			compte.idNumCli = numCliBase;
+			compte.idNumCompte = numCompteBase;
 		} catch (SQLException e) {
 			throw new DataAccessException(Table.CompteCourant, Order.INSERT, "Erreur accès", e);
 		}
 	}
 	
 	/**
-	 * Mise à jour d'un CompteCourant.
+	 * Suppression d'un CompteCourant.
 	 *
-	 * cc.idNumCompte (clé primaire) doit exister seul cc.debitAutorise est mis à
-	 * jour cc.solde non mis à jour (ne peut se faire que par une opération)
+	 * cc.idNumCompte (clé primaire) doit exister seul, le compte n'est pas supprimé mais seulement désactivé 
+	 * empêchant alors les opérations
 	 * cc.idNumCli non mis à jour (un cc ne change pas de client)
 	 *
 	 * @param cc IN cc.idNumCompte (clé primaire) doit exister seul
@@ -200,7 +200,6 @@ public class Access_BD_CompteCourant {
 			PreparedStatement pst = con.prepareStatement(query);
 			pst.setString(1, ""+cc.estCloture.charAt(0));
 			pst.setInt(2, cc.idNumCompte);
-			System.out.println("" + cc.estCloture.charAt(0));
 			System.err.println(query);
 
 			int result = pst.executeUpdate();

@@ -6,8 +6,6 @@ import application.control.CompteEditorPane;
  * Attributs mis en public car cette classe ne fait que "véhiculer" des données.
  */
 
- //qopicdoihzdocnznc
-
 public class CompteCourant {
 
 	public int idNumCompte;
