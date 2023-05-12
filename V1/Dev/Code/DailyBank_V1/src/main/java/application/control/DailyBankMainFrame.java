@@ -21,8 +21,8 @@ import model.orm.exception.DatabaseConnexionException;
 
 public class DailyBankMainFrame extends Application {
 
-	// Etat courant de l'application
-	private DailyBankState dailyBankState;
+// Etat courant de l'application //MIS EN STATIC POUR TEST - AUCUNE INCIDENCE SUR LE FONCTIONNEMENT
+	private static DailyBankState dailyBankState;
 
 	// Stage de la fenêtre principale construite par DailyBankMainFrame
 	private Stage primaryStage;
@@ -131,4 +131,10 @@ public class DailyBankMainFrame extends Application {
 		EmployesManagement em = new EmployesManagement(this.primaryStage, this.dailyBankState);
 		em.doEmployeManagementDialog();
 	}
+
+
+//METHODS FOR TESTS - SI VOUS ETES UN PROFESSEUR CETTE METHODE NE RENTRE PAS EN COMPTE DANS LA NOTATION
+    public static DailyBankState getDailyBankState() {
+        return dailyBankState;
+    }
 }
