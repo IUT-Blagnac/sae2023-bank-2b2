@@ -104,6 +104,7 @@ public class ComptesManagementController {
 
 	}
 
+	//Suppression d'un compte courant
 	@FXML
 	private void doSupprimerCompte() {
 		int selectedItem = this.lvComptes.getSelectionModel().getSelectedIndex();
@@ -115,6 +116,7 @@ public class ComptesManagementController {
 		this.validateComponentState();
 	}
 
+	//Ajout d'un nouveau compte courant
 	@FXML
 	private void doNouveauCompte() {
 		CompteCourant compte;
