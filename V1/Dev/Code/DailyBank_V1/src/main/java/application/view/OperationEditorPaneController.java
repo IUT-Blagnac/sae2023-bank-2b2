@@ -180,6 +180,15 @@ public class OperationEditorPaneController {
 				this.txtMontant.requestFocus();
 				return;
 			}
+			if (montant > 999999) {
+				info = "Dépassement du montant du crédit dépassé (>1M) ";
+				this.lblMessage.setText(info);
+				this.txtMontant.getStyleClass().add("borderred");
+				this.lblMontant.getStyleClass().add("borderred");
+				this.lblMessage.getStyleClass().add("borderred");
+				this.txtMontant.requestFocus();
+				return;
+			}
 
 			typeOp = this.cbTypeOpe.getValue();
 			this.operationResultat = new Operation(-1, montant, null, null, this.compteEdite.idNumCli, typeOp);
