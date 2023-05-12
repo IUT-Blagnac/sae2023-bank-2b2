@@ -44,7 +44,21 @@ Comment concevoir une application de gestion bancaire qui réponde aux besoins d
 
 == Analyse de l'existant
 
-Dans ce projet, il existe une première version V0 du projet, comprenant différents fichiers de code et d'interfaces homme-machine (IHM) dédiés à la gestion d'une agence bancaire.
+Dans le code de notre application, différentes fonctionnalités ont été implémentées et réparties dans plusieurs packages. Tout d'abord, le package "application" contient les classes responsables du lancement de l'application et de la gestion de son état actuel.
+
+Ensuite, le package "application.control" permet de gérer les interactions entre la vue et le modèle. Chaque fenêtre possède un contrôleur associé, ce qui facilite la gestion des interactions.
+
+Le package "application.tool" contient des outils utiles pour faciliter certaines tâches dans les contrôleurs. Par exemple, on y trouve des énumérations telles que le mode d'édition ou la catégorie de l'opération.
+
+Le package "view" permet aux classes de se connecter aux fichiers FXML et de gérer les éléments de l'interface graphique. Les classes "Views" sont associées aux classes "Controllers", qui gèrent la logique de l'application.
+
+Le package "model.data" regroupe les classes-objets utilisées dans tous les contrôleurs. Par exemple, on y trouve les classes pour les employés, les clients et les agences bancaires.
+
+Le package "model.orm" est dédié à la gestion des connexions aux bases de données. Il contient les différentes classes nécessaires pour cela.
+
+Enfin, le package "model.orm.exception" gère toutes les exceptions qui peuvent survenir lors des opérations liées à la base de données.
+
+Dans le projet actuel, nous avons une première version V0 comprenant différents fichiers de code et des interfaces homme-machine (IHM) dédiées à la gestion d'une agence bancaire.
 
 La fonctionnalité de connexion est déjà mise en place, permettant aux utilisateurs de se connecter à l'aide d'un login et d'un mot de passe. Une fois connecté en tant qu'employé, l'utilisateur est redirigé vers une page d'accueil affichant le nom de l'agence et le nom de l'employé associé au compte.
 
