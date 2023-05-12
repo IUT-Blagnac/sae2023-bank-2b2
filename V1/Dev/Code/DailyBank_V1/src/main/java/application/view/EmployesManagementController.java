@@ -103,10 +103,7 @@ public class EmployesManagementController {
     private void validateComponentState() {
 		int selectedIndice = this.lvEmployes.getSelectionModel().getSelectedIndex();
 		Employe selectedEmploye = this.lvEmployes.getSelectionModel().getSelectedItem();
-		System.out.println(selectedEmploye);
-		Employe currentEmploye=  this.dailyBankState.getEmployeActuel();
-		System.out.println(currentEmploye);
-	
+		Employe currentEmploye=  this.dailyBankState.getEmployeActuel();	
 		if (selectedIndice >= 0 && (selectedEmploye.toString().equals(currentEmploye.toString()) || selectedEmploye.droitsAccess.equals("guichetier"))) {	
 			this.btnModifEmploye.setDisable(false);
 			if (!selectedEmploye.toString().equals(currentEmploye.toString())) {

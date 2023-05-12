@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.data.Client;
 import model.data.CompteCourant;
+import model.data.Employe;
 import model.data.Operation;
 
 public class OperationsManagementController {
@@ -53,6 +54,7 @@ public class OperationsManagementController {
 		this.lvOperations.setItems(this.oListOperations);
 		this.lvOperations.setSelectionModel(new NoSelectionModel<Operation>());
 		this.updateInfoCompteClient();
+		this.lvOperations.getSelectionModel().selectedItemProperty().addListener(e -> this.validateComponentState());
 		this.validateComponentState();
 	}
 
@@ -79,6 +81,9 @@ public class OperationsManagementController {
 	private Button btnDebit;
 	@FXML
 	private Button btnCredit;
+	@FXML
+	private Button btnVirement;
+
 
 	@FXML
 	private void doCancel() {
@@ -106,12 +111,23 @@ public class OperationsManagementController {
 
 	@FXML
 	private void doAutre() {
+		Operation op = this.omDialogController.enregistrerVirement();
+		if (op != null) {
+			this.updateInfoCompteClient();
+			this.validateComponentState();
+		}
 	}
 
 	private void validateComponentState() {
-		// Non implémenté => désactivé
-		this.btnCredit.setDisable(false);
-		this.btnDebit.setDisable(false);
+		if (!compteConcerne.isCloture() ) {
+			this.btnCredit.setDisable(false);
+			this.btnDebit.setDisable(false);
+			this.btnVirement.setDisable(false);
+		}else {
+			this.btnCredit.setDisable(true);
+			this.btnDebit.setDisable(true);
+			this.btnVirement.setDisable(true);
+		}
 	}
 
 	private void updateInfoCompteClient() {
