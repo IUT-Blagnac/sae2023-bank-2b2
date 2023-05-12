@@ -12,6 +12,8 @@
 		<javafx.version>17</javafx.version>
 		<javafx.maven.plugin.version>0.0.8</javafx.maven.plugin.version>
 		<maven.shade.plugin.version>3.4.1</maven.shade.plugin.version>
+		<testfx.version>4.0.16-alpha</testfx.version>
+        <junit.version>4.12</junit.version>
 	</properties>
 
 	<dependencies>
@@ -58,7 +60,24 @@
 			<version>5.5.13.3</version>
 		</dependency>
 
-
+		<dependency>
+			<groupId>org.testfx</groupId>
+			<artifactId>testfx-core</artifactId>
+			<version>${testfx.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.testfx</groupId>
+			<artifactId>testfx-junit5</artifactId>
+			<version>${testfx.version}</version>
+			<scope>test</scope>
+		</dependency>
+        <dependency>
+    		<groupId>org.junit.jupiter</groupId>
+    		<artifactId>junit-jupiter-engine</artifactId>
+    		<version>5.7.2</version>
+    		<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>

@@ -144,8 +144,8 @@ public class ComptesManagementController {
 	@FXML
     private void onClicList(MouseEvent event) {
 		int selectedIndice = this.lvComptes.getSelectionModel().getSelectedIndex();
-		CompteCourant compteSelected = this.oListCompteCourant.get(selectedIndice);
         if(lvComptes.getItems().size() != 0 && selectedIndice >= 0) {
+			CompteCourant compteSelected = this.oListCompteCourant.get(selectedIndice);
             MouseButton mb = event.getButton();
             if(MouseButton.SECONDARY==mb) {
 				contextMenu.hide();
@@ -188,9 +188,6 @@ public class ComptesManagementController {
 	}
 
 	private void validateComponentState() {
-		// Non implémenté => désactivé
-
-
 		int selectedIndice = this.lvComptes.getSelectionModel().getSelectedIndex();
 		if (selectedIndice >= 0) {
 			this.btnVoirOpes.setDisable(false);

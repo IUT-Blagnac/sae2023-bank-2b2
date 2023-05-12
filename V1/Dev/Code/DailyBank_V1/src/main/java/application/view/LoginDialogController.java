@@ -3,6 +3,7 @@ package application.view;
 import application.DailyBankState;
 import application.control.LoginDialog;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -79,6 +80,8 @@ public class LoginDialogController {
 	private PasswordField txtPassword;
 	@FXML
 	private Label lblMessage;
+	@FXML
+	private Button btnValider;
 
 	// Actions
 
