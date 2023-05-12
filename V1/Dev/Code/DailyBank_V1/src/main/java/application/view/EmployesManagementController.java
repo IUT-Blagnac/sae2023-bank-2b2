@@ -191,10 +191,10 @@ public class EmployesManagementController {
 
 	@FXML
 	private void doNouvelEmploye() {
-		Employe client;
-		client = this.emDialogController.nouvelEmploye();
-		if (client != null) {
-			this.oListEmployes.add(client);
+		Employe employe;
+		employe = this.emDialogController.nouvelEmploye();
+		if (employe != null) {
+			this.oListEmployes.add(employe);
 		}
 	}
 
