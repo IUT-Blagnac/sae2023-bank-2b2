@@ -33,9 +33,11 @@ public class Employe {
 
 	@Override
 	public String toString() {
-		return "Employe [idEmploye=" + this.idEmploye + ", nom=" + this.nom + ", prenom=" + this.prenom
-				+ ", droitsAccess=" + this.droitsAccess + ", login=" + this.login + ", motPasse=" + this.motPasse
-				+ ", idAg=" + this.idAg + "]";
+		return "[" + this.idEmploye + "]  " + this.nom.toUpperCase() + " " + this.prenom + "(" + this.login + ")  {"
+				+ this.droitsAccess + "}";
+		// return "Employe [idEmploye=" + this.idEmploye + ", nom=" + this.nom + ", prenom=" + this.prenom
+		// 		+ ", droitsAccess=" + this.droitsAccess + ", login=" + this.login + ", motPasse=" + this.motPasse
+		// 		+ ", idAg=" + this.idAg + "]";
 	}
 
 }

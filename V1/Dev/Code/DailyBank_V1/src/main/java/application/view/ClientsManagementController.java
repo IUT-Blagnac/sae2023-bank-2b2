@@ -8,10 +8,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.data.Client;
@@ -77,6 +81,7 @@ public class ClientsManagementController {
 	private Button btnModifClient;
 	@FXML
 	private Button btnComptesClient;
+	private ContextMenu contextMenu = new ContextMenu();
 
 	@FXML
 	private void doCancel() {
@@ -171,4 +176,32 @@ public class ClientsManagementController {
 			this.btnComptesClient.setDisable(true);
 		}
 	}
+
+	@FXML
+    private void onClicList(MouseEvent event) {
+		int selectedIndice = this.lvClients.getSelectionModel().getSelectedIndex();
+        if(lvClients.getItems().size() != 0 && selectedIndice >= 0) {
+            MouseButton mb = event.getButton();
+            if(MouseButton.SECONDARY==mb) {
+				contextMenu.hide();
+                contextMenu = new ContextMenu();
+				MenuItem menuItem1 = new MenuItem("Modifier");
+				MenuItem menuItem2 = new MenuItem("Comptes client");
+				menuItem1.setOnAction(e -> {
+					doModifierClient();
+				});
+				menuItem2.setOnAction(e -> {
+					doComptesClient();
+				});
+				contextMenu.getItems().addAll(menuItem1 ,menuItem2);
+                contextMenu.show(lvClients , event.getScreenX(), event.getScreenY());
+            }
+            if(MouseButton.PRIMARY==mb) {
+                contextMenu.hide();
+                if(event.getClickCount() > 1) {
+						doModifierClient();
+                }
+            }
+        }
+    }
 }
