@@ -88,9 +88,8 @@ De plus, la gestion des opérations bancaires de base telles que les virements, 
 
 V1 :
 
-La version 1 du projet vise à étendre les fonctionnalités de base du système bancaire pour répondre à des besoins plus avancés. Tout d'abord, une gestion avancée des comptes clients sera mise en place, permettant la création, la modification et la clôture des comptes. Cela offrira une plus grande flexibilité aux utilisateurs et facilitera la gestion des comptes clients.
-
-De plus, une fonctionnalité d'une modification d'un compte courant visant à modifier le découvert maximum autorisé va permettre une gestion maximum des comptes des clients.
+La version 1 du projet vise à étendre les fonctionnalités de base du système bancaire pour répondre à des besoins plus avancés. Tout d'abord, une gestion avancée des comptes clients sera mise en place, permettant la création et la clôture des comptes. Cela offrira une plus grande flexibilité aux utilisateurs et facilitera la gestion des comptes clients. De plus, une fonctionnalité d'une modification d'un compte courant visant à modifier le découvert maximum autorisé va permettre une gestion maximum des comptes des clients.
+Lors de la clôture d'un compte, il n'est plus possible de le réouvrir, de le modifier mais aussi de faire des opérations dessus, on en peut simplement que consulter les opérations effectuées par le passé.
 
 En outre, il est prévu d'intégrer un module de reporting spécialement conçu pour les responsables d'agence. Ce module leur permettra de générer des rapports détaillés sur les activités financières, les tendances et les performances des clients. Ces informations seront précieuses pour prendre des décisions éclairées et optimiser les opérations bancaires.
 
