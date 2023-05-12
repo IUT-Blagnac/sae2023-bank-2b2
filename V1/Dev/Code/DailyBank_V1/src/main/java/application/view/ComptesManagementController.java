@@ -187,8 +187,10 @@ public class ComptesManagementController {
 		int selectedIndice = this.lvComptes.getSelectionModel().getSelectedIndex();
 		if (selectedIndice >= 0) {
 			this.btnVoirOpes.setDisable(false);
-			this.btnModifierCompte.setDisable(false);
-			this.btnSupprCompte.setDisable(false);
+			if(!this.lvComptes.getSelectionModel().getSelectedItem().isCloture()) {
+				this.btnModifierCompte.setDisable(false);
+				this.btnSupprCompte.setDisable(false);	
+			}		
 		} else {
 			this.btnVoirOpes.setDisable(true);
 			this.btnModifierCompte.setDisable(true);

@@ -50,8 +50,8 @@ public class CompteCourant {
 	
 	public boolean isCloture() {
 		if(this.estCloture.equals("N"))
-			return true;
-		return false;
+			return false;
+		return true;
 	}
 
 }
