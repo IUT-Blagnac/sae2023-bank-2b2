@@ -46,17 +46,14 @@ public class CompteCourant {
 		return s;
 	}
 	
-	public void setEditor(CompteEditorPane pane) {
-		this.cep = pane;
-	}
-	
-	public CompteEditorPane getEditor() {
-		return this.cep;
-				
-	}
-	
 	public void setCloture(String etat) {
 		this.estCloture = etat;
+	}
+	
+	public boolean isCloture() {
+		if(this.estCloture.equals("N"))
+			return true;
+		return false;
 	}
 
 }
