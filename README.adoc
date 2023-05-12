@@ -52,8 +52,8 @@ Dans sa colonne il doit remplir la ligne correspondant à chaque partie qu'il a 
 [cols="1,2,2,5",options=header]
 |===
 | Date    | Nom         |  Lien                             | Retour
-| Sem.19  | CDC V1      |                                   |           
-|         |Gantt V1 Prévu|                                  |
+| Sem.19  | CDC V1      | link:https://github.com/IUT-Blagnac/sae2023-bank-2b2/blob/edc440da309e82dd2bd9c6d4c684749f07064511/V1/Doc/CahierDesCharges/CDCU.adoc[lien vers le Cahier des Charges]  |           
+|         |Gantt V1 Prévu| link:https://github.com/IUT-Blagnac/sae2023-bank-2b2/blob/edc440da309e82dd2bd9c6d4c684749f07064511/V1/Doc/Gantt/GanttPr%C3%A9visionnel.pdf[lien vers le Gantt Prévisionnel] |
 | 16/05  | CdC V2final|                                     |  
 |         | Gantt V1 Réalisé |                               |     
 |         | Gantt V2 Prevu|         |     
