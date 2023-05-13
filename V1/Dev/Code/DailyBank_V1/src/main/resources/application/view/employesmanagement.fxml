@@ -58,6 +58,7 @@
                            </GridPane.margin>
                         </Button>
                         <Button layoutX="10.0" layoutY="20.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" visible="false" GridPane.rowIndex="1" />
+                        <Button fx:id="btnConsultEmploye" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doConsulterEmploye" text="Consulter employé" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                </children>

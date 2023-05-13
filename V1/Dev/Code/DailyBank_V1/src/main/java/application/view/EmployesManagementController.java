@@ -92,6 +92,8 @@ public class EmployesManagementController {
 	@FXML
 	private Button btnModifEmploye;
 	@FXML
+	private Button btnConsultEmploye;
+	@FXML
 	private Button btnNouvelEmploye;
 	private ContextMenu contextMenu = new ContextMenu();
 
@@ -104,13 +106,25 @@ public class EmployesManagementController {
 		int selectedIndice = this.lvEmployes.getSelectionModel().getSelectedIndex();
 		Employe selectedEmploye = this.lvEmployes.getSelectionModel().getSelectedItem();
 		Employe currentEmploye=  this.dailyBankState.getEmployeActuel();	
-		if (selectedIndice >= 0 && (selectedEmploye.toString().equals(currentEmploye.toString()) || selectedEmploye.droitsAccess.equals("guichetier"))) {	
-			this.btnModifEmploye.setDisable(false);
-			if (!selectedEmploye.toString().equals(currentEmploye.toString())) {
+		
+		if (selectedIndice >= 0 ) {
+			if (selectedEmploye.droitsAccess.equals("chefAgence")) {
+				if (selectedEmploye.toString().equals(currentEmploye.toString())) {
+					this.btnConsultEmploye.setDisable(false);
+					this.btnModifEmploye.setDisable(false);
+					this.btnSuprEmploye.setDisable(true);
+				}else{
+					this.btnConsultEmploye.setDisable(false);
+					this.btnModifEmploye.setDisable(true);
+					this.btnSuprEmploye.setDisable(true);
+				}
+			}else {
+				this.btnConsultEmploye.setDisable(false);
+				this.btnModifEmploye.setDisable(false);
 				this.btnSuprEmploye.setDisable(false);
-			}			
+			}
 		} else {
-			System.out.println("true");
+			this.btnConsultEmploye.setDisable(true);
 			this.btnModifEmploye.setDisable(true);
 			this.btnSuprEmploye.setDisable(true);
 		}
@@ -165,6 +179,7 @@ public class EmployesManagementController {
 
 	@FXML
 	private void doModifierEmploye() {
+		System.out.println("doModifierEmploye");
 		int selectedIndice = this.lvEmployes.getSelectionModel().getSelectedIndex();
 		if (selectedIndice >= 0) {
 			Employe cliMod = this.oListEmployes.get(selectedIndice);
@@ -182,6 +197,17 @@ public class EmployesManagementController {
 			Employe cliSup = this.oListEmployes.get(selectedIndice);
 			if (this.emDialogController.supprimerEmploye(cliSup)) {
 				this.oListEmployes.remove(selectedIndice);
+			}
+		}
+	}
+
+	@FXML
+	public void doConsulterEmploye() {
+		int selectedIndice = this.lvEmployes.getSelectionModel().getSelectedIndex();
+		if (selectedIndice >= 0) {
+			Employe cliCons = this.oListEmployes.get(selectedIndice);
+			if (cliCons != null) {
+				this.emDialogController.consult(cliCons);
 			}
 		}
 	}
@@ -231,12 +257,17 @@ public class EmployesManagementController {
 						});
 						contextMenu.getItems().add(menuItem2);
 					}
+					MenuItem menuItem3 = new MenuItem("Consulter");
+					menuItem3.setOnAction(e -> {
+						doConsulterEmploye();
+					});
+					contextMenu.getItems().add(menuItem3);
 				} else {
-					Alert alert = new Alert(AlertType.INFORMATION);
-					alert.setTitle("Information - Vous n'avez pas le droit");
-					alert.setHeaderText(null);
-					alert.setContentText("Vous n'avez pas le droit de modifier ou supprimer cet employé");
-					alert.showAndWait();
+					MenuItem menuItem = new MenuItem("Consulter");
+					menuItem.setOnAction(e -> {
+						doConsulterEmploye();
+					});
+					contextMenu.getItems().add(menuItem);
 				}
                 contextMenu.show(lvEmployes , event.getScreenX(), event.getScreenY());
             }
@@ -247,8 +278,9 @@ public class EmployesManagementController {
 					Employe currentEmploye=  this.dailyBankState.getEmployeActuel();
 					if (selectedEmploye.toString().equals(currentEmploye.toString()) || selectedEmploye.droitsAccess.equals("guichetier")) {
 						doModifierEmploye();
+					} else {
+						doConsulterEmploye();
 					}
-                    
                 }
             }
         }

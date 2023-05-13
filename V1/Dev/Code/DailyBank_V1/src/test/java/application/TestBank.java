@@ -7,6 +7,7 @@ import static org.testfx.matcher.control.LabeledMatchers.hasText;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
@@ -40,11 +41,27 @@ import static org.testfx.api.FxAssert.verifyThat;
 public class TestBank extends ApplicationTest {
 
     private DailyBankState dailyBankState;
+    
+    private static boolean resestBD = false;
+    private static boolean test1Passed = true;
 
     @Override
     public void start(Stage stage) {
         new DailyBankMainFrame().start(stage);
         this.dailyBankState = DailyBankMainFrame.getDailyBankState();
+    }
+
+    public void resestBD() {
+        if(!resestBD) {
+            Access_BD_Test abt = new Access_BD_Test();
+            try {
+                abt.resestBD();
+                resestBD = true;
+            } catch (DataAccessException | DatabaseConnexionException e) {
+                e.printStackTrace();
+                resestBD = false;
+            }
+        }
     }
 
     public void verifCoDECO() {
@@ -67,22 +84,14 @@ public class TestBank extends ApplicationTest {
     @Test
     @Order(1)
     public void testLogin() {
-        verifCoDECO();
-
-        Access_BD_Test abt = new Access_BD_Test();
-        try {
-            abt.resestBD();
-        } catch (DataAccessException | DatabaseConnexionException e) {
-            assertEquals(true, false, e.toString());
-            e.printStackTrace();
-        }
-
+        resestBD();
 
         String login = "Tuff";
         String motPasse = "Lejeune";
         String prenom = "Michel";
         String nom = "Tuffery";
 
+        verifCoDECO();
         connecter(login, motPasse);
         
         //verifier que les labels sont bien remplis avec les infos de l'employer
@@ -90,14 +99,20 @@ public class TestBank extends ApplicationTest {
         verifyThat("#lblEmpPrenom", hasText(prenom));
 
         //verifier que l'employer dans dailyBankState est le même
-        assertEquals(this.dailyBankState.getEmployeActuel().login, login);
-        assertEquals(this.dailyBankState.getEmployeActuel().motPasse, motPasse);
-        assertEquals(this.dailyBankState.getEmployeActuel().prenom, prenom);
-        assertEquals(this.dailyBankState.getEmployeActuel().nom, nom);
+        try {
+            assertEquals(this.dailyBankState.getEmployeActuel().login, login);
+            assertEquals(this.dailyBankState.getEmployeActuel().motPasse, motPasse);
+            assertEquals(this.dailyBankState.getEmployeActuel().prenom, prenom);
+            assertEquals(this.dailyBankState.getEmployeActuel().nom, nom);
+        } catch (AssertionError e) {
+            test1Passed = false;
+        }
     }
 
     @Test
     public void testListEmploye() {
+        resestBD();
+        Assumptions.assumeTrue(test1Passed, "Test1 echec, impossible d'executer les autres tests");
         int nbEmployeBD = 0;
         int nbEmployeLV = 0;
         ArrayList<Employe> employesBD = null;

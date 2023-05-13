@@ -79,17 +79,57 @@ public class EmployeEditorPaneController {
 			this.txtNom.setDisable(false);
 			this.txtPrenom.setDisable(false);
 			this.menuBtnDroitAccess.setDisable(false);
+			if (employe.droitsAccess.toString().equals("chefAgence")) {
+				this.menuBtnDroitAccess.setText("Chef d'agence");
+				this.radioBtnChefAgence.setSelected(true);
+			} else {
+				this.menuBtnDroitAccess.setText("Guichetier");
+				this.radioBtnGuichetier.setSelected(true);
+			}
+			
 			this.txtLogin.setDisable(false);
 			this.txtMotPasse.setDisable(false);
 			this.txtIdAgence.setDisable(true);
 			
-			this.lblMessage.setText("Informations employé");
+			this.lblMessage.setText("Modifications employé");
 			this.butOk.setText("Modifier");
 			this.butCancel.setText("Annuler");
 			break;
-		case SUPPRESSION:
-			//implémenter la suppression de l'employé
+		case CONSULTATION:
+			this.txtIdEmpl.setDisable(true);
+			this.txtNom.setDisable(true);
+			this.txtPrenom.setDisable(true);
+			this.menuBtnDroitAccess.setDisable(true);
+			if (employe.droitsAccess.toString().equals("chefAgence")) {
+				this.menuBtnDroitAccess.setText("Chef d'agence");
+			} else {
+				this.menuBtnDroitAccess.setText("Guichetier");
+			}
+			this.txtLogin.setDisable(true);
+			this.txtMotPasse.setDisable(true);
+			this.txtIdAgence.setDisable(true);
 
+			this.lblMessage.setText("Consultation employé");
+			this.butOk.setText("OK");
+			this.butCancel.setVisible(false);
+			break;
+		case SUPPRESSION:
+			this.txtIdEmpl.setDisable(true);
+			this.txtNom.setDisable(true);
+			this.txtPrenom.setDisable(true);
+			this.menuBtnDroitAccess.setDisable(true);
+			if (employe.droitsAccess.toString().equals("chefAgence")) {
+				this.menuBtnDroitAccess.setText("Chef d'agence");
+			} else {
+				this.menuBtnDroitAccess.setText("Guichetier");
+			}
+			this.txtLogin.setDisable(true);
+			this.txtMotPasse.setDisable(true);
+			this.txtIdAgence.setDisable(true);
+
+			this.lblMessage.setText("Suppression d'un employé");
+			this.butOk.setText("Supprimer");
+			this.butCancel.setText("Annuler");
 			break;
 		}
 		// Paramétrages spécifiques pour les chefs d'agences
@@ -136,7 +176,7 @@ public class EmployeEditorPaneController {
 	@FXML
 	private RadioMenuItem radioBtnChefAgence;
 	@FXML
-	private RadioMenuItem radioBtnEmploye;
+	private RadioMenuItem radioBtnGuichetier;
 	@FXML
 	private TextField txtLogin;
 	@FXML
@@ -171,6 +211,10 @@ public class EmployeEditorPaneController {
 			break;
 		case SUPPRESSION:
 			this.employeResultat = this.employeEdite;
+			this.primaryStage.close();
+			break;
+		case CONSULTATION:
+			this.employeResultat = null;
 			this.primaryStage.close();
 			break;
 		}
@@ -231,8 +275,8 @@ public class EmployeEditorPaneController {
 		this.menuBtnDroitAccess.setText(radioBtnChefAgence.getText());
 	}
 	@FXML
-	private void radioBtnEmploye() {
-		this.menuBtnDroitAccess.setText(radioBtnEmploye.getText());
+	private void radioBtnGuichetier() {
+		this.menuBtnDroitAccess.setText(radioBtnGuichetier.getText());
 	}
 
 }

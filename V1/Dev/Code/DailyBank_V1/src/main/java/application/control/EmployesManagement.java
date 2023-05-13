@@ -2,6 +2,8 @@ package application.control;
 
 import java.util.ArrayList;
 
+import com.itextpdf.text.io.RandomAccessSourceFactory;
+
 import application.DailyBankApp;
 import application.DailyBankState;
 import application.tools.EditionMode;
@@ -98,13 +100,14 @@ public class EmployesManagement {
 		return employe;
 	}
 
-	public Employe modifierEmploye(Employe c) {
+	public Employe modifierEmploye(Employe employe) {
 		EmployeEditorPane eep = new EmployeEditorPane(this.primaryStage, this.dailyBankState);
-		Employe result = eep.doEmployeEditorDialog(c, EditionMode.MODIFICATION);
+		Employe result = eep.doEmployeEditorDialog(employe, EditionMode.MODIFICATION);
 		if (result != null) {
 			try {  
 				Access_BD_Employe ec = new Access_BD_Employe();
 				ec.updateEmploye(result);
+				return result;
 			} catch (DatabaseConnexionException e) {
 				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
 				ed.doExceptionDialog();
@@ -120,19 +123,31 @@ public class EmployesManagement {
 	}
 
 	public boolean supprimerEmploye(Employe employe) {
-		try {
-			Access_BD_Employe ec = new Access_BD_Employe();
-			ec.deleteEmploye(employe);
-		} catch (DatabaseConnexionException e) {
-			ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
-			ed.doExceptionDialog();
-			this.primaryStage.close();
-			return false;
-		} catch (ApplicationException ae) {
-			ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, ae);
-			ed.doExceptionDialog();
-			return false;
+		EmployeEditorPane eep = new EmployeEditorPane(this.primaryStage, this.dailyBankState);
+		Employe result = eep.doEmployeEditorDialog(employe, EditionMode.SUPPRESSION);
+		System.out.println(result);
+		if (result != null) {
+			System.out.println("Suppression de l'employé");
+			try {
+				Access_BD_Employe ec = new Access_BD_Employe();
+				ec.deleteEmploye(result);
+				return true;
+			} catch (DatabaseConnexionException e) {
+				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
+				ed.doExceptionDialog();
+				this.primaryStage.close();
+				return false;
+			} catch (ApplicationException ae) {
+				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, ae);
+				ed.doExceptionDialog();
+				return false;
+			}
 		}
-		return true;
+		return false;
 	}
+
+    public void consult(Employe cliCons) {
+		EmployeEditorPane eep = new EmployeEditorPane(this.primaryStage, this.dailyBankState);
+		eep.doEmployeEditorDialog(cliCons, EditionMode.CONSULTATION);
+    }
 }

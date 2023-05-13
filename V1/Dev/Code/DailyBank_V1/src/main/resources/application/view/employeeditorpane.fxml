@@ -94,7 +94,7 @@
                         <ToggleGroup fx:id="toggleGroupDroitAccess" />
                      </toggleGroup>
                   </RadioMenuItem>
-                  <RadioMenuItem fx:id="radioBtnEmploye" mnemonicParsing="false" onAction="#radioBtnEmploye" text="Guichetier" toggleGroup="$toggleGroupDroitAccess" />
+                  <RadioMenuItem fx:id="radioBtnGuichetier" mnemonicParsing="false" onAction="#radioBtnGuichetier" text="Guichetier" toggleGroup="$toggleGroupDroitAccess" />
               </items>
             </MenuButton>
          </children>
