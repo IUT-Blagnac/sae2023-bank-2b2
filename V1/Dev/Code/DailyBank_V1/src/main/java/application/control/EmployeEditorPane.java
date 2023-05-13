@@ -11,7 +11,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.data.Client;
 import model.data.Employe;
 
 public class EmployeEditorPane {
@@ -45,7 +44,7 @@ public class EmployeEditorPane {
 		}
 	}
 
-	public Employe doEmployeEditorDialog(Employe client, EditionMode em) {
-		return this.eepcViewController.displayDialog(client, em);
+	public Employe doEmployeEditorDialog(Employe employe, EditionMode em) {
+		return this.eepcViewController.displayDialog(employe, em);
 	}
 }

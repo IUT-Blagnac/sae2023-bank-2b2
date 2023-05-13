@@ -12,5 +12,5 @@ package application.tools;
  * pourra valider ou annuler.
  */
 public enum EditionMode {
-	CREATION, MODIFICATION, SUPPRESSION
+	CREATION, MODIFICATION, SUPPRESSION, CONSULTATION
 }

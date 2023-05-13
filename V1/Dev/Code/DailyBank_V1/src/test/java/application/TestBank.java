@@ -5,7 +5,10 @@ import static org.testfx.api.FxAssert.verifyThat;
 // import static org.testfx.matcher.control.TextInputControlMatchers.hasText;
 import static org.testfx.matcher.control.LabeledMatchers.hasText;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -22,10 +25,10 @@ import java.util.concurrent.TimeoutException;
 import application.control.DailyBankMainFrame;
 import application.control.ExceptionDialog;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import model.data.Employe;
-import model.orm.Access_BD_Employe;
 import model.orm.Access_BD_Test;
 import model.orm.exception.ApplicationException;
 import model.orm.exception.DataAccessException;
@@ -38,24 +41,20 @@ public class TestBank extends ApplicationTest {
 
     private DailyBankState dailyBankState;
 
-    @BeforeAll
-    public static void setUpLogin() throws Exception {
-    }
-
     @Override
     public void start(Stage stage) {
         new DailyBankMainFrame().start(stage);
         this.dailyBankState = DailyBankMainFrame.getDailyBankState();
     }
 
-    @Test
-    @Order(1)
-    public void testLogin() {
-        String login = "Tuff";
-        String motPasse = "Lejeune";
-        String prenom = "Michel";
-        String nom = "Tuffery";
+    public void verifCoDECO() {
+        Button btnDeconn = find("#btnDeconn");
+        if (btnDeconn != null) {
+            clickOn("#btnDeconn");
+        }
+    }
 
+    public void connecter(String login, String motPasse) {
         //lancer la feneêtre de connexion
         clickOn("#btnConn");
 
@@ -63,6 +62,28 @@ public class TestBank extends ApplicationTest {
         clickOn("#txtLogin").write(login);
         clickOn("#txtPassword").write(motPasse);
         clickOn("#btnValider");
+    }
+
+    @Test
+    @Order(1)
+    public void testLogin() {
+        verifCoDECO();
+
+        Access_BD_Test abt = new Access_BD_Test();
+        try {
+            abt.resestBD();
+        } catch (DataAccessException | DatabaseConnexionException e) {
+            assertEquals(true, false, e.toString());
+            e.printStackTrace();
+        }
+
+
+        String login = "Tuff";
+        String motPasse = "Lejeune";
+        String prenom = "Michel";
+        String nom = "Tuffery";
+
+        connecter(login, motPasse);
         
         //verifier que les labels sont bien remplis avec les infos de l'employer
         verifyThat("#lblEmpNom", hasText(nom));
@@ -87,10 +108,9 @@ public class TestBank extends ApplicationTest {
         //login
         String login = "Tuff";
         String motPasse = "Lejeune";
-        clickOn("#btnConn");
-        clickOn("#txtLogin").write(login);
-        clickOn("#txtPassword").write(motPasse);
-        clickOn("#btnValider");
+
+        verifCoDECO();
+        connecter(login, motPasse);
 
         clickOn("Gestion");
         clickOn("#mitemEmploye");
@@ -105,6 +125,7 @@ public class TestBank extends ApplicationTest {
             nbEmployeBD = access_BD_Test.getNumberEmploye();
         } catch (DataAccessException | DatabaseConnexionException e) {
             e.printStackTrace();
+            System.exit(1);
         }
 
         //verifier que le nombre d'employe dans la BD est le même que dans la liste view
