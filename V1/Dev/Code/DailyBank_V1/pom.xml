@@ -85,7 +85,7 @@
     		<scope>test</scope>
 		</dependency>
 
-		<!-- Dépendance pour que le .Jar fonctionne sur tout les appareils -->
+		<!-- Dépendance pour que le .Jar fonctionne sur tout les appareils 
 		<dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-graphics</artifactId>
@@ -97,15 +97,14 @@
             <artifactId>javafx-graphics</artifactId>
             <version>${javafx.version}</version>
             <classifier>linux</classifier>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-graphics</artifactId>
             <version>${javafx.version}</version>
             <classifier>mac</classifier>
-        </dependency> 
-
-
+        </dependency>-->
 	</dependencies>
 
 	<build>
