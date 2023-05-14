@@ -156,4 +156,37 @@
 		</plugins>
 	</build>
 
+	<profiles>
+	    <profile>
+	        <id>install-dependencies</id>
+	        <activation>
+	            <property>
+	                <name>maven.install</name>
+	            </property>
+	        </activation>
+	        <dependencies>
+	            <dependency>
+	                <groupId>org.openjfx</groupId>
+	                <artifactId>javafx-graphics</artifactId>
+	                <version>${javafx.version}</version>
+	                <classifier>win</classifier>
+	            </dependency>
+	            <dependency>
+	                <groupId>org.openjfx</groupId>
+	                <artifactId>javafx-graphics</artifactId>
+	                <version>${javafx.version}</version>
+	                <classifier>linux</classifier>
+	                <scope>compile</scope>
+	            </dependency>
+	            <dependency>
+	                <groupId>org.openjfx</groupId>
+	                <artifactId>javafx-graphics</artifactId>
+	                <version>${javafx.version}</version>
+	                <classifier>mac</classifier>
+	            </dependency>
+	        </dependencies>
+	    </profile>
+	</profiles>
+
+
 </project>
