@@ -9,11 +9,11 @@
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<javafx.version>17</javafx.version>
+		<javafx.version>20</javafx.version>
 		<javafx.maven.plugin.version>0.0.8</javafx.maven.plugin.version>
 		<maven.shade.plugin.version>3.4.1</maven.shade.plugin.version>
 		<testfx.version>4.0.16-alpha</testfx.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>5.7.2</junit.version>
 	</properties>
 
 	<dependencies>
@@ -37,6 +37,11 @@
 			<artifactId>javafx-web</artifactId>
 			<version>${javafx.version}</version>
 		</dependency>
+		<dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-swing</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
 
 
 		<!-- Dépendance pour ojdbc oracle : driver d'accès à une BD Oracle depuis java -->
@@ -60,6 +65,7 @@
 			<version>5.5.13.3</version>
 		</dependency>
 
+		<!-- Dépendance pour les tests-->
 		<dependency>
 			<groupId>org.testfx</groupId>
 			<artifactId>testfx-core</artifactId>
@@ -75,9 +81,31 @@
         <dependency>
     		<groupId>org.junit.jupiter</groupId>
     		<artifactId>junit-jupiter-engine</artifactId>
-    		<version>5.7.2</version>
+    		<version>${junit.version}</version>
     		<scope>test</scope>
 		</dependency>
+
+		<!-- Dépendance pour que le .Jar fonctionne sur tout les appareils -->
+		<dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>${javafx.version}</version>
+            <classifier>win</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>${javafx.version}</version>
+            <classifier>linux</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>${javafx.version}</version>
+            <classifier>mac</classifier>
+        </dependency> 
+
+
 	</dependencies>
 
 	<build>
@@ -119,6 +147,12 @@
 					<show>public</show>
 					<nohelp>false</nohelp>
 				</configuration>
+			</plugin>
+
+			<plugin>
+    			<groupId>org.apache.maven.plugins</groupId>
+    			<artifactId>maven-surefire-plugin</artifactId>
+    			<version>3.0.0-M5</version>
 			</plugin>
 		</plugins>
 	</build>

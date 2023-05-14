@@ -230,7 +230,7 @@ public class EmployeEditorPaneController {
 			if (rb.getText().equals("Chef d'agence")) {
 				this.employeEdite.droitsAccess = "chefAgence";
 			} else {
-				this.employeEdite.droitsAccess = "employe";
+				this.employeEdite.droitsAccess = "guichetier";
 			}
 		}
 		this.employeEdite.login = this.txtLogin.getText().trim();

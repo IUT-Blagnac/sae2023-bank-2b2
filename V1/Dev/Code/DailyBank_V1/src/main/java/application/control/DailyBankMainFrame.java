@@ -14,6 +14,11 @@ import model.orm.LogToDatabase;
 import model.orm.exception.ApplicationException;
 import model.orm.exception.DatabaseConnexionException;
 
+import javafx.scene.image.Image;
+import java.awt.Taskbar;
+import javafx.embed.swing.SwingFXUtils;
+
+
 /**
  * Classe de controleur de Dialogue de la fenêtre principale.
  *
@@ -34,6 +39,15 @@ public class DailyBankMainFrame extends Application {
 	public void start(Stage primaryStage) {
 
 		this.primaryStage = primaryStage;
+
+		primaryStage.getIcons().add(new Image(DailyBankMainFrame.class.getResourceAsStream("images/icon.png")));
+		//si MACOS est utilisé chagement d'icon pour la barre des taches
+		Taskbar taskbar = Taskbar.getTaskbar();
+        try {
+            java.awt.Image dockIcon = SwingFXUtils.fromFXImage(new Image(getClass().getResourceAsStream("images/icon.png")), null);
+            taskbar.setIconImage(dockIcon);
+        } catch (IllegalArgumentException | UnsupportedOperationException e) {//le catch ne retourne rien pour en pas perturber l'execution du programme sur les autres OS}
+		}
 
 		try {
 			// Création de l'état courant de l'application

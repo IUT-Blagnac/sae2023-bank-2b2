@@ -20,6 +20,7 @@ import org.testfx.framework.junit5.ApplicationTest;
 import org.testfx.util.WaitForAsyncUtils;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
@@ -28,6 +29,8 @@ import application.control.ExceptionDialog;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
 import model.data.Employe;
 import model.orm.Access_BD_Test;
@@ -40,15 +43,26 @@ import static org.testfx.api.FxAssert.verifyThat;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class TestBank extends ApplicationTest {
 
-    private DailyBankState dailyBankState;
+    private static DailyBankState dailyBankState;
     
     private static boolean resestBD = false;
     private static boolean test1Passed = true;
 
+    @BeforeAll
+    public static void before() throws Exception{
+        ApplicationTest.launch(DailyBankMainFrame.class);
+        dailyBankState = DailyBankMainFrame.getDailyBankState();
+    }
+
     @Override
     public void start(Stage stage) {
-        new DailyBankMainFrame().start(stage);
-        this.dailyBankState = DailyBankMainFrame.getDailyBankState();
+        stage.show();
+    }
+
+    @BeforeEach
+    public void beforeEach() {
+        release(new KeyCode[] {});
+        release(new MouseButton[] {});
     }
 
     public void resestBD() {
@@ -171,6 +185,10 @@ public class TestBank extends ApplicationTest {
      * @return
      */
     public <T extends Node> T find(final String query) { 
-        return (T) lookup(query).queryAll().iterator().next();
+        Set<Node> nodes = lookup(query).queryAll();
+        if (nodes.isEmpty()) {
+            return null;
+        }
+        return (T) nodes.iterator().next();
     }   
 }
