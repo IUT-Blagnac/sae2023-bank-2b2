@@ -44,6 +44,12 @@ public class EmployeEditorPane {
 		}
 	}
 
+	
+	/** 
+	 * @param employe
+	 * @param em
+	 * @return Employe
+	 */
 	public Employe doEmployeEditorDialog(Employe employe, EditionMode em) {
 		return this.eepcViewController.displayDialog(employe, em);
 	}

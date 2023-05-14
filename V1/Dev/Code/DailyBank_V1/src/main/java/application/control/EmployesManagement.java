@@ -56,7 +56,15 @@ public class EmployesManagement {
 		this.emcViewController.displayDialog();
 	}
 
-    public ArrayList<Employe> getlisteEmployes(int _numEmploye, String _debutNom, String _debutPrenom, String _droit){
+    
+	/** 
+	 * @param _numEmploye
+	 * @param _debutNom
+	 * @param _debutPrenom
+	 * @param _droit
+	 * @return ArrayList<Employe>
+	 */
+	public ArrayList<Employe> getlisteEmployes(int _numEmploye, String _debutNom, String _debutPrenom, String _droit){
         ArrayList<Employe> listeEmpl = new ArrayList<>();
 		try {
 			// Recherche des employés en BD. cf. AccessEmployé > getEmployé(.)
@@ -78,6 +86,10 @@ public class EmployesManagement {
 		return listeEmpl;
     }
 
+	
+	/** 
+	 * @return Employe
+	 */
 	public Employe nouvelEmploye() {
 		Employe employe;
 		EmployeEditorPane eep = new EmployeEditorPane(this.primaryStage, this.dailyBankState);
@@ -100,6 +112,11 @@ public class EmployesManagement {
 		return employe;
 	}
 
+	
+	/** 
+	 * @param employe
+	 * @return Employe
+	 */
 	public Employe modifierEmploye(Employe employe) {
 		EmployeEditorPane eep = new EmployeEditorPane(this.primaryStage, this.dailyBankState);
 		Employe result = eep.doEmployeEditorDialog(employe, EditionMode.MODIFICATION);
@@ -122,6 +139,11 @@ public class EmployesManagement {
 		return result;
 	}
 
+	
+	/** 
+	 * @param employe
+	 * @return boolean
+	 */
 	public boolean supprimerEmploye(Employe employe) {
 		EmployeEditorPane eep = new EmployeEditorPane(this.primaryStage, this.dailyBankState);
 		Employe result = eep.doEmployeEditorDialog(employe, EditionMode.SUPPRESSION);
