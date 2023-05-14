@@ -474,9 +474,5 @@ BEGIN
 END;
 / 
 
-VARIABLE ret varchar2(1000)/ 
-EXECUTE ExecuterPrelevAuto(:ret)/  
-
-
 COMMIT/ 
 
