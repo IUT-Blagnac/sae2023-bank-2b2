@@ -136,6 +136,7 @@
 	</build>
 
 	<profiles>
+		<!-- Profile pour permettre au .jar de fonctionner sur tout les OS-->
 	    <profile>
 	        <id>install-dependencies</id>
 	        <activation>
