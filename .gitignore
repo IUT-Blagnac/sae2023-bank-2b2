@@ -4,3 +4,8 @@
 # Ignorer le dossier .vscode
 .vscode/
 target/
+
+# Ignorer AppMap
+
+appmap.yml
+tmp/
