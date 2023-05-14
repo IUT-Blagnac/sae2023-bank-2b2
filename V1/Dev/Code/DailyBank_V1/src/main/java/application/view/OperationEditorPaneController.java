@@ -46,7 +46,7 @@ public class OperationEditorPaneController {
 	public Operation displayDialog(CompteCourant cpte, CategorieOperation mode) {
 		this.categorieOperation = mode;
 		this.compteEdite = cpte;
-		
+
 		switch (mode) {
 		case DEBIT:
 
@@ -66,8 +66,8 @@ public class OperationEditorPaneController {
 			break;
 		case CREDIT:
 			info = "Cpt. : " + this.compteEdite.idNumCompte + "  "
-			+ String.format(Locale.ENGLISH, "%12.02f", this.compteEdite.solde) + "  /  "
-			+ String.format(Locale.ENGLISH, "%8d", this.compteEdite.debitAutorise);
+					+ String.format(Locale.ENGLISH, "%12.02f", this.compteEdite.solde) + "  /  "
+					+ String.format(Locale.ENGLISH, "%8d", this.compteEdite.debitAutorise);
 			this.lblMessage.setText(info);
 
 			this.btnOk.setText("Effectuer Crédit");
@@ -78,12 +78,12 @@ public class OperationEditorPaneController {
 
 			this.cbTypeOpe.setItems(listTypesOpesPossibles);
 			this.cbTypeOpe.getSelectionModel().select(0);
-	break;
-	
+			break;
+
 		case VIREMENT:
 			info = "Cpt. : " + this.compteEdite.idNumCompte + "  "
-			+ String.format(Locale.ENGLISH, "%12.02f", this.compteEdite.solde) + "  /  "
-			+ String.format(Locale.ENGLISH, "%8d", this.compteEdite.debitAutorise);
+					+ String.format(Locale.ENGLISH, "%12.02f", this.compteEdite.solde) + "  /  "
+					+ String.format(Locale.ENGLISH, "%8d", this.compteEdite.debitAutorise);
 			this.lblMessage.setText(info);
 
 			this.btnOk.setText("Effectuer Virement");
@@ -94,8 +94,8 @@ public class OperationEditorPaneController {
 
 			this.cbTypeOpe.setItems(listTypesOpesPossibles);
 			this.cbTypeOpe.getSelectionModel().select(0);
-	break;
-		
+			break;
+
 		}
 
 		// Paramétrages spécifiques pour les chefs d'agences
@@ -140,7 +140,7 @@ public class OperationEditorPaneController {
 
 	@FXML
 	private void doAjouter() {
-		
+
 		switch (this.categorieOperation) {
 		case DEBIT:
 			// règles de validation d'un débit :
@@ -211,7 +211,31 @@ public class OperationEditorPaneController {
 			this.operationResultat = new Operation(-1, montant, null, null, this.compteEdite.idNumCli, typeOp);
 			this.primaryStage.close();
 			break;
+
+		case VIREMENT:
+			this.txtMontant.getStyleClass().remove("borderred");
+			this.lblMontant.getStyleClass().remove("borderred");
+			this.lblMessage.getStyleClass().remove("borderred");
+
+			try {
+				montant = Double.parseDouble(this.txtMontant.getText().trim());
+				if (montant <= 0)
+					throw new NumberFormatException();
+			} catch (NumberFormatException nfe) {
+				this.txtMontant.getStyleClass().add("borderred");
+				this.lblMontant.getStyleClass().add("borderred");
+				this.txtMontant.requestFocus();
+				return;
+			}
+
+			typeOp = this.cbTypeOpe.getValue();
+			this.operationResultat = new Operation(-1, montant, null, null, this.compteEdite.idNumCli, typeOp);
+			this.primaryStage.close();
+			break;
 		}
+
 	}
-	
+
 }
+
+

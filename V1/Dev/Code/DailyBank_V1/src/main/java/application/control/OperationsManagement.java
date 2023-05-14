@@ -111,30 +111,30 @@ public class OperationsManagement {
 	}
 	
 	public Operation enregistrerVirement() {
+	    OperationEditorPane oep = new OperationEditorPane(this.primaryStage, this.dailyBankState);
+	    Operation op = oep.doOperationEditorDialog(this.compteConcerne, CategorieOperation.VIREMENT);
+	    if (op != null) {
+	        try {
+	            Access_BD_Operation ao = new Access_BD_Operation();
 
-		OperationEditorPane oep = new OperationEditorPane(this.primaryStage, this.dailyBankState);
-		Operation op = oep.doOperationEditorDialog(this.compteConcerne, CategorieOperation.VIREMENT);
-		if (op != null) {
-			try {
-				Access_BD_Operation ao = new Access_BD_Operation();
-				
-				ao.insertDebit(this.compteConcerne.idNumCompte, op.montant, op.idTypeOp);
-				ao.insertCredit(this.compteConcerne.idNumCompte, op.montant, op.idTypeOp);
-				
+	            // Appeler la procédure de virement SQL
+	            ao.insertVirement(this.compteConcerne.idNumCompte,this.compteConcerne.idNumCompte , op.montant, op.idTypeOp);
+	            
 
-			} catch (DatabaseConnexionException e) {
-				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
-				ed.doExceptionDialog();
-				this.primaryStage.close();
-				op = null;
-			} catch (ApplicationException ae) {
-				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, ae);
-				ed.doExceptionDialog();
-				op = null;
-			}
-		}
-		return op;
+	        } catch (DatabaseConnexionException e) {
+	            ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
+	            ed.doExceptionDialog();
+	            this.primaryStage.close();
+	            op = null;
+	        } catch (ApplicationException ae) {
+	            ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, ae);
+	            ed.doExceptionDialog();
+	            op = null;
+	        }
+	    }
+	    return op;
 	}
+
 
 	public PairsOfValue<CompteCourant, ArrayList<Operation>> operationsEtSoldeDunCompte() {
 		ArrayList<Operation> listeOP = new ArrayList<>();
