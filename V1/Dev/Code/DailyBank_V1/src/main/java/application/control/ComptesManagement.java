@@ -74,6 +74,10 @@ public class ComptesManagement {
 		if (result != null) {
 			try {
 				Access_BD_CompteCourant ac = new Access_BD_CompteCourant();
+				if(compte.solde > 0) {
+					AlertUtilities.showAlert(primaryStage,"Cloturation du compte" ,"Impossible de cloturer le compte" , "Il n'est pas possible de cloturer un compte si le solde de ce dernier est supérieur à 0", AlertType.ERROR);
+					return null;
+				}
 				compte.setCloture("O");
 				ac.deleteCompteCourant(compte);
 			} catch (DatabaseConnexionException e) {

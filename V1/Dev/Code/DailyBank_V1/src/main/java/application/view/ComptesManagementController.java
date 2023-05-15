@@ -189,13 +189,20 @@ public class ComptesManagementController {
 
 	private void validateComponentState() {
 		int selectedIndice = this.lvComptes.getSelectionModel().getSelectedIndex();
+		CompteCourant compteSelected = this.oListCompteCourant.get(selectedIndice);
 		if (selectedIndice >= 0) {
 			this.btnVoirOpes.setDisable(false);
-			if(!this.lvComptes.getSelectionModel().getSelectedItem().isCloture()) {
+			if(!compteSelected.isCloture()) {
+				System.out.println("ouvert");
 				this.btnModifierCompte.setDisable(false);
 				this.btnSupprCompte.setDisable(false);	
-			}		
+			}	
+			else {
+				this.btnModifierCompte.setDisable(true);
+				this.btnSupprCompte.setDisable(true);
+			}
 		} else {
+			System.out.println("fermé");
 			this.btnVoirOpes.setDisable(true);
 			this.btnModifierCompte.setDisable(true);
 			this.btnSupprCompte.setDisable(true);
