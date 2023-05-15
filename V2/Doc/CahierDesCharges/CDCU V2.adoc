@@ -120,3 +120,32 @@ Mise en place d'un support technique pour les utilisateurs : Un support techniqu
 Intégration de l'application au sein des processus internes de l'agence : L'application devra être conçue de manière à s'intégrer facilement aux processus existants au sein des agences bancaires, tels que la gestion des comptes clients, le suivi des transactions ou le reporting. Cette intégration pourra nécessiter des ajustements dans les procédures de travail des employés ou dans les systèmes d'information de l'agence. Il sera donc important de travailler en étroite collaboration avec les différentes équipes et de prévoir des phases de tests pour s'assurer que l'application s'intègre correctement aux processus internes de l'agence.
 
 Planification et respect des différentes phases de développement de la version V1 : Les développeurs devront suivre l'ordre de développement des cas d'utilisation pour la version du logiciel (V1), en respectant les délais impartis pour chaque phase. Il sera donc important de planifier ces différentes phases en amont et de s'assurer que les développements sont réalisés dans les temps pour garantir une livraison de l'application dans les délais impartis.
+
+=== Livrables exigées
+
+Vendredi 12 mai 17h00 : +
+- Rendu du Cahier Des Charges Version 1 +
+- Rendu du Gantt prévu Version 1
+
+Mardi 16 mai 17h00 : +
+- Rendu du Cahier Des Charges Version 2 +
+- Rendu du Gantt réalisé Version 1 +
+- Rendu du Gantt prévu Version 2 +
+- Rendu de la recette +
+- Rendu du suivi de projet Version 1
+
+Mardi 17 mai 17h00 : +
+- Rendu de la doc Technique Version 1 +
+- Rendu de la doc Utilisateur Version 1 +
+- Rendu du code de la Version 1
+
+Vendredi 26 mai 17h00 : +
+- Rendu du Gantt réalisé Version 2 +
+- Rendu de la doc Utilisateur Version 2 +
+- Rendu de la doc Utilisateur Version 2 +
+- Rendu du code V2 +
+- Rendu de la recette V2 +
+- Rendu du jar du projet
+
+
+
