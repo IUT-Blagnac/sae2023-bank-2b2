@@ -234,7 +234,8 @@ public class OperationEditorPaneController {
 			this.lblMontant.getStyleClass().remove("borderred");
 			this.lblMessage.getStyleClass().remove("borderred");
 			
-
+			
+			
 			try {
 				montant = Double.parseDouble(this.txtMontant.getText().trim());
 				if (montant <= 0)
