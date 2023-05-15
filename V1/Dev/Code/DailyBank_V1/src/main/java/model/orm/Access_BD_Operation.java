@@ -197,11 +197,25 @@ public class Access_BD_Operation {
 		}
 	}
 	
-	public void insertVirement(int idNumCompte, double montant, String typeOp)
-			throws DatabaseConnexionException, ManagementRuleViolation, DataAccessException {
-			insertCredit(idNumCompte, montant, typeOp);
-			insertDebit(idNumCompte, montant, typeOp);
+	public void insertVirement(int idNumCompteSource, int idNumCompteDest, double montant, String typeOp)
+	        throws DatabaseConnexionException, ManagementRuleViolation, DataAccessException {
+	    try {
+	        Access_BD_Operation ao = new Access_BD_Operation();
+	        
+	        // Débiter le compte source
+	        ao.insertDebit(idNumCompteSource, montant, typeOp);
+	        
+	        // Créditer le compte destination
+	        ao.insertCredit(idNumCompteDest, montant, typeOp);
+	        
+	    } catch (DatabaseConnexionException e) {
+	        throw e;
+	    } catch (ManagementRuleViolation | DataAccessException e) {
+	        throw e;
+	    }
 	}
+
+
 
 	/*
 	 * Fonction utilitaire qui retourne un ordre sql "to_date" pour mettre une date

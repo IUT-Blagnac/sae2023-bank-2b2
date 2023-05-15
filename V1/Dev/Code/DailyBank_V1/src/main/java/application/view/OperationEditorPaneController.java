@@ -16,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import model.data.Client;
 import model.data.CompteCourant;
 import model.data.Operation;
 
@@ -46,7 +47,7 @@ public class OperationEditorPaneController {
 	public Operation displayDialog(CompteCourant cpte, CategorieOperation mode) {
 		this.categorieOperation = mode;
 		this.compteEdite = cpte;
-		
+
 		switch (mode) {
 		case DEBIT:
 
@@ -54,7 +55,9 @@ public class OperationEditorPaneController {
 					+ String.format(Locale.ENGLISH, "%12.02f", this.compteEdite.solde) + "  /  "
 					+ String.format(Locale.ENGLISH, "%8d", this.compteEdite.debitAutorise);
 			this.lblMessage.setText(info);
-
+			this.lblCompte.setVisible(false);
+			this.cbTypeCompte.setVisible(false);
+			
 			this.btnOk.setText("Effectuer Débit");
 			this.btnCancel.setText("Annuler débit");
 
@@ -66,9 +69,11 @@ public class OperationEditorPaneController {
 			break;
 		case CREDIT:
 			info = "Cpt. : " + this.compteEdite.idNumCompte + "  "
-			+ String.format(Locale.ENGLISH, "%12.02f", this.compteEdite.solde) + "  /  "
-			+ String.format(Locale.ENGLISH, "%8d", this.compteEdite.debitAutorise);
+					+ String.format(Locale.ENGLISH, "%12.02f", this.compteEdite.solde) + "  /  "
+					+ String.format(Locale.ENGLISH, "%8d", this.compteEdite.debitAutorise);
 			this.lblMessage.setText(info);
+			this.lblCompte.setVisible(false);
+			this.cbTypeCompte.setVisible(false);
 
 			this.btnOk.setText("Effectuer Crédit");
 			this.btnCancel.setText("Annuler Crédit");
@@ -78,24 +83,28 @@ public class OperationEditorPaneController {
 
 			this.cbTypeOpe.setItems(listTypesOpesPossibles);
 			this.cbTypeOpe.getSelectionModel().select(0);
-	break;
-	
+			break;
+
 		case VIREMENT:
 			info = "Cpt. : " + this.compteEdite.idNumCompte + "  "
-			+ String.format(Locale.ENGLISH, "%12.02f", this.compteEdite.solde) + "  /  "
-			+ String.format(Locale.ENGLISH, "%8d", this.compteEdite.debitAutorise);
+					+ String.format(Locale.ENGLISH, "%12.02f", this.compteEdite.solde) + "  /  "
+					+ String.format(Locale.ENGLISH, "%8d", this.compteEdite.debitAutorise);
 			this.lblMessage.setText(info);
 
 			this.btnOk.setText("Effectuer Virement");
 			this.btnCancel.setText("Annuler Virement");
+			
+			
+			
 
 			listTypesOpesPossibles = FXCollections.observableArrayList();
 			listTypesOpesPossibles.addAll(ConstantesIHM.OPERATIONS_VIREMENT_GUICHET);
+			
 
 			this.cbTypeOpe.setItems(listTypesOpesPossibles);
 			this.cbTypeOpe.getSelectionModel().select(0);
-	break;
-		
+			break;
+
 		}
 
 		// Paramétrages spécifiques pour les chefs d'agences
@@ -124,7 +133,11 @@ public class OperationEditorPaneController {
 	@FXML
 	private Label lblMontant;
 	@FXML
+	private Label lblCompte;
+	@FXML
 	private ComboBox<String> cbTypeOpe;
+	@FXML
+	private ComboBox<String> cbTypeCompte;
 	@FXML
 	private TextField txtMontant;
 	@FXML
@@ -140,7 +153,7 @@ public class OperationEditorPaneController {
 
 	@FXML
 	private void doAjouter() {
-		
+
 		switch (this.categorieOperation) {
 		case DEBIT:
 			// règles de validation d'un débit :
@@ -152,6 +165,8 @@ public class OperationEditorPaneController {
 			this.txtMontant.getStyleClass().remove("borderred");
 			this.lblMontant.getStyleClass().remove("borderred");
 			this.lblMessage.getStyleClass().remove("borderred");
+			
+			
 			String info = "Cpt. : " + this.compteEdite.idNumCompte + "  "
 					+ String.format(Locale.ENGLISH, "%12.02f", this.compteEdite.solde) + "  /  "
 					+ String.format(Locale.ENGLISH, "%8d", this.compteEdite.debitAutorise);
@@ -186,6 +201,8 @@ public class OperationEditorPaneController {
 			this.txtMontant.getStyleClass().remove("borderred");
 			this.lblMontant.getStyleClass().remove("borderred");
 			this.lblMessage.getStyleClass().remove("borderred");
+			
+			
 
 			try {
 				montant = Double.parseDouble(this.txtMontant.getText().trim());
@@ -211,7 +228,53 @@ public class OperationEditorPaneController {
 			this.operationResultat = new Operation(-1, montant, null, null, this.compteEdite.idNumCli, typeOp);
 			this.primaryStage.close();
 			break;
+
+		case VIREMENT:
+			this.txtMontant.getStyleClass().remove("borderred");
+			this.lblMontant.getStyleClass().remove("borderred");
+			this.lblMessage.getStyleClass().remove("borderred");
+			
+			
+			
+			try {
+				montant = Double.parseDouble(this.txtMontant.getText().trim());
+				if (montant <= 0)
+					throw new NumberFormatException();
+			} catch (NumberFormatException nfe) {
+				this.txtMontant.getStyleClass().add("borderred");
+				this.lblMontant.getStyleClass().add("borderred");
+				this.txtMontant.requestFocus();
+				return;
+			}
+			if (montant > 999999) {
+				info = "Dépassement du montant du crédit dépassé (>1M) ";
+				this.lblMessage.setText(info);
+				this.txtMontant.getStyleClass().add("borderred");
+				this.lblMontant.getStyleClass().add("borderred");
+				this.lblMessage.getStyleClass().add("borderred");
+				this.txtMontant.requestFocus();
+				return;
+			}
+			if (this.compteEdite.solde - montant < this.compteEdite.debitAutorise) {
+				info = "Dépassement du découvert ! - Cpt. : " + this.compteEdite.idNumCompte + "  "
+						+ String.format(Locale.ENGLISH, "%12.02f", this.compteEdite.solde) + "  /  "
+						+ String.format(Locale.ENGLISH, "%8d", this.compteEdite.debitAutorise);
+				this.lblMessage.setText(info);
+				this.txtMontant.getStyleClass().add("borderred");
+				this.lblMontant.getStyleClass().add("borderred");
+				this.lblMessage.getStyleClass().add("borderred");
+				this.txtMontant.requestFocus();
+				return;
+			}
+
+			typeOp = this.cbTypeOpe.getValue();
+			this.operationResultat = new Operation(-1, montant, null, null, this.compteEdite.idNumCli, typeOp);
+			this.primaryStage.close();
+			break;
 		}
+
 	}
-	
+
 }
+
+
