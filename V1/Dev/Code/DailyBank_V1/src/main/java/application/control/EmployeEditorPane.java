@@ -19,6 +19,10 @@ public class EmployeEditorPane {
 	private EmployeEditorPaneController eepcViewController;
 	private DailyBankState dailyBankState;
 
+	/**
+	 * @param _parentStage
+	 * @param _dbstate
+	 */
 	public EmployeEditorPane(Stage _parentStage, DailyBankState _dbstate) {
 		this.dailyBankState = _dbstate;
 		try {

@@ -38,18 +38,40 @@ public class EmployeEditorPaneController {
 	private EditionMode editionMode;
 	private Employe employeResultat;
 
-	// Manipulation de la fenêtre
-
+	
+	/** 
+	 * @param _containingStage
+	 * 
+	 * Cette méthode est appelée par le contrôleur de dialogue EmployesManagement <br/>
+	 * pour initialiser le contexte de la fenêtre de dialogue de création ou de modification d'un employé <br/>
+	 *
+	 * 
+	 * @param _dbstate
+	 */
 	public void initContext(Stage _containingStage, DailyBankState _dbstate) {
 		this.primaryStage = _containingStage;
 		this.dailyBankState = _dbstate;
 		this.configure();
 	}
 
+	/*
+	 * Cette méthode est appelée par le contrôleur de dialogue EmployesManagement <br/>
+	 * Elle permet de fermer la fenêtre de dialogue de création ou de modification d'un employé <br/>
+	 */
 	private void configure() {
 		this.primaryStage.setOnCloseRequest(e -> this.closeWindow(e));
 	}
 
+	
+	/** 
+	 * @param employe
+	 * @param mode
+	 * 
+	 * Cette méthode est appelée par le contrôleur de dialogue EmployesManagement <br/>
+	 * pour afficher la fenêtre de dialogue de création ou de modification d'un employé <br/>
+	 * 
+	 * @return Employe
+	 */
 	public Employe displayDialog(Employe employe, EditionMode mode) {
 
 		this.editionMode = mode;
@@ -152,7 +174,9 @@ public class EmployeEditorPaneController {
 		return this.employeResultat;
 	}
 
-	// Gestion du stage
+	/*
+	 * Méthodes de gestion des événements <br/>
+	 */
 	private Object closeWindow(WindowEvent e) {
 		this.doCancel();
 		e.consume();
@@ -188,12 +212,23 @@ public class EmployeEditorPaneController {
 	@FXML
 	private Button butCancel;
 
+
+	
+	/**
+	 * Cette méthode est appelée lorsque la fenêtre est fermée par l'utilisateur <br/>
+	 * Elle permet de gérer la fermeture de la fenêtre en renvoyant un employé null <br/>
+	 */
 	@FXML
 	private void doCancel() {
 		this.employeResultat = null;
 		this.primaryStage.close();
 	}
 
+
+	/**
+	 * Cette méthode est appelée lorsque l'utilisateur clique sur le bouton 'Ok' <br/>
+	 * Elle permet de gérer la validation de la saisie en renvoyant un employé valide <br/>
+	 */
 	@FXML
 	private void doAjouter() {
 		switch (this.editionMode) {
@@ -221,6 +256,12 @@ public class EmployeEditorPaneController {
 
 	}
 
+	/**
+	 * Vérifie que les données saisies sont valides <br/>
+	 * 
+	 * @return	true si les données sont valides, false si non
+	 * 
+	 */
 	private boolean isSaisieValide() {
 		this.employeEdite.nom = this.txtNom.getText().trim();
 		this.employeEdite.prenom = this.txtPrenom.getText().trim();
@@ -270,10 +311,20 @@ public class EmployeEditorPaneController {
 		return true;
 	}
 
+	
+	/**
+	 * Est appelée lorsque l'utilisateur sélectionne un droit d'accès en l'occuernce un chef d'agence <br/>
+	 * Elle permet de mettre à jour le menu déroulant des droits d'accès pour afficher le droit d'accès sélectionné <br/>
+	 */
 	@FXML
 	private void radioBtnChefAgence() {
 		this.menuBtnDroitAccess.setText(radioBtnChefAgence.getText());
 	}
+
+	/**
+	 * Est appelée lorsque l'utilisateur sélectionne un droit d'accès en l'occuernce un guichetier <br/>
+	 * Elle permet de mettre à jour le menu déroulant des droits d'accès pour afficher le droit d'accès sélectionné <br/>
+	 */
 	@FXML
 	private void radioBtnGuichetier() {
 		this.menuBtnDroitAccess.setText(radioBtnGuichetier.getText());

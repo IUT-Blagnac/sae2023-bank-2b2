@@ -40,7 +40,16 @@ public class EmployesManagementController {
 	// Données de la fenêtre
 	private ObservableList<Employe> oListEmployes;
 
-    // Manipulation de la fenêtre
+    
+	/**
+	 * @param _containingStage
+	 * @param _em
+	 * @param _dbstate
+	 * 
+	 * Initialisation du contexte de la fenêtre de gestion des employés	<br/>
+	 * Cette méthode est appelée par le contrôleur de dialogue EmployesManagement lors de la création de la fenêtre <br/>
+	 * ELle permet de passer les références nécessaires à la gestion des employés <br/>
+	 */
 	public void initContext(Stage _containingStage, EmployesManagement _em, DailyBankState _dbstate) {
 		this.emDialogController = _em;
 		this.primaryStage = _containingStage;
@@ -49,6 +58,12 @@ public class EmployesManagementController {
         this.oListEmployes.addAll(emDialogController.getlisteEmployes(-1, "", "", ""));
 	}
 
+    /**
+     * 
+	 * Cette méthode est appelée par le contrôleur de dialogue EmployesManagement lors de la création de la fenêtre <br/>
+	 * ELle permet de passer les références nécessaires à la gestion des employés et de lancer la configuration de la fenêtre <br/>
+	 * 
+     */
     private void configure() {
 		this.primaryStage.setOnCloseRequest(e -> this.closeWindow(e));
 
@@ -60,11 +75,21 @@ public class EmployesManagementController {
 		this.validateComponentState();
 	}
 
+	/**
+	 * 
+	 * Cette méthode est appelée par le contrôleur de dialogue EmployesManagement lors de la création de la fenêtre <br/>
+	 * Elle permet d'afficher la fenêtre de gestion des employés <br/>
+	*/
     public void displayDialog() {
 		this.primaryStage.showAndWait();
 	}
 
-    // Gestion du stage
+    /**
+	 * 
+	 * 
+	 * @param e
+	 * @return null 
+	 */
 	private Object closeWindow(WindowEvent e) {
 		this.doCancel();
 		e.consume();

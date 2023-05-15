@@ -27,6 +27,10 @@ public class EmployesManagement {
 	private DailyBankState dailyBankState;
 	private Employe employe;
 
+    /**
+     * @param _parentStage
+     * @param _dbstate
+     */
     public EmployesManagement(Stage _parentStage, DailyBankState _dbstate) {
         this.dailyBankState = _dbstate;
         try {
@@ -168,6 +172,9 @@ public class EmployesManagement {
 		return false;
 	}
 
+    /**
+     * @param cliCons
+     */
     public void consult(Employe cliCons) {
 		EmployeEditorPane eep = new EmployeEditorPane(this.primaryStage, this.dailyBankState);
 		eep.doEmployeEditorDialog(cliCons, EditionMode.CONSULTATION);
