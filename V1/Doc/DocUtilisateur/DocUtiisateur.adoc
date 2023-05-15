@@ -73,6 +73,24 @@ Néanmoins si le solde du compte s'avère être supérieur à 0 alors un message
 
 image::RessourcesAdoc/img/ErreurCloturation.png[Alt Page de connexion, 50%]
 
+==== Modification d'un compte :
+
+Une fois sur la page d'acceuil il vous suffit de passer la souris sur le bouton "Gestion" ce qui ouvre un menu déroulant permettant de sélectionner entre Clients et Employés. Ici ce que nous intéressera est la partie Clients, il suffit donc de cliquer dessus afin d'accéder au menu des clients.
+
+image::RessourcesAdoc/img/MenuGestion.png[Alt Page de connexion, 50%]
+
+Une fois sur la page des clients vous pouvez voir la liste de tout les clients étant dans la même agence que le guichetier. Vous pouvez en cliquant sur un client activer le bouton "Comptes client", en cliquant sur ce dernier vous serez redirigé vers la page de gestion des comptes du client sélectionné.
+
+image::RessourcesAdoc/img/MenuClient.png[Alt Page de connexion, 50%]
+
+Une fois sur la page des comptes du client il vous suffit de cliquer sur un compte afin de le sélectionner. Si le compte n'est pas cloturé alors le bouton "Modifier" sera disponible, vous pouvez savoir si un compte est cloturé ou non en regardant la liste, si il est indiqué "Ouvert" cela signifie que le compte n'est pas cloturé et sinon si il est indiqué "Cloture" alors cela signifie que le compte est cloturé. En cliquant dessus la fenêtre de modification du compte s'ouvre.
+
+image::RessourcesAdoc/img/MenuCompte3.png[Alt Page de connexion, 50%]
+
+Vous voici sur la page de modification du compte, vous ne pouvez y modifier qu'une seule information qui est le Découvert Autorisé. Une fois les modifications effectuées il vous suffit de cliquer sur "Modifier" afin de valider la modification du compte
+
+image::RessourcesAdoc/img/ModifierCompte.png[Alt Page de connexion, 50%]
+
 === Julien Couderc :
 
 == Nous contacter
