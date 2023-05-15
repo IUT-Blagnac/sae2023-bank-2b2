@@ -134,7 +134,7 @@ Mardi 16 mai 17h00 : +
 - Rendu de la recette +
 - Rendu du suivi de projet Version 1
 
-Mardi 17 mai 17h00 : +
+Mercredi 17 mai 17h00 : +
 - Rendu de la doc Technique Version 1 +
 - Rendu de la doc Utilisateur Version 1 +
 - Rendu du code de la Version 1
