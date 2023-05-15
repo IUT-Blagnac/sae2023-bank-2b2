@@ -67,7 +67,8 @@ public class ComptesManagement {
 				this.clientDesComptes, cpt);
 		om.doOperationsManagementDialog();
 	}
-	
+		
+		
 	public CompteCourant supprimerCompte(CompteCourant compte) {
 		CompteEditorPane cep = new CompteEditorPane(this.primaryStage, this.dailyBankState);
 		CompteCourant result = cep.doCompteEditorDialog(this.clientDesComptes,compte, EditionMode.SUPPRESSION);
