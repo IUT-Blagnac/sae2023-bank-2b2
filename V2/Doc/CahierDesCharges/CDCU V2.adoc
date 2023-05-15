@@ -78,7 +78,8 @@ Si l'utilisateur se connecte en tant que chef d'agence, une fonctionnalité de g
 
 == Analyse des besoins incluant V0, V1 et V2
 
-V0 :
+=== V0 :
+image::./RessourcesAdoc/svg/uc-initialv0.svg[]
 
 Le cahier des charges de la version 0 met l'accent sur les fonctionnalités de base nécessaires pour assurer le bon fonctionnement du système bancaire. Tout d'abord, il est primordial de mettre en place un système d'authentification sécurisé pour les guichetiers et les responsables d'agence. Cela garantira que seules les personnes autorisées auront accès aux fonctionnalités du système.
 
@@ -86,7 +87,8 @@ Ensuite, la visualisation des comptes clients et des transactions sera essentiel
 
 De plus, la gestion des opérations bancaires de base telles que les virements, les dépôts et les retraits doit être prise en compte dans cette version initiale du système. Cela permettra aux utilisateurs d'effectuer les opérations courantes de manière efficace et sécurisée.
 
-V1 :
+=== V1 :
+image::./RessourcesAdoc/svg/uc-initialv1.svg[]
 
 La version 1 du projet vise à étendre les fonctionnalités de base du système bancaire pour répondre à des besoins plus avancés. Tout d'abord, une gestion avancée des comptes clients sera mise en place, permettant la création et la clôture des comptes. Cela offrira une plus grande flexibilité aux utilisateurs et facilitera la gestion des comptes clients. De plus, une fonctionnalité d'une modification d'un compte courant visant à modifier le découvert maximum autorisé va permettre une gestion maximum des comptes des clients.
 Lors de la clôture d'un compte, il n'est plus possible de le réouvrir, de le modifier mais aussi de faire des opérations dessus, on en peut simplement que consulter les opérations effectuées par le passé. Attention il n'est évidemment pas possible de cloturer un compte possédant un solde différent de 0 afin de ne pas bloquer le solde du compte.
@@ -97,7 +99,13 @@ L'ergonomie et l'expérience utilisateur seront également améliorées dans cet
 
 Enfin, des fonctionnalités spécifiques seront développées, telles que la possibilité de créditer/débiter un compte en utilisant Java et une base de données avec des procédures stockées. De plus, la création de nouveaux comptes et les virements de compte à compte seront également intégrés. Enfin, la gestion des employés, notamment le "CRUD" (Create, Read, Update, Delete), des guichetiers et des chefs d'agence sera prise en compte pour faciliter la gestion du personnel. Un chef d'agence peut consulter la liste des employés de toutes les agence, il peut modifier et supprimer tous les guichetiers. Il peut se modifer mais ne peut pas se supprimer lui-même et ne peut pas modifier et supprimer un autre chef d'agence.
 
+<<<<<<< Updated upstream
 V2 :
+=======
+=== V2 :
+image::./RessourcesAdoc/svg/uc-initialv2.svg[]
+
+>>>>>>> Stashed changes
 
 == Analyse des contraintes
 
