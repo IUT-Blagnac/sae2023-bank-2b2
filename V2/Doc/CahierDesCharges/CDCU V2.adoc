@@ -76,7 +76,7 @@ De retour à la gestion du client, il est possible de modifier les informations 
 
 Si l'utilisateur se connecte en tant que chef d'agence, une fonctionnalité de gestion des employés est prévue, mais elle n'a pas encore été développée dans la version actuelle du projet. De plus, il peut rendre un client inactif.
 
-== Analyse des besoins incluant V0 et V1
+== Analyse des besoins incluant V0, V1 et V2
 
 V0 :
 
@@ -96,6 +96,8 @@ En outre, il est prévu d'intégrer un module de reporting spécialement conçu 
 L'ergonomie et l'expérience utilisateur seront également améliorées dans cette version. Des efforts seront déployés pour rendre l'interface utilisateur conviviale, intuitive et facile à naviguer. Cela permettra aux utilisateurs d'interagir de manière fluide avec le système et d'effectuer leurs tâches plus rapidement et efficacement. L'ergonomie des listes d'employés et de clients sera améliorée afin de rendre les informations relatives aux employés et aux clients plus compréhensibles.
 
 Enfin, des fonctionnalités spécifiques seront développées, telles que la possibilité de créditer/débiter un compte en utilisant Java et une base de données avec des procédures stockées. De plus, la création de nouveaux comptes et les virements de compte à compte seront également intégrés. Enfin, la gestion des employés, notamment le "CRUD" (Create, Read, Update, Delete), des guichetiers et des chefs d'agence sera prise en compte pour faciliter la gestion du personnel. Un chef d'agence peut consulter la liste des employés de toutes les agence, il peut modifier et supprimer tous les guichetiers. Il peut se modifer mais ne peut pas se supprimer lui-même et ne peut pas modifier et supprimer un autre chef d'agence.
+
+V2 :
 
 == Analyse des contraintes
 
