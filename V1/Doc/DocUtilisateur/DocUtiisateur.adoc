@@ -69,7 +69,7 @@ Vous voici sur la page de cloturation du compte, vous ne pouvez modifier aucune 
 
 image::RessourcesAdoc/img/CloturerCompte.png[Alt Page de connexion, 50%]
 
-Néanmoins si le solde du compte s'avère être supérieur à 0 alors un message d'erreur s'affichera et empêchera la cloturation du compte, en cliquant sur "OK" vous retournez sur la page de gestion des comptes du client.
+Néanmoins si le solde du compte n'est pas égal à 0 alors un message d'erreur s'affichera et empêchera la cloturation du compte, en cliquant sur "OK" vous retournez sur la page de gestion des comptes du client.
 
 image::RessourcesAdoc/img/ErreurCloturation.png[Alt Page de connexion, 50%]
 
