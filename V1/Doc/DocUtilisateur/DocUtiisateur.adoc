@@ -29,11 +29,69 @@ image::RessourcesAdoc/img/Connexion.png[Alt Page de connexion, 50%]
 === Connectée entant que guichetier
 
 == Utilisation de l'application
-Enzo Fournet : 
+=== Enzo Fournet :
 
-Yannis Gibert : 
+=== Yannis Gibert :
 
-Julien Couderc :
+==== Création d'un compte :
+[horizontal]
+Une fois sur la page d'acceuil il vous suffit de passer la souris sur le bouton "Gestion" ce qui ouvre un menu déroulant permettant de sélectionner entre Clients et Employés. Ici ce que nous intéressera est la partie Clients, il suffit donc de cliquer dessus afin d'accéder au menu des clients.
+
+image::RessourcesAdoc/img/MenuGestion.png[Alt Page de connexion, 50%]
+
+Une fois sur la page des clients vous pouvez voir la liste de tout les clients étant dans la même agence que le guichetier. Vous pouvez en cliquant sur un client activer le bouton "Comptes client", en cliquant sur ce dernier vous serez redirigé vers la page de gestion des comptes du client sélectionné.
+
+image::RessourcesAdoc/img/MenuClient.png[Alt Page de connexion, 50%]
+
+Une fois sur la page des comptes du client il vous suffit de cliquer sur "Nouveau Compte" ce qui lancera la page de création d'un nouveau compte.
+
+image::RessourcesAdoc/img/MenuCompte.png[Alt Page de connexion, 50%]
+
+Vous voici sur la page de création du compte, les informations "Id client", "Id agence" et "Numéro compte" sont remplis automatiquement et non modifiable, en dessous vous trouverez la case "Découvert autorisé" que vous pouvez modifiez afin de saisir le découvert que vous souhaitez accorder à ce compte. Dernièrement vous trouverez la case "Solde (premier dépot)" que vous pouvez également modifier afin d'effectuer un premier dépot sur le compte du montant saisie. Une fois toutes les informations saisie vous pouvez alors cliquez sur le bouton "Ajouter" afin de valider la création du compte ou alors cliquer sur "Annuler" afin d'annuler la création du compte.
+
+image::RessourcesAdoc/img/CréationCompte.png[Alt Page de connexion, 50%]
+
+==== Cloturation d'un compte :
+
+Une fois sur la page d'acceuil il vous suffit de passer la souris sur le bouton "Gestion" ce qui ouvre un menu déroulant permettant de sélectionner entre Clients et Employés. Ici ce que nous intéressera est la partie Clients, il suffit donc de cliquer dessus afin d'accéder au menu des clients.
+
+image::RessourcesAdoc/img/MenuGestion.png[Alt Page de connexion, 50%]
+
+Une fois sur la page des clients vous pouvez voir la liste de tout les clients étant dans la même agence que le guichetier. Vous pouvez en cliquant sur un client activer le bouton "Comptes client", en cliquant sur ce dernier vous serez redirigé vers la page de gestion des comptes du client sélectionné.
+
+image::RessourcesAdoc/img/MenuClient.png[Alt Page de connexion, 50%]
+
+Une fois sur la page des comptes du client il vous suffit de cliquer sur un compte afin de le sélectionner. Si le compte n'est pas cloturé alors le bouton "Cloturer" sera disponible, vous pouvez savoir si un compte est cloturé ou non en regardant la liste, si il est indiqué "Ouvert" cela signifie que le compte n'est pas cloturé et sinon si il est indiqué "Cloture" alors cela signifie que le compte est cloturé. En cliquant dessus la fenêtre de cloturation du compte s'ouvre.
+
+image::RessourcesAdoc/img/MenuCompte2.png[Alt Page de connexion, 50%]
+
+Vous voici sur la page de cloturation du compte, vous ne pouvez modifier aucune information sur cette page mais seulement les consulter afin de s'assurer qu'il s'agit bien du bon compte. Vous trouverez en bas un bouton "Supprimer", en cliquant dessus si le solde du compte est inférieur ou égal à 0 alors la page se ferme et le compte sera alors cloturé.
+
+image::RessourcesAdoc/img/CloturerCompte.png[Alt Page de connexion, 50%]
+
+Néanmoins si le solde du compte n'est pas égal à 0 alors un message d'erreur s'affichera et empêchera la cloturation du compte, en cliquant sur "OK" vous retournez sur la page de gestion des comptes du client.
+
+image::RessourcesAdoc/img/ErreurCloturation.png[Alt Page de connexion, 50%]
+
+==== Modification d'un compte :
+
+Une fois sur la page d'acceuil il vous suffit de passer la souris sur le bouton "Gestion" ce qui ouvre un menu déroulant permettant de sélectionner entre Clients et Employés. Ici ce que nous intéressera est la partie Clients, il suffit donc de cliquer dessus afin d'accéder au menu des clients.
+
+image::RessourcesAdoc/img/MenuGestion.png[Alt Page de connexion, 50%]
+
+Une fois sur la page des clients vous pouvez voir la liste de tout les clients étant dans la même agence que le guichetier. Vous pouvez en cliquant sur un client activer le bouton "Comptes client", en cliquant sur ce dernier vous serez redirigé vers la page de gestion des comptes du client sélectionné.
+
+image::RessourcesAdoc/img/MenuClient.png[Alt Page de connexion, 50%]
+
+Une fois sur la page des comptes du client il vous suffit de cliquer sur un compte afin de le sélectionner. Si le compte n'est pas cloturé alors le bouton "Modifier" sera disponible, vous pouvez savoir si un compte est cloturé ou non en regardant la liste, si il est indiqué "Ouvert" cela signifie que le compte n'est pas cloturé et sinon si il est indiqué "Cloture" alors cela signifie que le compte est cloturé. En cliquant dessus la fenêtre de modification du compte s'ouvre.
+
+image::RessourcesAdoc/img/MenuCompte3.png[Alt Page de connexion, 50%]
+
+Vous voici sur la page de modification du compte, vous ne pouvez y modifier qu'une seule information qui est le Découvert Autorisé. Une fois les modifications effectuées il vous suffit de cliquer sur "Modifier" afin de valider la modification du compte
+
+image::RessourcesAdoc/img/ModifierCompte.png[Alt Page de connexion, 50%]
+
+=== Julien Couderc :
 
 == Nous contacter
 

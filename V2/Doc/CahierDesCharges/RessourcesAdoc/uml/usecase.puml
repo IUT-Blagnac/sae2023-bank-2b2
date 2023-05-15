@@ -1,0 +1,58 @@
+@startuml
+skinparam actorStyle awesome
+"Chef d'Agence" as Admin
+"Guichetier" as User
+
+package GestionEmploye {
+    "Consulter un guichetier" as (CGuich)
+    "Créer un nouvel guichetier" as (CGuich)
+    "Modifier un guichetier" as (MGuich)
+    "Supprimer un guichetier" as (SGuich)
+    "Modifier ses infos" as (MChef)
+    "Consulter un chef d'agence" as (CChef)
+}
+
+package gestionClient {
+    "Rendre inactif un client" as (RICpt)
+    "Modfier infos client" as (MC)
+    "Créer un nouveu client" as (CCli)
+    
+    package gestionCompte {
+        "Consulter un compte" as (CCpt)
+        "cloturer un compte" as (ClCpt)
+        "Créer un compte" as (CrCpt)
+        "Modifier un compte" as (MCpt)
+        package gestionOperation {
+            "Effectuer un virement" as (Vire)
+            "Débiter un compte" as (DebCpt)
+            "Créditer un compte" as (CredCpt)
+        }
+    }
+
+}
+
+
+
+
+
+:Admin: <|-- :User:
+
+:User: --> (MC)
+:User: --> (CCli)
+:User: --> (CCpt)
+:User: --> (DebCpt)
+:User: --> (ClCpt)
+:User: --> (CrCpt)
+:User: --> (MCpt)
+:User: --> (CredCpt)
+:User: --> (Vire)
+
+:Admin: --> (RICpt)
+:Admin: --> (CGuich)
+:Admin: --> (MGuich)
+:Admin: --> (SGuich)
+:Admin: --> (MChef)
+:Admin: --> (CChef)
+
+
+@enduml
