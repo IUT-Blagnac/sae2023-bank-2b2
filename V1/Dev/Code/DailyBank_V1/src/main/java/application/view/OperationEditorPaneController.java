@@ -1,5 +1,6 @@
 package application.view;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 import application.DailyBankState;
@@ -19,6 +20,11 @@ import javafx.stage.WindowEvent;
 import model.data.Client;
 import model.data.CompteCourant;
 import model.data.Operation;
+import model.orm.Access_BD_CompteCourant;
+import model.orm.Access_BD_Operation;
+import model.orm.exception.DataAccessException;
+import model.orm.exception.DatabaseConnexionException;
+import model.orm.exception.RowNotFoundOrTooManyRowsException;
 
 public class OperationEditorPaneController {
 
@@ -57,7 +63,7 @@ public class OperationEditorPaneController {
 			this.lblMessage.setText(info);
 			this.lblCompte.setVisible(false);
 			this.cbTypeCompte.setVisible(false);
-			
+
 			this.btnOk.setText("Effectuer Débit");
 			this.btnCancel.setText("Annuler débit");
 
@@ -93,17 +99,47 @@ public class OperationEditorPaneController {
 
 			this.btnOk.setText("Effectuer Virement");
 			this.btnCancel.setText("Annuler Virement");
-			
-			
-			
+
+
+
 
 			listTypesOpesPossibles = FXCollections.observableArrayList();
 			listTypesOpesPossibles.addAll(ConstantesIHM.OPERATIONS_VIREMENT_GUICHET);
-			
+
+
+			ObservableList<CompteCourant> listTypesComptesPossibles = FXCollections.observableArrayList();
+			ObservableList<String> listTypesComptesPossiblesString = FXCollections.observableArrayList();
+			ArrayList<CompteCourant> al = new ArrayList<>();
+			int numClient = cpte.idNumCli;
+
+			Access_BD_CompteCourant ao = new Access_BD_CompteCourant();
+
+			try {
+				al = ao.getCompteCourants(numClient);
+
+				for (CompteCourant compte : al) {
+					if (compte.idNumCompte != this.compteEdite.idNumCompte && !compte.isCloture()) {
+						listTypesComptesPossibles.add(compte);
+						String compteString = compte.toString();
+						listTypesComptesPossiblesString.add(compteString);
+					}
+				}
+
+			} catch (DataAccessException e) {
+				e.printStackTrace();
+			} catch (DatabaseConnexionException e) {
+				e.printStackTrace();
+			}
 
 			this.cbTypeOpe.setItems(listTypesOpesPossibles);
 			this.cbTypeOpe.getSelectionModel().select(0);
-			break;
+
+			this.cbTypeCompte.setItems(listTypesComptesPossiblesString);
+			this.cbTypeCompte.getSelectionModel().select(0);
+
+
+
+			;
 
 		}
 
@@ -165,8 +201,8 @@ public class OperationEditorPaneController {
 			this.txtMontant.getStyleClass().remove("borderred");
 			this.lblMontant.getStyleClass().remove("borderred");
 			this.lblMessage.getStyleClass().remove("borderred");
-			
-			
+
+
 			String info = "Cpt. : " + this.compteEdite.idNumCompte + "  "
 					+ String.format(Locale.ENGLISH, "%12.02f", this.compteEdite.solde) + "  /  "
 					+ String.format(Locale.ENGLISH, "%8d", this.compteEdite.debitAutorise);
@@ -201,8 +237,8 @@ public class OperationEditorPaneController {
 			this.txtMontant.getStyleClass().remove("borderred");
 			this.lblMontant.getStyleClass().remove("borderred");
 			this.lblMessage.getStyleClass().remove("borderred");
-			
-			
+
+
 
 			try {
 				montant = Double.parseDouble(this.txtMontant.getText().trim());
@@ -233,9 +269,9 @@ public class OperationEditorPaneController {
 			this.txtMontant.getStyleClass().remove("borderred");
 			this.lblMontant.getStyleClass().remove("borderred");
 			this.lblMessage.getStyleClass().remove("borderred");
-			
-			
-			
+
+
+
 			try {
 				montant = Double.parseDouble(this.txtMontant.getText().trim());
 				if (montant <= 0)
