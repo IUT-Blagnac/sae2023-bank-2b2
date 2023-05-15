@@ -1,4 +1,4 @@
-= Cahier des Charges d'Utilisation (CDCU)
+= Cahier des Charges d'Utilisateur (CDCU)
 Version: 1.0
 Date: 2023-05-10
 :doctype: book
