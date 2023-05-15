@@ -14,6 +14,7 @@ public class Operation {
 	public Date dateValeur;
 	public int idNumCompte;
 	public String idTypeOp;
+	public int idNumCompteDest;
 
 	public Operation(int idOperation, double montant, Date dateOp, Date dateValeur, int idNumCompte, String idTypeOp) {
 		super();
@@ -31,6 +32,17 @@ public class Operation {
 
 	public Operation() {
 		this(-1000, 0, null, null, -1000, null);
+	}
+	
+	public Operation(int idOperation, double montant, Date dateOp, Date dateValeur, int idNumCompte, String idTypeOp, int idNumCompteDest) {
+		super();
+		this.idOperation = idOperation;
+		this.montant = montant;
+		this.dateOp = dateOp;
+		this.dateValeur = dateValeur;
+		this.idNumCompte = idNumCompte;
+		this.idTypeOp = idTypeOp;
+		this.idNumCompteDest = idNumCompteDest;
 	}
 
 	@Override

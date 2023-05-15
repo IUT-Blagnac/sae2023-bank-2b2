@@ -122,6 +122,7 @@ public class OperationEditorPaneController {
 						listTypesComptesPossibles.add(compte);
 						String compteString = compte.toString();
 						listTypesComptesPossiblesString.add(compteString);
+						
 					}
 				}
 
@@ -135,11 +136,22 @@ public class OperationEditorPaneController {
 			this.cbTypeOpe.getSelectionModel().select(0);
 
 			this.cbTypeCompte.setItems(listTypesComptesPossiblesString);
+			if(listTypesComptesPossiblesString.size() !=0) {
 			this.cbTypeCompte.getSelectionModel().select(0);
+			}else {
+				cbTypeCompte.setDisable(true);
+			}
+			
+
+			this.cbTypeCompte.setItems(listTypesComptesPossiblesString);
+			if (listTypesComptesPossiblesString.size() != 0) {
+			    this.cbTypeCompte.getSelectionModel().select(0);
+			} else {
+			    cbTypeCompte.setDisable(true);
+			}
 
 
-
-			;
+			break;
 
 		}
 
@@ -188,7 +200,7 @@ public class OperationEditorPaneController {
 	}
 
 	@FXML
-	private void doAjouter() {
+	private void doAjouter() throws RowNotFoundOrTooManyRowsException {
 
 		switch (this.categorieOperation) {
 		case DEBIT:
@@ -303,8 +315,21 @@ public class OperationEditorPaneController {
 				return;
 			}
 
+			
+			String idCompteDest = this.cbTypeCompte.getSelectionModel().getSelectedItem();
+			String numIdCompteDest = idCompteDest.substring(0, 5);
+			String numIdCompteDest1 = numIdCompteDest.replaceFirst("^0+(?!$)", "");
+			int numId = Integer.parseInt(numIdCompteDest1);
+
+
+	
+
+			 
+			
 			typeOp = this.cbTypeOpe.getValue();
-			this.operationResultat = new Operation(-1, montant, null, null, this.compteEdite.idNumCli, typeOp);
+			this.operationResultat = new Operation(-1, montant, null, null, numId, typeOp);
+			
+
 			this.primaryStage.close();
 			break;
 		}

@@ -28,6 +28,8 @@ public class OperationsManagement {
 	private OperationsManagementController omcViewController;
 	private Client clientDuCompte;
 	private CompteCourant compteConcerne;
+	private CompteCourant compteConcerneDest;
+
 
 	public OperationsManagement(Stage _parentStage, DailyBankState _dbstate, Client client, CompteCourant compte) {
 
@@ -116,9 +118,8 @@ public class OperationsManagement {
 	    if (op != null) {
 	        try {
 	            Access_BD_Operation ao = new Access_BD_Operation();
-
 	            // Appeler la procédure de virement SQL
-	            ao.insertVirement(this.compteConcerne.idNumCompte, 12 , op.montant, op.idTypeOp);
+	            ao.insertVirement(this.compteConcerne.idNumCompte,op.idNumCompte , op.montant, op.idTypeOp);
 	            
 
 	        } catch (DatabaseConnexionException e) {

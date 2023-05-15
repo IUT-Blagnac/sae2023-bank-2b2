@@ -9,6 +9,7 @@ public class Client {
 	public int idNumCli;
 	public String nom, prenom, adressePostale, email, telephone;
 	public String estInactif;
+	public CompteCourant autreCompte = null;
 
 	public int idAg;
 
