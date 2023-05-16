@@ -54,7 +54,7 @@ Dans sa colonne il doit remplir la ligne correspondant à chaque partie qu'il a 
 | Date    | Nom         |  Lien                             | Retour
 | Sem.19  | CDC V1      | link:https://github.com/IUT-Blagnac/sae2023-bank-2b2/blob/edc440da309e82dd2bd9c6d4c684749f07064511/V1/Doc/CahierDesCharges/CDCU.adoc[lien vers le Cahier des Charges]  |   Penser à compléter le tableau d'avancement ci-dessus.U pour utilisateur pas utilisation.Pour plus de clareté donner un schéma d'architecture de l'appli et utiliser les UC pour V0 et V1 . Présenter les utilisateurs et leurs rôles.Il faut prioriser les fonctionnalités et donner leurs règles de gestion.Manque liste des livrables et dates.       
 |         |Gantt V1 Prévu| link:https://github.com/IUT-Blagnac/sae2023-bank-2b2/blob/edc440da309e82dd2bd9c6d4c684749f07064511/V1/Doc/Gantt/GanttPr%C3%A9visionnel.pdf[lien vers le Gantt Prévisionnel] | Essayer de produire un Gantt sur une seule page. Il manque des tâches notamment les tâches rédactionnelles. Il manque des tâches récap et les jalons. 
-| 16/05  | CdC V2final|        https://github.com/IUT-Blagnac/sae2023-bank-2b2/blob/main/V2/Doc/CahierDesCharges/CDCU%20V2.adoc [CDCV2 Final]                             |  
+| 16/05  | CdC V2final|        https://github.com/IUT-Blagnac/sae2023-bank-2b2/blob/main/V2/Doc/CahierDesCharges/CDCU%20V2.adoc[CDCV2 Final]                             |  
 |         | Gantt V1 Réalisé |          https://github.com/IUT-Blagnac/sae2023-bank-2b2/blob/main/V1/Doc/Gantt/GanttV1Finalis%C3%A9.pdf[GanttV1Finalisé]                     |     
 |         | Gantt V2 Prevu|       https://github.com/IUT-Blagnac/sae2023-bank-2b2/blob/main/V2/Doc/Gantt/GanttV2Pr%C3%A9visionnel.pdf[GanttV2Prévu]  |     
 |         | Doc. Tec. V1 |        |    
