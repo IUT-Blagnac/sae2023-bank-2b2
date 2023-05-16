@@ -134,7 +134,8 @@ Une fois que vous avez accédé à la gestion des clients.
 Vous pourez créer un nouveau compte en cliquant sur le bouton "Ajouter" en bas à droite de la page. Ou annuler en cliquant sur le bouton "Annuler" en bas à droite de la page.
 
 [horizontal]
-Une fois sur la page d'acceuil il vous suffit de passer la souris sur le bouton "Gestion" ce qui ouvre un menu déroulant permettant de sélectionner entre Clients et Employés. Ici ce que nous intéressera est la partie Clients, il suffit donc de cliquer dessus afin d'accéder au menu des clients.
+
+Une fois sur la page d'accueil, il vous suffit de survoler le bouton "Gestion" avec votre souris, ce qui ouvrira un menu déroulant permettant de choisir entre Clients et Employés. Ici, ce qui nous intéresse est la section Clients, il vous suffit donc de cliquer dessus pour accéder au menu des clients.
 
 image::RessourcesAdoc/img/MenuGestion.png[Alt Page de connexion, 50%]
 
