@@ -212,6 +212,37 @@ A partir de là, vous pouvez choisir l'opération que vous voulez, en ce qui nou
 
 === Virement d'un compte à un autre :
 
+== Résultat produit : 
+=== Créer un compte :
+
+Voici la page des comptes avant la création d'un nouveau compte : 
+
+image::RessourcesAdoc/img/MenuCompte4.png[Alt Page de connexion, 50%]
+
+Suite à la création du compte vous pouvez voir comme ci-dessous que le nouveau compte apparait désormais dans la liste des comptes du client. 
+
+image::RessourcesAdoc/img/ResultatCreerCompte.png[Alt Page de connexion, 50%]
+
+=== Modifier un compte :
+
+Voici la page des comptes avant la modification, on prendra comme exemple le dernier compte de la liste dont on va modifier le découvert autorisé pour le passé de -200 à -6000 : 
+
+image::RessourcesAdoc/img/MenuCompte5.png[Alt Page de connexion, 50%]
+
+Suite à la modification du compte vous pouvez voir comme ci-dessous que le compte apparait toujours dans la liste des comptes du client et que son découvert autorisé est passé de -200 à -6000. 
+
+image::RessourcesAdoc/img/ResultatModifierCompte.png[Alt Page de connexion, 50%]
+
+=== Cloturer un compte :
+
+Voici la page des comptes avant la cloturation d'un compte, nous allons cloturer le dernier compte de la liste en guise d'exemple.
+
+image::RessourcesAdoc/img/MenuCompte5.png[Alt Page de connexion, 50%]
+
+Suite à la cloturation du compte vous pouvez voir comme ci-dessous que le compte apparait toujours dans la liste mais que désormais il n'est plus écrit "Ouvert" mais "Cloture" ce qui indique que le compte est bel et bien cloturé.
+
+image::RessourcesAdoc/img/ResultatCloturerCompte.png[Alt Page de connexion, 50%]
+
 == Nous contacter
 
 Si vous avez des questions ou si vous avez besoin d'aide, n'hésitez pas à nous contacter à l'adresse suivante: support@DailyBank.com
