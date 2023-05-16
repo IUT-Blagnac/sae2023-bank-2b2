@@ -127,15 +127,49 @@ Pour Valider la suppression il vous suffit de cliquer sur le bouton "Supprimer" 
 
 === Gestion des clients :
 
-=== Gestion des comptes :
-
-==== Création d'un compte :
-``Réalisé par Yannis Gibert``
+==== Création d'un compte
+``Réalisée par Julien Couderc``
 
 *Prérequis : Être connecté en tant que guichetier ou chef d'agence et s'être rendu dans la gestion des clients*
 
 Une fois que vous avez accédé à la gestion des clients.
-Vous pourez créer un nouveau compte en cliquant sur le bouton "Ajouter" en bas à droite de la page. Ou annuler en cliquant sur le bouton "Annuler" en bas à droite de la page.
+Vous pouvez créer un nouveau compte en cliquant sur le bouton "Ajouter" en bas à droite de la page. Ou annuler en cliquant sur le bouton "Annuler" en bas à droite de la page.
+
+image::RessourcesAdoc/img/MenuGestion.png[Alt Gestion, 50%]
+
+Une fois sur la page des clients vous pouvez voir la liste de tout les clients étant dans la même agence que le guichetier. Vous pouvez en cliquant sur un client activer le bouton "Modifier client", en cliquant sur ce dernier vous serez redirigé vers la page de gestion des comptes du client sélectionné.
+
+image::RessourcesAdoc/img/GestionClient.png[Alt Gestion Client, 50%]
+
+En arrivant sur cette page, il est possible de changer toutes les informations ci-dessous, ainsi, vous pouvez changer le nom, le prénom, l'adresse, le numéro de téléphone, l'e-mail et si le client est actif ou non. Puis, lorsque vous voulez confirmer ces changements, il vous suffit de cliquer sur le bouton "Modifier" et les informations seront mises à jour.
+
+image::RessourcesAdoc/img/InformationClient.png[Alt Information Client, 50%]
+
+==== Recherche d'un compte
+``Réalisée par Julien Couderc``
+
+Pour pouvoir rechercher un compte, il faut suivre les étapes précédentes jusqu'à être dans la page des clients. Puis, vous pouvez faire une recherche d'un client en tapant son numéro, son nom ou alors son nom et prénom.
+
+image::RessourcesAdoc/img/RechercheClient.png[Alt Recherche Client, 50%]
+
+Voici la recherche par son numéro :
+
+image::RessourcesAdoc/img/ClientRechercheNum.png[Alt Recherche Client num, 50%]
+
+Voici la recherche par son nom :
+
+image::RessourcesAdoc/img/ClientRechercheNom.png[Alt Recherche Client nom, 50%]
+
+
+=== Gestion des comptes :
+
+==== Création d'un compte :
+``Réalisée par Yannis Gibert``
+
+*Prérequis : Être connecté en tant que guichetier ou chef d'agence et s'être rendu dans la gestion des clients*
+
+Une fois que vous avez accédé à la gestion des clients.
+Vous pouvez créer un nouveau compte en cliquant sur le bouton "Ajouter" en bas à droite de la page. Ou annuler en cliquant sur le bouton "Annuler" en bas à droite de la page.
 
 [horizontal]
 
