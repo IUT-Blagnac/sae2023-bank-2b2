@@ -192,6 +192,26 @@ image::RessourcesAdoc/img/ModifierCompte.png[Alt Page de connexion, 50%]
 
 === Julien Couderc :
 
+=== Débit d'un compte :
+
+Pour effectuer un débit, il vous suffit de vous connecter, puis passer la souris sur le bouton "Gestion" ce qui ouvre un menu déroulant permettant de sélectionner entre Clients et Employés. Ici ce que nous intéressera est la partie Clients, il suffit donc de cliquer dessus afin d'accéder au menu des clients.
+
+image::RessourcesAdoc/img/MenuGestion.png[Alt Page de connexion, 50%]
+
+Une fois sur la page des clients vous pouvez voir la liste de tout les clients étant dans la même agence que le guichetier. Vous pouvez en cliquant sur un client activer le bouton "Comptes client", en cliquant sur ce dernier vous serez redirigé vers la page de gestion des comptes du client sélectionné.
+
+image::RessourcesAdoc/img/MenuClient.png[Alt Page de connexion, 50%]
+
+Sur cette nouvelle page, vous devez cliquer sur un compte ouvert, puis cliquer sur voir opérations de ce compte.
+
+image::RessourcesAdoc/img/voirOperations.png[Alt Page de connexion, 50%]
+
+A partir de là, vous pouvez choisir l'opération que vous voulez, en ce qui nous concerne actuellement, nous allons faire un débit.
+
+=== Crédit d'un compte :
+
+=== Virement d'un compte à un autre :
+
 == Nous contacter
 
 Si vous avez des questions ou si vous avez besoin d'aide, n'hésitez pas à nous contacter à l'adresse suivante: support@DailyBank.com
