@@ -26,6 +26,9 @@ import model.orm.exception.DataAccessException;
 import model.orm.exception.DatabaseConnexionException;
 import model.orm.exception.RowNotFoundOrTooManyRowsException;
 
+/**
+ * Contrôleur de la fenêtre de l'éditeur d'opérations.
+ */
 public class OperationEditorPaneController {
 
 	// Etat courant de l'application
@@ -40,16 +43,34 @@ public class OperationEditorPaneController {
 	private Operation operationResultat;
 
 	// Manipulation de la fenêtre
+	
+	 /**
+     * Initialise le contexte du contrôleur.
+     *
+     * @param _containingStage La fenêtre physique contenant la scène
+     * @param _dbstate         L'état courant de l'application
+     */
 	public void initContext(Stage _containingStage, DailyBankState _dbstate) {
 		this.primaryStage = _containingStage;
 		this.dailyBankState = _dbstate;
 		this.configure();
 	}
 
+	 /**
+     * Configure la gestion de l'événement de fermeture de la fenêtre primaryStage.
+     */
 	private void configure() {
 		this.primaryStage.setOnCloseRequest(e -> this.closeWindow(e));
 	}
 
+	
+	/**
+     * Affiche la boîte de dialogue de l'éditeur d'opérations.
+     *
+     * @param cpte Le compte courant concerné
+     * @param mode Le mode de l'opération (DEBIT, CREDIT, VIREMENT)
+     * @return L'opération résultat ou null si annulé
+     */
 	public Operation displayDialog(CompteCourant cpte, CategorieOperation mode) {
 		this.categorieOperation = mode;
 		this.compteEdite = cpte;
@@ -169,6 +190,13 @@ public class OperationEditorPaneController {
 	}
 
 	// Gestion du stage
+	
+	/**
+     * Gère l'événement de fermeture de la fenêtre.
+     *
+     * @param e L'événement de fermeture de la fenêtre
+     * @return null
+     */
 	private Object closeWindow(WindowEvent e) {
 		this.doCancel();
 		e.consume();
@@ -194,14 +222,23 @@ public class OperationEditorPaneController {
 	@FXML
 	private Button btnCancel;
 
+	
+	/**
+     * Annule l'opération en cours et ferme la fenêtre.
+     */
 	@FXML
 	private void doCancel() {
 		this.operationResultat = null;
 		this.primaryStage.close();
 	}
 
+	
+	/**
+     * Ajoute l'opération en cours et ferme la fenêtre.
+     *
+     */
 	@FXML
-	private void doAjouter() throws RowNotFoundOrTooManyRowsException {
+	private void doAjouter() {
 
 		switch (this.categorieOperation) {
 		case DEBIT:

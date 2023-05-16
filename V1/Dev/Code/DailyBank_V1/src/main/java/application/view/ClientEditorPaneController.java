@@ -21,6 +21,9 @@ import model.orm.exception.ApplicationException;
 import model.orm.exception.Order;
 import model.orm.exception.Table;
 
+/**
+ * Le contrôleur pour la fenêtre d'édition du client.
+ */
 public class ClientEditorPaneController {
 
 	// Etat courant de l'application
@@ -37,16 +40,36 @@ public class ClientEditorPaneController {
 
 	// Manipulation de la fenêtre
 
+	/**
+     * Initialise le contexte du contrôleur.
+     *
+     * @param  _containingStage : la fenêtre physique contenant la scène
+     * @param  _dbstate : l'état courant de l'application
+     */ 
+	
 	public void initContext(Stage _containingStage, DailyBankState _dbstate) {
 		this.primaryStage = _containingStage;
 		this.dailyBankState = _dbstate;
 		this.configure();
 	}
 
+	/**
+	 * Configure l'action à effectuer lorsque la fenêtre est fermée.
+	 */
+	
 	private void configure() {
 		this.primaryStage.setOnCloseRequest(e -> this.closeWindow(e));
 	}
-
+	
+	
+	/**
+     * Affiche la boîte de dialogue d'édition du client.
+     *
+     * @param client le client à éditer
+     * @param mode   le mode d'édition (CREATION, MODIFICATION, SUPPRESSION)
+     * @return le client édité ou null en cas d'annulation
+     */
+	
 	public Client displayDialog(Client client, EditionMode mode) {
 
 		this.editionMode = mode;
@@ -130,7 +153,14 @@ public class ClientEditorPaneController {
 		return this.clientResultat;
 	}
 
-	// Gestion du stage
+	
+	 /**
+     * Gère la fermeture de la fenêtre.
+     *
+     * @param e l'événement de fermeture de fenêtre
+     * @return null
+     */
+	
 	private Object closeWindow(WindowEvent e) {
 		this.doCancel();
 		e.consume();
@@ -164,12 +194,22 @@ public class ClientEditorPaneController {
 	@FXML
 	private Button butCancel;
 
+	
+	/**
+     * Annule l'édition et ferme la fenêtre.
+     */
+	
 	@FXML
 	private void doCancel() {
 		this.clientResultat = null;
 		this.primaryStage.close();
 	}
 
+	
+	
+	 /**
+     * Effectue l'ajout, la modification ou la suppression du client en fonction du mode d'édition.
+     */
 	@FXML
 	private void doAjouter() {
 		switch (this.editionMode) {
@@ -193,6 +233,13 @@ public class ClientEditorPaneController {
 
 	}
 
+	
+	/**
+	 * Vérifie si la saisie du formulaire est valide.
+	 *
+	 * @return true si la saisie est valide, sinon false
+	 */
+	
 	private boolean isSaisieValide() {
 		this.clientEdite.nom = this.txtNom.getText().trim();
 		this.clientEdite.prenom = this.txtPrenom.getText().trim();

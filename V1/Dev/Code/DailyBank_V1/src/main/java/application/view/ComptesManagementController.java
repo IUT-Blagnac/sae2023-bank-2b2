@@ -20,6 +20,11 @@ import javafx.stage.WindowEvent;
 import model.data.Client;
 import model.data.CompteCourant;
 
+
+/**
+ * Cette classe est le contrôleur de la gestion des comptes.
+ * Elle gère les interactions avec l'interface graphique et effectue les opérations correspondantes.
+ */
 public class ComptesManagementController {
 
 	// Etat courant de l'application
@@ -36,6 +41,14 @@ public class ComptesManagementController {
 	private ObservableList<CompteCourant> oListCompteCourant;
 
 	// Manipulation de la fenêtre
+	
+	/**
+	 * Initialise le contexte du contrôleur avec les paramètres fournis.
+	 * @param _containingStage La fenêtre physique contenant la scène
+	 * @param _cm Le contrôleur de dialogue associé
+	 * @param _dbstate L'état courant de l'application
+	 * @param client Le client associé aux comptes
+	 */
 	public void initContext(Stage _containingStage, ComptesManagement _cm, DailyBankState _dbstate, Client client) {
 		this.cmDialogController = _cm;
 		this.primaryStage = _containingStage;
@@ -44,6 +57,10 @@ public class ComptesManagementController {
 		this.configure();
 	}
 
+	
+	/**
+	 * Configure les éléments de l'interface graphique.
+	 */
 	private void configure() {
 		String info;
 
@@ -63,11 +80,20 @@ public class ComptesManagementController {
 		this.validateComponentState();
 	}
 
+	/**
+	 * Affiche la fenêtre de gestion des comptes.
+	 */
 	public void displayDialog() {
 		this.primaryStage.showAndWait();
 	}
-
-	// Gestion du stage
+	
+	
+	/**
+	 * Gère l'événement de fermeture de la fenêtre en annulant ce qui était en cours.
+	 *
+	 * @param e L'événement de fermeture de la fenêtre
+	 * @return null
+	 */
 	private Object closeWindow(WindowEvent e) {
 		this.doCancel();
 		e.consume();
@@ -88,11 +114,18 @@ public class ComptesManagementController {
 	private Button btnSupprCompte;
 	private ContextMenu contextMenu = new ContextMenu();
 
+	/**
+	 * Annule et ferme la fenêtre de gestion des comptes.
+	 */
 	@FXML
 	private void doCancel() {
 		this.primaryStage.close();
 	}
 
+	/**
+	 * Affiche les opérations d'un compte sélectionné.
+	 * Charge ensuite la liste des comptes et met à jour l'état des composants.
+	 */
 	@FXML
 	private void doVoirOperations() {
 		int selectedIndice = this.lvComptes.getSelectionModel().getSelectedIndex();
@@ -105,6 +138,11 @@ public class ComptesManagementController {
 	}
 	
 	//Modification d'un compte
+	
+	/**
+	 * Modifie un compte sélectionné.
+	 * Charge ensuite la liste des comptes et met à jour l'état des composants.
+	 */
 	@FXML
 	private void doModifierCompte() {
 		int selectedIndice = this.lvComptes.getSelectionModel().getSelectedIndex();
@@ -120,6 +158,11 @@ public class ComptesManagementController {
 	}
 
 	//Suppression d'un compte courant
+	
+	/**
+	 * Supprime un compte courant sélectionné.
+	 * Charge ensuite la liste des comptes et met à jour l'état des composants.
+	 */
 	@FXML
 	private void doSupprimerCompte() {
 		int selectedItem = this.lvComptes.getSelectionModel().getSelectedIndex();
@@ -132,6 +175,11 @@ public class ComptesManagementController {
 	}
 
 	//Ajout d'un nouveau compte courant
+	
+	/**
+	 * Ajoute un nouveau compte courant.
+	 * Charge ensuite la liste des comptes.
+	 */
 	@FXML
 	private void doNouveauCompte() {
 		CompteCourant compte;
@@ -140,7 +188,13 @@ public class ComptesManagementController {
 			this.oListCompteCourant.add(compte);
 		}
 	}
-
+	
+	/**
+	 * Méthode exécutée lorsqu'un clic de souris est détecté sur la liste des comptes.
+	 * Affiche un menu contextuel en fonction du bouton de la souris utilisé et de l'élément sélectionné.
+	 *
+	 * @param event L'événement de clic de souris.
+	 */
 	@FXML
     private void onClicList(MouseEvent event) {
 		int selectedIndice = this.lvComptes.getSelectionModel().getSelectedIndex();
@@ -180,6 +234,10 @@ public class ComptesManagementController {
         }
     }
 
+	
+	/**
+	 * Charge la liste des comptes du client et l'affiche dans la vue.
+	 */
 	private void loadList() {
 		ArrayList<CompteCourant> listeCpt;
 		listeCpt = this.cmDialogController.getComptesDunClient();
@@ -187,6 +245,10 @@ public class ComptesManagementController {
 		this.oListCompteCourant.addAll(listeCpt);
 	}
 
+	/**
+	 * Valide l'état des composants en fonction de la sélection d'un compte.
+	 * Active ou désactive les boutons en conséquence.
+	 */
 	private void validateComponentState() {
 		int selectedIndice = this.lvComptes.getSelectionModel().getSelectedIndex();
 		if (selectedIndice >= 0) {

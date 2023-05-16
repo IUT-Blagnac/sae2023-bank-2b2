@@ -20,6 +20,11 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.data.Client;
 
+/**
+ * Classe responsable de la gestion des clients dans l'application.
+ * Elle contrôle la fenêtre physique contenant la scène liée au fichier XML gérée par cette classe.
+ * Elle gère les interactions avec les utilisateurs et les manipulations des données des clients.
+ */
 public class ClientsManagementController {
 
 	// Etat courant de l'application
@@ -35,6 +40,15 @@ public class ClientsManagementController {
 	private ObservableList<Client> oListClients;
 
 	// Manipulation de la fenêtre
+	
+	/**
+     * Initialise le contexte du contrôleur.
+     * 
+     * @param _containingStage La fenêtre contenant la scène associée.
+     * @param _cm              Le contrôleur de dialogue associé.
+     * @param _dbstate         L'état courant de la banque.
+     */
+	
 	public void initContext(Stage _containingStage, ClientsManagement _cm, DailyBankState _dbstate) {
 		this.cmDialogController = _cm;
 		this.primaryStage = _containingStage;
@@ -42,6 +56,10 @@ public class ClientsManagementController {
 		this.configure();
 		this.oListClients.addAll(cmDialogController.getlisteComptes(-1, "", ""));
 	}
+
+	/**
+	 * Configure les éléments de la fenêtre et les actions associées.
+	 */
 
 	private void configure() {
 		this.primaryStage.setOnCloseRequest(e -> this.closeWindow(e));
@@ -54,11 +72,22 @@ public class ClientsManagementController {
 		this.validateComponentState();
 	}
 
+	/**
+     * Affiche la fenêtre de dialogue.
+     */
+	
 	public void displayDialog() {
 		this.primaryStage.showAndWait();
 	}
 
 	// Gestion du stage
+	
+	/**
+	 * Ferme la fenêtre en appelant la méthode "doCancel()" et consomme l'événement de fermeture.
+	 *
+	 * @param e L'événement de fermeture de la fenêtre.
+	 * @return null
+	 */
 	private Object closeWindow(WindowEvent e) {
 		this.doCancel();
 		e.consume();
@@ -83,11 +112,19 @@ public class ClientsManagementController {
 	private Button btnComptesClient;
 	private ContextMenu contextMenu = new ContextMenu();
 
+	
+	/**
+     * Ferme la fenêtre de dialogue.
+     */
 	@FXML
 	private void doCancel() {
 		this.primaryStage.close();
 	}
 
+	
+	/**
+     * Effectue une recherche de clients en fonction des critères spécifiés.
+     */
 	@FXML
 	private void doRechercher() {
 		int numCompte;
@@ -131,6 +168,10 @@ public class ClientsManagementController {
 		this.validateComponentState();
 	}
 
+    /**
+     * Ouvre la fenêtre de gestion des comptes pour le client sélectionné.
+     */
+
 	@FXML
 	private void doComptesClient() {
 		int selectedIndice = this.lvClients.getSelectionModel().getSelectedIndex();
@@ -140,6 +181,10 @@ public class ClientsManagementController {
 		}
 	}
 
+	
+	/**
+     * Modifie le client sélectionné.
+     */
 	@FXML
 	private void doModifierClient() {
 		int selectedIndice = this.lvClients.getSelectionModel().getSelectedIndex();
@@ -152,10 +197,18 @@ public class ClientsManagementController {
 		}
 	}
 
+	
+	/**
+     * Désactive le client sélectionné.
+     */
 	@FXML
 	private void doDesactiverClient() {
 	}
 
+	
+	 /**
+     * Crée un nouveau client et l'ajoute à la liste des clients.
+     */
 	@FXML
 	private void doNouveauClient() {
 		Client client;
@@ -165,6 +218,10 @@ public class ClientsManagementController {
 		}
 	}
 
+	
+	/**
+     * Valide l'état des composants de la fenêtre et active/désactive les boutons en conséquence.
+     */
 	private void validateComponentState() {
 		this.btnDesactClient.setDisable(true);
 		int selectedIndice = this.lvClients.getSelectionModel().getSelectedIndex();
@@ -176,7 +233,13 @@ public class ClientsManagementController {
 			this.btnComptesClient.setDisable(true);
 		}
 	}
-
+	
+	
+	 /**
+     * Gère les événements de clic sur la liste des clients pour afficher le menu contextuel et effectuer des actions.
+     *
+     * @param event L'événement de clic de la souris.
+     */
 	@FXML
     private void onClicList(MouseEvent event) {
 		int selectedIndice = this.lvClients.getSelectionModel().getSelectedIndex();
