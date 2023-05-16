@@ -19,7 +19,7 @@ Un ordinateur capable d'executer un fichier .jar, compiler sous java 17.
 
 == Utilisation de l'application
 
-Pour lancer l'application il vous dsuffit donc de vous munir d'un ordinateur capable d'executer un fichier .jar et de lancer le fichier DailyBank.jar. Puis de vous connecter avec vos identifiants.
+Pour lancer l'application il vous suffit donc de vous munir d'un ordinateur capable d'executer un fichier .jar et de lancer le fichier DailyBank.jar. Puis de vous connecter avec vos identifiants.
 
 Page de connexion :
 
@@ -27,12 +27,12 @@ Page de connexion :
 image::RessourcesAdoc/img/PageConnexion.png[Alt Page de connexion, 50%]
 image::RessourcesAdoc/img/Connexion.png[Alt Page de connexion, 50%]
 
-=== Connectée entant que chef d'agence
+=== Connecté en tant que chef d'agence
 Comme vous pouvez le contaster sur l'image ci-dessous, une fois connecté en tant que chef d'agence vous avez accès à un menu déroulant "Gestion" tout comme le guichetier qui vous permet d'accéder à la gestion des clients et des employés de votre agence.
 
 image::RessourcesAdoc/img/co-chef.png[Alt Page de connexion d'un chef d'agence, 50%]
 
-=== Connectée entant que guichetier
+=== Connecté en tant que guichetier
 Comme vous pouvez le contaster sur l'image ci-dessous, une fois connecté en tant que guichetier vous avez accès à un menu déroulant "Gestion" tout comme le chef d'agence qui vous permet d'accéder à la gestion des clients seulement.
 
 image::RessourcesAdoc/img/co-guich.png[Alt Page de connexion d'un guichetier, 50%]
