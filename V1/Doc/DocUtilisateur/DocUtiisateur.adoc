@@ -1,4 +1,8 @@
-= Documentation utilateur de l'application DailyBank V0
+= Documentation utilsateur de l'application DailyBank V1
+:doctype: book
+:toc: left
+:toc-title: Table des matières
+:sectnums:
 Auteurs: Yannis Gibert, Julien Couderc, Enzo Fournet
 
 Date: {docdate}
@@ -24,16 +28,111 @@ image::RessourcesAdoc/img/PageConnexion.png[Alt Page de connexion, 50%]
 image::RessourcesAdoc/img/Connexion.png[Alt Page de connexion, 50%]
 
 === Connectée entant que chef d'agence
+Comme vous pouvez le contaster sur l'image ci-dessous, une fois connecté en tant que chef d'agence vous avez accès à un menu déroulant "Gestion" tout comme le guichetier qui vous permet d'accéder à la gestion des clients et des employés de votre agence.
 
+image::RessourcesAdoc/img/co-chef.png[Alt Page de connexion d'un chef d'agence, 50%]
 
 === Connectée entant que guichetier
+Comme vous pouvez le contaster sur l'image ci-dessous, une fois connecté en tant que guichetier vous avez accès à un menu déroulant "Gestion" tout comme le chef d'agence qui vous permet d'accéder à la gestion des clients seulement.
+
+image::RessourcesAdoc/img/co-guich.png[Alt Page de connexion d'un guichetier, 50%]
 
 == Utilisation de l'application
 === Enzo Fournet :
 
+==== Gestion des employés :
+*Prérequis : Être connecté en tant que chef d'agence.*
+
+Une fois connecter en tant que chef s'agence vous pouvez 
+accéder à la gestion des employés en cliquant sur le bouton "Gestion" puis en cliquant sur "Employés".
+
+image::RessourcesAdoc/img/chefGestEmpl.png[Alt Page de connexion clique pour accéder à la gestion des employés, 50%]
+
+Une fois que vous avez accédé à la gestion des emplyés.
+
+image::RessourcesAdoc/img/GestEmpl.png[Alt page de gestion des emplyés, 70%]
+
+Vous pouvez voir la liste des employés de votre agence,vous avez alors la possibilité de double cliqué sur un employé pour le modifier ou le consulter en fcontion de vos droits.
+Vous avez aussi la possibilité de fare un clique droit sur un employé pour faire apparaitre un menu contextuel qui vous permettra de modifier, de consulter ou de supprimer un employé en fonction de vos droits.
+
+Les boutons lattéraux sont aussi utilisable pour modifier ou consulter un employé et seront dégrissé si vousavez pas les droits pour faire l'action demandé.
+
+==== Consultation d'un employé :
+*Prérequis : Être connecté en tant que chef d'agence et s'être rendu dans la gestion des emplyés*
+
+Une fois que vous avez accédé à la gestion des employés.
+Vous avez le droit de consulter n'importe quel employé de votre agence en double cliquant sur un employé ou en faisant un clique droit puis en cliquant sur "Consulter" ou encore en utilisant le boutons latéral.
+
+*ATTENTION* : Si vous double cliquer sur un emploté pour lequel vous avez les droit de modification vous serez redirigé vers la page de modification de l'employé et non de consultation.
+
+image::RessourcesAdoc/img/BoutonLat-Consult.png[Alt Bouton lattéral de consultation, 70%]
+
+image::RessourcesAdoc/img/Bouton2Click-Consult.png[Alt Page de consultation d'un employé, 70%]
+
+Lorsque vous aurez accédé à la page de consultation d'un employé vous aurez accès à toutes les informations de l'employé.
+
+image::RessourcesAdoc/img/ConsultEmpl.png[Alt Page de consultation d'un employé, 70%]
+
+Pour revenir à la page de gestion des employés il vous suffit de cliquer sur le bouton "Ok" en bas à droite de la page.
+
+image::RessourcesAdoc/img/ConsultEmpl-btn.png[Alt Bouton de retour à la page de gestion des employés, 70%]
+
+==== Création d'un nouvel employé :
+
+*Prérequis : Être connecté en tant que chef d'agence et s'être rendu dans la gestion des emplyés*
+
+Une fois que vous avez accédé à la gestion des employés.
+Vous avez le droit de créer un nouvel employé en cliquant sur le bouton "Nouvel employé" en bas à gauche de la page.
+Vous devrez alors remplir tout les champs disponnible du formulaire de création d'un employé .
+
+image::RessourcesAdoc/img/CreaEmpl.png[Alt Page de création d'un compte, 70%]
+
+==== Modification d'un employé :
+
+*Prérequis : Être connecté en tant que chef d'agence et s'être rendu dans la gestion des emplyés*
+
+Une fois que vous avez accédé à la gestion des employés.
+Vous avez le droit de modifier tout les guichetier de votre agence et vous même en double cliquant sur un employé que vous pouvez modifir ou en faisant un clique droit puis en cliquant sur "Modifier" ou encore en utilisant le boutons latéral lorsque vous avez les droits nécessaire.
+
+*ATTENTION* : Si vous double cliquer sur un emploté pour lequel vous n'avez les droit de modification vous serez redirigé vers la page de consulation de l'employé et non de modification.
+
+image::RessourcesAdoc/img/BoutonLat-Modif.png[Alt Bouton lattéral de modification, 70%]
+
+image::RessourcesAdoc/img/Bouton2Click-Modif.png[Alt Page de modification d'un employé, 70%]
+
+Loresque vous aurez accédé à la page de modification d'un employé vous aurez accès à toutes les informations de l'employé et vous pourrez modifier celle qui seront accéssible.
+
+image::RessourcesAdoc/img/ModifEmpl.png[Alt Page de modification d'un employé, 70%]
+
+Pour Valider les modifications il vous suffit de cliquer sur le bouton "Modifier" en bas à droite de la page et pour annuler les modifications il vous suffit de cliquer sur le bouton "Annuler" en bas à droite de la page.
+
+image::RessourcesAdoc/img/ModifEmpl-btn.png[Alt Page de modification d'un employé, 70%]
+
+==== Suppression d'un employé :
+*Prérequis : Être connecté en tant que chef d'agence et s'être rendu dans la gestion des emplyés*
+
+Une fois que vous avez accédé à la gestion des employés.
+Vous avez seulement le droit de supprimer des guichetier de votre agence en faisant un clique droit puis en cliquant sur "Supprimer" ou encore en utilisant le boutons latéral lorsque vous avez les droits nécessaire.
+
+image::RessourcesAdoc/img/BoutonLat-Suppr.png[Alt Bouton lattéral de suppression, 70%]
+
+image::RessourcesAdoc/img/Bouton2Click-Suppr.png[Alt Page de suppression d'un employé, 70%]
+
+Loresque vous aurez accédé à la page de suppression d'un employé vous aurez accès à toutes les informations de l'employé et vous pourrez supprimer l'employé.
+
+image::RessourcesAdoc/img/SupprEmpl.png[Alt Page de suppression d'un employé, 70%]
+
+Pour Valider la suppression il vous suffit de cliquer sur le bouton "Supprimer" en bas à droite de la page et pour annuler la suppression il vous suffit de cliquer sur le bouton "Annuler" en bas à droite de la page.
+
 === Yannis Gibert :
 
 ==== Création d'un compte :
+
+*Prérequis : Être connecté en tant que guichetier et s'être rendu dans la gestion des clients*
+
+Une fois que vous avez accédé à la gestion des clients.
+Vous pourez créer un nouveau compte en cliquant sur le bouton "Ajouter" en bas à droite de la page. Ou annuler en cliquant sur le bouton "Annuler" en bas à droite de la page.
+
 [horizontal]
 Une fois sur la page d'acceuil il vous suffit de passer la souris sur le bouton "Gestion" ce qui ouvre un menu déroulant permettant de sélectionner entre Clients et Employés. Ici ce que nous intéressera est la partie Clients, il suffit donc de cliquer dessus afin d'accéder au menu des clients.
 
