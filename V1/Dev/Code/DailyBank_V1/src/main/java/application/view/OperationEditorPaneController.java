@@ -122,7 +122,7 @@ public class OperationEditorPaneController {
 						listTypesComptesPossibles.add(compte);
 						String compteString = compte.toString();
 						listTypesComptesPossiblesString.add(compteString);
-						
+
 					}
 				}
 
@@ -137,17 +137,18 @@ public class OperationEditorPaneController {
 
 			this.cbTypeCompte.setItems(listTypesComptesPossiblesString);
 			if(listTypesComptesPossiblesString.size() !=0) {
-			this.cbTypeCompte.getSelectionModel().select(0);
+				this.cbTypeCompte.getSelectionModel().select(0);
 			}else {
 				cbTypeCompte.setDisable(true);
+				btnOk.setDisable(true);
 			}
-			
+
 
 			this.cbTypeCompte.setItems(listTypesComptesPossiblesString);
 			if (listTypesComptesPossiblesString.size() != 0) {
-			    this.cbTypeCompte.getSelectionModel().select(0);
+				this.cbTypeCompte.getSelectionModel().select(0);
 			} else {
-			    cbTypeCompte.setDisable(true);
+				cbTypeCompte.setDisable(true);
 			}
 
 
@@ -283,7 +284,6 @@ public class OperationEditorPaneController {
 			this.lblMessage.getStyleClass().remove("borderred");
 
 
-
 			try {
 				montant = Double.parseDouble(this.txtMontant.getText().trim());
 				if (montant <= 0)
@@ -315,20 +315,15 @@ public class OperationEditorPaneController {
 				return;
 			}
 
-			
+
 			String idCompteDest = this.cbTypeCompte.getSelectionModel().getSelectedItem();
 			String numIdCompteDest = idCompteDest.substring(0, 5);
 			String numIdCompteDest1 = numIdCompteDest.replaceFirst("^0+(?!$)", "");
-			int numId = Integer.parseInt(numIdCompteDest1);
+			int numId = Integer.parseInt(numIdCompteDest1);			 
 
-
-	
-
-			 
-			
 			typeOp = this.cbTypeOpe.getValue();
 			this.operationResultat = new Operation(-1, montant, null, null, numId, typeOp);
-			
+
 
 			this.primaryStage.close();
 			break;
