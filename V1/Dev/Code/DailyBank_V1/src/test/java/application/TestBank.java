@@ -193,8 +193,10 @@ public class TestBank extends ApplicationTest {
     }
 
     @Test
-    public void testConsulterEmploye() {
-        ArrayList<Employe> employesBD = null;
+    public void testModifierUnEmploye() {
+        resestBD();
+        Assumptions.assumeTrue(test1Passed, "Test1 echec, impossible d'executer les autres tests");
+        Employe employesBD = null;
 
         //login
         String login = "Tuff";
@@ -208,45 +210,154 @@ public class TestBank extends ApplicationTest {
 
         Access_BD_Test access_BD_Test = new Access_BD_Test();
         try {
-            employesBD = access_BD_Test.getAllEmploye();
+            employesBD = access_BD_Test.getEmploye("LN", "Levieux");
+        } catch (Exception e) {
+            assertEquals(true, false, e.toString());
+            e.printStackTrace();
+        }
+        
+        doubleClickOn(employesBD.toString());
+
+        
+        TextField txtNom = find("#txtNom");
+        String nomVrf = txtNom.getText() + "test";
+        txtNom.setText(nomVrf);
+
+        TextField txtPrenom = find("#txtPrenom");
+        String prenomVrf = txtPrenom.getText() + "test";
+        txtPrenom.setText(prenomVrf);
+
+        clickOn("Guichetier");
+        clickOn("Chef d'agence");
+
+        TextField txtLogin = find("#txtLogin");
+        String loginVrf = txtLogin.getText() + "test";
+        txtLogin.setText(loginVrf);
+
+        TextField txtMotPasse = find("#txtMotPasse");
+        String motPasseVrf = txtMotPasse.getText() + "test";
+        txtMotPasse.setText(motPasseVrf);
+
+        clickOn("Modifier");
+
+        try {
+            employesBD = access_BD_Test.getEmploye(loginVrf, motPasseVrf);
         } catch (Exception e) {
             assertEquals(true, false, e.toString());
             e.printStackTrace();
         }
 
-        for (Employe employeVeif : employesBD) {
-            String strNom;
-            String strPrenom;
+        doubleClickOn(employesBD.toString());
 
-            doubleClickOn(employeVeif.toString());
+        txtNom = find("#txtNom");
+        assertEquals(nomVrf, txtNom.getText());
 
-            TextField txtIdEmpl = find("#txtIdEmpl");
-            System.out.println("id :" + txtIdEmpl.getText());
-            assertEquals(employeVeif.idEmploye, Integer.parseInt(txtIdEmpl.getText()));
-            
+        txtPrenom = find("#txtPrenom");
+        assertEquals(prenomVrf, txtPrenom.getText());
+
+        MenuButton mbtnDroit = find("#menuBtnDroitAccess");
+        assertEquals("Chef d'agence", mbtnDroit.getText());
+
+        txtLogin = find("#txtLogin");
+        assertEquals(loginVrf, txtLogin.getText());
+
+        txtMotPasse = find("#txtMotPasse");
+        assertEquals(motPasseVrf, txtMotPasse.getText());
+    }
+
+    @Test
+    public void testConsulterEmployes() {
+        resestBD();
+        Assumptions.assumeTrue(test1Passed, "Test1 echec, impossible d'executer les autres tests");
+
+        ArrayList<Employe> employesBD = null;
+        Access_BD_Test access_BD_Test = new Access_BD_Test();
+
+        //login
+        String login = "Tuff";
+        String motPasse = "Lejeune";
+
+        verifCoDECO();
+        connecter(login, motPasse); 
+
+        try {
+            employesBD = access_BD_Test.getAllEmploye();
+        } catch (Exception e) {
+            assertEquals(true, false, e.toString());
+            e.printStackTrace();
+        }
+        
+
+        clickOn("Gestion");
+        clickOn("#mitemEmploye");
+
+        for (Employe employeVrf : employesBD) {
+            clickOn(employeVrf.toString());
+            clickOn("#btnConsultEmploye");
+
             TextField txtNom = find("#txtNom");
+            assertEquals(employeVrf.nom, txtNom.getText());
+
             TextField txtPrenom = find("#txtPrenom");
-            assertEquals(employeVeif.nom, txtNom.getText());
-            assertEquals(employeVeif.prenom, txtPrenom.getText());
-            
-            if(employeVeif.droitsAccess.equals("chefAgence")) {
-                verifyThat("#menuBtnDroitAccess", LabeledMatchers.hasText("Chef d'agence"));
+            assertEquals(employeVrf.prenom, txtPrenom.getText());
+
+            MenuButton mbtnDroit = find("#menuBtnDroitAccess");
+            if (employeVrf.droitsAccess.equals("chefAgence")) {
+                assertEquals("Chef d'agence", mbtnDroit.getText());
             } else {
-                verifyThat("#menuBtnDroitAccess", LabeledMatchers.hasText("Guichetier"));
+                assertEquals("Guichetier", mbtnDroit.getText());
             }
 
             TextField txtLogin = find("#txtLogin");
+            assertEquals(employeVrf.login, txtLogin.getText());
+
             TextField txtMotPasse = find("#txtMotPasse");
-            assertEquals(employeVeif.login, txtLogin.getText());
-            assertEquals(employeVeif.motPasse, txtMotPasse.getText());
+            assertEquals(employeVrf.motPasse, txtMotPasse.getText());
 
-            TextField txtIdAg = find("#txtIdAgence");
-            assertEquals(employeVeif.idAg, Integer.parseInt(txtIdAg.getText()));
-
-            clickOn("#butOk");
+            clickOn("OK");
         }
     }
 
+    @Test
+    public void testSupprimerGuichetier() {
+        resestBD();
+        Assumptions.assumeTrue(test1Passed, "Test1 echec, impossible d'executer les autres tests");
+
+        Access_BD_Test access_BD_Test = new Access_BD_Test();
+        Employe employeBD = null;
+
+        //login
+        String login = "Tuff";
+        String motPasse = "Lejeune";
+
+        verifCoDECO();
+        connecter(login, motPasse); 
+
+        try {
+            employeBD = access_BD_Test.getEmploye("LN", "Levieux");
+        } catch (Exception e) {
+            assertEquals(true, false, e.toString());
+            e.printStackTrace();
+        }
+
+        clickOn("Gestion");
+        clickOn("#mitemEmploye");
+
+        clickOn(employeBD.toString());
+        clickOn("#btnSuprEmploye");
+        clickOn("Supprimer");
+
+        assertEquals(null, find(employeBD.toString()));
+
+        try {
+            employeBD = access_BD_Test.getEmploye("LN", "Levieux");
+        } catch (Exception e) {
+            assertEquals(true, false, e.toString());
+            e.printStackTrace();
+        }
+
+        assertEquals(null, employeBD);
+    }
 
     /**
      * Méthode pour trouver un élément dans la fenêtre de test à partir de son id
@@ -277,27 +388,13 @@ public class TestBank extends ApplicationTest {
         } while (!nodes.isEmpty() && selectedNode != null);
 
 
-        System.out.println("node restant");
-        System.out.println("size" + nodes.size());
-        for (Node node : nodes) {
-            System.out.println(node);
-        }
+        // System.out.println("node restant");
+        // System.out.println("size" + nodes.size());
+        // for (Node node : nodes) {
+        //     System.out.println(node);
+        // }
         return (T) nodes.iterator().next();
     } 
-
-    @Test
-    public void testModifierClient() {
-        String login = "Tuff";
-        String motPasse = "Lejeune";
-
-        verifCoDECO();
-        connecter(login, motPasse); 
-
-        clickOn("Gestion");
-        clickOn("#mitemEmploye");
-
-        
-    }
 
     public Stage getStageFromNode(Node node) {
         Scene scene = node.getScene();

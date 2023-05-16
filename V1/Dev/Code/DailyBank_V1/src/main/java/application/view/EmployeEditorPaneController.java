@@ -40,12 +40,10 @@ public class EmployeEditorPaneController {
 
 	
 	/** 
-	 * @param _containingStage
-	 * 
 	 * Cette méthode est appelée par le contrôleur de dialogue EmployesManagement <br/>
 	 * pour initialiser le contexte de la fenêtre de dialogue de création ou de modification d'un employé <br/>
-	 *
 	 * 
+	 * @param _containingStage
 	 * @param _dbstate
 	 */
 	public void initContext(Stage _containingStage, DailyBankState _dbstate) {
@@ -64,11 +62,12 @@ public class EmployeEditorPaneController {
 
 	
 	/** 
-	 * @param employe
-	 * @param mode
 	 * 
 	 * Cette méthode est appelée par le contrôleur de dialogue EmployesManagement <br/>
 	 * pour afficher la fenêtre de dialogue de création ou de modification d'un employé <br/>
+	 * 
+	 * @param employe
+	 * @param mode
 	 * 
 	 * @return Employe
 	 */
@@ -260,7 +259,6 @@ public class EmployeEditorPaneController {
 	 * Vérifie que les données saisies sont valides <br/>
 	 * 
 	 * @return	true si les données sont valides, false si non
-	 * 
 	 */
 	private boolean isSaisieValide() {
 		this.employeEdite.nom = this.txtNom.getText().trim();

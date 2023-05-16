@@ -42,13 +42,14 @@ public class EmployesManagementController {
 
     
 	/**
-	 * @param _containingStage
-	 * @param _em
-	 * @param _dbstate
-	 * 
 	 * Initialisation du contexte de la fenêtre de gestion des employés	<br/>
 	 * Cette méthode est appelée par le contrôleur de dialogue EmployesManagement lors de la création de la fenêtre <br/>
 	 * ELle permet de passer les références nécessaires à la gestion des employés <br/>
+	 * 
+	 * @param _containingStage
+	 * @param _em
+	 * @param _dbstate
+	 *
 	 */
 	public void initContext(Stage _containingStage, EmployesManagement _em, DailyBankState _dbstate) {
 		this.emDialogController = _em;
