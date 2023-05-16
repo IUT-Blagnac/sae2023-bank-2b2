@@ -1,4 +1,4 @@
-= Documentation utilsateur de l'application DailyBank V1
+= Documentation utilisateur de l'application DailyBank V1
 :doctype: book
 :toc: left
 :toc-title: Table des matières
