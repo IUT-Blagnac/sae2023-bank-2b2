@@ -17,7 +17,7 @@ Vos identifiants de connexion à l'application.
 
 Un ordinateur capable d'executer un fichier .jar, compiler sous java 17.
 
-== Utilisation de l'application
+== Connexion à l'application
 
 Pour lancer l'application il vous suffit donc de vous munir d'un ordinateur capable d'executer un fichier .jar et de lancer le fichier DailyBank.jar. Puis de vous connecter avec vos identifiants.
 
@@ -38,9 +38,10 @@ Comme vous pouvez le contaster sur l'image ci-dessous, une fois connecté en tan
 image::RessourcesAdoc/img/co-guich.png[Alt Page de connexion d'un guichetier, 50%]
 
 == Utilisation de l'application
-=== Enzo Fournet :
+=== Gestion des Employés :
+``Réalisée par Enzo Fournet``
 
-==== Gestion des employés :
+==== Accéder à la gestion des employés :
 *Prérequis : Être connecté en tant que chef d'agence.*
 
 Une fois connecter en tant que chef s'agence vous pouvez 
@@ -124,9 +125,12 @@ image::RessourcesAdoc/img/SupprEmpl.png[Alt Page de suppression d'un employé, 7
 
 Pour Valider la suppression il vous suffit de cliquer sur le bouton "Supprimer" en bas à droite de la page et pour annuler la suppression il vous suffit de cliquer sur le bouton "Annuler" en bas à droite de la page.
 
-=== Yannis Gibert :
+=== Gestion des clients :
+
+=== Gestion des comptes :
 
 ==== Création d'un compte :
+``Réalisée par Yannis Gibert``
 
 *Prérequis : Être connecté en tant que guichetier et s'être rendu dans la gestion des clients*
 
@@ -152,6 +156,7 @@ Vous voici sur la page de création du compte, les informations "Id client", "Id
 image::RessourcesAdoc/img/CréationCompte.png[Alt Page de connexion, 50%]
 
 ==== Cloturation d'un compte :
+``Réalisée par Yannis Gibert``
 
 Une fois sur la page d'acceuil il vous suffit de passer la souris sur le bouton "Gestion" ce qui ouvre un menu déroulant permettant de sélectionner entre Clients et Employés. Ici ce que nous intéressera est la partie Clients, il suffit donc de cliquer dessus afin d'accéder au menu des clients.
 
@@ -174,6 +179,7 @@ Néanmoins si le solde du compte n'est pas égal à 0 alors un message d'erreur 
 image::RessourcesAdoc/img/ErreurCloturation.png[Alt Page de connexion, 50%]
 
 ==== Modification d'un compte :
+``Réalisée par Yannis Gibert``
 
 Une fois sur la page d'acceuil il vous suffit de passer la souris sur le bouton "Gestion" ce qui ouvre un menu déroulant permettant de sélectionner entre Clients et Employés. Ici ce que nous intéressera est la partie Clients, il suffit donc de cliquer dessus afin d'accéder au menu des clients.
 
@@ -191,9 +197,8 @@ Vous voici sur la page de modification du compte, vous ne pouvez y modifier qu'u
 
 image::RessourcesAdoc/img/ModifierCompte.png[Alt Page de connexion, 50%]
 
-=== Julien Couderc :
-
 ==== Débit d'un compte :
+``Réalisée par Julien Couderc ``
 
 Pour effectuer un débit, il vous suffit de vous connecter, puis passer la souris sur le bouton "Gestion" ce qui ouvre un menu déroulant permettant de sélectionner entre Clients et Employés. Ici ce que nous intéressera est la partie Clients, il suffit donc de cliquer dessus afin d'accéder au menu des clients.
 
@@ -221,11 +226,13 @@ image::RessourcesAdoc/img/OperationDebitEffectue.png[Alt Page de connexion, 50%]
 
 
 === Crédit d'un compte :
+``Réalisée par Julien Couderc ``
 
 === Virement d'un compte à un autre :
+``Réalisée par Julien Couderc ``
 
-== Résultat produit : 
 === Créer un compte :
+``Réalisée par Yannis Gibert``
 
 Voici la page des comptes avant la création d'un nouveau compte : 
 
@@ -236,6 +243,7 @@ Suite à la création du compte vous pouvez voir comme ci-dessous que le nouveau
 image::RessourcesAdoc/img/ResultatCreerCompte.png[Alt Page de connexion, 50%]
 
 === Modifier un compte :
+``Réalisée par Yannis Gibert``
 
 Voici la page des comptes avant la modification, on prendra comme exemple le dernier compte de la liste dont on va modifier le découvert autorisé pour le passé de -200 à -6000 : 
 
@@ -246,6 +254,7 @@ Suite à la modification du compte vous pouvez voir comme ci-dessous que le comp
 image::RessourcesAdoc/img/ResultatModifierCompte.png[Alt Page de connexion, 50%]
 
 === Cloturer un compte :
+``Réalisée par Yannis Gibert``
 
 Voici la page des comptes avant la cloturation d'un compte, nous allons cloturer le dernier compte de la liste en guise d'exemple.
 
