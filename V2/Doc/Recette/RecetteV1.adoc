@@ -34,7 +34,9 @@ Les éléments testés concernent les Use-Cases spécifiés dans la *documentati
 
 === 2. Environnement de test :
 [.text-justify]
-Ordinateur sous Windows ou OS équivalent.
+Ordinateur capable d'executer Java 17 et JavaFX.
+Peu importe le système d'exploitation.
+(Nous avons implémenter un systeme permettant d'important un livrable .jar pour toute les platefromes, Windows, Linux, MacOs.)
 
 
 

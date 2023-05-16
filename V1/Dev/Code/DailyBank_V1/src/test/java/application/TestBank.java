@@ -182,7 +182,7 @@ public class TestBank extends ApplicationTest {
             assertEquals(true, false, e.toString());
             e.printStackTrace();
         }
-        employesLV = new ArrayList<>(lvEmployes.getItems());
+        employesLV = new ArrayList<>(lvEmployes.getItems()); 
 
        //foreach dans deux ArrayList à la fois  pour vérifier que les employes sont les mêmes
         for(int i = 0; i < employesBD.size() && i < employesLV.size(); i++) {
@@ -190,71 +190,6 @@ public class TestBank extends ApplicationTest {
             employeLV = employesLV.get(i);
             assertEquals(employeBD.toString(), employeLV.toString());
         }
-    }
-
-
-    @Test
-    public void tuff() {
-        ArrayList<Employe> employesBD = null;
-
-        //login
-        String login = "Tuff";
-        String motPasse = "Lejeune";
-
-        // verifCoDECO();
-        // connecter(login, motPasse); 
-
-        clickOn("Gestion");
-        clickOn("#mitemEmploye");
-
-        Access_BD_Test access_BD_Test = new Access_BD_Test();
-        try {
-            employesBD = access_BD_Test.getAllEmploye();
-        } catch (Exception e) {
-            assertEquals(true, false, e.toString());
-            e.printStackTrace();
-        }
-
-        for (Employe employeVeif : employesBD) {
-            while(true){
-            String strNom;
-            String strPrenom;
-
-            doubleClickOn(employeVeif.toString());
-
-            TextField txtIdEmpl = findtkt("#txtIdEmpl");
-            System.out.println("id :" + txtIdEmpl.getText());
-            assertEquals(employeVeif.idEmploye, Integer.parseInt(txtIdEmpl.getText()));
-            
-            TextField txtNom = findtkt(employeVeif.nom);
-            TextField txtPrenom = findtkt(employeVeif.prenom);
-
-            System.out.println("nom :" + txtNom.getText());
-            System.out.println("prenom :" + txtPrenom.getText());
-            
-            assertEquals(employeVeif.nom, txtNom.getText());
-            assertEquals(employeVeif.prenom, txtPrenom.getText());
-
-            System.out.println("droit : " + employeVeif.droitsAccess);
-            
-            if(employeVeif.droitsAccess.equals("chefAgence")) {
-                verifyThat("#menuBtnDroitAccess", LabeledMatchers.hasText("Chef d'agence"));
-            } else {
-                verifyThat("#menuBtnDroitAccess", LabeledMatchers.hasText("Guichetier"));
-            }
-
-            TextField txtLogin = findtkt(employeVeif.login);
-            TextField txtMotPasse = findtkt(employeVeif.motPasse);
-
-            assertEquals(employeVeif.login, txtLogin.getText());
-            assertEquals(employeVeif.motPasse, txtMotPasse.getText());
-
-            TextField txtIdAg = findtkt("#txtIdAgence");
-            assertEquals(employeVeif.idAg, Integer.parseInt(txtIdAg.getText()));
-
-            clickOn("#butOk");
-        }
-    }
     }
 
     @Test
@@ -265,8 +200,8 @@ public class TestBank extends ApplicationTest {
         String login = "Tuff";
         String motPasse = "Lejeune";
 
-        // verifCoDECO();
-        // connecter(login, motPasse); 
+        verifCoDECO();
+        connecter(login, motPasse); 
 
         clickOn("Gestion");
         clickOn("#mitemEmploye");
@@ -289,16 +224,10 @@ public class TestBank extends ApplicationTest {
             System.out.println("id :" + txtIdEmpl.getText());
             assertEquals(employeVeif.idEmploye, Integer.parseInt(txtIdEmpl.getText()));
             
-            TextField txtNom = find(employeVeif.nom);
-            TextField txtPrenom = find(employeVeif.prenom);
-
-            System.out.println("nom :" + txtNom.getText());
-            System.out.println("prenom :" + txtPrenom.getText());
-            
+            TextField txtNom = find("#txtNom");
+            TextField txtPrenom = find("#txtPrenom");
             assertEquals(employeVeif.nom, txtNom.getText());
             assertEquals(employeVeif.prenom, txtPrenom.getText());
-
-            System.out.println("droit : " + employeVeif.droitsAccess);
             
             if(employeVeif.droitsAccess.equals("chefAgence")) {
                 verifyThat("#menuBtnDroitAccess", LabeledMatchers.hasText("Chef d'agence"));
@@ -306,9 +235,8 @@ public class TestBank extends ApplicationTest {
                 verifyThat("#menuBtnDroitAccess", LabeledMatchers.hasText("Guichetier"));
             }
 
-            TextField txtLogin = find(employeVeif.login);
-            TextField txtMotPasse = find(employeVeif.motPasse);
-
+            TextField txtLogin = find("#txtLogin");
+            TextField txtMotPasse = find("#txtMotPasse");
             assertEquals(employeVeif.login, txtLogin.getText());
             assertEquals(employeVeif.motPasse, txtMotPasse.getText());
 
@@ -328,34 +256,48 @@ public class TestBank extends ApplicationTest {
      */
     public <T extends Node> T find(final String query) { 
         Set<Node> nodes = lookup(query).queryAll();
+
         if (nodes.isEmpty()) {
             return null;
         }
-        return (T) nodes.iterator().next();
-    } 
-    
-    public <T extends Node> T findtkt(final String query) { 
-        Set<Node> nodes = lookup(query).queryAll();
-        if (nodes.isEmpty()) {
-            return null;
-        }
-        for (Node node : nodes) {
-            System.err.println(getStageFromNode(node));
-            if (getStageFromNode(node) != null) {
+
+        Node selectedNode;
+        do {
+            selectedNode = null;
+            for (Node node : nodes) {
                 if (!getStageFromNode(node).isFocused()) {
-                    System.out.println("remove" + node + " from " + getStageFromNode(node) );
-                    //nodes.remove(node);
-                    System.out.println("size" + nodes.size());
-                    for (Node nodee : nodes) {
-                        System.out.println(nodee);
-                    }
-                } else {
-                    System.err.println("pas de modality");
+                    selectedNode = node;
+                    break; // sortir de la boucle dès qu'on trouve un noeud non focusé
                 }
             }
+
+            if (selectedNode != null) { 
+                nodes.remove(selectedNode);
+            }
+        } while (!nodes.isEmpty() && selectedNode != null);
+
+
+        System.out.println("node restant");
+        System.out.println("size" + nodes.size());
+        for (Node node : nodes) {
+            System.out.println(node);
         }
         return (T) nodes.iterator().next();
     } 
+
+    @Test
+    public void testModifierClient() {
+        String login = "Tuff";
+        String motPasse = "Lejeune";
+
+        verifCoDECO();
+        connecter(login, motPasse); 
+
+        clickOn("Gestion");
+        clickOn("#mitemEmploye");
+
+        
+    }
 
     public Stage getStageFromNode(Node node) {
         Scene scene = node.getScene();
