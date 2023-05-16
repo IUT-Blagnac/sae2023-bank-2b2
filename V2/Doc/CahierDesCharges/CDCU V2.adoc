@@ -76,6 +76,20 @@ De retour à la gestion du client, il est possible de modifier les informations 
 
 Si l'utilisateur se connecte en tant que chef d'agence, une fonctionnalité de gestion des employés est prévue, mais elle n'a pas encore été développée dans la version actuelle du projet. De plus, il peut rendre un client inactif.
 
+
+== Utilisateurs
+
+=== Responsables d'agence
+
+Les responsables d'agence sont des membres clés de l'équipe de direction de l'agence bancaire. Ils sont chargés de superviser l'ensemble des opérations de l'agence et de veiller à ce que les activités se déroulent de manière efficace et conforme aux réglementations en vigueur. Les responsables d'agence sont également responsables de la gestion des employés de l'agence. Ils ont accès à des fonctionnalités avancées du système bancaire, leur permettant de créer et de clôturer des comptes clients, de générer des rapports sur les activités financières et les performances des clients, ainsi que de gérer les informations personnelles des clients. Les responsables d'agence sont des utilisateurs clés du système, jouant un rôle central dans la supervision et la gestion globale de l'agence bancaire. De plus, ils peuvent effectuer les mêmes actions que les guichetiers.
+
+
+=== Guichetiers
+
+Les guichetiers sont les acteurs clés de l'agence bancaire. Leur rôle principal consiste à interagir directement avec les clients et à gérer les opérations courantes. Ils sont responsables de fournir un service de qualité aux clients, de traiter les dépôts, les retraits et les virements, ainsi que de répondre aux demandes d'informations sur les comptes. Les guichetiers ont besoin d'un accès sécurisé au système bancaire, où ils peuvent consulter les informations relatives aux clients, effectuer des transactions et mettre à jour les données des clients, comme les coordonnées personnelles.
+
+
+
 == Analyse des besoins incluant V0, V1 et V2
 
 === V0 :
@@ -85,19 +99,30 @@ Le cahier des charges de la version 0 met l'accent sur les fonctionnalités de b
 
 Ensuite, la visualisation des comptes clients et des transactions sera essentielle pour les utilisateurs autorisés. Ils pourront ainsi consulter les informations relatives aux comptes clients, y compris les soldes et les transactions effectuées. Cette fonctionnalité permettra de fournir un aperçu clair et précis des activités financières des clients.
 
-De plus, la gestion des opérations bancaires de base telles que les virements, les dépôts et les retraits doit être prise en compte dans cette version initiale du système. Cela permettra aux utilisateurs d'effectuer les opérations courantes de manière efficace et sécurisée.
+De plus, la fonctionnalité de débit doit être mise en place pour la version initiale de cette application. Il est important de savoir que l'on ne peut pas effectuer un débit si le solde mis à jour avec le montant du débit dépasse le découvert autorisé du client.
 
 === V1 :
 image::./RessourcesAdoc/svg/uc-initialv1.svg[]
 
 La version 1 du projet vise à étendre les fonctionnalités de base du système bancaire pour répondre à des besoins plus avancés. Tout d'abord, une gestion avancée des comptes clients sera mise en place, permettant la création et la clôture des comptes. Cela offrira une plus grande flexibilité aux utilisateurs et facilitera la gestion des comptes clients. De plus, une fonctionnalité d'une modification d'un compte courant visant à modifier le découvert maximum autorisé va permettre une gestion maximum des comptes des clients.
-Lors de la clôture d'un compte, il n'est plus possible de le réouvrir, de le modifier mais aussi de faire des opérations dessus, on en peut simplement que consulter les opérations effectuées par le passé. Attention il n'est évidemment pas possible de cloturer un compte possédant un solde différent de 0 afin de ne pas bloquer le solde du compte.
+
+Pour cette fonctionnalité, il est nécessaire que l'utilisateur soit un responsable d'agence ainsi que le compte soit ouvert et créé.
+
+
+Lors de la clôture d'un compte, il n'est plus possible de le réouvrir, de le modifier mais aussi de faire des opérations dessus, on en peut simplement que consulter les opérations effectuées par le passé. Attention, il n'est évidemment pas possible de cloturer un compte possédant un solde différent de 0 afin de ne pas bloquer le solde du compte.
+
+De plus, la gestion des opérations bancaires de base telles que les virements, les dépôts doit être prise en compte dans cette version avancée du système. Cela permettra aux utilisateurs d'effectuer les opérations courantes de manière efficace et sécurisée.
+Les dépôts ne peuvent pas dépasser la somme des 1 million d'euros par soucis de sécurité. De plus, pour les virements, il y a une vérification de la disponibilité des comptes destinataires du client, en effet, il est impossible d'effectuer le virement vers un compte clôturé ou alors un compte qui ne lui appartient pas. 
 
 En outre, il est prévu d'intégrer un module de reporting spécialement conçu pour les responsables d'agence. Ce module leur permettra de générer des rapports détaillés sur les activités financières, les tendances et les performances des clients. Ces informations seront précieuses pour prendre des décisions éclairées et optimiser les opérations bancaires.
 
 L'ergonomie et l'expérience utilisateur seront également améliorées dans cette version. Des efforts seront déployés pour rendre l'interface utilisateur conviviale, intuitive et facile à naviguer. Cela permettra aux utilisateurs d'interagir de manière fluide avec le système et d'effectuer leurs tâches plus rapidement et efficacement. L'ergonomie des listes d'employés et de clients sera améliorée afin de rendre les informations relatives aux employés et aux clients plus compréhensibles.
 
-Enfin, des fonctionnalités spécifiques seront développées, telles que la possibilité de créditer/débiter un compte en utilisant Java et une base de données avec des procédures stockées. De plus, la création de nouveaux comptes et les virements de compte à compte seront également intégrés. Enfin, la gestion des employés, notamment le "CRUD" (Create, Read, Update, Delete), des guichetiers et des chefs d'agence sera prise en compte pour faciliter la gestion du personnel. Un chef d'agence peut consulter la liste des employés de toutes les agence, il peut modifier et supprimer tous les guichetiers. Il peut se modifer mais ne peut pas se supprimer lui-même et ne peut pas modifier et supprimer un autre chef d'agence.
+La création de nouveaux comptes sera intégrée, il y sera possible de fournir un solde de départ ainsi que le montant découvert maximal autorisé. De plus, la gestion des employés, notamment le "CRUD" (Create, Read, Update, Delete), des guichetiers et des chefs d'agence sera prise en compte pour faciliter la gestion du personnel. La gestion des employés est centralisée entre les mains des chefs d'agence. Ils sont les seuls autorisés à créer de nouveaux employés en fournissant les informations nécessaires telles que le nom, le prénom, l'adresse, etc. De plus, tous les chefs d'agence ont la possibilité de consulter la liste complète des employés de toutes les agences, ce qui favorise une meilleure coordination. Les chefs d'agence sont également responsables de la modification des informations des guichetiers, tels que leur nom ou leur adresse, afin de maintenir les données à jour. Enfin, ils ont le pouvoir de supprimer les guichetiers de leur agence, en respectant scrupuleusement les politiques et procédures de l'entreprise. Cette approche garantit une gestion efficace du personnel tout en responsabilisant les chefs d'agence dans la prise de décisions liées à leur équipe. Ils peuvent effectuer des modifications sur leur propre profil, tels que mettre à jour leur nom, leur adresse, etc. Cependant, ils ne sont pas autorisés à se supprimer eux-mêmes du système. De plus, les chefs d'agence n'ont pas le pouvoir de modifier ou de supprimer d'autres chefs d'agence. Cette restriction vise à préserver l'intégrité des profils des chefs d'agence et à maintenir une structure de gestion claire et cohérente. Les règles de gestion assurent ainsi une gestion du personnel équilibrée et respectueuse des rôles et responsabilités de chaque individu au sein de l'organisation.
+
+
+
+
 
 === V2 :
 image::./RessourcesAdoc/svg/uc-initialv2.svg[]
@@ -113,6 +138,8 @@ Pour le chef d'agence, des fonctionnalités spécifiques seront développées. L
 De plus, le chef d'agence aura la possibilité de simuler un emprunt. Cela facilitera la prise de décisions financières pour les clients, en leur fournissant une estimation précise des coûts et des conditions de l'emprunt. Les simulations d'assurance seront également possibles, permettant aux clients de comprendre les coûts, les avantages et les conditions associés à différents plans d'assurance.
 
 En somme, la version 2 se concentre sur l'amélioration de l'expérience utilisateur, la fourniture de services plus flexibles et la facilitation des opérations bancaires pour le personnel de l'agence.
+
+
 
 == Analyse des contraintes
 
