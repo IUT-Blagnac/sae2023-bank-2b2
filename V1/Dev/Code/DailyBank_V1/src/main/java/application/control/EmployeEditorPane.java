@@ -20,6 +20,9 @@ public class EmployeEditorPane {
 	private DailyBankState dailyBankState;
 
 	/**
+	 * Constructeur de la classe de EmployeEditorPane.
+	 * Cette classe permet de gérer l'affichage d'un dialogue de gestion d'un employé.
+	 * 
 	 * @param _parentStage
 	 * @param _dbstate
 	 */

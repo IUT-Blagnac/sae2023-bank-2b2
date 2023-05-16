@@ -16,9 +16,9 @@ import model.orm.exception.RowNotFoundOrTooManyRowsException;
  */
 
 public class DailyBankState {
-	private Employe empAct;
-	private AgenceBancaire agAct;
-	private boolean isChefDAgence;
+	private Employe empAct; // Employé connecté
+	private AgenceBancaire agAct; // Agence bancaire de l'employé connecté
+	private boolean isChefDAgence;	// L'employé connecté est il chef d'agence ou pas
 
 	/**
 	 * Employé connecté.
