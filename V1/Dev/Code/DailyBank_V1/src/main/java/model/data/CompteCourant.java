@@ -44,6 +44,12 @@ public class CompteCourant {
 		return s;
 	}
 	
+	public String toStringVirement() {
+		String s = "" + String.format("%05d", this.idNumCompte) + " : Solde =" + String.format("%12.02f", this.solde)+" €";
+		
+		return s;
+	}
+	
 	public void setCloture(String etat) {
 		this.estCloture = etat;
 	}

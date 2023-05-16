@@ -130,9 +130,9 @@ Pour Valider la suppression il vous suffit de cliquer sur le bouton "Supprimer" 
 === Gestion des comptes :
 
 ==== Création d'un compte :
-``Réalisée par Yannis Gibert``
+``Réalisé par Yannis Gibert``
 
-*Prérequis : Être connecté en tant que guichetier et s'être rendu dans la gestion des clients*
+*Prérequis : Être connecté en tant que guichetier ou chef d'agence et s'être rendu dans la gestion des clients*
 
 Une fois que vous avez accédé à la gestion des clients.
 Vous pourez créer un nouveau compte en cliquant sur le bouton "Ajouter" en bas à droite de la page. Ou annuler en cliquant sur le bouton "Annuler" en bas à droite de la page.
@@ -181,7 +181,7 @@ image::RessourcesAdoc/img/ErreurCloturation.png[Alt Page de connexion, 50%]
 ==== Modification d'un compte :
 ``Réalisée par Yannis Gibert``
 
-Une fois sur la page d'acceuil il vous suffit de passer la souris sur le bouton "Gestion" ce qui ouvre un menu déroulant permettant de sélectionner entre Clients et Employés. Ici ce que nous intéressera est la partie Clients, il suffit donc de cliquer dessus afin d'accéder au menu des clients.
+Une fois sur la page d'accueil, il vous suffit de passer la souris sur le bouton "Gestion" ce qui ouvre un menu déroulant permettant de sélectionner entre Clients et Employés. Ici ce que nous intéressera est la partie Clients, il suffit donc de cliquer dessus afin d'accéder au menu des clients.
 
 image::RessourcesAdoc/img/MenuGestion.png[Alt Page de connexion, 50%]
 
@@ -198,41 +198,81 @@ Vous voici sur la page de modification du compte, vous ne pouvez y modifier qu'u
 image::RessourcesAdoc/img/ModifierCompte.png[Alt Page de connexion, 50%]
 
 ==== Débit d'un compte :
-``Réalisée par Julien Couderc ``
+``Réalisé par Julien Couderc ``
 
 Pour effectuer un débit, il vous suffit de vous connecter, puis passer la souris sur le bouton "Gestion" ce qui ouvre un menu déroulant permettant de sélectionner entre Clients et Employés. Ici ce que nous intéressera est la partie Clients, il suffit donc de cliquer dessus afin d'accéder au menu des clients.
 
-image::RessourcesAdoc/img/MenuGestion.png[Alt Page de connexion, 50%]
+image::RessourcesAdoc/img/MenuGestion.png[Alt Gestion Client, 50%]
 
 Une fois sur la page des clients vous pouvez voir la liste de tout les clients étant dans la même agence que le guichetier. Vous pouvez en cliquant sur un client activer le bouton "Comptes client", en cliquant sur ce dernier vous serez redirigé vers la page de gestion des comptes du client sélectionné.
 
-image::RessourcesAdoc/img/MenuClient.png[Alt Page de connexion, 50%]
+image::RessourcesAdoc/img/MenuClient.png[Alt Comptes Clients, 50%]
 
 Sur cette nouvelle page, vous devez cliquer sur un compte ouvert, puis cliquer sur voir opérations de ce compte.
 
-image::RessourcesAdoc/img/voirOperations.png[Alt Page de connexion, 50%]
+image::RessourcesAdoc/img/voirOperations.png[Alt Voir Opérations, 50%]
 
 A partir de là, vous pouvez choisir l'opération que vous voulez, en ce qui nous concerne actuellement, nous allons faire un débit.
 
-image::RessourcesAdoc/img/OperationDebit.png[Alt Page de connexion, 50%]
+image::RessourcesAdoc/img/OperationDebit.png[Alt Choix Débit, 50%]
 
 Une fois la page ouverte, vous pouvez sélectionner le type de débit que vous voulez effectuer, vous avez le choix entre "Retrait Espèces" et "Retrait Carte Bleue".
 
-image::RessourcesAdoc/img/OperationTypeDebit.png[Alt Page de connexion, 50%]
+image::RessourcesAdoc/img/OperationTypeDebit.png[Alt Choix Type Débit, 50%]
 
-Ensuite, il vous faut entrer un montant valide, c'est à dire, que le solde du compte ne dépasse pas le dévouvert maximum autorisé et puis cliquer sur effectuer le virement.
+Ensuite, il vous faut entrer un montant valide, c'est à dire, que le solde du compte ne dépasse pas le dévouvert maximum autorisé et puis cliquer sur effectuer le débit.
 
-image::RessourcesAdoc/img/OperationDebitEffectue.png[Alt Page de connexion, 50%]
+image::RessourcesAdoc/img/OperationDebitEffectue.png[Alt Effectue Débit, 50%]
+
+Une fois le débit effectué, l'opération est ajoutée à la liste des opérations avec le type de l'opération ainsi que le montant.
+
+image::RessourcesAdoc/img/OperationDebitResultat.png[Alt Liste Opération, 50%]
 
 
 === Crédit d'un compte :
-``Réalisée par Julien Couderc ``
+``Réalisé par Julien Couderc ``
+
+Pour réalisé un crédit, il suffit de répéter les étapes précédentes jusqu'à arriver à la sélection de l'opération, il vous faut cliquer sur "Enregistrer crédit".
+
+image::RessourcesAdoc/img/OperationCredit.png[Alt Choix crédit, 50%]
+
+Une fois la page ouverte, vous pouvez sélectionner le type de débit que vous voulez effectuer, vous avez le choix entre "Dépôt Espèces" et "Dépôt Chèque".
+
+image::RessourcesAdoc/img/OperationTypeCredit.png[Alt Choix type crédit, 50%]
+
+Ensuite, il vous faut entrer un montant valide, c'est à dire, que le montant ne doit pas dépasser 1 million d'euros et puis cliquer sur effectuer le crédit.
+
+image::RessourcesAdoc/img/OperationCreditEffectue.png[Alt Effectuer crédit, 50%]
+
+Une fois le crédit effectué, l'opération est ajoutée à la liste des opérations avec le type de l'opération ainsi que le montant.
+
+image::RessourcesAdoc/img/OperationCreditEffectues.png[Alt Liste Opération, 50%]
+
 
 === Virement d'un compte à un autre :
-``Réalisée par Julien Couderc ``
+``Réalisé par Julien Couderc ``
+
+Pour réalisé un virement, il suffit de répéter les étapes précédentes jusqu'à arriver à la sélection de l'opération, il vous faut cliquer sur "Enregistrer virement".
+
+image::RessourcesAdoc/img/OperationVirement.png[Alt Choix virement, 50%]
+
+Une fois la page ouverte, vous pouvez sélectionner le compte sur lequel vous voulez que le virement s'effectue.
+
+image::RessourcesAdoc/img/OperationTypeVirement.png[Alt Choix compte virement, 50%]
+
+Ensuite, il vous faut entrer un montant valide, c'est à dire, que le montant ne doit pas dépasser 1 million d'euros mais aussi vous ne devez pas dépasser votre découvert maximal autorisé et puis cliquer sur effectuer le virement.
+
+image::RessourcesAdoc/img/OperationVirementEffectue.png[Alt Effectuer virement, 50%]
+
+Une fois le virement effectué, l'opération est ajoutée à la liste des opérations avec le type de l'opération ainsi que le montant. Cette opération est ajoutée aux deux comptes concernés.
+
+image::RessourcesAdoc/img/OperationVirementEmetteur.png[Alt Liste Opération Emetteur, 50%]
+
+image::RessourcesAdoc/img/OperationVirementDestinataire.png[Alt Liste Opération Destinataire, 50%]
+
 
 === Créer un compte :
-``Réalisée par Yannis Gibert``
+``Réalisé par Yannis Gibert``
 
 Voici la page des comptes avant la création d'un nouveau compte : 
 
@@ -243,7 +283,7 @@ Suite à la création du compte vous pouvez voir comme ci-dessous que le nouveau
 image::RessourcesAdoc/img/ResultatCreerCompte.png[Alt Page de connexion, 50%]
 
 === Modifier un compte :
-``Réalisée par Yannis Gibert``
+``Réalisé par Yannis Gibert``
 
 Voici la page des comptes avant la modification, on prendra comme exemple le dernier compte de la liste dont on va modifier le découvert autorisé pour le passé de -200 à -6000 : 
 
@@ -254,7 +294,7 @@ Suite à la modification du compte vous pouvez voir comme ci-dessous que le comp
 image::RessourcesAdoc/img/ResultatModifierCompte.png[Alt Page de connexion, 50%]
 
 === Cloturer un compte :
-``Réalisée par Yannis Gibert``
+``Réalisé par Yannis Gibert``
 
 Voici la page des comptes avant la cloturation d'un compte, nous allons cloturer le dernier compte de la liste en guise d'exemple.
 

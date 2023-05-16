@@ -120,7 +120,7 @@ public class OperationEditorPaneController {
 				for (CompteCourant compte : al) {
 					if (compte.idNumCompte != this.compteEdite.idNumCompte && !compte.isCloture()) {
 						listTypesComptesPossibles.add(compte);
-						String compteString = compte.toString();
+						String compteString = compte.toStringVirement();
 						listTypesComptesPossiblesString.add(compteString);
 
 					}
