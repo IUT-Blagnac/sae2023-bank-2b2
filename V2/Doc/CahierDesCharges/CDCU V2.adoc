@@ -178,14 +178,15 @@ Mardi 16 mai 17h00 : +
 - Rendu du Cahier Des Charges Version 2 +
 - Rendu du Gantt réalisé Version 1 +
 - Rendu du Gantt prévu Version 2 +
-- Rendu de la recette +
 - Rendu de la doc Utilisateur Version 1 +
 - Rendu du suivi de projet Version 1
 
 
 Mercredi 17 mai 17h00 : +
 - Rendu de la doc Technique Version 1 +
-- Rendu du code de la Version 1
+- Rendu de la recette +
+- Rendu de la Version 1 du projet
+
 
 Vendredi 26 mai 17h00 : +
 - Rendu du Gantt réalisé Version 2 +

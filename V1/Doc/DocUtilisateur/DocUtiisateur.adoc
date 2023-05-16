@@ -193,7 +193,7 @@ image::RessourcesAdoc/img/ModifierCompte.png[Alt Page de connexion, 50%]
 
 === Julien Couderc :
 
-=== Débit d'un compte :
+==== Débit d'un compte :
 
 Pour effectuer un débit, il vous suffit de vous connecter, puis passer la souris sur le bouton "Gestion" ce qui ouvre un menu déroulant permettant de sélectionner entre Clients et Employés. Ici ce que nous intéressera est la partie Clients, il suffit donc de cliquer dessus afin d'accéder au menu des clients.
 
@@ -208,6 +208,17 @@ Sur cette nouvelle page, vous devez cliquer sur un compte ouvert, puis cliquer s
 image::RessourcesAdoc/img/voirOperations.png[Alt Page de connexion, 50%]
 
 A partir de là, vous pouvez choisir l'opération que vous voulez, en ce qui nous concerne actuellement, nous allons faire un débit.
+
+image::RessourcesAdoc/img/OperationDebit.png[Alt Page de connexion, 50%]
+
+Une fois la page ouverte, vous pouvez sélectionner le type de débit que vous voulez effectuer, vous avez le choix entre "Retrait Espèces" et "Retrait Carte Bleue".
+
+image::RessourcesAdoc/img/OperationTypeDebit.png[Alt Page de connexion, 50%]
+
+Ensuite, il vous faut entrer un montant valide, c'est à dire, que le solde du compte ne dépasse pas le dévouvert maximum autorisé et puis cliquer sur effectuer le virement.
+
+image::RessourcesAdoc/img/OperationDebitEffectue.png[Alt Page de connexion, 50%]
+
 
 === Crédit d'un compte :
 
