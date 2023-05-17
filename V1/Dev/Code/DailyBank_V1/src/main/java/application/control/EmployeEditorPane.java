@@ -53,6 +53,10 @@ public class EmployeEditorPane {
 
 	
 	/** 
+	 * Cette méthode permet d'afficher le dialogue de gestion d'un employé. <br/>
+	 * Que ce soit pour une création, une modification, une suppression ou une consultation <br/> 
+	 * il donc faut passer en paramètre l'employé concerné et le mode d'édition qui sera utilisé. <br/>
+	 * 
 	 * @param employe
 	 * @param em
 	 * @return Employe

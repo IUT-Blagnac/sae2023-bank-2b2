@@ -54,7 +54,7 @@ public class EmployeEditorPaneController {
 
 	/*
 	 * Cette méthode est appelée par le contrôleur de dialogue EmployesManagement <br/>
-	 * Elle permet de fermer la fenêtre de dialogue de création ou de modification d'un employé <br/>
+	 * Elle permet de fermer la fenêtre de dialogue de création, de modification, de consultation ou de suppresion d'un employé <br/>
 	 */
 	private void configure() {
 		this.primaryStage.setOnCloseRequest(e -> this.closeWindow(e));

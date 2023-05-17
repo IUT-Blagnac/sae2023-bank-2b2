@@ -28,6 +28,9 @@ public class EmployesManagement {
 	private Employe employe;
 
     /**
+	 * Constructeur de la classe de EmployesManagement.
+	 * Cette classe permet de gérer l'affichage d'un dialogue de gestion des employes.
+	 * 
      * @param _parentStage
      * @param _dbstate
      */
@@ -56,12 +59,17 @@ public class EmployesManagement {
         }
     }
 
+	/**
+	 * Appel l'affichage du dialogue d'édition des employes.
+	 */
     public void doEmployeManagementDialog() {
 		this.emcViewController.displayDialog();
 	}
 
     
 	/** 
+	 * Cette méthode permet de récupérer la liste des employés en fonction des critères de recherche.
+	 * 
 	 * @param _numEmploye
 	 * @param _debutNom
 	 * @param _debutPrenom
@@ -72,9 +80,9 @@ public class EmployesManagement {
         ArrayList<Employe> listeEmpl = new ArrayList<>();
 		try {
 			// Recherche des employés en BD. cf. AccessEmployé > getEmployé(.)
-			// numCompte != -1 => recherche sur numCompte
-			// numCompte == -1 et debutNom non vide => recherche nom/prenom
-			// numCompte == -1 et debutNom vide => recherche tous les Employé
+			// numEmployé != -1 => recherche sur numEmployé
+			// numEmployé == -1 et debutNom non vide => recherche nom/prenom
+			// numEmployé == -1 et debutNom vide => recherche tous les Employé
 			Access_BD_Employe ae = new Access_BD_Employe();
 			listeEmpl = ae.getEmployes(_numEmploye, _debutNom, _debutPrenom, _droit);
 		} catch (DatabaseConnexionException e) {
@@ -92,6 +100,8 @@ public class EmployesManagement {
 
 	
 	/** 
+	 * Cette méthode permet de créer un nouvel utilisateur en appelant l'éditeur d'employé.
+	 * 
 	 * @return Employe
 	 */
 	public Employe nouvelEmploye() {
@@ -118,6 +128,8 @@ public class EmployesManagement {
 
 	
 	/** 
+	 * Cette méthode permet de modifier un employé en appelant l'éditeur d'employé.
+	 * 
 	 * @param employe
 	 * @return Employe
 	 */
@@ -145,6 +157,8 @@ public class EmployesManagement {
 
 	
 	/** 
+	 * Cette méthode permet de supprimer un employé en appelant l'éditeur d'employé.
+	 * 
 	 * @param employe
 	 * @return boolean
 	 */
@@ -173,6 +187,8 @@ public class EmployesManagement {
 	}
 
     /**
+	 * Cette méthode permet de consulter un employé en appelant l'éditeur d'employé.
+	 * 
      * @param cliCons
      */
     public void consult(Employe cliCons) {

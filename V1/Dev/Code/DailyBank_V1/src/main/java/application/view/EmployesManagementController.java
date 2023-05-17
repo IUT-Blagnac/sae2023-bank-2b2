@@ -77,8 +77,7 @@ public class EmployesManagementController {
 	}
 
 	/**
-	 * 
-	 * Cette méthode est appelée par le contrôleur de dialogue EmployesManagement lors de la création de la fenêtre <br/>
+	 * Cette méthode est appelée par EmployesManagement lors de la création de la fenêtre <br/>
 	 * Elle permet d'afficher la fenêtre de gestion des employés <br/>
 	*/
     public void displayDialog() {
@@ -96,6 +95,7 @@ public class EmployesManagementController {
 		return null;
 	}
 
+	// Attributs de la scene
     @FXML
 	private TextField txtNum;
 	@FXML
@@ -122,11 +122,20 @@ public class EmployesManagementController {
 	private Button btnNouvelEmploye;
 	private ContextMenu contextMenu = new ContextMenu();
 
+	/**
+	 * Méthode appelée par le contrôleur lors de la fermeture de la fenêtre <br/>
+	 */
     @FXML
 	private void doCancel() {
 		this.primaryStage.close();
 	}
 
+	/**
+	 * Méthode appelée par le contrôleur lors du cloque sur un employé<br/>
+	 * Elle permets de rendre actif les boutons de modification et de suppression<br/>
+	 * d'un employé ainsi que de consultation en fonction des droit de l'utilisateur actuelle<br/>
+	 */
+	@FXML
     private void validateComponentState() {
 		int selectedIndice = this.lvEmployes.getSelectionModel().getSelectedIndex();
 		Employe selectedEmploye = this.lvEmployes.getSelectionModel().getSelectedItem();
@@ -155,6 +164,10 @@ public class EmployesManagementController {
 		}
 	}
 
+	/**
+	 * Cette méthode est appelée lors de la recherche d'un employé <br/>
+	 * Elle récupére les paramètre de recherche et les utilise pour rechercher correctement un employe<br/>
+	 */
     @FXML
 	private void doRechercher() {
         int numEmploye;
@@ -202,6 +215,9 @@ public class EmployesManagementController {
 		this.oListEmployes.addAll(listeEmployes);
 	}
 
+	/**
+	 * Cette méthode est appelée lors de  d'un nouvel employé <br/>
+	 */
 	@FXML
 	private void doModifierEmploye() {
 		System.out.println("doModifierEmploye");
@@ -215,6 +231,9 @@ public class EmployesManagementController {
 		}
 	}
 
+	/**
+	 * Cette méthode est appeler lors du clique sur le bouton de suppression d'un employé <br/>
+	 */
 	@FXML
 	private void doSupprimerEmploye() {
 		int selectedIndice = this.lvEmployes.getSelectionModel().getSelectedIndex();
@@ -226,6 +245,11 @@ public class EmployesManagementController {
 		}
 	}
 
+
+	/**
+	 * Cette méthode est appeler lors du clique sur le bouton de consultation d'un employé <br/>
+	 * Elle permets de lancer la consultation d'un employé<br/>
+	 */
 	@FXML
 	public void doConsulterEmploye() {
 		int selectedIndice = this.lvEmployes.getSelectionModel().getSelectedIndex();
@@ -237,6 +261,10 @@ public class EmployesManagementController {
 		}
 	}
 
+	/**
+	 * Cette méthode est appeler lors du clique sur le bouton de création d'un employé <br/>
+	 * Elle permets de lancer la création d'un nouvel employé<br/>
+	 */
 	@FXML
 	private void doNouvelEmploye() {
 		Employe employe;
@@ -246,6 +274,9 @@ public class EmployesManagementController {
 		}
 	}
 
+	/**
+	 * Les 3 méthode qui suivent permettent de chnager l'afficge du menu de droit dans la recherche des employés
+	 */
 	@FXML
 	private void droitChef() {
 		menuDroit.setText(this.droitChef.getText());
@@ -259,6 +290,11 @@ public class EmployesManagementController {
 		menuDroit.setText(this.droitAucun.getText());
 	}
 
+	/**
+	 * Cette méthode est appeler lors d'un double clicque sur un employé de la liste <br/>
+	 * Elle permet au double clique de lancer la consulation ou la modification d'un employé<br/>
+	 * En fonction des droits de l'employé actuel sur l'employé selectionné<br/>
+	 */
 	@FXML
     private void onClicList(MouseEvent event) {
 		int selectedIndice = this.lvEmployes.getSelectionModel().getSelectedIndex();
