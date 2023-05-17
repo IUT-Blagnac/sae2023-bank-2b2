@@ -270,12 +270,12 @@ Un chef d’agence ou un guichetier peut créer/ insérer les informations d’u
 Use case : 
 
 .diagram de cas d'utilisation de création d'un client
-image::RessourceAdoc/img/creernewclient.png[Alt DC V1, 50%]
+image::RessourceAdoc/img/creernewclient.png[Alt DC V1, 25%]
 
 Partie du diagramme de classe : 
 
 .extrait digram de la BD - classe client
-image::RessourceAdoc/img/clientdc.png[Alt DC V1, 50%]
+image::RessourceAdoc/img/clientdc.png[Alt DC V1, 25%]
 
 Cette tâche n’inclut seulement qu’une classe dans le diagramme de classes V1 : la classe Client. Cette classe est, de ce fait, dédiée à la création/insertion des informations d’un client et par conséquent, à l’insertion des données sur la base de données.
 
@@ -390,12 +390,12 @@ Le chef d'agence ou le guichetier a la possibilité de créer un compte courant 
 ===== Partie du use case : 
 
 .diagram de cas d'utilisation de création d'un compte
-image::RessourceAdoc/img/creercompte.png[Alt creer compte, 50%]
+image::RessourceAdoc/img/creercompte.png[Alt creer compte, 25%]
 
 ===== Partie du diagramme de classe : 
 
 .extrait digram de la BD - classe CompteCourant
-image::RessourceAdoc/img/dcCompteCourant.png[Alt dc compte, 50%]
+image::RessourceAdoc/img/dcCompteCourant.png[Alt dc compte, 25%]
 
 La tâche concerne exclusivement la classe Client de la version 1 du diagramme de classes. Cette classe est spécifiquement conçue pour la modification des informations d'un client et de ses comptes, ce qui implique la mise à jour des données dans la base de données.
 
@@ -451,12 +451,12 @@ Toutes les méthodes ajoutées sont commentées afin de permettre une meilleure 
 ===== Partie du use case :
 
 .diagram de cas d'utilisation de clôture d'un compte
-image::RessourceAdoc/img/cloturercompte.png[Alt cloturer compte, 50%]
+image::RessourceAdoc/img/cloturercompte.png[Alt cloturer compte, 25%]
 
 ===== Partie du diagramme de classe : 
 
 .extrait digram de la BD - classe CompteCourant
-image::RessourceAdoc/img/dcCompteCourant.png[Alt dc compte, 50%]
+image::RessourceAdoc/img/dcCompteCourant.png[Alt dc compte, 25%]
 
 ===== Principales fonctionnalités : 
 
@@ -514,12 +514,12 @@ Un chef d'agence ou un guichetier peut modifier les informations d'un compte cli
 ===== Partie du use case : 
 
 .diagram de cas d'utilisation de modification d'un compte
-image::RessourceAdoc/img/modifiercompte.png[Alt modifier compte courant, 50%]
+image::RessourceAdoc/img/modifiercompte.png[Alt modifier compte courant, 25%]
 
 ===== Partie du diagramme de classe : 
 
 .extrait digram de la BD - classe CompteCourant
-image::RessourceAdoc/img/dcCompteCourant.png[Alt dc compte courant, 50%]
+image::RessourceAdoc/img/dcCompteCourant.png[Alt dc compte courant, 25%]
 
 Cette tâche inclut qu'une classe dans le diagramme de classes V1 : la classe Compte. Cette classe est dédié à la modification des informations du compte sélectionné et à la mise à jour des données dans la base de données.
 
