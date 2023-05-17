@@ -581,3 +581,14 @@ Ce code est essentiel pour enregistrer les crédits dans la base de données SQL
 ====  CRUD employés - Enzo Fournet
 
 Le CRUD permet de créer, lire, mettre à jour et supprimer des employés. Il est possible de créer un employé, de le lire, de le modifier et de le supprimer. Il est également possible de lire tous les employés enregistrés dans la base de données.
+
+===== Partie du use case
+
+image::RessourceAdoc/img/CRUDEmpl.png[Alt CRUD, 50%]
+
+===== Partie du diagramme de classe
+
+image::RessourceAdoc/img/Empl.png[Alt dc CRUD, 50%]
+
+Dans ce diagramme de classes, la tâche "CRUD" n'est vraiment représenté mais :
+
