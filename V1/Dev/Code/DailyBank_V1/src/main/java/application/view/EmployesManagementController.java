@@ -81,8 +81,6 @@ public class EmployesManagementController {
 	}
 
 	/**
-	 * 
-	 * Cette méthode est appelée par le contrôleur de dialogue EmployesManagement lors de la création de la fenêtre <br/>
 	 * Elle permet d'afficher la fenêtre de gestion des employés <br/>
 	 */
 	public void displayDialog() {
