@@ -575,20 +575,20 @@ ____
 
 image::RessourceAdoc/img/image.png[Alt code virement, 75%]
 
-image::RessourceAdoc/img/virementcompte.png[Alt code virement, 75%]
+image::RessourceAdoc/img/codeVirement.png[Alt code virement, 75%]
 
 Ce code est essentiel pour enregistrer les virements dans la base de données SQL, en fonction de la procédure "enregistrerVirement". Il gère également les types d'opérations et les montants à virer.
 Lorsqu'on effectue un virement, on fait un débit du côté du compte source et on réalisé un crédit vers le compte du destinataire.
 
-====  CRUD employés - Enzo Fournet
+===  CRUD employés - Enzo Fournet
 
 Le CRUD permet de créer, lire, mettre à jour et supprimer des employés. Il est possible de créer un employé, de le lire, de le modifier et de le supprimer. Il est également possible de lire tous les employés enregistrés dans la base de données.
 
-===== Partie du use case
+==== Partie du use case
 
 image::RessourceAdoc/img/CRUDEmpl.png[Alt CRUD, 50%]
 
-===== Partie du diagramme de classe
+==== Partie du diagramme de classe
 
 image::RessourceAdoc/img/Empl.png[Alt dc CRUD, 50%]
 
@@ -598,11 +598,11 @@ Dans ce diagramme de classes, la tâche "CRUD" n'est vraiment représenté mais 
 
 * La classe "EmployeManagement" est utilisée pour la création, la modification, la consultation et la suppression d'un employé. Elle est responsable de la manipulation et de la mise à jour des informations relatives à cet employé. Tout en affichant les fenêtres de création, modification, consultation et suppression.
 
-===== Principales fonctionnalités
+==== Principales fonctionnalités
 
 Une brève introduction des principales fonctionnalités de cette opération a été présentée précédemment. Pour obtenir des informations plus détaillées, veuillez consulter la documentation utilisateur. Elle fournira des explications approfondies sur les différentes fonctionnalités et leur utilisation dans le cadre de ces opérations spécifique.
 
-===== Classes associées à l'implémentation de la fonctionnalité
+==== Classes associées à l'implémentation de la fonctionnalité
 
 Pour l’implémentation de cette action, plusieurs classes ont été impliquées :
 
@@ -631,13 +631,13 @@ ____
 • _Access_BD_Employe.java_
 ____
 
-====  Ergonomie des listes - Enzo Fournet
+===  Ergonomie des listes - Enzo Fournet
 
 L'ergonomie des listes permet d'utiliser le cliquedroit et le double clique pour intéragir avec la liste sans utiliser les boutons lattéraux. 
 
 image::RessourceAdoc/img/emplclickdroit.png[Alt ergonomie, 50%]
 
-===== Classes associées à l'implémentation de la fonctionnalité
+==== Classes associées à l'implémentation de la fonctionnalité
 
 Pour l’implémentation de cette action, plusieurs classes ont été impliquées :
 
@@ -648,7 +648,7 @@ ____
 • _ClientManagementController.java_
 ____
 
-===== Extrait de code
+==== Extrait de code
 
 Si dessous le code ajouter à la classe `` employeManagementController.java `` pour l'ergonomie des listes. Le code ajouter à la class clientManagementController.java est sensiblement le même.
 
@@ -709,7 +709,7 @@ Si dessous le code ajouter à la classe `` employeManagementController.java `` p
 ```
 En l'occurence ici, on utilise le clic droit pour afficher un menu contextuel avec les options "Modifier", "Supprimer" et "Consulter". On utilise également le double clic pour modifier un employé ou le consulter. Biensure les option proproser dépendent des droits de l'employé sélectionné sur l'employé sélectionné.
 
-====  Multiplateforme - Enzo Fournet
+===  Multiplateforme - Enzo Fournet
 
 Un profil à était ajouter dans le pom.xml pour permettre de compiler le projet pour qu'il puisse être cross platefrome.
 
