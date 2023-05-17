@@ -1,12 +1,17 @@
 package application.view;
 
+import java.lang.reflect.Array;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import application.DailyBankState;
 import application.control.EmployesManagement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.ListView;
@@ -15,6 +20,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -84,9 +90,11 @@ public class EmployesManagementController {
 	}
 
 	/**
+	 * Cette méthode est appelée lorsque l'événement de fermeture de la fenêtre se produit.
+	 * Elle exécute l'action d'annulation et consomme l'événement pour éviter toute autre action par défaut.
 	 * 
-	 * @param e
-	 * @return null
+	 * @param e L'événement de fermeture de la fenêtre.
+	 * @return null car aucun objet n'est renvoyé.
 	 */
 	private Object closeWindow(WindowEvent e) {
 		this.doCancel();

@@ -59,7 +59,6 @@ public class ClientsManagementController {
 	/**
 	 * Configure les éléments de la fenêtre et les actions associées.
 	 */
-
 	private void configure() {
 		this.primaryStage.setOnCloseRequest(e -> this.closeWindow(e));
 
