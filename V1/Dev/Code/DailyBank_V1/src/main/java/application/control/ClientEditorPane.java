@@ -20,6 +20,14 @@ public class ClientEditorPane {
 	private ClientEditorPaneController cepcViewController;
 	private DailyBankState dailyBankState;
 
+	/**
+	 * Constructeur de la classe de ClientEditorPane.
+	 * Cette classe permet de gérer l'affichage d'un dialogue de gestion des client.
+	 * 
+	 * @param _parentStage Fenêtre parente de LoginDialog (sur laquelle se centrer
+	 *                     et être modale)
+	 * @param _dbstate     Etat courant de l'application
+	 */
 	public ClientEditorPane(Stage _parentStage, DailyBankState _dbstate) {
 		this.dailyBankState = _dbstate;
 		try {
@@ -45,6 +53,16 @@ public class ClientEditorPane {
 		}
 	}
 
+	/** 
+	 * Cette méthode permet d'afficher le dialogue de gestion d'un client. <br/>
+	 * Que ce soit pour une création, une modification, une suppression ou une consultation <br/> 
+	 * il donc faut passer en paramètre le client a qui appartient le compte, le compte concerné et le mode d'édition qui sera utilisé. <br/>
+	 * 
+	 * @param client le client qu'on souhaite editer
+	 * @param em le mode d'édition
+	 * 
+	 * @return le client edité
+	 */
 	public Client doClientEditorDialog(Client client, EditionMode em) {
 		return this.cepcViewController.displayDialog(client, em);
 	}

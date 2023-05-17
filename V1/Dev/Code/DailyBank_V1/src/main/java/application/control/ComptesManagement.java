@@ -31,6 +31,14 @@ public class ComptesManagement {
 	private DailyBankState dailyBankState;
 	private Client clientDesComptes;
 
+	/**
+	 * Création d'un page de gestion des comptes.<BR />
+	 *
+	 * @param _parentStage Fenêtre parente de LoginDialog (sur laquelle se centrer
+	 *                     et être modale)
+	 * @param _dbstate     Etat courant de l'application
+	 * @param client le client dont on souhaite voir les comptes
+	 */
 	public ComptesManagement(Stage _parentStage, DailyBankState _dbstate, Client client) {
 
 		this.clientDesComptes = client;
@@ -58,17 +66,30 @@ public class ComptesManagement {
 		}
 	}
 
+	/**
+	 * Affiche la page des comptes d'un client
+	 */
 	public void doComptesManagementDialog() {
 		this.cmcViewController.displayDialog();
 	}
 
+	/**
+	 * Permet d'ouvrir la page de gestion des opérations d'un compte
+	 * 
+	 * @param cpt le compte qu'on souhaite récupérer ses opérations
+	 */
 	public void gererOperationsDUnCompte(CompteCourant cpt) {
 		OperationsManagement om = new OperationsManagement(this.primaryStage, this.dailyBankState,
 				this.clientDesComptes, cpt);
 		om.doOperationsManagementDialog();
 	}
 		
-		
+	/**
+	 * Permet de cloturer un compte
+	 * 
+	 * @param compte le compte que l'on souhaite supprimer
+	 * @return le compte courant
+	 */
 	public CompteCourant supprimerCompte(CompteCourant compte) {
 		CompteEditorPane cep = new CompteEditorPane(this.primaryStage, this.dailyBankState);
 		CompteCourant result = cep.doCompteEditorDialog(this.clientDesComptes,compte, EditionMode.SUPPRESSION);
@@ -95,6 +116,12 @@ public class ComptesManagement {
 		return result;
 	}
 	
+	/**
+	 * Permet de modifier les informations d'un compte
+	 * 
+	 * @param c le compte qu'on souhaite modifier
+	 * @return le compte modifié
+	 */
 	public CompteCourant modifierCompte(CompteCourant c) {
 		CompteEditorPane cep = new CompteEditorPane(this.primaryStage, this.dailyBankState);
 		CompteCourant result = cep.doCompteEditorDialog(this.clientDesComptes,c, EditionMode.MODIFICATION);
@@ -116,6 +143,11 @@ public class ComptesManagement {
 		return result;
 	}
 
+	/**
+	 * Permet de créer un nouveau compte courant
+	 * 
+	 * @return le nouveau compte courant
+	 */
 	public CompteCourant creerNouveauCompte() {
 		CompteCourant compte;
 		CompteEditorPane cep = new CompteEditorPane(this.primaryStage, this.dailyBankState);
@@ -140,6 +172,11 @@ public class ComptesManagement {
 		return compte;
 	}
 
+	/**
+	 * Permet de récupérer tout les comptes courant d'un client
+	 * 
+	 * @return une liste de compte courant
+	 */
 	public ArrayList<CompteCourant> getComptesDunClient() {
 		ArrayList<CompteCourant> listeCpt = new ArrayList<>();
 
