@@ -48,7 +48,6 @@ public class ClientsManagementController {
      * @param _cm              Le contrôleur de dialogue associé.
      * @param _dbstate         L'état courant de la banque.
      */
-	
 	public void initContext(Stage _containingStage, ClientsManagement _cm, DailyBankState _dbstate) {
 		this.cmDialogController = _cm;
 		this.primaryStage = _containingStage;

@@ -121,12 +121,20 @@ public class EmployesManagementController {
 	@FXML
 	private Button btnNouvelEmploye;
 	private ContextMenu contextMenu = new ContextMenu();
-
+	
+	
+	/**
+     * Annule et ferme la fenêtre.
+     */
     @FXML
 	private void doCancel() {
 		this.primaryStage.close();
 	}
-
+    
+    /**
+     * Valide l'état des composants de la fenêtre.
+     * Active ou désactive les boutons en fonction de l'employé sélectionné.
+     */
     private void validateComponentState() {
 		int selectedIndice = this.lvEmployes.getSelectionModel().getSelectedIndex();
 		Employe selectedEmploye = this.lvEmployes.getSelectionModel().getSelectedItem();
@@ -154,7 +162,12 @@ public class EmployesManagementController {
 			this.btnSuprEmploye.setDisable(true);
 		}
 	}
-
+    
+    
+    /**
+     * Recherche des employés en fonction des critères fournis.
+     * Met à jour la liste des employés dans la vue avec les résultats de la recherche.
+     */
     @FXML
 	private void doRechercher() {
         int numEmploye;
@@ -202,6 +215,10 @@ public class EmployesManagementController {
 		this.oListEmployes.addAll(listeEmployes);
 	}
 
+    
+    /**
+     * Modifie l'employé sélectionné.
+     */
 	@FXML
 	private void doModifierEmploye() {
 		System.out.println("doModifierEmploye");
@@ -214,7 +231,10 @@ public class EmployesManagementController {
 			}
 		}
 	}
-
+	
+	/**
+     * Supprime l'employé sélectionné.
+     */
 	@FXML
 	private void doSupprimerEmploye() {
 		int selectedIndice = this.lvEmployes.getSelectionModel().getSelectedIndex();
@@ -226,6 +246,9 @@ public class EmployesManagementController {
 		}
 	}
 
+	/**
+     * Consulte les détails de l'employé sélectionné.
+     */
 	@FXML
 	public void doConsulterEmploye() {
 		int selectedIndice = this.lvEmployes.getSelectionModel().getSelectedIndex();
@@ -237,6 +260,10 @@ public class EmployesManagementController {
 		}
 	}
 
+	/**
+	 * Cette méthode est appelée lorsqu'un nouvel employé est créé.
+	 * Elle affiche un dialogue pour créer un nouvel employé et l'ajoute à la liste des employés si celui-ci n'est pas nul.
+	 */
 	@FXML
 	private void doNouvelEmploye() {
 		Employe employe;
@@ -246,19 +273,40 @@ public class EmployesManagementController {
 		}
 	}
 
+	/**
+	 * Cette méthode est appelée lorsqu'on sélectionne l'option "Droit Chef".
+	 * Elle met à jour le libellé du menu de droite avec le texte de l'option "Droit Chef".
+	 */
 	@FXML
 	private void droitChef() {
 		menuDroit.setText(this.droitChef.getText());
 	} 
+	
+	/**
+	 * Cette méthode est appelée lorsqu'on sélectionne l'option "Droit Guichetier".
+	 * Elle met à jour le libellé du menu de droite avec le texte de l'option "Droit Guichetier".
+	 */
 	@FXML
 	private void droitGuichetier() {
 		menuDroit.setText(this.droitGuichetier.getText());
 	}
+	
+	/**
+	 * Cette méthode est appelée lorsqu'on sélectionne l'option "Droit Aucun".
+	 * Elle met à jour le libellé du menu de droite avec le texte de l'option "Droit Aucun".
+	 */
 	@FXML
 	private void droitAucun() {
 		menuDroit.setText(this.droitAucun.getText());
 	}
 
+	
+	/**
+	 * Cette méthode est appelée lorsqu'on clique sur la liste des employés.
+	 * Elle affiche un menu contextuel avec des options en fonction de l'employé sélectionné et de l'employé actuel.
+	 *
+	 * @param event L'événement de la souris associé au clic sur la liste des employés.
+	 */
 	@FXML
     private void onClicList(MouseEvent event) {
 		int selectedIndice = this.lvEmployes.getSelectionModel().getSelectedIndex();
