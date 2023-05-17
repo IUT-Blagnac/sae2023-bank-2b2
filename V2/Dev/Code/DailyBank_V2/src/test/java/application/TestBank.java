@@ -334,7 +334,7 @@ public class TestBank extends ApplicationTest {
         connecter(login, motPasse); 
 
         try {
-            employeBD = access_BD_Test.getEmploye("LN", "Levieux");
+            employeBD = access_BD_Test.getEmploye("FP", "TheEnterprise");
         } catch (Exception e) {
             assertEquals(true, false, e.toString());
             e.printStackTrace();
@@ -350,7 +350,7 @@ public class TestBank extends ApplicationTest {
         assertEquals(null, find(employeBD.toString()));
 
         try {
-            employeBD = access_BD_Test.getEmploye("LN", "Levieux");
+            employeBD = access_BD_Test.getEmploye("FP", "TheEnterprise");
         } catch (Exception e) {
             assertEquals(true, false, e.toString());
             e.printStackTrace();

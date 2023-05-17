@@ -11,6 +11,43 @@ Date: {docdate}
 
 La banque DailyBank a l'intention de créer une application JAVA-Oracle destinée à gérer les comptes clients, afin de remplacer plusieurs outils devenus obsolètes. Ce projet s'inscrit dans le cadre de la restructuration des services bancaires de la banque et l'application sera déployée dans les 100 agences de son réseau.
 
+=== Prérequis pour l'instalation et l'utilisaton de l'application
+
+Pout utiliser et installer l'application, il faut disposer d'un ordinateur pouvant executer Java 17. Il faut également disposer une base de données à laquelle l'applicaton pourra se connecter afin de stocker les données, de les récupérer et de les modifier tout au long de son utilisaton.
+
+Attention, nous utilisation la verison 20 de javaFX sur notre porjer car les version antérieur ne sont pas compatible avec MAC M1.
+
+Les command à retenir pour executer le projet avec maven sont :
+
+- Pour clean le projet : 
+```bash
+mvn clean
+```
+- Pour compiler le projet : 
+```bash
+mvn clean compile
+```
+- Pour executer le projet : 
+```bash
+mvn clean javafx:run
+```
+- Pour compiler le projet et créer un ``.jar`` : 
+```bash
+mvn clean install
+```
+- POur compiler le projet et créer un ``.jar`` en n'effectuant pas les tests :  
+```bash
+mvn clean install -DskipTests
+```
+- Pour compiler le projet et créer un ``.jar`` multiplateforme : 
+```bash
+mvn clean install -Dmaven.install=true
+```
+- Pour compiler le projet et créer un ``.jar`` multiplateforme en n'effectuant pas les tests : 
+```bash
+mvn clean install -Dmaven.install=true -DskipTests
+```
+
 === Use Case Version 1
 
 image::RessourceAdoc/img/uc-initialv1.svg[Alt UC V1, 50%]
@@ -728,6 +765,8 @@ L'ergonomie des listes permet d'utiliser le cliquedroit et le double clique pour
 .Capture d'écran de l'ergonomie des listes - employés
 image::RessourceAdoc/img/emplclickdroit.png[Alt ergonomie, 50%]
 
+==== Principales fonctionnalités
+
 ==== Classes associées à l'implémentation de la fonctionnalité
 
 Pour l’implémentation de cette action, plusieurs classes ont été impliquées :
@@ -805,36 +844,37 @@ En l'occurence ici, on utilise le clic droit pour afficher un menu contextuel av
 Un profil à était ajouter dans le pom.xml pour permettre de compiler le projet pour qu'il puisse être cross platefrome.
 
 ```xml
-    <profile>
-	        <id>install-dependencies</id>
-	        <activation>
-	            <property>
-	                <name>maven.install</name>
-	            </property>
-	        </activation>
-	        <dependencies>
-	            <dependency>
-	                <groupId>org.openjfx</groupId>
-	                <artifactId>javafx-graphics</artifactId>
-	                <version>${javafx.version}</version>
-	                <classifier>win</classifier>
-	            </dependency>
-	            <dependency>
-	                <groupId>org.openjfx</groupId>
-	                <artifactId>javafx-graphics</artifactId>
-	                <version>${javafx.version}</version>
-	                <classifier>linux</classifier>
-	                <scope>compile</scope>
-	            </dependency>
-	            <dependency>
-	                <groupId>org.openjfx</groupId>
-	                <artifactId>javafx-graphics</artifactId>
-	                <version>${javafx.version}</version>
-	                <classifier>mac</classifier>
-	            </dependency>
-	        </dependencies>
-	    </profile>
-	</profiles>
+<profiles>
+	<profile>
+        <id>install-dependencies</id>
+        <activation>
+            <property>
+                <name>maven.install</name>
+            </property>
+        </activation>
+        <dependencies>
+            <dependency>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-graphics<artifactId>
+                <version>${javafx.version}</version>
+                <classifier>win</classifier>
+            </dependency>
+            <dependency>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-graphics<artifactId>
+                <version>${javafx.version}</version>
+                <classifier>linux</classifier>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-graphics<artifactId>
+                <version>${javafx.version}</version>
+                <classifier>mac</classifier>
+            </dependency>
+        </dependencies>
+    </profile>
+</profiles>
 ```
 
 Lors de la compilation, le profil est utilisé donc utilisé afin que les dépendance grahique de toutes les plateformes soient installées.
@@ -842,6 +882,7 @@ Lors de la compilation, le profil est utilisé donc utilisé afin que les dépen
 Avec cette commande : `` mvn clean install -Dmaven.install=true``
 
 Attention, install lance aussi des tests dévelloper avec JUNIT 5 et testFX. Si vous ne souhaitez pas les éxecuter ou si les tests rencontre une erreur et quie vous souhaitez quand même compiler le projet, vous pouvez utiliser cette commande : `` mvn clean install -Dmaven.install=true -DskipTests=true``
+
 ``-DskipTests=true`` est l'argument supplémentaire qui permet de ne pas lancer les tests.
 
 ===  Quelques Tests - Enzo Fournet
