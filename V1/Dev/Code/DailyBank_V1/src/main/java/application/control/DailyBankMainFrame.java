@@ -66,6 +66,7 @@ public class DailyBankMainFrame extends Application {
 			primaryStage.setTitle("Fenêtre Principale");
 
 			
+			/*
 			 // En mise au point : Forcer une connexion existante pour rentrer dansl'appli en mode connecté
 			
 			//CONNEXION AUTO
@@ -86,7 +87,7 @@ public class DailyBankMainFrame extends Application {
 			this.dailyBankState.setEmployeActuel(this.dailyBankState.getEmployeActuel());
 			}
 			// fin connexion auto
-			
+			*/
 			
 
 			// Récupération du contrôleur et initialisation (stage, contrôleur de dialogue,
