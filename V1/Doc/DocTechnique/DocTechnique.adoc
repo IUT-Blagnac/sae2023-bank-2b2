@@ -13,11 +13,11 @@ La banque DailyBank a l'intention de créer une application JAVA-Oracle destiné
 
 === Prérequis pour l'instalation et l'utilisaton de l'application
 
-Pout utiliser et installer l'application, il faut disposer d'un ordinateur pouvant executer Java 17. Il faut également disposer une base de données à laquelle l'applicaton pourra se connecter afin de stocker les données, de les récupérer et de les modifier tout au long de son utilisaton.
+Pour utiliser et installer l'application, il faut disposer d'un ordinateur pouvant executer Java 17. Il faut également disposer une base de données à laquelle l'applicaton pourra se connecter afin de stocker les données, de les récupérer et de les modifier tout au long de son utilisaton.
 
-Attention, nous utilisation la verison 20 de javaFX sur notre porjer car les version antérieur ne sont pas compatible avec MAC M1.
+Attention, nous utilisons la verison 20 de javaFX sur notre porjer car les version antérieur ne sont pas compatible avec MAC M1.
 
-Les command à retenir pour executer le projet avec maven sont :
+Les commandes à retenir pour executer le projet avec maven sont :
 
 - Pour clean le projet : 
 ```bash
@@ -35,7 +35,7 @@ mvn clean javafx:run
 ```bash
 mvn clean install
 ```
-- POur compiler le projet et créer un ``.jar`` en n'effectuant pas les tests :  
+- Pour compiler le projet et créer un ``.jar`` en n'effectuant pas les tests :  
 ```bash
 mvn clean install -DskipTests
 ```
@@ -407,7 +407,7 @@ Côté application.tools :
 
 * CategorieOperation.java
 
-*EditionMode.java
+* EditionMode.java
 
 Côté application.control :
 
@@ -594,7 +594,7 @@ Dans ce diagramme de classes, la tâche "Crédit" est représentée par trois cl
 
 Une brève introduction des principales fonctionnalités de cette opération a été présentée précédemment. Pour obtenir des informations plus détaillées, veuillez consulter la documentation utilisateur. Elle fournira des explications approfondies sur les différentes fonctionnalités et leur utilisation dans le cadre de cette opération spécifique.
 
-===== Classes associées à l'implémentation de la fonctionnalité
+===== Classes associées à l'implémentation de la fonctionnalité et fonctionnement
 
 Pour l’implémentation de cette action, plusieurs classes ont été impliquées :
 
@@ -629,6 +629,14 @@ ____
 • _DataAccessException.java_
 ____
 
+Voici le fonctionnement :
+____
+• _AccessOperation.java_
+• _DatabaseConnexionException.java_
+• _DataAccessException.java_
+____
+
+
 ===== Extrait d'un code
 
 .extrait du code
@@ -660,7 +668,6 @@ Le processus de virement implique trois classes dans le diagramme de classes :
 
 ===== Principales fonctionnalités
 
-Une brève introduction des principales fonctionnalités de cette opération a été présentée précédemment. Pour obtenir des informations plus détaillées, veuillez consulter la documentation utilisateur. Elle fournira des explications approfondies sur les différentes fonctionnalités et leur utilisation dans le cadre de cette opération spécifique.
 
 ===== Classes associées à l'implémentation de la fonctionnalité
 
