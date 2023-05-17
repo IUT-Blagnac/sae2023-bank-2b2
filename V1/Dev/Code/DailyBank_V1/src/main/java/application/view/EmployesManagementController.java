@@ -28,7 +28,7 @@ import javafx.stage.WindowEvent;
 import model.data.Employe;
 
 public class EmployesManagementController {
-    // Etat courant de l'application
+	// Etat courant de l'application
 	private DailyBankState dailyBankState;
 
 	// Contrôleur de Dialogue associé à EmployesManagementController
@@ -40,11 +40,13 @@ public class EmployesManagementController {
 	// Données de la fenêtre
 	private ObservableList<Employe> oListEmployes;
 
-    
+
 	/**
-	 * Initialisation du contexte de la fenêtre de gestion des employés	<br/>
-	 * Cette méthode est appelée par le contrôleur de dialogue EmployesManagement lors de la création de la fenêtre <br/>
-	 * ELle permet de passer les références nécessaires à la gestion des employés <br/>
+	 * Initialisation du contexte de la fenêtre de gestion des employés <br/>
+	 * Cette méthode est appelée par le contrôleur de dialogue EmployesManagement
+	 * lors de la création de la fenêtre <br/>
+	 * ELle permet de passer les références nécessaires à la gestion des employés
+	 * <br/>
 	 * 
 	 * @param _containingStage
 	 * @param _em
@@ -56,16 +58,18 @@ public class EmployesManagementController {
 		this.primaryStage = _containingStage;
 		this.dailyBankState = _dbstate;
 		this.configure();
-        this.oListEmployes.addAll(emDialogController.getlisteEmployes(-1, "", "", ""));
+		this.oListEmployes.addAll(emDialogController.getlisteEmployes(-1, "", "", ""));
 	}
 
-    /**
-     * 
-	 * Cette méthode est appelée par le contrôleur de dialogue EmployesManagement lors de la création de la fenêtre <br/>
-	 * ELle permet de passer les références nécessaires à la gestion des employés et de lancer la configuration de la fenêtre <br/>
+	/**
 	 * 
-     */
-    private void configure() {
+	 * Cette méthode est appelée par le contrôleur de dialogue EmployesManagement
+	 * lors de la création de la fenêtre <br/>
+	 * ELle permet de passer les références nécessaires à la gestion des employés et
+	 * de lancer la configuration de la fenêtre <br/>
+	 * 
+	 */
+	private void configure() {
 		this.primaryStage.setOnCloseRequest(e -> this.closeWindow(e));
 
 		this.oListEmployes = FXCollections.observableArrayList();
@@ -77,17 +81,20 @@ public class EmployesManagementController {
 	}
 
 	/**
-	 * Cette méthode est appelée par EmployesManagement lors de la création de la fenêtre <br/>
+	 * 
+	 * Cette méthode est appelée par le contrôleur de dialogue EmployesManagement lors de la création de la fenêtre <br/>
 	 * Elle permet d'afficher la fenêtre de gestion des employés <br/>
-	*/
-    public void displayDialog() {
+	 */
+	public void displayDialog() {
 		this.primaryStage.showAndWait();
 	}
 
-    /**
+	/**
+	 * Cette méthode est appelée lorsque l'événement de fermeture de la fenêtre se produit.
+	 * Elle exécute l'action d'annulation et consomme l'événement pour éviter toute autre action par défaut.
 	 * 
-	 * @param e
-	 * @return null 
+	 * @param e L'événement de fermeture de la fenêtre.
+	 * @return null car aucun objet n'est renvoyé.
 	 */
 	private Object closeWindow(WindowEvent e) {
 		this.doCancel();
@@ -139,20 +146,20 @@ public class EmployesManagementController {
     private void validateComponentState() {
 		int selectedIndice = this.lvEmployes.getSelectionModel().getSelectedIndex();
 		Employe selectedEmploye = this.lvEmployes.getSelectionModel().getSelectedItem();
-		Employe currentEmploye=  this.dailyBankState.getEmployeActuel();	
-		
-		if (selectedIndice >= 0 ) {
+		Employe currentEmploye = this.dailyBankState.getEmployeActuel();
+
+		if (selectedIndice >= 0) {
 			if (selectedEmploye.droitsAccess.equals("chefAgence")) {
 				if (selectedEmploye.toString().equals(currentEmploye.toString())) {
 					this.btnConsultEmploye.setDisable(false);
 					this.btnModifEmploye.setDisable(false);
 					this.btnSuprEmploye.setDisable(true);
-				}else{
+				} else {
 					this.btnConsultEmploye.setDisable(false);
 					this.btnModifEmploye.setDisable(true);
 					this.btnSuprEmploye.setDisable(true);
 				}
-			}else {
+			} else {
 				this.btnConsultEmploye.setDisable(false);
 				this.btnModifEmploye.setDisable(false);
 				this.btnSuprEmploye.setDisable(false);
@@ -170,7 +177,7 @@ public class EmployesManagementController {
 	 */
     @FXML
 	private void doRechercher() {
-        int numEmploye;
+		int numEmploye;
 		try {
 			String nc = this.txtNum.getText();
 			if (nc.equals("")) {
@@ -201,9 +208,9 @@ public class EmployesManagementController {
 
 		String droit;
 
-		if(this.droitChef.isSelected()) {
+		if (this.droitChef.isSelected()) {
 			droit = "chefAgence";
-		} else if(this.droitGuichetier.isSelected()) {
+		} else if (this.droitGuichetier.isSelected()) {
 			droit = "guichetier";
 		} else {
 			droit = "";
@@ -280,11 +287,23 @@ public class EmployesManagementController {
 	@FXML
 	private void droitChef() {
 		menuDroit.setText(this.droitChef.getText());
-	} 
+	}
+
+	/**
+	 * Cette méthode est appelée lorsqu'on sélectionne l'option "Droit Guichetier".
+	 * Elle met à jour le libellé du menu de droite avec le texte de l'option "Droit
+	 * Guichetier".
+	 */
 	@FXML
 	private void droitGuichetier() {
 		menuDroit.setText(this.droitGuichetier.getText());
 	}
+
+	/**
+	 * Cette méthode est appelée lorsqu'on sélectionne l'option "Droit Aucun". Elle
+	 * met à jour le libellé du menu de droite avec le texte de l'option "Droit
+	 * Aucun".
+	 */
 	@FXML
 	private void droitAucun() {
 		menuDroit.setText(this.droitAucun.getText());
@@ -294,18 +313,22 @@ public class EmployesManagementController {
 	 * Cette méthode est appeler lors d'un double clicque sur un employé de la liste <br/>
 	 * Elle permet au double clique de lancer la consulation ou la modification d'un employé<br/>
 	 * En fonction des droits de l'employé actuel sur l'employé selectionné<br/>
+	 * 
+	 * @param event L'événement de la souris associé au clic sur la liste des
+	 *              employés.
 	 */
 	@FXML
-    private void onClicList(MouseEvent event) {
+	private void onClicList(MouseEvent event) {
 		int selectedIndice = this.lvEmployes.getSelectionModel().getSelectedIndex();
-        if(lvEmployes.getItems().size() != 0 && selectedIndice >= 0) {
-            MouseButton mb = event.getButton();
-            if(MouseButton.SECONDARY==mb) {
+		if (lvEmployes.getItems().size() != 0 && selectedIndice >= 0) {
+			MouseButton mb = event.getButton();
+			if (MouseButton.SECONDARY == mb) {
 				Employe selectedEmploye = this.lvEmployes.getSelectionModel().getSelectedItem();
-				Employe currentEmploye=  this.dailyBankState.getEmployeActuel();
+				Employe currentEmploye = this.dailyBankState.getEmployeActuel();
 				contextMenu.hide();
-                contextMenu = new ContextMenu();
-				if (selectedEmploye.toString().equals(currentEmploye.toString()) || selectedEmploye.droitsAccess.equals("guichetier")) {
+				contextMenu = new ContextMenu();
+				if (selectedEmploye.toString().equals(currentEmploye.toString())
+						|| selectedEmploye.droitsAccess.equals("guichetier")) {
 					MenuItem menuItem1 = new MenuItem("Modifier");
 					menuItem1.setOnAction(e -> {
 						doModifierEmploye();
@@ -330,20 +353,21 @@ public class EmployesManagementController {
 					});
 					contextMenu.getItems().add(menuItem);
 				}
-                contextMenu.show(lvEmployes , event.getScreenX(), event.getScreenY());
-            }
-            if(MouseButton.PRIMARY==mb) {
-                contextMenu.hide();
-                if(event.getClickCount() > 1) {
+				contextMenu.show(lvEmployes, event.getScreenX(), event.getScreenY());
+			}
+			if (MouseButton.PRIMARY == mb) {
+				contextMenu.hide();
+				if (event.getClickCount() > 1) {
 					Employe selectedEmploye = this.lvEmployes.getSelectionModel().getSelectedItem();
-					Employe currentEmploye=  this.dailyBankState.getEmployeActuel();
-					if (selectedEmploye.toString().equals(currentEmploye.toString()) || selectedEmploye.droitsAccess.equals("guichetier")) {
+					Employe currentEmploye = this.dailyBankState.getEmployeActuel();
+					if (selectedEmploye.toString().equals(currentEmploye.toString())
+							|| selectedEmploye.droitsAccess.equals("guichetier")) {
 						doModifierEmploye();
 					} else {
 						doConsulterEmploye();
 					}
-                }
-            }
-        }
-    }
+				}
+			}
+		}
+	}
 }
