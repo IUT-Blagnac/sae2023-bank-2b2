@@ -1,0 +1,24 @@
+-classpath
+'/Users/enzofournet/.m2/repository/org/openjfx/javafx-controls/20/javafx-controls-20.jar:/Users/enzofournet/.m2/repository/org/openjfx/javafx-controls/20/javafx-controls-20-mac-aarch64.jar:/Users/enzofournet/.m2/repository/org/openjfx/javafx-graphics/20/javafx-graphics-20.jar:/Users/enzofournet/.m2/repository/org/openjfx/javafx-graphics/20/javafx-graphics-20-mac-aarch64.jar:/Users/enzofournet/.m2/repository/org/openjfx/javafx-fxml/20/javafx-fxml-20.jar:/Users/enzofournet/.m2/repository/org/openjfx/javafx-fxml/20/javafx-fxml-20-mac-aarch64.jar:/Users/enzofournet/.m2/repository/org/openjfx/javafx-base/20/javafx-base-20.jar:/Users/enzofournet/.m2/repository/org/openjfx/javafx-base/20/javafx-base-20-mac-aarch64.jar:/Users/enzofournet/.m2/repository/org/openjfx/javafx-web/20/javafx-web-20.jar:/Users/enzofournet/.m2/repository/org/openjfx/javafx-web/20/javafx-web-20-mac-aarch64.jar:/Users/enzofournet/.m2/repository/org/openjfx/javafx-media/20/javafx-media-20.jar:/Users/enzofournet/.m2/repository/org/openjfx/javafx-media/20/javafx-media-20-mac-aarch64.jar:/Users/enzofournet/.m2/repository/org/openjfx/javafx-swing/20/javafx-swing-20.jar:/Users/enzofournet/.m2/repository/org/openjfx/javafx-swing/20/javafx-swing-20-mac-aarch64.jar:/Users/enzofournet/.m2/repository/com/oracle/database/jdbc/ojdbc10/19.18.0.0/ojdbc10-19.18.0.0.jar:/Users/enzofournet/.m2/repository/com/itextpdf/itextpdf/5.5.13.3/itextpdf-5.5.13.3.jar'
+-encoding
+'UTF-8'
+-public
+-source
+'17'
+-sourcepath
+'/Users/enzofournet/Library/Mobile Documents/com~apple~CloudDocs/USB IUT/S2/SAE/DEVAPP/sae2023-bank-2b2/V1/Dev/Code/DailyBank_V1/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2023. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'/Users/enzofournet/Library/Mobile Documents/com~apple~CloudDocs/USB IUT/S2/SAE/DEVAPP/sae2023-bank-2b2/V1/Dev/Code/DailyBank_V1/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'DailyBank App 1.0 API'
+-use
+-version
+-windowtitle
+'DailyBank App 1.0 API'
