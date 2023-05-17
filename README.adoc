@@ -63,7 +63,7 @@ Dans sa colonne il doit remplir la ligne correspondant à chaque partie qu'il a 
 |         | Recette V1  |     https://github.com/IUT-Blagnac/sae2023-bank-2b2/blob/main/V1/Doc/Recette/RecetteV1.adoc[RecetteV1]                 | 
 |         | Suivi projet V1|   | 
 |         | jar V1|   | 
-|         | Code V1|   | 
+|         | Code V1| https://github.com/IUT-Blagnac/sae2023-bank-2b2/blob/main/V1/Dev/Code/DailyBank_V1/srcV1.zip[fichier source V1]  | 
 |         | Javadoc V1| https://github.com/IUT-Blagnac/sae2023-bank-2b2/blob/main/V1/Doc/javaDoc/index.html[JavadocV1]  | 
 | 26/05   | Gantt V2  réalisé    |       | 
 |         | Doc. Util. V2 |         |         
