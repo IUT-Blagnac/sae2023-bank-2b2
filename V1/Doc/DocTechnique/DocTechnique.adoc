@@ -15,6 +15,7 @@ La banque DailyBank a l'intention de créer une application JAVA-Oracle destiné
 
 image::RessourceAdoc/img/uc-initialv1.svg[Alt UC V1, 50%]
 
+
 ==== Présentation des utilisateurs et leurs actions
 
 Dans la version actuelle du système, nous conservons les deux types d'utilisateurs existants : le chef d'agence et les guichetiers. Cependant, le chef d'agence bénéficie de privilèges et de droits supplémentaires au sein de son agence bancaire par rapport aux guichetiers.
@@ -29,8 +30,25 @@ Ces nouvelles actions offrent aux guichetiers une plus grande autonomie et leur 
 
 === Diagramme de classe des données
 
+Le diagramme de classes suivant représente la base de données pour notre systèm de gestion bnacaire DayliBank. 
+Si dessous voila une explication des différentes classes et de leurs relations.
 
+- Employe: Cette classe représente un employé de la banque. Elle a des attributs tels que nom, prenom, droitAcces, login et motPasse. On peut voir qu'il y a deux types d'employés définis par leurs relations avec la classe AgenceBancaire : ChefAgence (0..1) et Guichetiers (*). Cela signifie qu'une agence bancaire peut avoir un ou pas de chef d'agence et un nombre quelconque de guichetiers.
+
+- AgenceBancaire: Cette classe représente une agence bancaire avec des attributs tels que nomAg et adressePostaleAg. Elle est liée aux classes Employe, Client et CompteCourant montrant les différentes interactions possibles dans l'agence
+.
+- Client: Cette classe représente un client de la banque. Un client peut avoir plusieurs comptes (CompteCourant) et est associé à une AgenceBancaire. Un attribut particulier ici est estInactif, qui indique si le compte du client est inactif.
+CompteCourant: Cette classe représente un compte courant d'un client dans la banque. Il a des attributs comme idNumCompte, debitAutorise et solde. Une version du diagramme inclut l'attribut estCloturé qui indique si le compte est fermé. Chaque CompteCourant peut avoir plusieurs Operation et est géré par une AgenceBancaire.
+
+- Operation et TypeOperation: Ces classes représentent les différentes opérations qui peuvent être effectuées sur un compte. Chaque opération a un montant, une date d'opération, et une date de valeur. Chaque opération est également liée à un TypeOperation (par exemple, chèque, retrait CB, paiement CB, virement).
+
+- En version 2, nous introduiront les classes PrelevementAutomatique, Emprunt et AssuranceEmprunt. PrelevementAutomatique est une opération spécifique liée à CompteCourant. Emprunt est une classe qui représente un emprunt qu'un client peut avoir, avec des détails comme le taux d'emprunt, le capital, la durée et la date de début. Un Emprunt peut être couvert par une AssuranceEmprunt.
+
+Chaque classe représente une table dans la base de données, et chaque instance (ou objet) de la classe représente une ligne dans cette table. Les attributs de la classe sont les colonnes de la table. Les relations entre les classes (indiquées par les lignes dans le diagramme) représentent les relations entre les tables dans la base de données, qui sont généralement mises en œuvre par des clés étrangères.
+
+.Diagramme de classe de la base de données
 image::RessourceAdoc/img/dc-initialv1.svg[Alt DC V1, 75%]
+
 
 == Architecture
 
@@ -40,6 +58,7 @@ L'utilisation de l'application "DailyBank" par les employés est globalement sim
 
 Son architecture centralisée contribue également à sa facilité de compréhension. Les différents éléments et fonctionnalités sont organisés de manière logique, ce qui permet aux utilisateurs de naviguer efficacement dans l'application et d'accéder aux informations nécessaires.
 
+.Diagramme d'architecture de l'application
 image::RessourceAdoc/img/archi.png[Alt Architecture, 75%]
 
 ==== Poste client
@@ -152,10 +171,12 @@ Un chef d’agence ou un guichetier peut modifier les informations d’un client
 
 Use case : 
 
+.diagram de cas d'utilisation de modification d'un client
 image::RessourceAdoc/img/modifinfoclient.png[Alt modif client, 50%]
 
 Partie du diagramme de classe : 
 
+.extrait digram de la BD - classe client
 image::RessourceAdoc/img/clientdc.png[Alt DC V1, 50%]
 
 Cette tâche n’inclut seulement qu’une classe dans le diagramme de classes V1 : la classe Client. Cette classe est, de ce fait, dédiée à la modification des informations d’un client et par conséquent, à la mise à jour des données sur la base de données.
@@ -211,10 +232,12 @@ Un chef d’agence ou un guichetier peut créer/ insérer les informations d’u
 
 Use case : 
 
+.diagram de cas d'utilisation de création d'un client
 image::RessourceAdoc/img/creernewclient.png[Alt DC V1, 50%]
 
 Partie du diagramme de classe : 
 
+.extrait digram de la BD - classe client
 image::RessourceAdoc/img/clientdc.png[Alt DC V1, 50%]
 
 Cette tâche n’inclut seulement qu’une classe dans le diagramme de classes V1 : la classe Client. Cette classe est, de ce fait, dédiée à la création/insertion des informations d’un client et par conséquent, à l’insertion des données sur la base de données.
@@ -258,10 +281,13 @@ L’élément à connaître pour cette tâche est une fonction et celle-ci rési
 Débiter un compte permet de retirer une somme d’argent depuis un compte bancaire sélectionné associé à un client. Il est impossible d'effectuer un débit d'un montant négatif ou nul. De plus, le nouveau solde du compte lors d'un débit ne doit pas dépasser le découvert maximum autorisé.
 
 ===== Partie du use case
+
+.diagram de cas d'utilsation de gestion des compte - débit et crédit
 image::RessourceAdoc/img/créditerdébiter.png[Alt debit, 50%]
 
 ===== Partie du diagramme de classe
 
+.extrait digram de la BD - classe compte et opération
 image::RessourceAdoc/img/dcvirement.png[Alt dc virement, 50%]
 
 Dans ce diagramme de classes, la tâche "Débit" est représentée par trois classes distinctes :
@@ -315,6 +341,7 @@ ____
 
 ===== Extrait d'un code
 
+.extrait du code
 image::RessourceAdoc/img/CodeDébiter.png[Alt code debiter, 50%]
 
 Ce code est essentiel pour enregistrer les débits dans la base de données SQL, en fonction de la procédure "Débiter". Il gère également les types d'opérations et les montants à débiter.
@@ -325,10 +352,12 @@ Le chef d'agence ou le guichetier a la possibilité de créer un compte courant 
 
 ===== Partie du use case : 
 
+.diagram de cas d'utilisation de création d'un compte
 image::RessourceAdoc/img/creercompte.png[Alt creer compte, 50%]
 
 ===== Partie du diagramme de classe : 
 
+.extrait digram de la BD - classe CompteCourant
 image::RessourceAdoc/img/dcCompteCourant.png[Alt dc compte, 50%]
 
 La tâche concerne exclusivement la classe Client de la version 1 du diagramme de classes. Cette classe est spécifiquement conçue pour la modification des informations d'un client et de ses comptes, ce qui implique la mise à jour des données dans la base de données.
@@ -373,6 +402,7 @@ Côté model.orm / model.orm.exception :
 
 Ici, lorsque nous ajoutons un compte à la base de données, si l’on renseigne un découvert autorisé positif, celui-ci deviendra négatif lors de l’ajout, nous adoptons la méthode updateCompte implémenté de la classe Access_BD_CompteCourant
 
+.extrait du code
 image::RessourceAdoc/img/expliUpdateCompte.png[Alt update compte, 75%]
 
 ===== Commentaire
@@ -383,10 +413,12 @@ Toutes les méthodes ajoutées sont commentées afin de permettre une meilleure 
 
 ===== Partie du use case :
 
-image::RessourceAdoc/img/cloturerCompte.png[Alt cloturer compte, 50%]
+.diagram de cas d'utilisation de clôture d'un compte
+image::RessourceAdoc/img/cloturercompte.png[Alt cloturer compte, 50%]
 
 ===== Partie du diagramme de classe : 
 
+.extrait digram de la BD - classe CompteCourant
 image::RessourceAdoc/img/dcCompteCourant.png[Alt dc compte, 50%]
 
 ===== Principales fonctionnalités : 
@@ -431,6 +463,7 @@ Côté model.orm / model.orm.exception :
 
 Afin de pouvoir cloturer le compte le solde de ce dernier doit être égal à 0.
 
+.extrait du code
 image::RessourceAdoc/img/ExpliCloturerCompte.png[Alt expli cloturer compte, 75%]
 
 ===== Commentaire
@@ -443,22 +476,73 @@ Un chef d'agence ou un guichetier peut modifier les informations d'un compte cli
 
 ===== Partie du use case : 
 
+.diagram de cas d'utilisation de modification d'un compte
+image::RessourceAdoc/img/modifiercompte.png[Alt modifier compte courant, 50%]
 
 ===== Partie du diagramme de classe : 
 
+.extrait digram de la BD - classe CompteCourant
 image::RessourceAdoc/img/dcCompteCourant.png[Alt dc compte courant, 50%]
 
-Cette tâche inclut qu'une classe dans le diagramme de classes V1
+Cette tâche inclut qu'une classe dans le diagramme de classes V1 : la classe Compte. Cette classe est dédié à la modification des informations du compte sélectionné et à la mise à jour des données dans la base de données.
+
+===== Classes impliquées à l'implémentation de la fonction
+
+Pour l'implémentation de cette action, plusieurs classes ont été impliquées :
+
+Côté application.tools :
+
+* CategorieOperation.java
+
+* EditionMode.java
+
+Côté application.control :
+
+* CompteManagement.java
+
+* ExceptionDialog.java
+
+Côté application.view :
+
+* CompteManagementController.java
+
+Côté model.data :
+
+* Compte.java
+
+Côté model.orm / model.orm.exception :
+
+* Access_BD_CompteCourant.java
+
+* ApplicationException.java
+
+* DatabaseConnexionException.java
+
+* DataAccessException.java
+
+===== Eléments à connaître / spécificités 
+
+Ici, lorsque nous modifions un compte de la base de données, si l’on renseigne un découvert autorisé positif, celui-ci deviendra négatif lors de la modification, nous adoptons la méthode updateCompte implémenté de la classe Access_BD_CompteCourant
+
+.extrait du code
+image::RessourceAdoc/img/expliUpdateCompte.png[Alt update compte, 75%]
+
+===== Commentaire
+
+Toutes les méthodes ajoutées sont commentées afin de permettre une meilleure compréhension.
 
 ==== Effectuer un crédit - Julien Couderc
 
 Créditer un compte permet d'ajouter une somme d’argent depuis un compte bancaire sélectionné associé à un client. Il est impossible d'effectuer un crédit d'un montant négatif ou nul. De plus, le crédit ne doit pas dépasser 1 milion d'euros.
 
 ===== Partie du use case
+
+.diagram de cas d'utilisation de crédit et débit
 image::RessourceAdoc/img/créditerdébiter.png[Alt crédit, 50%]
 
 ===== Partie du diagramme de classe
 
+.extrait digram de la BD - classe CompteCourant Opération et TypeOpération
 image::RessourceAdoc/img/dcvirement.png[Alt dc virement, 50%]
 
 Dans ce diagramme de classes, la tâche "Crédit" est représentée par trois classes distinctes :
@@ -510,6 +594,7 @@ ____
 
 ===== Extrait d'un code
 
+.extrait du code
 image::RessourceAdoc/img/CodeCréditer.png[Alt code crediter, 75%]
 
 Ce code est essentiel pour enregistrer les crédits dans la base de données SQL, en fonction de la procédure "Créditer". Il gère également les types d'opérations et les montants à créditer.
@@ -519,10 +604,13 @@ Ce code est essentiel pour enregistrer les crédits dans la base de données SQL
 Effectuer un virement permet de faire un crédit d'un compte et faire un débit à un autre compte. Pour effectuer cela, il faut que le montant sélectionné ne soit pas négatif ou égal à 0. De plus, il ne doit pas dépasser les 1 million d'euros mais aussi, il faut que le solde du compte qui effectue le virement ne dépasse pas le découvert maximum autorisé.
 
 ===== Partie du use case
+
+.diagram de cas d'utilisation de virement
 image::RessourceAdoc/img/virementcompte.png[Alt uc virement, 50%]
 
 ===== Partie du diagramme de classe
 
+.extrait digram de la BD - classe CompteCourant, Opération et TypeOpération
 image::RessourceAdoc/img/dcvirement.png[Alt dc virement, 50%]
 
 Le processus de virement implique trois classes dans le diagramme de classes :
@@ -573,8 +661,10 @@ ____
 
 ===== Extrait d'un code
 
+.extrait du code
 image::RessourceAdoc/img/image.png[Alt code virement, 75%]
 
+.extrait du code
 image::RessourceAdoc/img/codeVirement.png[Alt code virement, 75%]
 
 Ce code est essentiel pour enregistrer les virements dans la base de données SQL, en fonction de la procédure "enregistrerVirement". Il gère également les types d'opérations et les montants à virer.
@@ -586,17 +676,17 @@ Le CRUD permet de créer, lire, mettre à jour et supprimer des employés. Il es
 
 ==== Partie du use case
 
+.diagram de cas d'utilisation de CRUD employés
 image::RessourceAdoc/img/CRUDEmpl.png[Alt CRUD, 50%]
 
 ==== Partie du diagramme de classe
 
+.extrait digram de la BD - classe Employe
 image::RessourceAdoc/img/Empl.png[Alt dc CRUD, 50%]
 
 Dans ce diagramme de classes, la tâche "CRUD" n'est vraiment représenté mais :
 
 * La classe "Employe" est utilisée pour la lecture des informations d'un employé. Elle ne modifie pas les données de l'employé, mais permet d'accéder aux informations le concernant.
-
-* La classe "EmployeManagement" est utilisée pour la création, la modification, la consultation et la suppression d'un employé. Elle est responsable de la manipulation et de la mise à jour des informations relatives à cet employé. Tout en affichant les fenêtres de création, modification, consultation et suppression.
 
 ==== Principales fonctionnalités
 
@@ -635,6 +725,7 @@ ____
 
 L'ergonomie des listes permet d'utiliser le cliquedroit et le double clique pour intéragir avec la liste sans utiliser les boutons lattéraux. 
 
+.Capture d'écran de l'ergonomie des listes - employés
 image::RessourceAdoc/img/emplclickdroit.png[Alt ergonomie, 50%]
 
 ==== Classes associées à l'implémentation de la fonctionnalité
@@ -650,7 +741,7 @@ ____
 
 ==== Extrait de code
 
-Si dessous le code ajouter à la classe `` employeManagementController.java `` pour l'ergonomie des listes. Le code ajouter à la class clientManagementController.java est sensiblement le même.
+Si dessous le code ajouter à la classe `` employeManagementController.java `` pour l'ergonomie des listes. Le code ajouter à la class `` clientManagementController.java `` est sensiblement le même.
 
 ```java
     @FXML
@@ -707,7 +798,7 @@ Si dessous le code ajouter à la classe `` employeManagementController.java `` p
 		}
     }
 ```
-En l'occurence ici, on utilise le clic droit pour afficher un menu contextuel avec les options "Modifier", "Supprimer" et "Consulter". On utilise également le double clic pour modifier un employé ou le consulter. Biensure les option proproser dépendent des droits de l'employé sélectionné sur l'employé sélectionné.
+En l'occurence ici, on utilise le clic droit pour afficher un menu contextuel avec les options "Modifier", "Supprimer" et "Consulter". On utilise également le double clic pour modifier un employé ou le consulter. Biensure les options proprosées dépendendses des droits de l'employé actuel sur l'employé sélectionné.
 
 ===  Multiplateforme - Enzo Fournet
 
@@ -752,3 +843,6 @@ Avec cette commande : `` mvn clean install -Dmaven.install=true``
 
 Attention, install lance aussi des tests dévelloper avec JUNIT 5 et testFX. Si vous ne souhaitez pas les éxecuter ou si les tests rencontre une erreur et quie vous souhaitez quand même compiler le projet, vous pouvez utiliser cette commande : `` mvn clean install -Dmaven.install=true -DskipTests=true``
 ``-DskipTests=true`` est l'argument supplémentaire qui permet de ne pas lancer les tests.
+
+===  Quelques Tests - Enzo Fournet
+
