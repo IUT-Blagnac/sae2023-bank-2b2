@@ -18,6 +18,12 @@ public class OperationEditorPane {
 	private Stage primaryStage;
 	private OperationEditorPaneController oepcViewController;
 
+	/**
+	 * Constructeur de classe OperationEditorPane
+	 * 
+	 * @param _parentStage
+	 * @param _dbstate
+	 */
 	public OperationEditorPane(Stage _parentStage, DailyBankState _dbstate) {
 
 		try {
@@ -44,6 +50,14 @@ public class OperationEditorPane {
 		}
 	}
 
+	
+	/** 
+	 * Cette méthode permet de faire apparaître la fenêtre de dialogue de création d'une opération
+	 * 
+	 * @param cpte
+	 * @param cm
+	 * @return Operation
+	 */
 	public Operation doOperationEditorDialog(CompteCourant cpte, CategorieOperation cm) {
 		return this.oepcViewController.displayDialog(cpte, cm);
 	}

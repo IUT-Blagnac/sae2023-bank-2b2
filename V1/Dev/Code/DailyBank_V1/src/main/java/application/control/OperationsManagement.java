@@ -30,7 +30,15 @@ public class OperationsManagement {
 	private CompteCourant compteConcerne;
 	private CompteCourant compteConcerneDest;
 
-
+	/**
+	 * Constructeur de la classe de OperationsManagement. Cette classe permet de gérer l'affichage d'un dialogue de <br/>
+	 * gestion des opérations.
+	 * 
+	 * @param _parentStage
+	 * @param _dbstate
+	 * @param client
+	 * @param compte
+	 */
 	public OperationsManagement(Stage _parentStage, DailyBankState _dbstate, Client client, CompteCourant compte) {
 
 		this.clientDuCompte = client;
@@ -60,10 +68,19 @@ public class OperationsManagement {
 		}
 	}
 
+	/**
+	 * Méthode permettant d'afficher le dialogue de gestion des opérations.
+	 */
 	public void doOperationsManagementDialog() {
 		this.omcViewController.displayDialog();
 	}
 
+	
+	/** 
+	 * Cette méthode permet d'enregistrer une opération de débit.
+	 * 
+	 * @return Operation
+	 */
 	public Operation enregistrerDebit() {
 
 		OperationEditorPane oep = new OperationEditorPane(this.primaryStage, this.dailyBankState);
@@ -88,6 +105,11 @@ public class OperationsManagement {
 		return op;
 	}
 
+	/**
+	 * Cette méthode permet d'enregistrer une opération de crédit.
+	 * 
+	 * @return Operation
+	 */
 	public Operation enregistrerCredit() {
 
 		OperationEditorPane oep = new OperationEditorPane(this.primaryStage, this.dailyBankState);
@@ -112,6 +134,11 @@ public class OperationsManagement {
 		return op;
 	}
 	
+	/**
+	 * Cette méthode permet d'enregistrer un virement.
+	 * 
+	 * @return Operation
+	 */
 	public Operation enregistrerVirement() {
 	    OperationEditorPane oep = new OperationEditorPane(this.primaryStage, this.dailyBankState);
 	    Operation op = oep.doOperationEditorDialog(this.compteConcerne, CategorieOperation.VIREMENT);
@@ -137,6 +164,9 @@ public class OperationsManagement {
 	}
 
 
+	/*
+	 * Cette méthode permet de récupérer la liste des opérations de chause compte <br/>
+	 */
 	public PairsOfValue<CompteCourant, ArrayList<Operation>> operationsEtSoldeDunCompte() {
 		ArrayList<Operation> listeOP = new ArrayList<>();
 
