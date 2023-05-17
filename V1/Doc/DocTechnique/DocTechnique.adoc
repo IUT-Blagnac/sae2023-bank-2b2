@@ -631,9 +631,6 @@ ____
 • _Access_BD_Employe.java_
 ____
 
-===== Extrait de code
-
-
 ====  Ergonomie des listes - Enzo Fournet
 
 L'ergonomie des listes permet d'utiliser le cliquedroit et le double clique pour intéragir avec la liste sans utiliser les boutons lattéraux. 
@@ -656,7 +653,7 @@ ____
 Si dessous le code ajouter à la classe `` employeManagementController.java `` pour l'ergonomie des listes. Le code ajouter à la class clientManagementController.java est sensiblement le même.
 
 ```java
-@FXML
+    @FXML
 	private void onClicList(MouseEvent event) {
 		int selectedIndice = this.lvEmployes.getSelectionModel().getSelectedIndex();
 		if (lvEmployes.getItems().size() != 0 && selectedIndice >= 0) {
@@ -708,4 +705,50 @@ Si dessous le code ajouter à la classe `` employeManagementController.java `` p
 				}
 			}
 		}
-    ```
+    }
+```
+En l'occurence ici, on utilise le clic droit pour afficher un menu contextuel avec les options "Modifier", "Supprimer" et "Consulter". On utilise également le double clic pour modifier un employé ou le consulter. Biensure les option proproser dépendent des droits de l'employé sélectionné sur l'employé sélectionné.
+
+====  Multiplateforme - Enzo Fournet
+
+Un profil à était ajouter dans le pom.xml pour permettre de compiler le projet pour qu'il puisse être cross platefrome.
+
+```xml
+    <profile>
+	        <id>install-dependencies</id>
+	        <activation>
+	            <property>
+	                <name>maven.install</name>
+	            </property>
+	        </activation>
+	        <dependencies>
+	            <dependency>
+	                <groupId>org.openjfx</groupId>
+	                <artifactId>javafx-graphics</artifactId>
+	                <version>${javafx.version}</version>
+	                <classifier>win</classifier>
+	            </dependency>
+	            <dependency>
+	                <groupId>org.openjfx</groupId>
+	                <artifactId>javafx-graphics</artifactId>
+	                <version>${javafx.version}</version>
+	                <classifier>linux</classifier>
+	                <scope>compile</scope>
+	            </dependency>
+	            <dependency>
+	                <groupId>org.openjfx</groupId>
+	                <artifactId>javafx-graphics</artifactId>
+	                <version>${javafx.version}</version>
+	                <classifier>mac</classifier>
+	            </dependency>
+	        </dependencies>
+	    </profile>
+	</profiles>
+```
+
+Lors de la compilation, le profil est utilisé donc utilisé afin que les dépendance grahique de toutes les plateformes soient installées.
+
+Avec cette commande : `` mvn clean install -Dmaven.install=true``
+
+Attention, install lance aussi des tests dévelloper avec JUNIT 5 et testFX. Si vous ne souhaitez pas les éxecuter ou si les tests rencontre une erreur et quie vous souhaitez quand même compiler le projet, vous pouvez utiliser cette commande : `` mvn clean install -Dmaven.install=true -DskipTests=true``
+``-DskipTests=true`` est l'argument supplémentaire qui permet de ne pas lancer les tests.
