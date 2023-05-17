@@ -55,23 +55,21 @@
         <dependency>
           <groupId>org.openjfx</groupId>
           <artifactId>javafx-graphics</artifactId>
-          <version>20</version>
+          <version>${javafx.version}</version>
           <classifier>win</classifier>
-          <scope>compile</scope>
         </dependency>
         <dependency>
           <groupId>org.openjfx</groupId>
           <artifactId>javafx-graphics</artifactId>
-          <version>20</version>
+          <version>${javafx.version}</version>
           <classifier>linux</classifier>
           <scope>compile</scope>
         </dependency>
         <dependency>
           <groupId>org.openjfx</groupId>
           <artifactId>javafx-graphics</artifactId>
-          <version>20</version>
+          <version>${javafx.version}</version>
           <classifier>mac</classifier>
-          <scope>compile</scope>
         </dependency>
       </dependencies>
     </profile>
@@ -127,7 +125,7 @@
     <testfx.version>4.0.16-alpha</testfx.version>
     <maven.compiler.target>17</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <javafx.version>20</javafx.version>
+    <javafx.version>17</javafx.version>
     <junit.version>5.7.2</junit.version>
   </properties>
 </project>
