@@ -519,19 +519,19 @@ Ce code est essentiel pour enregistrer les crédits dans la base de données SQL
 Effectuer un virement permet de faire un crédit d'un compte et faire un débit à un autre compte. Pour effectuer cela, il faut que le montant sélectionné ne soit pas négatif ou égal à 0. De plus, il ne doit pas dépasser les 1 million d'euros mais aussi, il faut que le solde du compte qui effectue le virement ne dépasse pas le découvert maximum autorisé.
 
 ===== Partie du use case
-image::RessourceAdoc/img/créditerdébiter.png[Alt crédit, 50%]
+image::RessourceAdoc/img/virementcompte.png[Alt uc virement, 50%]
 
 ===== Partie du diagramme de classe
 
 image::RessourceAdoc/img/dcvirement.png[Alt dc virement, 50%]
 
-Dans ce diagramme de classes, la tâche "Crédit" est représentée par trois classes distinctes :
+Le processus de virement implique trois classes dans le diagramme de classes :
 
-* La classe "CompteCourant" est utilisée uniquement pour la lecture des informations d'un compte. Elle ne modifie pas les données du compte, mais permet d'accéder aux informations le concernant.
+* La classe CompteCourant est dédiée à la lecture des informations du compte courant, sans les modifier.
 
-* La classe "TypeOperation" est également dédiée à la lecture seule. Elle caractérise le type d'opération, sans interagir avec les données elles-mêmes.
+* La classe TypeOperation est également dédiée à la lecture et caractérise uniquement le type d'opération sans interaction.
 
-* En revanche, la classe "Operation" utilise les données fournies par l'utilisateur. Elle ne se limite pas à la lecture, mais interprète ces données pour effectuer l'opération de débit. Elle est responsable de la manipulation et de la mise à jour des informations relatives à cette opération.
+* La classe Operation utilise les données fournies par l'utilisateur. Elle ne se limite pas à la lecture des données, mais les interprète pour effectuer l'opération de virement. Cela nécessite de définir les données et d'effectuer l'ajout nécessaire pour réaliser le virement.
 
 ===== Principales fonctionnalités
 
@@ -561,22 +561,24 @@ ____
 
 *Côté ``model.data`` :* +
 ____
-• _Operation.java_
-• _TypeOperation.java_
+• _CompteCourant.java_
 ____
 
 *Côté ``model.orm / model.orm.exception`` :* +
 ____
-• _AccessOperation.java_
+• _AccessCompteCourant.java_
 • _DatabaseConnexionException.java_
 • _DataAccessException.java_
 ____
 
 ===== Extrait d'un code
 
-image::RessourceAdoc/img/CodeCréditer.png[Alt code crediter, 75%]
+image::RessourceAdoc/img/image.png[Alt code virement, 75%]
 
-Ce code est essentiel pour enregistrer les crédits dans la base de données SQL, en fonction de la procédure "Créditer". Il gère également les types d'opérations et les montants à créditer.
+image::RessourceAdoc/img/virementcompte.png[Alt code virement, 75%]
+
+Ce code est essentiel pour enregistrer les virements dans la base de données SQL, en fonction de la procédure "enregistrerVirement". Il gère également les types d'opérations et les montants à virer.
+Lorsqu'on effectue un virement, on fait un débit du côté du compte source et on réalisé un crédit vers le compte du destinataire.
 
 ====  CRUD employés - Enzo Fournet
 
@@ -592,3 +594,118 @@ image::RessourceAdoc/img/Empl.png[Alt dc CRUD, 50%]
 
 Dans ce diagramme de classes, la tâche "CRUD" n'est vraiment représenté mais :
 
+* La classe "Employe" est utilisée pour la lecture des informations d'un employé. Elle ne modifie pas les données de l'employé, mais permet d'accéder aux informations le concernant.
+
+* La classe "EmployeManagement" est utilisée pour la création, la modification, la consultation et la suppression d'un employé. Elle est responsable de la manipulation et de la mise à jour des informations relatives à cet employé. Tout en affichant les fenêtres de création, modification, consultation et suppression.
+
+===== Principales fonctionnalités
+
+Une brève introduction des principales fonctionnalités de cette opération a été présentée précédemment. Pour obtenir des informations plus détaillées, veuillez consulter la documentation utilisateur. Elle fournira des explications approfondies sur les différentes fonctionnalités et leur utilisation dans le cadre de ces opérations spécifique.
+
+===== Classes associées à l'implémentation de la fonctionnalité
+
+Pour l’implémentation de cette action, plusieurs classes ont été impliquées :
+
+*Côté ``application.control`` :* +
+____
+• _EmployeEditorPane.java_
+
+• _EmployeManagement.java_
+____
+
+*Côté ``application.view`` :* +
+
+____
+• _EmployeEditorPaneController.java_
+
+• _EmployeManagementController.java_
+____
+
+*Côté ``model.data`` :* +
+____
+• _Employe.java_
+____
+
+*Côté ``model.orm / model.orm.exception`` :* +
+____
+• _Access_BD_Employe.java_
+____
+
+===== Extrait de code
+
+
+====  Ergonomie des listes - Enzo Fournet
+
+L'ergonomie des listes permet d'utiliser le cliquedroit et le double clique pour intéragir avec la liste sans utiliser les boutons lattéraux. 
+
+image::RessourceAdoc/img/emplclickdroit.png[Alt ergonomie, 50%]
+
+===== Classes associées à l'implémentation de la fonctionnalité
+
+Pour l’implémentation de cette action, plusieurs classes ont été impliquées :
+
+*Côté ``application.view`` :* +
+
+____
+• _EmployeManagementController.java_
+• _ClientManagementController.java_
+____
+
+===== Extrait de code
+
+Si dessous le code ajouter à la classe `` employeManagementController.java `` pour l'ergonomie des listes. Le code ajouter à la class clientManagementController.java est sensiblement le même.
+
+```java
+@FXML
+	private void onClicList(MouseEvent event) {
+		int selectedIndice = this.lvEmployes.getSelectionModel().getSelectedIndex();
+		if (lvEmployes.getItems().size() != 0 && selectedIndice >= 0) {
+			MouseButton mb = event.getButton();
+			if (MouseButton.SECONDARY == mb) {
+				Employe selectedEmploye = this.lvEmployes.getSelectionModel().getSelectedItem();
+				Employe currentEmploye = this.dailyBankState.getEmployeActuel();
+				contextMenu.hide();
+				contextMenu = new ContextMenu();
+				if (selectedEmploye.toString().equals(currentEmploye.toString())
+						|| selectedEmploye.droitsAccess.equals("guichetier")) {
+					MenuItem menuItem1 = new MenuItem("Modifier");
+					menuItem1.setOnAction(e -> {
+						doModifierEmploye();
+					});
+					contextMenu.getItems().add(menuItem1);
+					if (!selectedEmploye.toString().equals(currentEmploye.toString())) {
+						MenuItem menuItem2 = new MenuItem("Supprimer");
+						menuItem2.setOnAction(e -> {
+							doSupprimerEmploye();
+						});
+						contextMenu.getItems().add(menuItem2);
+					}
+					MenuItem menuItem3 = new MenuItem("Consulter");
+					menuItem3.setOnAction(e -> {
+						doConsulterEmploye();
+					});
+					contextMenu.getItems().add(menuItem3);
+				} else {
+					MenuItem menuItem = new MenuItem("Consulter");
+					menuItem.setOnAction(e -> {
+						doConsulterEmploye();
+					});
+					contextMenu.getItems().add(menuItem);
+				}
+				contextMenu.show(lvEmployes, event.getScreenX(), event.getScreenY());
+			}
+			if (MouseButton.PRIMARY == mb) {
+				contextMenu.hide();
+				if (event.getClickCount() > 1) {
+					Employe selectedEmploye = this.lvEmployes.getSelectionModel().getSelectedItem();
+					Employe currentEmploye = this.dailyBankState.getEmployeActuel();
+					if (selectedEmploye.toString().equals(currentEmploye.toString())
+							|| selectedEmploye.droitsAccess.equals("guichetier")) {
+						doModifierEmploye();
+					} else {
+						doConsulterEmploye();
+					}
+				}
+			}
+		}
+    ```
