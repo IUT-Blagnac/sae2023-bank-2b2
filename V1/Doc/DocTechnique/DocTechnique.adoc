@@ -13,5 +13,24 @@ La banque DailyBank a l'intention de créer une application JAVA-Oracle destiné
 
 === Use Case Version 1
 
-image::RessourceAdoc/img/uc-initialv1.png[Alt UC V1, 50%]
+image::RessourceAdoc/img/uc-initialv1.svg[Alt UC V1, 50%]
+
+==== Présentation des utilisateurs et leurs actions
+
+Dans la version actuelle du système, nous conservons les deux types d'utilisateurs existants : le chef d'agence et les guichetiers. Cependant, le chef d'agence bénéficie de privilèges et de droits supplémentaires au sein de son agence bancaire par rapport aux guichetiers.
+
+En tant que chef d'agence, il est responsable de la gestion de son agence et dispose de droits étendus. Outre la possibilité de rendre inactif un client inscrit dans son agence, le chef d'agence peut également gérer les employés de l'agence. Cette fonctionnalité permet au chef d'agence de gérer efficacement l'équipe et d'attribuer des tâches spécifiques à chaque employé.
+
+Il est important de noter que cette fonctionnalité n'est pas réciproque, car elle respecte la hiérarchie des rôles au sein de l'agence bancaire. Ainsi, les guichetiers ne peuvent pas gérer les autres employés, se limitant à leurs propres tâches et responsabilités.
+
+Pour les guichetiers, en plus des fonctionnalités présentes dans la version précédente, telles que la modification des informations client, la création de nouveaux comptes et la consultation des comptes, des fonctionnalités supplémentaires sont ajoutées. Les guichetiers peuvent désormais créer de nouveaux comptes pour les clients, créditer les comptes des clients, effectuer des virements de compte à compte, ainsi que clôturer les comptes sélectionnés.
+
+Ces nouvelles actions offrent aux guichetiers une plus grande autonomie et leur permettent d'effectuer des opérations courantes de gestion de compte de manière plus complète. Cependant, il est essentiel de prendre en compte les problématiques et les contraintes liées à ces utilisations afin de garantir la sécurité des transactions et la conformité aux règles bancaires en vigueur.
+
+=== Diagramme de classe des données
+
+
+image::RessourceAdoc/img/dc-initialv1.svg[Alt DC V1, 75%]
+
+
 
