@@ -209,12 +209,12 @@ Un chef d’agence ou un guichetier peut modifier les informations d’un client
 Use case : 
 
 .diagram de cas d'utilisation de modification d'un client
-image::RessourceAdoc/img/modifinfoclient.png[Alt modif client, 50%]
+image::RessourceAdoc/img/modifinfoclient.png[Alt modif client, 25%]
 
 Partie du diagramme de classe : 
 
 .extrait digram de la BD - classe client
-image::RessourceAdoc/img/clientdc.png[Alt DC V1, 50%]
+image::RessourceAdoc/img/clientdc.png[Alt DC V1, 25%]
 
 Cette tâche n’inclut seulement qu’une classe dans le diagramme de classes V1 : la classe Client. Cette classe est, de ce fait, dédiée à la modification des informations d’un client et par conséquent, à la mise à jour des données sur la base de données.
 
