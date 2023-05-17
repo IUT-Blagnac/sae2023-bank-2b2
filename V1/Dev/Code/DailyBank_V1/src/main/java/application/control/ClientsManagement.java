@@ -23,6 +23,14 @@ public class ClientsManagement {
 	private DailyBankState dailyBankState;
 	private ClientsManagementController cmcViewController;
 
+	/**
+	 * Création d'un page de gestion des clients.<BR />
+	 *
+	 * @param _parentStage Fenêtre parente de LoginDialog (sur laquelle se centrer
+	 *                     et être modale)
+	 * @param _dbstate     Etat courant de l'application
+	 * 
+	 */
 	public ClientsManagement(Stage _parentStage, DailyBankState _dbstate) {
 		this.dailyBankState = _dbstate;
 		try {
@@ -48,10 +56,19 @@ public class ClientsManagement {
 		}
 	}
 
+	/**
+	 * Affiche la page des clients
+	 */
 	public void doClientManagementDialog() {
 		this.cmcViewController.displayDialog();
 	}
 
+	/**
+	 * Permet de modifier les informations d'un client
+	 * 
+	 * @param c le client à modifier
+	 * @return le client modifié
+	 */
 	public Client modifierClient(Client c) {
 		ClientEditorPane cep = new ClientEditorPane(this.primaryStage, this.dailyBankState);
 		Client result = cep.doClientEditorDialog(c, EditionMode.MODIFICATION);
@@ -73,6 +90,11 @@ public class ClientsManagement {
 		return result;
 	}
 
+	/**
+	 * Permet de créer un nouveau client
+	 * 
+	 * @return le nouveau client
+	 */
 	public Client nouveauClient() {
 		Client client;
 		ClientEditorPane cep = new ClientEditorPane(this.primaryStage, this.dailyBankState);
@@ -96,11 +118,24 @@ public class ClientsManagement {
 		return client;
 	}
 
+	/**
+	 * Permet d'ouvrir la page des comptes d'un client
+	 * 
+	 * @param c le client à gérer
+	 */
 	public void gererComptesClient(Client c) {
 		ComptesManagement cm = new ComptesManagement(this.primaryStage, this.dailyBankState, c);
 		cm.doComptesManagementDialog();
 	}
 
+	/**
+	 * Permet de récupérer la liste des clients correspondant au critères
+	 * 
+	 * @param _numCompte le numéro de compte du client
+	 * @param _debutNom le début du nom du client
+	 * @param _debutPrenom le début du prénom du client
+	 * @return la liste des clients correspondant aux critères
+	 */
 	public ArrayList<Client> getlisteComptes(int _numCompte, String _debutNom, String _debutPrenom) {
 		ArrayList<Client> listeCli = new ArrayList<>();
 		try {
