@@ -516,7 +516,7 @@ Ce code est essentiel pour enregistrer les crédits dans la base de données SQL
 
 ==== Effectuer un virement - Julien Couderc
 
-Effectuer un virement permet de faire un crédit d'un compte et faire un débit à un autre compte. Pour effectuer cela, il faut que le montant sélectionné ne soit pas négatif ou égal à 0. De plus, il ne doit pas dépasser les 1 million d'euros mais aussi, il faut que le solde du compte qui effectue le virement ne dépasse pas le découvert maximum auto
+Effectuer un virement permet de faire un crédit d'un compte et faire un débit à un autre compte. Pour effectuer cela, il faut que le montant sélectionné ne soit pas négatif ou égal à 0. De plus, il ne doit pas dépasser les 1 million d'euros mais aussi, il faut que le solde du compte qui effectue le virement ne dépasse pas le découvert maximum autorisé.
 
 ===== Partie du use case
 image::RessourceAdoc/img/créditerdébiter.png[Alt crédit, 50%]
