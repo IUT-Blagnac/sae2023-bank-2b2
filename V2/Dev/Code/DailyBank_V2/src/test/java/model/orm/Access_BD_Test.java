@@ -14,6 +14,28 @@ import model.orm.exception.Table;
 
 public class Access_BD_Test {
 
+    public int getSeqEmplCurrVal() throws DataAccessException, DatabaseConnexionException {
+        int seqEmplGetCurrVal = 0;
+        try {
+            Connection con = LogToDatabase.getConnexion();
+            String query = "SELECT seq_id_employe.CURRVAL  FROM DUAL";
+
+            PreparedStatement pst = con.prepareStatement(query);
+
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
+                seqEmplGetCurrVal = rs.getInt("currval");
+            }
+
+            rs.close();
+            pst.close();
+            return seqEmplGetCurrVal;
+        } catch (SQLException e) {
+            throw new DataAccessException(Table.Employe, Order.SELECT, "Erreur accès", e);
+        }
+    }
+
     public int getNumberEmploye() throws DataAccessException, DatabaseConnexionException {
         int nbEmploye = 0;
         try {

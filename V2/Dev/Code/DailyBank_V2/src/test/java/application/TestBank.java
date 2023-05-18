@@ -359,6 +359,76 @@ public class TestBank extends ApplicationTest {
         assertEquals(null, employeBD);
     }
 
+    @Test
+    public void testNouvelEmploye() {
+        //resestBD();
+        Assumptions.assumeTrue(test1Passed, "Test1 echec, impossible d'executer les autres tests");
+
+        Access_BD_Test access_BD_Test = new Access_BD_Test();
+        Employe employeBD = null;
+
+        //login
+        String login = "Tuff";
+        String motPasse = "Lejeune";
+
+        verifCoDECO();
+        connecter(login, motPasse);
+
+        clickOn("Gestion");
+        clickOn("#mitemEmploye");
+
+        clickOn("#btnNouvelEmploye"); 
+
+        //gtNbemploye
+        
+
+        String nomVrf = "Fournet";
+        String prenomVrf = "Enzo";
+        String droitVrf = "Guichetier";
+        String loginVrf = "EF";
+        String motPasseVrf = "enzo";
+
+
+       
+
+
+        ((TextField) find("#txtNom")).setText(nomVrf);
+        ((TextField) find("#txtPrenom")).setText(prenomVrf);
+
+        if (droitVrf.equals("Chef d'agence")) {
+            clickOn("#menuBtnDroitAccess");
+            clickOn("Chef d'agence");
+        } else {
+            clickOn("#menuBtnDroitAccess");
+            clickOn("Guichetier");
+        }
+
+        ((TextField) find("#txtLogin")).setText(loginVrf);
+        ((TextField) find("#txtMotPasse")).setText(motPasseVrf);
+
+        clickOn("#butOk");
+
+        int nbEmploye = 0;
+        try {
+            nbEmploye = access_BD_Test.getSeqEmplCurrVal();
+        } catch (Exception e) {
+            assertEquals(true, false, e.toString());
+            e.printStackTrace();
+        }
+
+        Employe nouvelEmpl = new Employe(nbEmploye, nomVrf, prenomVrf, droitVrf, loginVrf, motPasseVrf, dailyBankState.getAgenceActuelle().idAg);
+
+        System.out.println(nouvelEmpl.toString());
+        //[12]  FOURNET Enzo(EF)  {Guichetier}
+        System.out.println(find(nouvelEmpl.toString()));
+
+        sleep(10000);
+        
+        clickOn(nouvelEmpl.toString());
+
+        sleep(10000);
+    }        
+
     /**
      * Méthode pour trouver un élément dans la fenêtre de test à partir de son id
      * @param <T>
@@ -388,11 +458,11 @@ public class TestBank extends ApplicationTest {
         } while (!nodes.isEmpty() && selectedNode != null);
 
 
-        // System.out.println("node restant");
-        // System.out.println("size" + nodes.size());
-        // for (Node node : nodes) {
-        //     System.out.println(node);
-        // }
+        System.out.println("node restant");
+        System.out.println("size" + nodes.size());
+        for (Node node : nodes) {
+            System.out.println(node);
+        }
         return (T) nodes.iterator().next();
     } 
 
