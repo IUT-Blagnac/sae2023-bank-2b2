@@ -1,6 +1,7 @@
 = Documentation technique de l'application DailyBank V1
 :doctype: book
-:toc: left
+:toc: center
+:toclevels: 3
 :toc-title: Table des matières
 :sectnums:
 Auteurs: Yannis Gibert, Julien Couderc, Enzo Fournet
@@ -199,7 +200,7 @@ Ensuite, il est recommandé d'utiliser un environnement de développement intég
 Il est également important de disposer d'un Workspace configuré en JavaFX avec une version du JDK en 1.8. Cela permet d'assurer la compatibilité avec les fonctionnalités spécifiques à JavaFX. De plus, l'intégration du logiciel SceneBuilder dans le buildpath est recommandée pour faciliter l'interaction avec les fichiers FXML de l'application "DailyBank".
 
 
-== Présentation de l'application
+== Présentation de fonctionnalitées de l'application
 === Guichetier
 
 ==== Modifier les informations d'un client - Déja présent (v0)
@@ -892,5 +893,28 @@ Attention, install lance aussi des tests dévelloper avec JUNIT 5 et testFX. Si 
 
 ``-DskipTests=true`` est l'argument supplémentaire qui permet de ne pas lancer les tests.
 
-===  Quelques Tests - Enzo Fournet
+=== Quelques Tests Automatisé - Enzo Fournet
 
+J'ai pris l'initiative de dévelloper des test JavaFX afin de tester le bon fonctionnement de l'interface.
+J'ai donc utilisé https://github.com/junit-team/junit5[JUnit 5] et https://github.com/TestFX/TestFX/issues/751[TestFX].
+Je vais donc expliquer dans les grandes lignes mon systeme de tests.
+
+==== Comment executer les test
+
+Pour executer les test il existe deux solution :
+
+* La première
+
+`` mvn clean install ``
+
+Cette commande permet de lancer la création du Jar du projet et donc lance dans la foulé les tests pour vérifier sue l'app focntionne correctement.
+
+* La seconde
+
+`` mvn test ``
+
+Cette commande permet tout simplement d'executer les tests.
+
+==== Fonctionnement globale des Tests
+
+Les tests sont plus pertinent s'ils sont executer tous ensemble mais ils peuvent et sont réalisé de façon àa ce qu'il puisse être executer de façon indépendant.
