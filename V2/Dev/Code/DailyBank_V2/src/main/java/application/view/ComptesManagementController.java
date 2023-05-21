@@ -6,14 +6,18 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import javax.swing.border.TitledBorder;
 
 import com.itextpdf.kernel.events.PdfDocumentEvent;
 import com.itextpdf.kernel.pdf.*;
 import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.AreaBreak;
 import com.itextpdf.layout.element.IBlockElement;
 import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.properties.*;
 
 import application.DailyBankState;
 import application.control.ComptesManagement;
@@ -207,58 +211,6 @@ public class ComptesManagementController {
 		if (compte != null) {
 			this.oListCompteCourant.add(compte);
 		}
-	}
-
-	/**
-	 * Génère un relevé mensuel d'un compte au format PDF.
-	 * 
-	 * @throws FileNotFoundException
-	 * @throws IOException
-	 */
-	@FXML
-	private void doRelMens() {
-		// Créez un objet FileChooser
-		FileChooser fileChooser = new FileChooser();
-
-		// Définissez l'extension de filtrage
-		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PDF files (*.pdf)", "*.pdf");
-		//Afficher tout les fichiers
-		FileChooser.ExtensionFilter exttFilter = new FileChooser.ExtensionFilter("Tout les fichiers", "*.*");
-		fileChooser.getExtensionFilters().add(extFilter);
-		fileChooser.getExtensionFilters().add(exttFilter);
-		
-		//définisser le nom par défaut du fichier
-		fileChooser.setInitialFileName("releveMensuel.pdf");
-
-		// Affichez la boîte de dialogue FileChooser
-		File file = fileChooser.showSaveDialog(new Stage());
-
-		if(file != null) {
-		    try {
-		    	// Initialize PDF writer
-				PdfWriter writer = new PdfWriter(file.getPath());
-				// Initialize PDF document
-				PdfDocument pdf = new PdfDocument(writer);
-
-				// Initialize document
-				Document document = new Document(pdf);
-				//ajouter les metadata
-				pdf.getDocumentInfo().setTitle("Relevé mensuel");
-				pdf.getDocumentInfo().setAuthor("DailyBank");
-				pdf.getDocumentInfo().setCreator("DailyBank");
-				pdf.getDocumentInfo().setSubject("Relevé mensuel");
-				pdf.getDocumentInfo().setKeywords("DailyBank, Relevé mensuel");
-
-				// Add paragraph to the document
-				document.add(new Paragraph("Hello! This is your monthly report."));
-
-				// Close document
-				document.close();
-		    } catch(Exception e) {
-		        // Handle exception here
-		        e.printStackTrace();
-		    }
-		}
 	}	
 	
 	/**
@@ -305,6 +257,97 @@ public class ComptesManagementController {
             }
         }
     }
+
+			/**
+	 * Génère un relevé mensuel d'un compte au format PDF.
+	 * 
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
+	@FXML
+	private void doRelMens() {
+		// Créez un objet FileChooser
+		FileChooser fileChooser = new FileChooser();
+
+		// Définissez l'extension de filtrage
+		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PDF files (*.pdf)", "*.pdf");
+		//Afficher tout les fichiers
+		FileChooser.ExtensionFilter exttFilter = new FileChooser.ExtensionFilter("Tout les fichiers", "*.*");
+		fileChooser.getExtensionFilters().add(extFilter);
+		fileChooser.getExtensionFilters().add(exttFilter);
+		
+		//définisser le nom par défaut du fichier
+		fileChooser.setInitialFileName("releveMensuel.pdf");
+
+		// Affichez la boîte de dialogue FileChooser
+		File file = fileChooser.showSaveDialog(new Stage());
+
+		if(file != null) {
+		    try {
+		    	// Initialize PDF writer
+				PdfWriter writer = new PdfWriter(file.getPath());
+				// Initialize PDF document
+				PdfDocument pdf = new PdfDocument(writer);
+
+				// Initialize document
+				Document document = new Document(pdf);
+				//ajouter les metadata
+				pdf.getDocumentInfo().setTitle("Relevé mensuel");
+				pdf.getDocumentInfo().setAuthor("DailyBank");
+				pdf.getDocumentInfo().setCreator("DailyBank");
+				pdf.getDocumentInfo().setSubject("Relevé mensuel");
+				pdf.getDocumentInfo().setKeywords("DailyBank, Relevé mensuel");
+
+				// Ajouter un titre centré en haut du pdf avec une police de taille 18
+				Paragraph title = new Paragraph("Relevé mensuel").setFontSize(18).setBold();
+				title.setTextAlignment(TextAlignment.CENTER);
+				document.add(title);
+				//Ajouter la date à droite du titre
+				Paragraph date = new Paragraph("Date : " + java.time.LocalDate.now()).setFontSize(12);
+				date.setTextAlignment(TextAlignment.RIGHT);
+				document.add(date);
+
+				Paragraph infosClient = new Paragraph("Client : " + this.clientDesComptes.nom + " " + this.clientDesComptes.prenom + " (ID : " + this.clientDesComptes.idNumCli + ")").setFontSize(12);
+				infosClient.setTextAlignment(TextAlignment.LEFT);
+				document.add(infosClient);
+
+				Paragraph infosCompte = new Paragraph("Compte : ID - " + this.lvComptes.getSelectionModel().getSelectedItem().idNumCompte).setFontSize(12);
+				infosCompte.setTextAlignment(TextAlignment.LEFT);
+				document.add(infosCompte);
+
+
+				document.add(new Paragraph("Hello! This is your monthly report."));
+
+				//make space between paragraphs
+				document.add(new Paragraph("\n").setFontSize(30));
+
+				//ajouter un tableau
+				float[] pointColumnWidths = {150F, 150F, 150F, 150F, 150F};
+				Table table = new Table(pointColumnWidths);
+				table.addCell("Date");
+				table.addCell("ID Opération");
+				table.addCell("Crédit");
+				table.addCell("Débit");
+				table.addCell("Virement");
+
+				document.add(table);
+
+				pdf.addEventHandler(PdfDocumentEvent.END_PAGE, new FooterEventHandler(document));
+
+				for (int i = 0; i < 5; i++) {
+					document.add(new Paragraph("Ceci est une page de test " + (i + 1)));
+					if (i != 4) document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
+				}
+
+				// Close document
+				document.close();
+		    } catch(Exception e) {
+		        // Handle exception here
+		        e.printStackTrace();
+		    }
+		}
+	}
+
 
 	
 	/**

@@ -221,6 +221,7 @@ public class OperationEditorPaneController {
 	private Button btnOk;
 	@FXML
 	private Button btnCancel;
+	
 
 	
 	/**

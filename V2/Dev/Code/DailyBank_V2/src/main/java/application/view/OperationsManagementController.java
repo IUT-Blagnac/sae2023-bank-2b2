@@ -1,7 +1,23 @@
 package application.view;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Locale;
+
+import javax.swing.border.TitledBorder;
+
+import com.itextpdf.kernel.events.PdfDocumentEvent;
+import com.itextpdf.kernel.pdf.*;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.AreaBreak;
+import com.itextpdf.layout.element.IBlockElement;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.properties.*;
 
 import application.DailyBankState;
 import application.control.OperationsManagement;
@@ -13,6 +29,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.data.Client;
@@ -175,7 +192,6 @@ public class OperationsManagementController {
 			this.btnVirement.setDisable(true);
 		}
 	}
-
 	
 	/**
      * Met à jour les informations du compte et du client affichées dans l'interface graphique.
