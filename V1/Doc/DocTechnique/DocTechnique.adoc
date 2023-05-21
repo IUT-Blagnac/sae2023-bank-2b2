@@ -889,7 +889,9 @@ Lors de la compilation, le profil est utilisé donc utilisé afin que les dépen
 
 Avec cette commande : `` mvn clean install -Dmaven.install=true``
 
-Attention, install lance aussi des tests dévelloper avec JUNIT 5 et testFX. Si vous ne souhaitez pas les éxecuter ou si les tests rencontre une erreur et quie vous souhaitez quand même compiler le projet, vous pouvez utiliser cette commande : `` mvn clean install -Dmaven.install=true -DskipTests=true``
+Attention, install lance aussi des tests dévelloper avec JUNIT 5 et testFX. Si vous ne souhaitez pas les éxecuter ou si les tests rencontre une erreur et quie vous souhaitez quand même compiler le projet, vous pouvez utiliser cette commande : 
+
+`` mvn clean install -Dmaven.install=true -DskipTests=true``
 
 ``-DskipTests=true`` est l'argument supplémentaire qui permet de ne pas lancer les tests.
 
@@ -917,4 +919,9 @@ Cette commande permet tout simplement d'executer les tests.
 
 ==== Fonctionnement globale des Tests
 
-Les tests sont plus pertinent s'ils sont executer tous ensemble mais ils peuvent et sont réalisé de façon àa ce qu'il puisse être executer de façon indépendant.
+Les tests sont plus pertinent s'ils sont executer tous ensemble mais ils peuvent et sont réalisé de façon à ce qu'il puisse être executer de façon indépendant.
+Ils sont aussi utilisable même si la connexion automatique est utilisé et lors d'une execution individuel ou complète à chaque départ la base de donnée sera réinitialiser. Il vous sera donc indiqué d'attendre quelque dizaine de secondes au début de chque test.
+
+A noter que le test `` testLogin `` permet vérifier que la connexion fonctionne correctement et si cela échoue les autres tests ne s'executeront pas.
+
+Ci dessous vous retrouverai quelque exemple sur le fcontionnement de ces tests.
