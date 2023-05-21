@@ -1,6 +1,19 @@
 package application.view;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+
+import javax.swing.border.TitledBorder;
+
+import com.itextpdf.kernel.events.PdfDocumentEvent;
+import com.itextpdf.kernel.pdf.*;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.IBlockElement;
+import com.itextpdf.layout.element.Paragraph;
 
 import application.DailyBankState;
 import application.control.ComptesManagement;
@@ -15,6 +28,8 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.TilePane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.data.Client;
@@ -39,6 +54,9 @@ public class ComptesManagementController {
 	// Données de la fenêtre
 	private Client clientDesComptes;
 	private ObservableList<CompteCourant> oListCompteCourant;
+
+	// Choix de l'emplacement du fichier à enregistrer
+	FileChooser fileChooser = new FileChooser();
 
 	// Manipulation de la fenêtre
 	
@@ -112,6 +130,8 @@ public class ComptesManagementController {
 	private Button btnModifierCompte;
 	@FXML
 	private Button btnSupprCompte;
+	@FXML
+	private Button btnRelMens;
 	private ContextMenu contextMenu = new ContextMenu();
 
 	/**
@@ -188,6 +208,58 @@ public class ComptesManagementController {
 			this.oListCompteCourant.add(compte);
 		}
 	}
+
+	/**
+	 * Génère un relevé mensuel d'un compte au format PDF.
+	 * 
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
+	@FXML
+	private void doRelMens() {
+		// Créez un objet FileChooser
+		FileChooser fileChooser = new FileChooser();
+
+		// Définissez l'extension de filtrage
+		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PDF files (*.pdf)", "*.pdf");
+		//Afficher tout les fichiers
+		FileChooser.ExtensionFilter exttFilter = new FileChooser.ExtensionFilter("Tout les fichiers", "*.*");
+		fileChooser.getExtensionFilters().add(extFilter);
+		fileChooser.getExtensionFilters().add(exttFilter);
+		
+		//définisser le nom par défaut du fichier
+		fileChooser.setInitialFileName("releveMensuel.pdf");
+
+		// Affichez la boîte de dialogue FileChooser
+		File file = fileChooser.showSaveDialog(new Stage());
+
+		if(file != null) {
+		    try {
+		    	// Initialize PDF writer
+				PdfWriter writer = new PdfWriter(file.getPath());
+				// Initialize PDF document
+				PdfDocument pdf = new PdfDocument(writer);
+
+				// Initialize document
+				Document document = new Document(pdf);
+				//ajouter les metadata
+				pdf.getDocumentInfo().setTitle("Relevé mensuel");
+				pdf.getDocumentInfo().setAuthor("DailyBank");
+				pdf.getDocumentInfo().setCreator("DailyBank");
+				pdf.getDocumentInfo().setSubject("Relevé mensuel");
+				pdf.getDocumentInfo().setKeywords("DailyBank, Relevé mensuel");
+
+				// Add paragraph to the document
+				document.add(new Paragraph("Hello! This is your monthly report."));
+
+				// Close document
+				document.close();
+		    } catch(Exception e) {
+		        // Handle exception here
+		        e.printStackTrace();
+		    }
+		}
+	}	
 	
 	/**
 	 * Méthode exécutée lorsqu'un clic de souris est détecté sur la liste des comptes.

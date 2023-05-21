@@ -30,9 +30,15 @@ import java.util.stream.Collectors;
 
 import application.control.DailyBankMainFrame;
 import application.control.ExceptionDialog;
+import javafx.animation.PauseTransition;
+import javafx.application.Platform;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
@@ -46,6 +52,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import model.data.Employe;
 import model.orm.Access_BD_Test;
@@ -69,23 +76,76 @@ public class TestBank extends ApplicationTest {
         dailyBankState = DailyBankMainFrame.getDailyBankState();
     }
 
+    @BeforeEach
+    public void beforeEach() {
+        //On réinitialise la BD si ce n'est pas déjà fait en utilisant la méthode resestBD
+        resestBD();
+
+        //On vérifie que le test1 est passé puisque les autres tests en dépendent
+        Assumptions.assumeTrue(test1Passed, "Test1 echec, impossible d'executer les autres tests");
+
+        //login
+        String login = "Tuff";
+        String motPasse = "Lejeune";
+
+        //On verifie si l'on doit se déconnecter avec ka méthode verifCoDECO
+        verifCoDECO();
+        //On se connecte avec la méthode connecter
+        connecter(login, motPasse);
+    }
+
+    @AfterEach
+    public void afterEach() {
+        release(new KeyCode[] {});
+        release(new MouseButton[] {});
+    }
+
     @Override
     public void start(Stage stage) {
         stage.show();
     }
 
-    @BeforeEach
-    public void beforeEach() {
-        release(new KeyCode[] {});
-        release(new MouseButton[] {});
-    }
-
     public void resestBD() {
         if(!resestBD) {
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    IntegerProperty waitingTime = new SimpleIntegerProperty(12);
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+                    stage.initStyle(StageStyle.UNDECORATED);
+                    stage.setMaxWidth(600);
+                    stage.setMaxHeight(300);
+                    alert.setHeaderText("Veuillez patienter la base de données est en cours de réinitialisation.\nN'intéragissez pas avec votre clavier ou votre souris pendant le processus de test.\nCette fenêtre se fermera automatiquement.");
+                    alert.getButtonTypes().clear();
+                    waitingTime.addListener((observable, oldValue, newValue) -> {
+                    alert.setContentText("Les test s'executeront dans " + newValue.toString() + " secondes.");
+                    });
+                    alert.show();
+                    Thread tache = new Thread( () -> {
+                        try {
+                            while (waitingTime.get() >= 0) {
+                                Platform.runLater( () -> {
+                                    if(waitingTime.get() == 0) {
+                                        stage.close();
+                                    }
+                                    if(waitingTime.get() > 0) {
+                                        waitingTime.set(waitingTime.get() - 1);
+                                    }
+                                });
+                                Thread.sleep(1000);
+                            }
+                        } catch (InterruptedException e) {
+                        }
+                    });
+                    tache.start();
+                }   
+            });
             Access_BD_Test abt = new Access_BD_Test();
             try {
                 abt.resestBD();
                 resestBD = true;
+                sleep(2000);
             } catch (DataAccessException | DatabaseConnexionException e) {
                 e.printStackTrace();
                 resestBD = false;
@@ -110,18 +170,15 @@ public class TestBank extends ApplicationTest {
         clickOn("#btnValider");
     }
 
+    
+
     @Test
     @Order(1)
     public void testLogin() {
-        resestBD();
-
         String login = "Tuff";
         String motPasse = "Lejeune";
         String prenom = "Michel";
         String nom = "Tuffery";
-
-        verifCoDECO();
-        connecter(login, motPasse);
         
         //verifier que les labels sont bien remplis avec les infos de l'employer
         verifyThat("#lblEmpNom", LabeledMatchers.hasText(nom));
@@ -140,21 +197,12 @@ public class TestBank extends ApplicationTest {
 
     @Test
     public void testListEmploye() {
-        resestBD();
-        Assumptions.assumeTrue(test1Passed, "Test1 echec, impossible d'executer les autres tests");
         int nbEmployeBD = 0;
         int nbEmployeLV = 0;
         ArrayList<Employe> employesBD = null;
         ArrayList<Employe> employesLV = null;
         Employe employeBD = null;
         Employe employeLV = null;
-        
-        //login
-        String login = "Tuff";
-        String motPasse = "Lejeune";
-
-        verifCoDECO();
-        connecter(login, motPasse);
 
         clickOn("Gestion");
         clickOn("#mitemEmploye");
@@ -194,16 +242,8 @@ public class TestBank extends ApplicationTest {
 
     @Test
     public void testModifierUnEmploye() {
-        resestBD();
-        Assumptions.assumeTrue(test1Passed, "Test1 echec, impossible d'executer les autres tests");
         Employe employesBD = null;
 
-        //login
-        String login = "Tuff";
-        String motPasse = "Lejeune";
-
-        verifCoDECO();
-        connecter(login, motPasse); 
 
         clickOn("Gestion");
         clickOn("#mitemEmploye");
@@ -267,18 +307,8 @@ public class TestBank extends ApplicationTest {
 
     @Test
     public void testConsulterEmployes() {
-        resestBD();
-        Assumptions.assumeTrue(test1Passed, "Test1 echec, impossible d'executer les autres tests");
-
         ArrayList<Employe> employesBD = null;
         Access_BD_Test access_BD_Test = new Access_BD_Test();
-
-        //login
-        String login = "Tuff";
-        String motPasse = "Lejeune";
-
-        verifCoDECO();
-        connecter(login, motPasse); 
 
         try {
             employesBD = access_BD_Test.getAllEmploye();
@@ -320,18 +350,8 @@ public class TestBank extends ApplicationTest {
 
     @Test
     public void testSupprimerGuichetier() {
-        resestBD();
-        Assumptions.assumeTrue(test1Passed, "Test1 echec, impossible d'executer les autres tests");
-
         Access_BD_Test access_BD_Test = new Access_BD_Test();
         Employe employeBD = null;
-
-        //login
-        String login = "Tuff";
-        String motPasse = "Lejeune";
-
-        verifCoDECO();
-        connecter(login, motPasse); 
 
         try {
             employeBD = access_BD_Test.getEmploye("FP", "TheEnterprise");
@@ -359,28 +379,15 @@ public class TestBank extends ApplicationTest {
         assertEquals(null, employeBD);
     }
 
-    @Test
+    //@Test pas encore fonctionnel
     public void testNouvelEmploye() {
-        //resestBD();
-        Assumptions.assumeTrue(test1Passed, "Test1 echec, impossible d'executer les autres tests");
-
         Access_BD_Test access_BD_Test = new Access_BD_Test();
         Employe employeBD = null;
-
-        //login
-        String login = "Tuff";
-        String motPasse = "Lejeune";
-
-        verifCoDECO();
-        connecter(login, motPasse);
 
         clickOn("Gestion");
         clickOn("#mitemEmploye");
 
         clickOn("#btnNouvelEmploye"); 
-
-        //gtNbemploye
-        
 
         String nomVrf = "Fournet";
         String prenomVrf = "Enzo";

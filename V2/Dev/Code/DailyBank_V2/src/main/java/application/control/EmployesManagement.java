@@ -2,8 +2,6 @@ package application.control;
 
 import java.util.ArrayList;
 
-import com.itextpdf.text.io.RandomAccessSourceFactory;
-
 import application.DailyBankApp;
 import application.DailyBankState;
 import application.tools.EditionMode;
