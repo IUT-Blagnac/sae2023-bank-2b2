@@ -5,11 +5,28 @@
 :sectnums:
 Auteurs: Yannis Gibert, Julien Couderc, Enzo Fournet
 
-Date: {docdate}
+Date: {docdate} +
+Équipe : 2B2 +
+Membres de l'équipe : Enzo Fournet, Julien Couderc, Yannis Gibert +
+Projet: DailyBank
 
 == Introduction
 
 Cette documentation est destinée à guider les utilisateurs de l'application DailyBank dans son utilisation seulement.
+
+== Présentation de l'application
+
+L'application JAVA-Oracle de gestion des comptes clients pour DailyBank est une solution numérique complète conçue pour révolutionner la gestion bancaire en proposant un ensemble complet de fonctionnalités pour les guichetiers et les responsables d’agence. Le principal objectif de cette application est de faciliter les opérations bancaires, de renforcer la sécurité des transactions et d'améliorer la gestion des employés, le tout dans une interface utilisateur intuitive et conviviale.
+
+En ce qui concerne les opérations bancaires, l'application offre des fonctionnalités de gestion des comptes clients, y compris la création, la modification et la clôture de comptes. Elle facilite également la réalisation de transactions financières et dispose d'une fonctionnalité de crédit client, avec une limite de crédit fixée à 999 999€.
+
+En matière de sécurité, l'application est dotée de protocoles de sécurité robustes pour garantir l'authentification des utilisateurs et protéger les transactions et les données sensibles. Elle assure également une traçabilité complète des opérations pour prévenir et détecter rapidement toute activité suspecte.
+
+En ce qui concerne le suivi des comptes clients, l'application intègre une base de données centralisée permettant un accès rapide et facile aux informations clients et aux transactions. Des outils de recherche et de filtrage efficaces, ainsi que des fonctionnalités de reporting et de suivi des transactions, sont disponibles pour faciliter la gestion des comptes et la prise de décision éclairée.
+
+L'application sert également de plateforme de gestion des employés pour les responsables d’agence. Elle automatisera certaines tâches administratives et répétitives, favorisera la communication et la collaboration entre les guichetiers et les responsables d’agence, et fournira des indicateurs de performance pour évaluer et améliorer la qualité du service et l'efficacité des employés.
+
+En résumé, l'application JAVA-Oracle de gestion des comptes clients pour DailyBank est une solution innovante qui vise à simplifier et à optimiser la gestion bancaire tout en garantissant un haut niveau de sécurité pour les transactions et les données.
 
 == Prérequis
 
