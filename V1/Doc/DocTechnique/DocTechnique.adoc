@@ -1,6 +1,7 @@
 = Documentation technique de l'application DailyBank V1
 :doctype: book
-:toc: left
+:toc: center
+:toclevels: 3
 :toc-title: Table des matières
 :sectnums:
 Auteurs: Yannis Gibert, Julien Couderc, Enzo Fournet
