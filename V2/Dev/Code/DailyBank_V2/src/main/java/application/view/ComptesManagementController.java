@@ -410,17 +410,20 @@ public class ComptesManagementController {
 				this.btnModifierCompte.setDisable(false);
 				this.btnSupprCompte.setDisable(false);
 				this.btnRelMens.setDisable(false);
+				this.btnPrelev.setDisable(false);
 			}	
 			else {
 				this.btnModifierCompte.setDisable(true);
 				this.btnSupprCompte.setDisable(true);
 				this.btnRelMens.setDisable(true);
+				this.btnPrelev.setDisable(true);
 			}
 		} else {
 			this.btnVoirOpes.setDisable(true);
 			this.btnModifierCompte.setDisable(true);
 			this.btnSupprCompte.setDisable(true);
 			this.btnRelMens.setDisable(true);
+			this.btnPrelev.setDisable(true);
 		}
 	}
 }
