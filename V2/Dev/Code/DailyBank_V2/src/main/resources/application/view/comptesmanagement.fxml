@@ -61,7 +61,7 @@
                         <Button fx:id="btnPrelev" mnemonicParsing="false" onAction="#gererPrelevCompte" prefHeight="31.0" prefWidth="197.0" text="Prélèvements" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="207.0" text="Simuler emprunt" />
+                  <Button fx:id="btnEmprunt" mnemonicParsing="false" onAction="#doSimulerEmprunt" prefHeight="25.0" prefWidth="207.0" text="Simuler emprunt" />
                </children>
                <BorderPane.margin>
                   <Insets right="10.0" />
