@@ -110,7 +110,7 @@ public class TestBank extends ApplicationTest {
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
-                    IntegerProperty waitingTime = new SimpleIntegerProperty(12);
+                    IntegerProperty waitingTime = new SimpleIntegerProperty(7);
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
                     stage.initStyle(StageStyle.UNDECORATED);
