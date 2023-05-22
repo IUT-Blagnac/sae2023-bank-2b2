@@ -314,6 +314,13 @@ public class ComptesManagementController {
 					font = PdfFontFactory.createFont(fontFile.getPath());
 				} catch (URISyntaxException e) {}
 
+				PdfFont boldFont = null;
+				try {
+				    URI boldUri = ComptesManagementController.class.getResource("font/helvetica-bold.ttf").toURI();
+				    File boldFontFile = new File(boldUri);
+				    boldFont = PdfFontFactory.createFont(boldFontFile.getPath());
+				} catch (URISyntaxException e) {}
+
 				document.setFont(font);
 				//ajouter les metadata
 				pdf.getDocumentInfo().setTitle("Relevé mensuel");
@@ -356,11 +363,11 @@ public class ComptesManagementController {
 				table.addHeaderCell(new Cell().add(new Paragraph("Type").setFontSize(10).setFontColor(ColorConstants.GRAY).setBold()));
 				listeOpes = this.cmDialogController.getOperationsDunCompte(this.lvComptes.getSelectionModel().getSelectedItem());
 				for (Operation currOp : listeOpes) {
-					table.addCell(currOp.idNumCompte+"").setFontSize(11).setFontColor(ColorConstants.BLACK);
-					table.addCell(currOp.dateOp+"").setFontSize(11).setFontColor(ColorConstants.BLACK);
-					table.addCell(currOp.idOperation+"").setFontSize(11).setFontColor(ColorConstants.BLACK);
-					table.addCell(currOp.montant+"").setFontSize(11).setFontColor(ColorConstants.BLACK);
-					table.addCell(currOp.idTypeOp+"").setFontSize(11).setFontColor(ColorConstants.BLACK);
+					table.addCell(new Cell().add(new Paragraph(currOp.idNumCompte+"").setFontSize(11).setFontColor(ColorConstants.BLACK)));
+					table.addCell(new Cell().add(new Paragraph(currOp.dateOp+"").setFontSize(11).setFontColor(ColorConstants.BLACK)));
+					table.addCell(new Cell().add(new Paragraph(currOp.idOperation+"").setFontSize(11).setFontColor(ColorConstants.BLACK)));
+					table.addCell(new Cell().add(new Paragraph(currOp.montant+"").setFontSize(11).setFontColor(ColorConstants.BLACK)));
+					table.addCell(new Cell().add(new Paragraph(currOp.idTypeOp+"").setFontSize(11).setFontColor(ColorConstants.BLACK)));
 				}
 
 				document.add(table);
