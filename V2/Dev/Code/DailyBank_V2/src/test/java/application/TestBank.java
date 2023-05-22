@@ -391,7 +391,7 @@ public class TestBank extends ApplicationTest {
 
         String nomVrf = "Fournet";
         String prenomVrf = "Enzo";
-        String droitVrf = "Guichetier";
+        String droitVrf = "guichetier";
         String loginVrf = "EF";
         String motPasseVrf = "enzo";
 
@@ -421,19 +421,27 @@ public class TestBank extends ApplicationTest {
 
         Employe nouvelEmpl = new Employe(nbEmploye, nomVrf, prenomVrf, droitVrf, loginVrf, motPasseVrf, dailyBankState.getAgenceActuelle().idAg);
 
-        System.out.println(nouvelEmpl.toString());
-        //[12]  FOURNET Enzo(EF)  {Guichetier}
-        //System.out.println(find(nouvelEmpl.toString()));
-        
-        ListView lvEmpl = find("#lvEmployes");
-        sleep(5000);
-        lvEmpl.scrollTo(lvEmpl.getItems().size() - 1);
-        
-        sleep(5000);
-        clickOn(nouvelEmpl.toString());
+        Platform.runLater(() -> {
+            ListView lvEmployes = find("#lvEmployes");
+            lvEmployes.scrollTo(lvEmployes.getItems().size() - 1);
 
-        sleep(10000);
-    }        
+            /*
+            * il est impossible de récupérer le nouvel employe dans la liste view donc on vérifie que le dernier employe de la liste view 
+            * est le même que nouvelEmpl directement sans utiliser l'inteface
+            */
+            assertEquals(lvEmployes.getItems().get(lvEmployes.getItems().size() - 1).toString(), nouvelEmpl.toString());
+        });
+        try {
+            employeBD = access_BD_Test.getEmploye(nouvelEmpl.login, nouvelEmpl.motPasse);
+        } catch (Exception e) {
+            assertEquals(true, false, e.toString());
+            e.printStackTrace();
+        }
+        
+        //on vérifie que l'employeBD est le même que nouvelEmpl pour être sure que les valeur présente dans la BD sont les bonnes 
+        assertEquals(employeBD.toString(), nouvelEmpl.toString());
+        
+    }
 
     /**
      * Méthode pour trouver un élément dans la fenêtre de test à partir de son id
