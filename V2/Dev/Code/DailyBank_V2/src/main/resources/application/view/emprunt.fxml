@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.OperationEditorPaneController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.EmpruntSimulationController">
    <top>
-      <Label fx:id="lblMessage" alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="borderlight" text="Emprunts et assurances" BorderPane.alignment="CENTER">
+      <Label alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="borderlight" text="Emprunts et assurances" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </BorderPane.margin>
@@ -44,18 +44,18 @@
                   <Insets right="20.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="lblMontant" alignment="CENTER_RIGHT" layoutX="21.0" layoutY="41.0" maxWidth="1.7976931348623157E308" text="Taux d'intérêt" GridPane.rowIndex="2">
+            <Label alignment="CENTER_RIGHT" layoutX="21.0" layoutY="41.0" maxWidth="1.7976931348623157E308" text="Taux d'intérêt" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin>
             </Label>
-            <TextField fx:id="txtMontant" layoutX="171.0" layoutY="23.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label fx:id="lblCompte" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="149.0" text="Durée en années" GridPane.rowIndex="1">
+            <TextField layoutX="171.0" layoutY="23.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="149.0" text="Durée en années" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin>
             </Label>
-            <TextField fx:id="txtNumCompte" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField GridPane.columnIndex="1" />
          </children>
       </GridPane>
@@ -63,12 +63,12 @@
    <bottom>
       <HBox alignment="CENTER_RIGHT" BorderPane.alignment="CENTER_RIGHT">
          <children>
-            <Button fx:id="btnOk" mnemonicParsing="false" onAction="#doAjouter" text="Valider">
+            <Button mnemonicParsing="false" text="Valider">
                <HBox.margin>
                   <Insets right="20.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#doCancel" text="Annuler" />
+            <Button mnemonicParsing="false" text="Annuler" />
          </children>
          <BorderPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

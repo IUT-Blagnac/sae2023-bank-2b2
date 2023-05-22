@@ -35,6 +35,7 @@ import com.itextpdf.kernel.font.PdfFontFactory;
 
 import application.DailyBankState;
 import application.control.ComptesManagement;
+import application.control.EmpruntSimulation;
 import application.control.PrelevManagement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -230,7 +231,9 @@ public class ComptesManagementController {
 		if (compte != null) {
 			this.oListCompteCourant.add(compte);
 		}
-	}	
+	}
+	
+	
 	
 	/**
 	 * Méthode exécutée lorsqu'un clic de souris est détecté sur la liste des comptes.
@@ -473,6 +476,15 @@ public class ComptesManagementController {
 		
 	}
 
+	/**
+	 * Simule un emprunt 
+	 * @author Julien Couderc
+	 */
+	@FXML
+	private void doSimulerEmprunt() {
+		EmpruntSimulation es = new EmpruntSimulation(this.primaryStage, this.dailyBankState);
+		es.doEmpruntSimulationDialog();
+	}
 
 	
 	/**
