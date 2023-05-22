@@ -1,7 +1,5 @@
 package model.data;
 
-import application.control.CompteEditorPane;
-
 /*
  * Attributs mis en public car cette classe ne fait que "véhiculer" des données.
  */
@@ -11,8 +9,7 @@ public class CompteCourant {
 	public int idNumCompte;
 	public int debitAutorise;
 	public double solde;
-	public String estCloture; // "O" ou "N"
-	public CompteEditorPane cep;
+	public String estCloture; // "O" ou "N";
 	public int idNumCli;
 
 	public CompteCourant(int idNumCompte, int debitAutorise, double solde, String estCloture, int idNumCli) {

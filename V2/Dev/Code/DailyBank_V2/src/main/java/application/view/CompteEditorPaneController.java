@@ -219,6 +219,7 @@ public class CompteEditorPaneController {
 	@FXML
 	private Button btnCancel;
 
+
 	
 	/**
 	 * Gère l'action de l'annulation de l'opération en cours.
