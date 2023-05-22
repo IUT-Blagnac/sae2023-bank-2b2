@@ -44,7 +44,7 @@ public class PrelevManagement {
 		this.prelevDesComptes = compte;
 		this.dailyBankState = _dbstate;
 		try {
-			FXMLLoader loader = new FXMLLoader(ComptesManagementController.class.getResource("comptesmanagement.fxml"));
+			FXMLLoader loader = new FXMLLoader(PrelevManagementController.class.getResource("prelevementsmanagement.fxml"));
 			BorderPane root = loader.load();
 
 			Scene scene = new Scene(root, root.getPrefWidth() + 50, root.getPrefHeight() + 10);
@@ -95,5 +95,88 @@ public class PrelevManagement {
 			listePrelev = new ArrayList<>();
 		}
 		return listePrelev;
+	}
+	
+	/**
+	 * Permet de créer un nouveau compte courant
+	 * 
+	 * @return le nouveau compte courant
+	 */
+	public Prelevement creerNouveauPrelev() {
+		Prelevement prelev;
+		PrelevementEditorPane cep = new PrelevementEditorPane(this.primaryStage, this.dailyBankState);
+		prelev = cep.doPrelevementEditorDialog(this.prelevDesComptes, null, EditionMode.CREATION);
+		if (prelev != null) {
+			try {
+				Access_BD_Prelevement acP= new Access_BD_Prelevement();
+				acP.insertPrelevement(prelev);
+				acP.updatePrelevement(prelev);
+				if (Math.random() < -1) {
+					throw new ApplicationException(Table.PrelevementAutomatique, Order.INSERT, "todo : test exceptions", null);
+				}
+			} catch (DatabaseConnexionException e) {
+				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
+				ed.doExceptionDialog();
+				this.primaryStage.close();
+			} catch (ApplicationException ae) {
+				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, ae);
+				ed.doExceptionDialog();
+			}
+		}
+		return prelev;
+	}
+	
+	/**
+	 * Permet de modifier les informations d'un compte
+	 * 
+	 * @param c le compte qu'on souhaite modifier
+	 * @return le compte modifié
+	 */
+	public Prelevement modifierPrelevement(Prelevement prelev) {
+		PrelevementEditorPane cep = new PrelevementEditorPane(this.primaryStage, this.dailyBankState);
+		Prelevement result = cep.doPrelevementEditorDialog(this.prelevDesComptes,prelev, EditionMode.MODIFICATION);
+		if (result != null) {
+			try {
+				Access_BD_Prelevement ac = new Access_BD_Prelevement();
+				ac.updatePrelevement(result);
+			} catch (DatabaseConnexionException e) {
+				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
+				ed.doExceptionDialog();
+				result = null;
+				this.primaryStage.close();
+			} catch (ApplicationException ae) {
+				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, ae);
+				ed.doExceptionDialog();
+				result = null;
+			}
+		}
+		return result;
+	}
+	
+	/**
+	 * Permet de cloturer un compte
+	 * 
+	 * @param compte le compte que l'on souhaite supprimer
+	 * @return le compte courant
+	 */
+	public Prelevement supprimerPrelevement(Prelevement prelev) {
+		PrelevementEditorPane pep = new PrelevementEditorPane(this.primaryStage, this.dailyBankState);
+		Prelevement result = pep.doPrelevementEditorDialog(this.prelevDesComptes,prelev, EditionMode.SUPPRESSION);
+		if (result != null) {
+			try {
+				Access_BD_Prelevement ap = new Access_BD_Prelevement();
+				ap.deletePrelevement(prelev);
+			} catch (DatabaseConnexionException e) {
+				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
+				ed.doExceptionDialog();
+				result = null;
+				this.primaryStage.close();
+			} catch (ApplicationException ae) {
+				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, ae);
+				ed.doExceptionDialog();
+				result = null;
+			}
+		}
+		return result;
 	}
 }

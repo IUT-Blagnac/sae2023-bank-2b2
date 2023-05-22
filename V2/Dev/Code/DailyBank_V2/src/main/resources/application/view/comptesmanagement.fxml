@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.ComptesManagementController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.ComptesManagementController">
    <right>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <bottom>
@@ -61,6 +61,7 @@
                         <Button fx:id="btnPrelev" mnemonicParsing="false" onAction="#gererPrelevCompte" prefHeight="31.0" prefWidth="197.0" text="Prélèvements" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="207.0" text="Simuler emprunt" />
                </children>
                <BorderPane.margin>
                   <Insets right="10.0" />
