@@ -17,8 +17,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.data.Client;
 import model.data.CompteCourant;
+import model.data.Operation;
 import model.orm.Access_BD_Client;
 import model.orm.Access_BD_CompteCourant;
+import model.orm.Access_BD_Operation;
 import model.orm.exception.ApplicationException;
 import model.orm.exception.DatabaseConnexionException;
 import model.orm.exception.Order;
@@ -194,5 +196,25 @@ public class ComptesManagement {
 			listeCpt = new ArrayList<>();
 		}
 		return listeCpt;
+	}
+
+	public ArrayList<Operation> getOperationsDunCompte(CompteCourant selectedItem) {
+		ArrayList<Operation> listeOp = new ArrayList<>();
+
+		try {
+			Access_BD_Operation aop = new Access_BD_Operation();
+			listeOp = aop.getOperations(selectedItem.idNumCompte);
+		} catch (DatabaseConnexionException e) {
+			ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
+			ed.doExceptionDialog();
+			this.primaryStage.close();
+			listeOp = new ArrayList<>();
+		} catch (ApplicationException ae) {
+			ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, ae);
+			ed.doExceptionDialog();
+			listeOp = new ArrayList<>();
+		}
+
+		return listeOp;
 	}
 }

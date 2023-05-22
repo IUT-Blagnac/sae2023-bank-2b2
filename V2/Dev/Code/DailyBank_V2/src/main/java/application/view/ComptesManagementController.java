@@ -5,19 +5,28 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.Array;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Locale;
 
 import javax.swing.border.TitledBorder;
+import javax.swing.text.StyleConstants.FontConstants;
 
+import com.itextpdf.kernel.colors.ColorConstants;
 import com.itextpdf.kernel.events.PdfDocumentEvent;
 import com.itextpdf.kernel.pdf.*;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.AreaBreak;
+import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.IBlockElement;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.properties.*;
+import com.itextpdf.io.font.*;
+import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.kernel.font.PdfFontFactory;
 
 import application.DailyBankState;
 import application.control.ComptesManagement;
@@ -38,6 +47,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.data.Client;
 import model.data.CompteCourant;
+import model.data.Operation;
 
 
 /**
@@ -266,6 +276,7 @@ public class ComptesManagementController {
 	 */
 	@FXML
 	private void doRelMens() {
+		ArrayList<Operation> listeOpes;
 		// Créez un objet FileChooser
 		FileChooser fileChooser = new FileChooser();
 
@@ -277,7 +288,7 @@ public class ComptesManagementController {
 		fileChooser.getExtensionFilters().add(exttFilter);
 		
 		//définisser le nom par défaut du fichier
-		fileChooser.setInitialFileName("releveMensuel.pdf");
+		fileChooser.setInitialFileName("Relevé mensuel - Compte " + this.lvComptes.getSelectionModel().getSelectedItem().idNumCompte + " .pdf");
 
 		// Affichez la boîte de dialogue FileChooser
 		File file = fileChooser.showSaveDialog(new Stage());
@@ -291,6 +302,15 @@ public class ComptesManagementController {
 
 				// Initialize document
 				Document document = new Document(pdf);
+
+				PdfFont font = null;
+				try {
+					URI uri = ComptesManagementController.class.getResource("font/helvetica.ttf").toURI();
+					File fontFile = new File(uri);
+					font = PdfFontFactory.createFont(fontFile.getPath());
+				} catch (URISyntaxException e) {}
+
+				document.setFont(font);
 				//ajouter les metadata
 				pdf.getDocumentInfo().setTitle("Relevé mensuel");
 				pdf.getDocumentInfo().setAuthor("DailyBank");
@@ -298,12 +318,14 @@ public class ComptesManagementController {
 				pdf.getDocumentInfo().setSubject("Relevé mensuel");
 				pdf.getDocumentInfo().setKeywords("DailyBank, Relevé mensuel");
 
+				
+
 				// Ajouter un titre centré en haut du pdf avec une police de taille 18
 				Paragraph title = new Paragraph("Relevé mensuel").setFontSize(18).setBold();
 				title.setTextAlignment(TextAlignment.CENTER);
 				document.add(title);
 				//Ajouter la date à droite du titre
-				Paragraph date = new Paragraph("Date : " + java.time.LocalDate.now()).setFontSize(12);
+				Paragraph date = new Paragraph("Date de génératio du relevé : " + java.time.LocalDate.now()).setFontSize(12);
 				date.setTextAlignment(TextAlignment.RIGHT);
 				document.add(date);
 
@@ -311,33 +333,35 @@ public class ComptesManagementController {
 				infosClient.setTextAlignment(TextAlignment.LEFT);
 				document.add(infosClient);
 
-				Paragraph infosCompte = new Paragraph("Compte : ID - " + this.lvComptes.getSelectionModel().getSelectedItem().idNumCompte).setFontSize(12);
+				Paragraph infosCompte = new Paragraph("Compte : " + this.lvComptes.getSelectionModel().getSelectedItem().idNumCompte).setFontSize(12);
 				infosCompte.setTextAlignment(TextAlignment.LEFT);
 				document.add(infosCompte);
 
-
-				document.add(new Paragraph("Hello! This is your monthly report."));
+				document.add(new Paragraph("Bonjour, vous retrouverez si dessous votre relevé mensuel :"));
 
 				//make space between paragraphs
 				document.add(new Paragraph("\n").setFontSize(30));
 
 				//ajouter un tableau
-				float[] pointColumnWidths = {150F, 150F, 150F, 150F, 150F};
-				Table table = new Table(pointColumnWidths);
-				table.addCell("Date");
-				table.addCell("ID Opération");
-				table.addCell("Crédit");
-				table.addCell("Débit");
-				table.addCell("Virement");
+				float[] pointColumnWidths = {150F, 150F, 150F, 150F, 250F};
+				Table table = new Table(pointColumnWidths);				
+				table.addHeaderCell(new Cell().add(new Paragraph("ID Compte").setFontSize(10).setFontColor(ColorConstants.GRAY).setBold()));
+				table.addHeaderCell(new Cell().add(new Paragraph("Date").setFontSize(10).setFontColor(ColorConstants.GRAY).setBold()));
+				table.addHeaderCell(new Cell().add(new Paragraph("ID Opération").setFontSize(10).setFontColor(ColorConstants.GRAY).setBold()));
+				table.addHeaderCell(new Cell().add(new Paragraph("Montant").setFontSize(10).setFontColor(ColorConstants.GRAY).setBold()));
+				table.addHeaderCell(new Cell().add(new Paragraph("Type").setFontSize(10).setFontColor(ColorConstants.GRAY).setBold()));
+				listeOpes = this.cmDialogController.getOperationsDunCompte(this.lvComptes.getSelectionModel().getSelectedItem());
+				for (Operation currOp : listeOpes) {
+					table.addCell(currOp.idNumCompte+"").setFontSize(11).setFontColor(ColorConstants.BLACK);
+					table.addCell(currOp.dateOp+"").setFontSize(11).setFontColor(ColorConstants.BLACK);
+					table.addCell(currOp.idOperation+"").setFontSize(11).setFontColor(ColorConstants.BLACK);
+					table.addCell(currOp.montant+"").setFontSize(11).setFontColor(ColorConstants.BLACK);
+					table.addCell(currOp.idTypeOp+"").setFontSize(11).setFontColor(ColorConstants.BLACK);
+				}
 
 				document.add(table);
 
 				pdf.addEventHandler(PdfDocumentEvent.END_PAGE, new FooterEventHandler(document));
-
-				for (int i = 0; i < 5; i++) {
-					document.add(new Paragraph("Ceci est une page de test " + (i + 1)));
-					if (i != 4) document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
-				}
 
 				// Close document
 				document.close();
@@ -370,16 +394,19 @@ public class ComptesManagementController {
 			this.btnVoirOpes.setDisable(false);
 			if(!this.oListCompteCourant.get(selectedIndice).isCloture()) {
 				this.btnModifierCompte.setDisable(false);
-				this.btnSupprCompte.setDisable(false);	
+				this.btnSupprCompte.setDisable(false);
+				this.btnRelMens.setDisable(false);
 			}	
 			else {
 				this.btnModifierCompte.setDisable(true);
 				this.btnSupprCompte.setDisable(true);
+				this.btnRelMens.setDisable(true);
 			}
 		} else {
 			this.btnVoirOpes.setDisable(true);
 			this.btnModifierCompte.setDisable(true);
 			this.btnSupprCompte.setDisable(true);
+			this.btnRelMens.setDisable(true);
 		}
 	}
 }

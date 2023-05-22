@@ -30,7 +30,7 @@ public class FooterEventHandler implements IEventHandler {
 
         int pageNumber = pdfDoc.getPageNumber(page);
 
-        Paragraph footer = new Paragraph("Page " + pageNumber).setFontSize(10).setFontColor(ColorConstants.GRAY);
+        Paragraph footer = new Paragraph(""+pageNumber).setFontSize(10).setFontColor(ColorConstants.GRAY);
         canvas.showTextAligned(footer, pageSize.getWidth() / 2, pageSize.getBottom() + 20, TextAlignment.CENTER);
     }
 }

@@ -41,7 +41,7 @@ public class Access_BD_Operation {
 		try {
 			Connection con = LogToDatabase.getConnexion();
 			String query = "SELECT * FROM Operation where idNumCompte = ?";
-			query += " ORDER BY dateOp";
+			query += " ORDER BY dateOp, idOperation";
 
 			PreparedStatement pst = con.prepareStatement(query);
 			pst.setInt(1, idNumCompte);
