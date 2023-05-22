@@ -5,6 +5,7 @@ import application.DailyBankState;
 import application.tools.EditionMode;
 import application.tools.StageManagement;
 import application.view.CompteEditorPaneController;
+import application.view.PrelevEditorPaneController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -12,11 +13,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.data.Client;
 import model.data.CompteCourant;
+import model.data.Prelevement;
 
 public class PrelevementEditorPane {
 
 	private Stage primaryStage;
-	private CompteEditorPaneController cepcViewController;
+	private PrelevEditorPaneController pepcViewController;
 
 	/**
 	 * Constructeur de la classe de CompteEditorPane.
@@ -29,7 +31,7 @@ public class PrelevementEditorPane {
 	public PrelevementEditorPane(Stage _parentStage, DailyBankState _dbstate) {
 
 		try {
-			FXMLLoader loader = new FXMLLoader(CompteEditorPaneController.class.getResource("compteeditorpane.fxml"));
+			FXMLLoader loader = new FXMLLoader(PrelevEditorPaneController.class.getResource("prelevementeditorpane.fxml"));
 			BorderPane root = loader.load();
 
 			Scene scene = new Scene(root, root.getPrefWidth() + 20, root.getPrefHeight() + 10);
@@ -40,11 +42,11 @@ public class PrelevementEditorPane {
 			this.primaryStage.initOwner(_parentStage);
 			StageManagement.manageCenteringStage(_parentStage, this.primaryStage);
 			this.primaryStage.setScene(scene);
-			this.primaryStage.setTitle("Gestion d'un compte");
+			this.primaryStage.setTitle("Gestion d'un prélèvement");
 			this.primaryStage.setResizable(false);
 
-			this.cepcViewController = loader.getController();
-			this.cepcViewController.initContext(this.primaryStage, _dbstate);
+			this.pepcViewController = loader.getController();
+			this.pepcViewController.initContext(this.primaryStage, _dbstate);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -62,7 +64,7 @@ public class PrelevementEditorPane {
 	 * 
 	 * @return le compte courant edité
 	 */
-	public CompteCourant doCompteEditorDialog(Client client, CompteCourant cpte, EditionMode em) {
-		return this.cepcViewController.displayDialog(client, cpte, em);
+	public Prelevement doPrelevementEditorDialog(CompteCourant compte, Prelevement prlv, EditionMode em) {
+		return this.pepcViewController.displayDialog(compte, prlv, em);
 	}
 }

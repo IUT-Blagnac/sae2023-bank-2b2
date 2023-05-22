@@ -7,10 +7,10 @@ public class Prelevement {
 	public int idNumPrelev;
 	public double debitPrelev;
 	public int idNumCompte;
-	public Date datePrelev;
+	public int datePrelev;
 	public String beneficiaire;
 
-	public Prelevement(int idNumPrelev, double debitPrelev, int idNumCompte, Date datePrelev,String beneficiaire) {
+	public Prelevement(int idNumPrelev, double debitPrelev, int idNumCompte, int datePrelev,String beneficiaire) {
 		super();
 		this.idNumPrelev = idNumPrelev;
 		this.debitPrelev = debitPrelev;

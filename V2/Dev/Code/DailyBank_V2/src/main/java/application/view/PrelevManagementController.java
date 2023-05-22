@@ -131,7 +131,16 @@ public class PrelevManagementController {
 	 */
 	@FXML
 	private void doModifierPrelev() {
-
+		int selectedIndice = this.lvPrelevement.getSelectionModel().getSelectedIndex();
+		if (selectedIndice >= 0) {
+			Prelevement prelevMod = this.oListPrelevement.get(selectedIndice);
+			Prelevement result = this.cmDialogController.modifierPrelevement(prelevMod);
+			if (result != null) {
+				this.oListPrelevement.set(selectedIndice, result);
+			}
+		}
+		this.loadList();
+		this.validateComponentState();
 	}
 
 	//Suppression d'un compte courant
@@ -142,7 +151,13 @@ public class PrelevManagementController {
 	 */
 	@FXML
 	private void doSupprimerPrelev() {
-
+		int selectedItem = this.lvPrelevement.getSelectionModel().getSelectedIndex();
+		if(selectedItem >= 0) {
+			Prelevement prelev = this.oListPrelevement.get(selectedItem);
+			this.cmDialogController.supprimerPrelevement(prelev);	
+		}
+		this.loadList();
+		this.validateComponentState();
 	}
 
 	//Ajout d'un nouveau compte courant
@@ -153,7 +168,11 @@ public class PrelevManagementController {
 	 */
 	@FXML
 	private void doNouveauPrelev() {
-
+		Prelevement prelev;
+		prelev = this.cmDialogController.creerNouveauPrelev();
+		if (prelev != null) {
+			this.oListPrelevement.add(prelev);
+		}
 	}	
 	
 
@@ -175,8 +194,8 @@ public class PrelevManagementController {
 		int selectedIndice = this.lvPrelevement.getSelectionModel().getSelectedIndex();
 		if (selectedIndice >= 0) {
 			
-			this.btnModifierPrelev.setDisable(true);
-			this.btnSupprPrelev.setDisable(true);
+			this.btnModifierPrelev.setDisable(false);
+			this.btnSupprPrelev.setDisable(false);
 			
 		} else {
 			this.btnModifierPrelev.setDisable(true);
