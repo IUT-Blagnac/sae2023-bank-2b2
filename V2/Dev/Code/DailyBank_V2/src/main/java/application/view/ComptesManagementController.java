@@ -2,7 +2,6 @@ package application.view;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Array;
@@ -16,13 +15,16 @@ import javax.swing.text.StyleConstants.FontConstants;
 
 import com.itextpdf.kernel.colors.ColorConstants;
 import com.itextpdf.kernel.events.PdfDocumentEvent;
-import com.itextpdf.kernel.pdf.*;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.AreaBreak;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.IBlockElement;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.properties.AreaBreakType;
+import com.itextpdf.layout.properties.TextAlignment;
 import com.itextpdf.layout.properties.*;
 import com.itextpdf.io.font.*;
 import com.itextpdf.kernel.font.PdfFont;
@@ -30,6 +32,7 @@ import com.itextpdf.kernel.font.PdfFontFactory;
 
 import application.DailyBankState;
 import application.control.ComptesManagement;
+import application.control.PrelevManagement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -41,7 +44,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.TilePane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -144,6 +146,8 @@ public class ComptesManagementController {
 	private Button btnModifierCompte;
 	@FXML
 	private Button btnSupprCompte;
+	@FXML
+	private Button btnPrelev;
 	@FXML
 	private Button btnRelMens;
 	private ContextMenu contextMenu = new ContextMenu();
@@ -370,6 +374,16 @@ public class ComptesManagementController {
 		        e.printStackTrace();
 		    }
 		}
+	}
+	
+	@FXML
+	public void gererPrelevCompte() {
+		int selectedIndice = this.lvComptes.getSelectionModel().getSelectedIndex();
+		if (selectedIndice >= 0) {
+			PrelevManagement pm = new PrelevManagement(this.primaryStage, this.dailyBankState, this.oListCompteCourant.get(selectedIndice));
+			pm.doPrelevManagementDialog();
+		}
+		
 	}
 
 

@@ -60,11 +60,7 @@
                   <Insets right="20.0" />
                </GridPane.margin>
             </Label>
-            <ComboBox fx:id="cbTypeCompte" maxWidth="1.7976931348623157E308" prefWidth="264.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets bottom="20.0" top="20.0" />
-               </GridPane.margin>
-            </ComboBox>
+            <TextField fx:id="txtNumCompte" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </center>
