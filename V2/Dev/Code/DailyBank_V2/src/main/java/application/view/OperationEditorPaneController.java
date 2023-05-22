@@ -66,7 +66,6 @@ public class OperationEditorPaneController {
 		this.primaryStage.setOnCloseRequest(e -> this.closeWindow(e));
 	}
 
-
 	/**
 	 * Affiche la boîte de dialogue de l'éditeur d'opérations.
 	 *
@@ -124,14 +123,10 @@ public class OperationEditorPaneController {
 			this.btnOk.setText("Effectuer Virement");
 			this.btnCancel.setText("Annuler Virement");
 
-
-
-
 			listTypesOpesPossibles = FXCollections.observableArrayList();
 			listTypesOpesPossibles.addAll(ConstantesIHM.OPERATIONS_VIREMENT_GUICHET);
 			this.cbTypeOpe.setItems(listTypesOpesPossibles);
 			this.cbTypeOpe.getSelectionModel().select(0);
-
 
 			break;
 
@@ -182,8 +177,6 @@ public class OperationEditorPaneController {
 	@FXML
 	private Button btnCancel;
 
-
-
 	/**
 	 * Annule l'opération en cours et ferme la fenêtre.
 	 */
@@ -192,7 +185,6 @@ public class OperationEditorPaneController {
 		this.operationResultat = null;
 		this.primaryStage.close();
 	}
-
 
 	/**
 	 * Ajoute l'opération en cours et ferme la fenêtre.
@@ -212,7 +204,6 @@ public class OperationEditorPaneController {
 			this.txtMontant.getStyleClass().remove("borderred");
 			this.lblMontant.getStyleClass().remove("borderred");
 			this.lblMessage.getStyleClass().remove("borderred");
-
 
 			String info = "Cpt. : " + this.compteEdite.idNumCompte + "  "
 					+ String.format(Locale.ENGLISH, "%12.02f", this.compteEdite.solde) + "  /  "
@@ -249,8 +240,6 @@ public class OperationEditorPaneController {
 			this.lblMontant.getStyleClass().remove("borderred");
 			this.lblMessage.getStyleClass().remove("borderred");
 
-
-
 			try {
 				montant = Double.parseDouble(this.txtMontant.getText().trim());
 				if (montant <= 0)
@@ -280,7 +269,6 @@ public class OperationEditorPaneController {
 			this.txtMontant.getStyleClass().remove("borderred");
 			this.lblMontant.getStyleClass().remove("borderred");
 			this.lblMessage.getStyleClass().remove("borderred");
-
 
 			try {
 				montant = Double.parseDouble(this.txtMontant.getText().trim());
@@ -313,7 +301,6 @@ public class OperationEditorPaneController {
 				return;
 			}
 
-
 			int numCompte = Integer.parseInt(txtNumCompte.getText());
 
 			int idAg = 0;
@@ -330,12 +317,14 @@ public class OperationEditorPaneController {
 				idNumCli = compteC.idNumCli;
 				Access_BD_Client ac = new Access_BD_Client();
 
+				Client c = ac.getClient(idNumCli);
+				idAg = c.idAg;
 
-				alClient = ac.getClients(-1, idNumCli, "", "");
+				alClient = ac.getClients(idAg, -1, "", "");
 
-				for(int i = 0; i < alClient.size(); i++) {
+				for (int i = 0; i < alClient.size(); i++) {
 					Client client = alClient.get(i);
-					ArrayList<CompteCourant> comptesClient = acc.getCompteCourants(idNumCli);
+					ArrayList<CompteCourant> comptesClient = acc.getCompteCourants(client.idNumCli);
 					for (CompteCourant compteCourant : comptesClient) {
 						if (!compteCourant.isCloture()) {
 							alComptesCourants.add(compteCourant);
@@ -348,22 +337,32 @@ public class OperationEditorPaneController {
 			} catch (DataAccessException e) {
 				e.printStackTrace();
 			} catch (DatabaseConnexionException e) {
-				e.printStackTrace(); 
+				e.printStackTrace();
 			}
 
 			boolean existe = false;
-			for (int i = 0; i<alComptesCourants.size();i++) {
-				if(numCompte == alComptesCourants.get(i).idNumCompte) {
+			for (int i = 0; i < alComptesCourants.size(); i++) {
+				if (numCompte == alComptesCourants.get(i).idNumCompte) {
 					existe = true;
-				}else {
-					existe = false;
+					break;
 				}
 			}
 
-			if(existe = true) {
+
+			if (existe) {
 				typeOp = this.cbTypeOpe.getValue();
-				this.operationResultat = new Operation(-1, montant, null, null, numCompte, typeOp);
-			}else {
+
+				if(numCompte != this.compteEdite.idNumCompte) {
+					this.operationResultat = new Operation(-1, montant, null, null, numCompte, typeOp);
+				}else {
+						this.lblMessage.setText("IMPOSSIBLE DE S'AUTO VIRER");
+						this.txtMontant.getStyleClass().add("borderred");
+						this.lblMontant.getStyleClass().add("borderred");
+						this.lblMessage.getStyleClass().add("borderred");
+						this.txtMontant.requestFocus();
+						return;
+				}
+			} else {
 				this.lblMessage.setText("COMPTE INEXISTANT");
 				this.txtMontant.getStyleClass().add("borderred");
 				this.lblMontant.getStyleClass().add("borderred");
@@ -372,14 +371,9 @@ public class OperationEditorPaneController {
 				return;
 			}
 
-
 			this.primaryStage.close();
 			break;
 		}
 
 	}
-
 }
-
-
-
