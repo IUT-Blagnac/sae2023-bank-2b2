@@ -6,9 +6,12 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import application.DailyBankState;
+import model.data.CompteCourant;
 import model.data.Operation;
 import model.orm.exception.DataAccessException;
 import model.orm.exception.DatabaseConnexionException;
@@ -135,7 +138,7 @@ public class Access_BD_Operation {
 	 * @throws DatabaseConnexionException Erreur de connexion
 	 * @throws ManagementRuleViolation    Si dépassement découvert autorisé
 	 */
-	public void insertDebit(int idNumCompte, double montant, String typeOp)
+	public void insertDebit(CompteCourant compte, double montant, String typeOp,DailyBankState dailyBankState)
 			throws DatabaseConnexionException, ManagementRuleViolation, DataAccessException {
 		try {
 			Connection con = LogToDatabase.getConnexion();
@@ -145,7 +148,7 @@ public class Access_BD_Operation {
 			// les ? correspondent aux paramètres : cf. déf procédure (4 paramètres)
 			call = con.prepareCall(q);
 			// Paramètres in
-			call.setInt(1, idNumCompte);
+			call.setInt(1, compte.idNumCompte);
 			// 1 -> valeur du premier paramètre, cf. déf procédure
 			call.setDouble(2, montant);
 			call.setString(3, typeOp);
@@ -156,13 +159,61 @@ public class Access_BD_Operation {
 			call.execute();
 
 			int res = call.getInt(4);
-
-			if (res != 0) { // Erreur applicative
+			if (res != 0 && !dailyBankState.isChefDAgence()) { // Erreur applicative
 				throw new ManagementRuleViolation(Table.Operation, Order.INSERT,
 						"Erreur de règle de gestion : découvert autorisé dépassé", null);
 			}
+			else if (res != 0 && dailyBankState.isChefDAgence())  {
+				String query = "INSERT INTO Operation VALUES (" + "seq_id_operation.NEXTVAL" + ", " + "?" + ", " + "?" + ", "
+						+ "?" + ", " + "?" + "," +"?" + ")";
+				String queryy = "UPDATE CompteCourant SET " + "solde = ? " + "WHERE idNumCompte = ?";
+				PreparedStatement pst = con.prepareStatement(query);
+				PreparedStatement pstt = con.prepareStatement(queryy);
+				pst.setDouble(1, montant);
+				pst.setDate(2, Date.valueOf(LocalDate.now()));
+				pst.setDate(3,Date.valueOf(LocalDate.now().plusDays(2)));
+				pst.setInt(4, compte.idNumCompte);
+				pst.setString(5,typeOp);
+
+				pstt.setDouble(1, compte.solde - montant);
+				pstt.setInt(2, compte.idNumCompte);
+				System.err.println(query);
+				System.err.println(queryy);
+
+				int result = pst.executeUpdate();
+				int result1 = pstt.executeUpdate();
+				pst.close();
+				if (result != 1 || result1 != 1) {
+					con.rollback();
+					throw new RowNotFoundOrTooManyRowsException(Table.Operation, Order.INSERT,
+							"Insert anormal (insert de moins ou plus d'une ligne)", null, result);
+				}
+
+				query = "SELECT seq_id_operation.CURRVAL from DUAL";
+
+				System.err.println(query);
+				System.err.println(queryy);
+				PreparedStatement pst4 = con.prepareStatement(query);
+				PreparedStatement pst5 = con.prepareStatement(queryy);
+				ResultSet rs = pst4.executeQuery();
+				ResultSet rss = pst5.executeQuery();
+				rss.next();
+				rs.next();
+
+				
+				con.commit();
+				rss.close();
+				pst5.close();
+				rs.close();
+				pst4.close();
+				//INSERT INTO Operation (idOperation, montant, dateValeur, idNumCompte, idTypeOp)
+			}
+			
 		} catch (SQLException e) {
 			throw new DataAccessException(Table.Operation, Order.INSERT, "Erreur accès", e);
+		} catch (RowNotFoundOrTooManyRowsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
@@ -197,13 +248,13 @@ public class Access_BD_Operation {
 		}
 	}
 	
-	public void insertVirement(int idNumCompteSource, int idNumCompteDest, double montant, String typeOp)
+	public void insertVirement(CompteCourant compte, int idNumCompteDest, double montant, String typeOp, DailyBankState dailyBankState)
 	        throws DatabaseConnexionException, ManagementRuleViolation, DataAccessException {
 	    try {
 	        Access_BD_Operation ao = new Access_BD_Operation();
 	        
 	        // Débiter le compte source
-	        ao.insertDebit(idNumCompteSource, montant, typeOp);
+	        ao.insertDebit(compte, montant, typeOp,dailyBankState);
 	        
 	        // Créditer le compte destination
 	        ao.insertCredit(idNumCompteDest, montant, typeOp);

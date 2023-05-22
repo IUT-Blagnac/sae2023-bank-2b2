@@ -14,6 +14,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -76,7 +77,8 @@ public class OperationEditorPaneController {
 	public Operation displayDialog(CompteCourant cpte, CategorieOperation mode) {
 		this.categorieOperation = mode;
 		this.compteEdite = cpte;
-
+		this.btnExceptionnel.setDisable(true);
+		this.btnExceptionnel.setSelected(false);
 		switch (mode) {
 		case DEBIT:
 
@@ -86,7 +88,8 @@ public class OperationEditorPaneController {
 			this.lblMessage.setText(info);
 			this.lblCompte.setVisible(false);
 			this.txtNumCompte.setVisible(false);
-
+			if(this.dailyBankState.isChefDAgence())
+				this.btnExceptionnel.setDisable(false);
 			this.btnOk.setText("Effectuer Débit");
 			this.btnCancel.setText("Annuler débit");
 
@@ -167,11 +170,15 @@ public class OperationEditorPaneController {
 	@FXML
 	private Label lblCompte;
 	@FXML
+	private Label lblExceptionnel;
+	@FXML
 	private ComboBox<String> cbTypeOpe;
 	@FXML
 	private TextField txtNumCompte;
 	@FXML
 	private TextField txtMontant;
+	@FXML
+	private RadioButton btnExceptionnel;
 	@FXML
 	private Button btnOk;
 	@FXML
@@ -220,7 +227,8 @@ public class OperationEditorPaneController {
 				this.txtMontant.requestFocus();
 				return;
 			}
-			if (this.compteEdite.solde - montant < this.compteEdite.debitAutorise) {
+			if (this.compteEdite.solde - montant < this.compteEdite.debitAutorise && !this.btnExceptionnel.isSelected()) {
+				System.out.println(" pas exceptionnel");
 				info = "Dépassement du découvert ! - Cpt. : " + this.compteEdite.idNumCompte + "  "
 						+ String.format(Locale.ENGLISH, "%12.02f", this.compteEdite.solde) + "  /  "
 						+ String.format(Locale.ENGLISH, "%8d", this.compteEdite.debitAutorise);
@@ -231,6 +239,7 @@ public class OperationEditorPaneController {
 				this.txtMontant.requestFocus();
 				return;
 			}
+			System.out.println(""+montant);
 			String typeOp = this.cbTypeOpe.getValue();
 			this.operationResultat = new Operation(-1, montant, null, null, this.compteEdite.idNumCli, typeOp);
 			this.primaryStage.close();

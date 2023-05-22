@@ -89,7 +89,7 @@ public class OperationsManagement {
 			try {
 				Access_BD_Operation ao = new Access_BD_Operation();
 
-				ao.insertDebit(this.compteConcerne.idNumCompte, op.montant, op.idTypeOp);
+				ao.insertDebit(this.compteConcerne, op.montant, op.idTypeOp,this.dailyBankState);
 
 			} catch (DatabaseConnexionException e) {
 				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
@@ -146,7 +146,7 @@ public class OperationsManagement {
 	        try {
 	            Access_BD_Operation ao = new Access_BD_Operation();
 	            // Appeler la procédure de virement SQL
-	            ao.insertVirement(this.compteConcerne.idNumCompte,op.idNumCompte , op.montant, op.idTypeOp);
+	            ao.insertVirement(this.compteConcerne,op.idNumCompte , op.montant, op.idTypeOp,this.dailyBankState);
 	            
 
 	        } catch (DatabaseConnexionException e) {
