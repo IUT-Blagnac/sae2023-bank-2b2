@@ -20,16 +20,16 @@ import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.properties.TextAlignment;
 import com.itextpdf.layout.properties.UnitValue;
 
-import application.model.data.AgenceBancaire;
-import application.model.data.Client;
-import application.model.data.CompteCourant;
-import application.model.data.Operation;
-import application.model.orm.Access_BD_AgenceBancaire;
-import application.model.orm.Access_BD_Client;
-import application.model.orm.Access_BD_CompteCourant;
-import application.model.orm.Access_BD_Operation;
-import application.model.orm.exception.DatabaseConnexionException;
-import application.model.pdf.FooterEventHandler;
+import model.data.AgenceBancaire;
+import model.data.Client;
+import model.data.CompteCourant;
+import model.data.Operation;
+import model.orm.Access_BD_AgenceBancaire;
+import model.orm.Access_BD_Client;
+import model.orm.Access_BD_CompteCourant;
+import model.orm.Access_BD_Operation;
+import model.orm.exception.DatabaseConnexionException;
+import model.pdf.FooterEventHandler;
 
 import com.itextpdf.layout.element.Table;
 

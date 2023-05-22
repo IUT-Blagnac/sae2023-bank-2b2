@@ -1,11 +1,11 @@
-package application.model.orm;
+package model.orm;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.SQLTimeoutException;
 
-import application.model.orm.exception.DatabaseConnexionException;
+import model.orm.exception.DatabaseConnexionException;
 
 /*
  * ---------------------------------------------------------------------

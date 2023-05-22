@@ -1,4 +1,4 @@
-package application.model.orm;
+package model.orm;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,13 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import application.model.data.Client;
-import application.model.data.Employe;
-import application.model.orm.exception.DataAccessException;
-import application.model.orm.exception.DatabaseConnexionException;
-import application.model.orm.exception.Order;
-import application.model.orm.exception.RowNotFoundOrTooManyRowsException;
-import application.model.orm.exception.Table;
+import model.data.Client;
+import model.data.Employe;
+import model.orm.exception.DataAccessException;
+import model.orm.exception.DatabaseConnexionException;
+import model.orm.exception.Order;
+import model.orm.exception.RowNotFoundOrTooManyRowsException;
+import model.orm.exception.Table;
 
 /**
  * Classe d'accès aux Client en BD Oracle.

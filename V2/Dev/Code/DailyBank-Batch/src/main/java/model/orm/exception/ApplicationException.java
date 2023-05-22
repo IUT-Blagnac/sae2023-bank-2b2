@@ -1,4 +1,4 @@
-package application.model.orm.exception;
+package model.orm.exception;
 
 /**
  * Classe générale des exceptions applicatives

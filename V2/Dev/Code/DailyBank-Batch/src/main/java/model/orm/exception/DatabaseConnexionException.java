@@ -1,4 +1,4 @@
-package application.model.orm.exception;
+package model.orm.exception;
 
 /**
  * Erreur de connexion à la bd. Impossible d'établir une connexion sur la bd.

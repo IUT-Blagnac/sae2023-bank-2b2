@@ -1,4 +1,4 @@
-package application.model.orm.exception;
+package model.orm.exception;
 
 /**
  * Ordres (opérations) possibles sur la base de données

@@ -379,7 +379,7 @@ public class TestBank extends ApplicationTest {
         assertEquals(null, employeBD);
     }
 
-    //@Test pas encore fonctionnel
+    @Test //pas encore fonctionnel
     public void testNouvelEmploye() {
         Access_BD_Test access_BD_Test = new Access_BD_Test();
         Employe employeBD = null;
@@ -394,10 +394,6 @@ public class TestBank extends ApplicationTest {
         String droitVrf = "Guichetier";
         String loginVrf = "EF";
         String motPasseVrf = "enzo";
-
-
-       
-
 
         ((TextField) find("#txtNom")).setText(nomVrf);
         ((TextField) find("#txtPrenom")).setText(prenomVrf);
@@ -427,10 +423,13 @@ public class TestBank extends ApplicationTest {
 
         System.out.println(nouvelEmpl.toString());
         //[12]  FOURNET Enzo(EF)  {Guichetier}
-        System.out.println(find(nouvelEmpl.toString()));
-
-        sleep(10000);
+        //System.out.println(find(nouvelEmpl.toString()));
         
+        ListView lvEmpl = find("#lvEmployes");
+        sleep(5000);
+        lvEmpl.scrollTo(lvEmpl.getItems().size() - 1);
+        
+        sleep(5000);
         clickOn(nouvelEmpl.toString());
 
         sleep(10000);

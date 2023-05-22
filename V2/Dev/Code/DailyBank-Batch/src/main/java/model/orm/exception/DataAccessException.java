@@ -1,4 +1,4 @@
-package application.model.orm.exception;
+package model.orm.exception;
 
 /**
  * Erreur d'accès à la bd. Une requête a été soumise et aboutit à une erreur

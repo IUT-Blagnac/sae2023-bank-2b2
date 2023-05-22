@@ -1,4 +1,4 @@
-package application.model.orm;
+package model.orm;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -7,14 +7,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import application.model.data.CompteCourant;
-import application.model.data.Prelevement;
-import application.model.orm.exception.DataAccessException;
-import application.model.orm.exception.DatabaseConnexionException;
-import application.model.orm.exception.ManagementRuleViolation;
-import application.model.orm.exception.Order;
-import application.model.orm.exception.RowNotFoundOrTooManyRowsException;
-import application.model.orm.exception.Table;
+import model.data.CompteCourant;
+import model.data.Prelevement;
+import model.orm.exception.DataAccessException;
+import model.orm.exception.DatabaseConnexionException;
+import model.orm.exception.ManagementRuleViolation;
+import model.orm.exception.Order;
+import model.orm.exception.RowNotFoundOrTooManyRowsException;
+import model.orm.exception.Table;
 
 /**
  *

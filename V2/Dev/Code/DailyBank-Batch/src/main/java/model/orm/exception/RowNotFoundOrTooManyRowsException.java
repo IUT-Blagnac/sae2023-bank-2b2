@@ -1,4 +1,4 @@
-package application.model.orm.exception;
+package model.orm.exception;
 
 /**
  * Erreur applicative sur un ordre select/insert/update/delete "monoligne".

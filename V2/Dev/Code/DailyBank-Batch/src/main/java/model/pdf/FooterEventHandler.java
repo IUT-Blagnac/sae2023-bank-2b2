@@ -1,4 +1,4 @@
-package application.model.pdf;
+package model.pdf;
 
 import com.itextpdf.kernel.colors.ColorConstants;
 import com.itextpdf.kernel.events.Event;

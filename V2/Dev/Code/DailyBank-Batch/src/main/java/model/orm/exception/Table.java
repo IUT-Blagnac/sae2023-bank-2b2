@@ -1,4 +1,4 @@
-package application.model.orm.exception;
+package model.orm.exception;
 
 /**
  * Liste des tables de la base (noms symboliques pour l'application)
