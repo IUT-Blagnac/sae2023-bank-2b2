@@ -68,8 +68,6 @@ public class EmpruntSimulation {
 	 * @return le compte courant edité
 	 */
 	public void doEmpruntSimulationDialog() {
-		System.out.println("test");
 		 this.esViewController.displayDialog();
-		 System.out.println("test2");
 	}
 }
