@@ -29,7 +29,7 @@ public class EmpruntSimulation {
 	 * 
 	 * @author Julien Couderc
 	 */
-	public EmpruntSimulation(Stage _parentStage, DailyBankState _dbstate) {
+	public EmpruntSimulation(Stage _parentStage, DailyBankState _dbstate, Client client) {
 
 		try {
 			FXMLLoader loader = new FXMLLoader(EmpruntSimulationController.class.getResource("emprunt.fxml"));
@@ -47,7 +47,7 @@ public class EmpruntSimulation {
 			this.primaryStage.setResizable(false);
 
 			this.esViewController = loader.getController();
-			this.esViewController.initContext(this.primaryStage, _dbstate);
+			this.esViewController.initContext(this.primaryStage, _dbstate, client);
 
 		} catch (Exception e) {
 			e.printStackTrace();

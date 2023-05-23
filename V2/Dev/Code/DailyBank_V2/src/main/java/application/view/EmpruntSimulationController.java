@@ -45,8 +45,9 @@ public class EmpruntSimulationController {
 	// Fenêtre physique ou est la scène contenant le fichier xml contrôlé par this
 	private Stage primaryStage;
 
-	// Données de la fenêtre
-	private CompteCourant prelevDuCompte;
+	private Client client;
+
+
 
 	@FXML
 	private TextField txtMontant;
@@ -55,11 +56,17 @@ public class EmpruntSimulationController {
 	@FXML
 	private TextField txtTaux;
 	@FXML
+	private Label lblMontant;
+	@FXML
+	private Label lblDuree;
+	@FXML
+	private Label lblTaux;
+	@FXML
+	private Label lblInfo;
+	@FXML
 	private Button btnSimuler;
 	@FXML
 	private Button btnAnnuler;
-	@FXML
-	private Label lblResultat;
 
 	// Manipulation de la fenêtre
 
@@ -71,21 +78,22 @@ public class EmpruntSimulationController {
 	 * @param _dbstate         L'état courant de l'application
 	 * @param client           Le client associé aux comptes
 	 */
-	public void initContext(Stage _containingStage,DailyBankState _dbstate) {
+	public void initContext(Stage _containingStage, DailyBankState _dbstate, Client client) {
 		this.primaryStage = _containingStage;
 		this.dailyBankState = _dbstate;
+		this.client = client;
 		this.configure();
 	}
 
 	private void configure() {
 		this.primaryStage.setOnCloseRequest(e -> this.closeWindow(e));
 	}
-	
+
 	public void displayDialog() {
 		this.primaryStage.showAndWait();
 	}
-	
-	
+
+
 	// Gestion du stage
 
 	/**
@@ -107,102 +115,158 @@ public class EmpruntSimulationController {
 	private void doCancel() {
 		this.primaryStage.close();
 	}
-	
+
 	@FXML
 	private void doSimulerEmprunt() {
-		double montant = Double.parseDouble(txtMontant.getText());
-	    int duree = Integer.parseInt(txtDuree.getText());
-	    double taux = Double.parseDouble(txtTaux.getText());
+		double montant; 
+		int duree;
+		double taux;
+		
+		this.txtMontant.getStyleClass().remove("borderred");
+		this.lblMontant.getStyleClass().remove("borderred");
+		this.txtDuree.getStyleClass().remove("borderred");
+		this.lblDuree.getStyleClass().remove("borderred");
+		this.txtTaux.getStyleClass().remove("borderred");
+		this.lblTaux.getStyleClass().remove("borderred");
+		
+		try {
+			montant = Double.parseDouble(txtMontant.getText());
+			if (montant <= 0)
+				throw new NumberFormatException();
+		} catch (NumberFormatException nfe) {
+			this.txtMontant.getStyleClass().add("borderred");
+			this.lblMontant.getStyleClass().add("borderred");
+			this.txtMontant.requestFocus();
+			return;
+		}
+		try {
+			duree = Integer.parseInt(txtDuree.getText());
+			if (duree <= 0)
+				throw new NumberFormatException();
+		} catch (NumberFormatException nfe) {
+			this.txtDuree.getStyleClass().add("borderred");
+			this.lblDuree.getStyleClass().add("borderred");
+			this.txtDuree.requestFocus();
+			return;
+		}
+		try {
+			taux = Double.parseDouble(txtTaux.getText());
+			if (taux <= 0)
+				throw new NumberFormatException();
+		} catch (NumberFormatException nfe) {
+			this.txtTaux.getStyleClass().add("borderred");
+			this.lblTaux.getStyleClass().add("borderred");
+			this.txtTaux.requestFocus();
+			return;
+		}
 
-	    double mensualite = calculerMensualite(montant, duree, taux);
-	    double capitalRestantDebutPeriode = montant;
-	    double capitalRestantFinPeriode = capitalRestantDebutPeriode;
+		double mensualite = calculerMensualite(montant, duree, taux);
+		double capitalRestantDebutPeriode = montant;
+		double capitalRestantFinPeriode = capitalRestantDebutPeriode;
 
-	    DecimalFormat decimalFormat = new DecimalFormat("0.00");
+		DecimalFormat decimalFormat = new DecimalFormat("0.00");
 
-	    // Créer une StringBuilder pour construire le tableau de remboursement
-	    StringBuilder tableauRemboursementBuilder = new StringBuilder();
-	   
-	    for (int periode = 1; periode <= duree * 12; periode++) {
-	        double interets = capitalRestantDebutPeriode * (taux / 100 / 12);
-	        double principal = mensualite - interets;
-	        capitalRestantFinPeriode = capitalRestantDebutPeriode - principal;
+		// Créer une StringBuilder pour construire le tableau de remboursement
+		StringBuilder tableauRemboursementBuilder = new StringBuilder();
 
-	        tableauRemboursementBuilder.append(periode).append("\t")
-	                .append(decimalFormat.format(capitalRestantDebutPeriode)).append("\t")
-	                .append(decimalFormat.format(interets)).append("\t")
-	                .append(decimalFormat.format(principal)).append("\t")
-	                .append(decimalFormat.format(mensualite)).append("\t")
-	                .append(decimalFormat.format(capitalRestantFinPeriode)).append("\n");
+		for (int periode = 1; periode <= duree * 12; periode++) {
+			double interets = capitalRestantDebutPeriode * (taux / 100 / 12);
+			double principal = mensualite - interets;
+			capitalRestantFinPeriode = capitalRestantDebutPeriode - principal;
 
-	        capitalRestantDebutPeriode = capitalRestantFinPeriode;
-	    }
+			tableauRemboursementBuilder.append(periode).append("\t")
+			.append(decimalFormat.format(capitalRestantDebutPeriode)).append("\t")
+			.append(decimalFormat.format(interets)).append("\t")
+			.append(decimalFormat.format(principal)).append("\t")
+			.append(decimalFormat.format(mensualite)).append("\t")
+			.append(decimalFormat.format(capitalRestantFinPeriode)).append("\n");
 
-	    String tableauRemboursement = tableauRemboursementBuilder.toString();
+			capitalRestantDebutPeriode = capitalRestantFinPeriode;
+		}
 
-	    generatePDF(tableauRemboursement);
+		String tableauRemboursement = tableauRemboursementBuilder.toString();
+
+		generatePDF(tableauRemboursement);
 	}
-	
+
 	/**
-     * Génère un fichier PDF contenant le tableau d'amortissement du prêt.
-     *
-     * @param tableauRemboursement Le tableau d'amortissement au format String
-     */
-    private void generatePDF(String tableauRemboursement) {
-        try {
-            // Créer un objet FileChooser pour sélectionner le fichier de sauvegarde
-            FileChooser fileChooser = new FileChooser();
-            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PDF files (*.pdf)", "*.pdf");
-            fileChooser.getExtensionFilters().add(extFilter);
-            fileChooser.setInitialFileName("Tableau_amortissement.pdf");
+	 * Génère un fichier PDF contenant le tableau d'amortissement du prêt.
+	 *
+	 * @param tableauRemboursement Le tableau d'amortissement au format String
+	 */
+	private void generatePDF(String tableauRemboursement) {
+		try {
+			// Créer un objet FileChooser pour sélectionner le fichier de sauvegarde
+			FileChooser fileChooser = new FileChooser();
+			FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PDF files (*.pdf)", "*.pdf");
+			fileChooser.getExtensionFilters().add(extFilter);
+			fileChooser.setInitialFileName("Tableau_amortissement.pdf");
 
-            // Afficher la boîte de dialogue FileChooser
-            File file = fileChooser.showSaveDialog(primaryStage);
-            if (file != null) {
-                // Créer un nouveau document PDF
-                PdfWriter writer = new PdfWriter(file.getPath());
-                PdfDocument pdf = new PdfDocument(writer);
-                Document document = new Document(pdf, PageSize.A4);
+			// Afficher la boîte de dialogue FileChooser
+			File file = fileChooser.showSaveDialog(primaryStage);
+			if (file != null) {
+				// Créer un nouveau document PDF
+				PdfWriter writer = new PdfWriter(file.getPath());
+				PdfDocument pdf = new PdfDocument(writer);
+				Document document = new Document(pdf, PageSize.A4);
 
-                PdfFont font = null;
+				PdfFont font = null;
+				PdfFont contentFont = null;
 				try {
-					URI uri = ComptesManagementController.class.getResource("font/Helvetica.ttf").toURI();
+					URI uri = ComptesManagementController.class.getResource("font/Helvetica-Bold.ttf").toURI();
 					File fontFile = new File(uri);
 					font = PdfFontFactory.createFont(fontFile.getPath());
+					URI uri2 = ComptesManagementController.class.getResource("font/Helvetica-Light.ttf").toURI();
+					File fontFile2 = new File(uri2);
+					contentFont = PdfFontFactory.createFont(fontFile2.getPath());
 				} catch (URISyntaxException e) {}
 
-                // Ajouter le titre
-                Paragraph title = new Paragraph("Tableau d'amortissement de prêt").setFont(font).setFontSize(18).setBold();
-                title.setTextAlignment(TextAlignment.CENTER);
-                document.add(title);
+				// Ajouter le titre
+				Paragraph title = new Paragraph("Tableau d'amortissement de prêt").setFont(font).setFontSize(18);
+				title.setTextAlignment(TextAlignment.CENTER);
+				document.add(title);
 
-                // Ajouter le tableau d'amortissement
-                Table table = new Table(6);
-                table.setWidth(UnitValue.createPercentValue(100));
-                table.addCell("Numéro période").setFont(font).setFontSize(10).setBold();
-                table.addCell("Capital Restant du en début de période").setFont(font).setFontSize(10).setBold();
-                table.addCell("Montant des intérêts").setFont(font).setFontSize(10).setBold();
-                table.addCell("Montant du principal").setFont(font).setFontSize(10).setBold();
-                table.addCell("Montant à rembourser (Mensualité)").setFont(font).setFontSize(10).setBold();
-                table.addCell("Capital Restant du en fin de période").setFont(font).setFontSize(10).setBold();
+				//Ajouter la date à droite du titre
+				Paragraph date = new Paragraph("Date de la simulation de l'emprunt : " + java.time.LocalDate.now()).setFontSize(12);
+				date.setTextAlignment(TextAlignment.RIGHT);
+				document.add(date);
 
-                String[] rows = tableauRemboursement.split("\n");
-                for (String row : rows) {
-                    String[] cells = row.split("\t");
-                    for (String cell : cells) {
-                        table.addCell(cell).setFont(font).setFontSize(10);
-                    }
-                }
+				Paragraph infosClient = new Paragraph(
+						"Client : " + this.client.nom + " " + this.client.prenom + " (ID : " + this.client.idNumCli + ") \n" +
+								this.client.email + "\n" +
+								this.client.adressePostale + "\n" +
+								"De l'agence : " + this.dailyBankState.getAgenceActuelle().nomAg + " (ID : " + this.dailyBankState.getAgenceActuelle().idAg + ")"
+						).setFontSize(12);
+				infosClient.setTextAlignment(TextAlignment.LEFT);
+				document.add(infosClient);
 
-                document.add(table);
+				// Ajouter le tableau d'amortissement
+				Table table = new Table(6);
+				table.setWidth(UnitValue.createPercentValue(100));
+				table.addCell("Numéro période").setFont(font).setFontSize(10);
+				table.addCell("Capital Restant du en début de période").setFont(font).setFontSize(10);
+				table.addCell("Montant des intérêts").setFont(font).setFontSize(10);
+				table.addCell("Montant du principal").setFont(font).setFontSize(10);
+				table.addCell("Montant à rembourser (Mensualité)").setFont(font).setFontSize(10);
+				table.addCell("Capital Restant du en fin de période").setFont(font).setFontSize(10);
 
-                // Fermer le document
-                document.close();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+				String[] rows = tableauRemboursement.split("\n");
+				for (String row : rows) {
+					String[] cells = row.split("\t");
+					for (String cell : cells) {
+						table.addCell(cell).setFont(contentFont).setFontSize(10);
+					}
+				}
+
+				document.add(table);
+
+				// Fermer le document
+				document.close();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 
 	private double calculerMensualite(double montant, int duree, double taux) {

@@ -483,7 +483,7 @@ public class ComptesManagementController {
 	 */
 	@FXML
 	private void doSimulerEmprunt() {
-		EmpruntSimulation es = new EmpruntSimulation(this.primaryStage, this.dailyBankState);
+		EmpruntSimulation es = new EmpruntSimulation(this.primaryStage, this.dailyBankState, this.clientDesComptes);
 		es.doEmpruntSimulationDialog();
 	}
 
