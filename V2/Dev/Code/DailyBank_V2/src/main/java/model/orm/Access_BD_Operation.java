@@ -166,47 +166,45 @@ public class Access_BD_Operation {
 			else if (res != 0 && dailyBankState.isChefDAgence())  {
 				String query = "INSERT INTO Operation VALUES (" + "seq_id_operation.NEXTVAL" + ", " + "?" + ", " + "?" + ", "
 						+ "?" + ", " + "?" + "," +"?" + ")";
-				String queryy = "UPDATE CompteCourant SET " + "solde = ? " + "WHERE idNumCompte = ?";
 				PreparedStatement pst = con.prepareStatement(query);
-				PreparedStatement pstt = con.prepareStatement(queryy);
 				pst.setDouble(1, montant);
 				pst.setDate(2, Date.valueOf(LocalDate.now()));
 				pst.setDate(3,Date.valueOf(LocalDate.now().plusDays(2)));
 				pst.setInt(4, compte.idNumCompte);
 				pst.setString(5,typeOp);
-
-				pstt.setDouble(1, compte.solde - montant);
-				pstt.setInt(2, compte.idNumCompte);
 				System.err.println(query);
-				System.err.println(queryy);
 
 				int result = pst.executeUpdate();
-				int result1 = pstt.executeUpdate();
 				pst.close();
-				if (result != 1 || result1 != 1) {
+				if (result != 1) {
 					con.rollback();
 					throw new RowNotFoundOrTooManyRowsException(Table.Operation, Order.INSERT,
 							"Insert anormal (insert de moins ou plus d'une ligne)", null, result);
 				}
 
 				query = "SELECT seq_id_operation.CURRVAL from DUAL";
-
 				System.err.println(query);
-				System.err.println(queryy);
 				PreparedStatement pst4 = con.prepareStatement(query);
-				PreparedStatement pst5 = con.prepareStatement(queryy);
 				ResultSet rs = pst4.executeQuery();
-				ResultSet rss = pst5.executeQuery();
-				rss.next();
 				rs.next();
+				String queryy = "UPDATE CompteCourant SET " + "solde = ? " + "WHERE idNumCompte = ?";
 
+				PreparedStatement pstt = con.prepareStatement(queryy);
+				pstt.setDouble(1, compte.solde - montant);
+				pstt.setInt(2, compte.idNumCompte);
+				System.err.println(queryy);
+
+				int result1 = pstt.executeUpdate();
+				pstt.close();
+				if (result1 != 1) {
+					con.rollback();
+					throw new RowNotFoundOrTooManyRowsException(Table.CompteCourant, Order.UPDATE,
+							"Update anormal (update de moins ou plus d'une ligne)", null, result1);
+				}
 				
 				con.commit();
-				rss.close();
-				pst5.close();
 				rs.close();
 				pst4.close();
-				//INSERT INTO Operation (idOperation, montant, dateValeur, idNumCompte, idTypeOp)
 			}
 			
 		} catch (SQLException e) {
