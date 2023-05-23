@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.TextField;
@@ -89,6 +90,7 @@ public class EmployeEditorPaneController {
 			this.menuBtnDroitAccess.setDisable(false);
 			this.txtLogin.setDisable(false);
 			this.txtMotPasse.setDisable(false);
+			this.txtConfrMotPasse.setDisable(false);
 			this.txtIdAgence.setDisable(true);
 			
 			this.lblMessage.setText("Informations sur le nouvel employé");
@@ -110,6 +112,7 @@ public class EmployeEditorPaneController {
 			
 			this.txtLogin.setDisable(false);
 			this.txtMotPasse.setDisable(false);
+			this.txtConfrMotPasse.setDisable(false);
 			this.txtIdAgence.setDisable(true);
 			
 			this.lblMessage.setText("Modifications employé");
@@ -128,6 +131,7 @@ public class EmployeEditorPaneController {
 			}
 			this.txtLogin.setDisable(true);
 			this.txtMotPasse.setDisable(true);
+			this.txtConfrMotPasse.setDisable(true);
 			this.txtIdAgence.setDisable(true);
 
 			this.lblMessage.setText("Consultation employé");
@@ -146,6 +150,7 @@ public class EmployeEditorPaneController {
 			}
 			this.txtLogin.setDisable(true);
 			this.txtMotPasse.setDisable(true);
+			this.txtConfrMotPasse.setDisable(true);
 			this.txtIdAgence.setDisable(true);
 
 			this.lblMessage.setText("Suppression d'un employé");
@@ -163,6 +168,7 @@ public class EmployeEditorPaneController {
 		this.txtPrenom.setText(this.employeEdite.prenom);
 		this.txtLogin.setText(this.employeEdite.login);
 		this.txtMotPasse.setText(this.employeEdite.motPasse);
+		this.txtConfrMotPasse.setText(this.employeEdite.motPasse);
 		this.txtIdAgence.setText("" + this.employeEdite.idAg);
 
 		
@@ -203,7 +209,9 @@ public class EmployeEditorPaneController {
 	@FXML
 	private TextField txtLogin;
 	@FXML
-	private TextField txtMotPasse;
+	private PasswordField txtMotPasse;
+	@FXML
+	private PasswordField txtConfrMotPasse;
 	@FXML
 	private TextField txtIdAgence;
 	@FXML
@@ -272,8 +280,9 @@ public class EmployeEditorPaneController {
 				this.employeEdite.droitsAccess = "guichetier";
 			}
 		}
+		
 		this.employeEdite.login = this.txtLogin.getText().trim();
-		this.employeEdite.motPasse = this.txtMotPasse.getText().trim();
+		this.employeEdite.motPasse = this.txtConfrMotPasse.getText().trim();
 		this.employeEdite.idAg = Integer.parseInt(this.txtIdAgence.getText().trim());
 
 		if (this.employeEdite.nom.isEmpty()) {
@@ -300,15 +309,50 @@ public class EmployeEditorPaneController {
 			this.txtLogin.requestFocus();
 			return false;
 		}
-		if (this.employeEdite.motPasse.isEmpty()) {
+		this.employeEdite.login = this.txtLogin.getText().trim();
+		if (this.txtMotPasse.getText().trim().isEmpty()) {
 			AlertUtilities.showAlert(this.primaryStage, "Erreur de saisie", null, "Le mot de passe ne doit pas être vide",
 					AlertType.WARNING);
 			this.txtMotPasse.requestFocus();
 			return false;
 		}
+		if (!this.txtMotPasse.getText().trim().equals(this.txtConfrMotPasse.getText().trim())) {
+			AlertUtilities.showAlert(this.primaryStage, "Erreur de saisie", null, "Le mot de passe et sa confirmation doivent être identiques",
+					AlertType.WARNING);
+			this.txtMotPasse.requestFocus();
+			return false;
+		}
+		if (this.txtMotPasse.getText().trim().length() < 8 || this.txtMotPasse.getText().trim().length() > 16) {
+			AlertUtilities.showAlert(this.primaryStage, "Erreur de saisie", null, "Le mot de passe doit contenir entre 8 et 16 caractères",
+					AlertType.WARNING);
+			this.txtMotPasse.requestFocus();
+			return false;
+		}
+		if (!isValid(this.txtMotPasse.getText().trim())) {
+			AlertUtilities.showAlert(this.primaryStage, "Erreur de saisie", null, "Le mot de passe ne doit contenir que des caractères alphanumériques et les caractères spéciaux suivants : /.?,;:+=%$*()[]&#@!çèàé",
+					AlertType.WARNING);
+			return false;
+		}
+		if (this.txtConfrMotPasse.getText().trim().isEmpty()) {
+			AlertUtilities.showAlert(this.primaryStage, "Erreur de saisie", null, "La confirmation du mot de passe ne doit pas être vide, n'y le mot de passe",
+					AlertType.WARNING);
+			this.txtConfrMotPasse.requestFocus();
+			return false;
+		}
+
+		
 		return true;
 	}
 
+	/**
+	 * Vérifie que la chaîne de caractères passée en paramètre ne contient que des caractères alphanumériques <br/>
+	 * et les caractères spéciaux autorisés <br/>
+	 * @param s
+	 * @return
+	 */
+	public boolean isValid(String s) {
+		return s.matches("[a-zA-Z0-9/.?,;:+=%$*()\\[\\]&#@!çèàé]*");
+	}
 	
 	/**
 	 * Est appelée lorsque l'utilisateur sélectionne un droit d'accès en l'occuernce un chef d'agence <br/>
