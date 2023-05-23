@@ -3,8 +3,11 @@ package application;
 import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.sql.Date;
 import java.text.DecimalFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.concurrent.ExecutionException;
 
 import org.apache.commons.io.IOUtils;
@@ -29,10 +32,13 @@ import model.data.AgenceBancaire;
 import model.data.Client;
 import model.data.CompteCourant;
 import model.data.Operation;
+import model.data.Prelevement;
 import model.orm.Access_BD_AgenceBancaire;
 import model.orm.Access_BD_Client;
 import model.orm.Access_BD_CompteCourant;
 import model.orm.Access_BD_Operation;
+import model.orm.Access_BD_Prelevement;
+import model.orm.exception.DataAccessException;
 import model.orm.exception.DatabaseConnexionException;
 import model.pdf.FooterEventHandler;
 
@@ -52,6 +58,27 @@ public class Batch {
             e.printStackTrace();
         }
         doRel();
+    }
+    
+    private void doPrelev() {
+    	Access_BD_CompteCourant acc = new Access_BD_CompteCourant();
+    	Access_BD_Prelevement apa = new Access_BD_Prelevement();
+    	Date date = Date.valueOf(LocalDate.now());
+    	Calendar calendar = Calendar.getInstance();
+    	calendar.setTime(date);
+    	int jour = calendar.get(Calendar.DAY_OF_MONTH);
+    	
+    	try {
+			for(Prelevement prelevements : apa.getAllPrelevements()) {
+				
+			}
+		} catch (DataAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (DatabaseConnexionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     private void doRel() {

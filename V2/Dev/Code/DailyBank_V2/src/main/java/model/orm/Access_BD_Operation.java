@@ -163,7 +163,7 @@ public class Access_BD_Operation {
 				throw new ManagementRuleViolation(Table.Operation, Order.INSERT,
 						"Erreur de règle de gestion : découvert autorisé dépassé", null);
 			}
-			else if (res != 0 && dailyBankState.isChefDAgence())  {
+			else if (dailyBankState.isChefDAgence())  {
 				String query = "INSERT INTO Operation VALUES (" + "seq_id_operation.NEXTVAL" + ", " + "?" + ", " + "?" + ", "
 						+ "?" + ", " + "?" + "," +"?" + ")";
 				PreparedStatement pst = con.prepareStatement(query);
@@ -173,7 +173,6 @@ public class Access_BD_Operation {
 				pst.setInt(4, compte.idNumCompte);
 				pst.setString(5,typeOp);
 				System.err.println(query);
-
 				int result = pst.executeUpdate();
 				pst.close();
 				if (result != 1) {

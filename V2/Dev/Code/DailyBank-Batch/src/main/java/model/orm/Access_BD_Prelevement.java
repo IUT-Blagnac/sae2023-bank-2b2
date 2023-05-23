@@ -66,6 +66,47 @@ public class Access_BD_Prelevement {
 
 		return alResult;
 	}
+	
+	/**
+	 * Recherche des CompteCourant d'un client à partir de son id.
+	 *
+	 * @param idNumCli id du client dont on cherche les comptes
+	 * @return Tous les CompteCourant de idNumCli (ou liste vide)
+	 * @throws DataAccessException        Erreur d'accès aux données (requête mal
+	 *                                    formée ou autre)
+	 * @throws DatabaseConnexionException Erreur de connexion
+	 */
+	public ArrayList<Prelevement> getAllPrelevements()
+			throws DataAccessException, DatabaseConnexionException {
+
+		ArrayList<Prelevement> alResult = new ArrayList<>();
+
+		try {
+			Connection con = LogToDatabase.getConnexion();
+			String query = "SELECT * FROM PrelevementAutomatique";
+			query += " ORDER BY idNumCompte";
+
+			PreparedStatement pst = con.prepareStatement(query);
+			System.err.println(query);
+
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				double debitPrelev = rs.getInt("montant");
+				int datePrelev = rs.getInt("dateRecurrente");
+				String beneficiaire = rs.getString("beneficiaire");
+				int idPrelev = rs.getInt("idPrelev");
+				int idNumCompte = rs.getInt("idNumCompte");
+
+				alResult.add(new Prelevement(idPrelev, debitPrelev, idNumCompte, datePrelev, beneficiaire));
+			}
+			rs.close();
+			pst.close();
+		} catch (SQLException e) {
+			throw new DataAccessException(Table.PrelevementAutomatique, Order.SELECT, "Erreur accès", e);
+		}
+
+		return alResult;
+	}
 
 	/**
 	 * Recherche d'un CompteCourant à partir de son id (idNumCompte).
