@@ -84,7 +84,8 @@ public class EmpruntSimulationController {
 	public void displayDialog() {
 		this.primaryStage.showAndWait();
 	}
-
+	
+	
 	// Gestion du stage
 
 	/**

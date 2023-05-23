@@ -156,6 +156,7 @@ public class ComptesManagementController {
 	private Button btnPrelev;
 	@FXML
 	private Button btnRel;
+	
 	private ContextMenu contextMenu = new ContextMenu();
 
 	/**
