@@ -40,6 +40,8 @@ import model.orm.Access_BD_Operation;
 import model.orm.Access_BD_Prelevement;
 import model.orm.exception.DataAccessException;
 import model.orm.exception.DatabaseConnexionException;
+import model.orm.exception.ManagementRuleViolation;
+import model.orm.exception.RowNotFoundOrTooManyRowsException;
 import model.pdf.FooterEventHandler;
 
 import com.itextpdf.layout.element.Table;
@@ -58,11 +60,13 @@ public class Batch {
             e.printStackTrace();
         }
         doRel();
+        doPrelev();
     }
     
     private void doPrelev() {
-    	Access_BD_CompteCourant acc = new Access_BD_CompteCourant();
+    	Access_BD_Operation aop = new Access_BD_Operation();
     	Access_BD_Prelevement apa = new Access_BD_Prelevement();
+    	Access_BD_CompteCourant acc = new Access_BD_CompteCourant();
     	Date date = Date.valueOf(LocalDate.now());
     	Calendar calendar = Calendar.getInstance();
     	calendar.setTime(date);
@@ -70,7 +74,18 @@ public class Batch {
     	
     	try {
 			for(Prelevement prelevements : apa.getAllPrelevements()) {
-				
+				if(prelevements.datePrelev == jour) {
+					System.out.println("jour bon");
+					try {
+						aop.insertDebit(acc.getCompteCourant(prelevements.idNumCompte), jour, "Prélèvement automatique");
+					} catch (ManagementRuleViolation e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (RowNotFoundOrTooManyRowsException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
 			}
 		} catch (DataAccessException e) {
 			// TODO Auto-generated catch block
