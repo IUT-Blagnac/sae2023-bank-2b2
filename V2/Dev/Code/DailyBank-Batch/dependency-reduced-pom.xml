@@ -19,7 +19,7 @@
               <shadedArtifactAttached>true</shadedArtifactAttached>
               <transformers>
                 <transformer>
-                  <mainClass>application.DailyBankApp</mainClass>
+                  <mainClass>BatchApp</mainClass>
                 </transformer>
               </transformers>
             </configuration>
