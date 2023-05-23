@@ -10,10 +10,15 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.concurrent.ExecutionException;
 
+import org.apache.commons.io.IOUtils;
+import java.io.InputStream;
+
+import com.itextpdf.io.font.PdfEncodings;
 import com.itextpdf.kernel.colors.ColorConstants;
 import com.itextpdf.kernel.events.PdfDocumentEvent;
 import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.kernel.font.PdfFontFactory;
+import com.itextpdf.kernel.font.PdfFontFactory.EmbeddingStrategy;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
@@ -108,23 +113,18 @@ public class Batch {
 			// Initialize document
 			Document document = new Document(pdf);
 			PdfFont font = null;
-			try {
-				URI uri = Batch.class.getResource("font/Helvetica.ttf").toURI();
-				File fontFile = new File(uri);
-				font = PdfFontFactory.createFont(fontFile.getPath());
-			} catch (URISyntaxException e) {}
+			InputStream fontStream = Batch.class.getResourceAsStream("font/Helvetica.ttf");
+			font = PdfFontFactory.createFont(IOUtils.toByteArray(fontStream), PdfEncodings.IDENTITY_H, EmbeddingStrategy.PREFER_EMBEDDED);
+
+			
 			PdfFont boldFont = null;
-			try {
-			    URI boldUri = Batch.class.getResource("font/Helvetica-Bold.ttf").toURI();
-			    File boldFontFile = new File(boldUri);
-			    boldFont = PdfFontFactory.createFont(boldFontFile.getPath());
-			} catch (URISyntaxException e) {}
+			InputStream boldFontStream = Batch.class.getResourceAsStream("font/Helvetica-Bold.ttf");
+			boldFont = PdfFontFactory.createFont(IOUtils.toByteArray(boldFontStream), PdfEncodings.IDENTITY_H, EmbeddingStrategy.PREFER_EMBEDDED);
+			
 			PdfFont lightFont = null;
-			try {
-			    URI lightUri = Batch.class.getResource("font/Helvetica-Light.ttf").toURI();
-			    File lightFontFile = new File(lightUri);
-			    lightFont = PdfFontFactory.createFont(lightFontFile.getPath());
-			} catch (URISyntaxException e) {}
+			InputStream lightFontStream = Batch.class.getResourceAsStream("font/Helvetica-Light.ttf");
+			lightFont = PdfFontFactory.createFont(IOUtils.toByteArray(lightFontStream), PdfEncodings.IDENTITY_H, EmbeddingStrategy.PREFER_EMBEDDED);
+
 			document.setFont(font);
 			//ajouter les metadata
 			pdf.getDocumentInfo().setTitle("Relevé mensuel");
