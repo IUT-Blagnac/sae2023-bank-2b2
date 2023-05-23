@@ -1,5 +1,7 @@
 package model.data;
 
+import java.util.List;
+
 /*
  * Attributs mis en public car cette classe ne fait que "véhiculer" des données.
  */
@@ -11,6 +13,7 @@ public class CompteCourant {
 	public double solde;
 	public String estCloture; // "O" ou "N";
 	public int idNumCli;
+	public List<Prelevement> prelevementsDuCompte;
 
 	public CompteCourant(int idNumCompte, int debitAutorise, double solde, String estCloture, int idNumCli) {
 		super();
