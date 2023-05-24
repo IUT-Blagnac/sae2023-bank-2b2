@@ -6,7 +6,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -102,7 +101,6 @@ public class Access_BD_Operation {
 			// 4 type du quatrième paramètre qui est déclaré en OUT, cf. déf procédure
 
 			call.execute();
-
 			int res = call.getInt(4);
 			if (res != 0) { // Erreur applicative
 				throw new ManagementRuleViolation(Table.Operation, Order.INSERT,

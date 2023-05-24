@@ -3,6 +3,7 @@ package application.view;
 import java.util.Locale;
 
 import application.DailyBankState;
+import application.tools.AlertUtilities;
 import application.tools.ConstantesIHM;
 import application.tools.EditionMode;
 import javafx.beans.value.ObservableValue;
@@ -10,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.data.CompteCourant;
@@ -283,7 +285,13 @@ public class PrelevEditorPaneController {
 	 * @return true si la saisie est valide, false sinon
 	 */
 	private boolean isSaisieValide() {
-
+		this.prelevementEditer.beneficiaire = this.txtbeneficiaire.getText();
+		if (this.prelevementEditer.beneficiaire.equals("null")) {
+			AlertUtilities.showAlert(this.primaryStage, "Erreur de saisie", null, "Veuillez saisir un bénéficiaire",
+					AlertType.WARNING);
+			this.txtbeneficiaire.requestFocus();
+			return false;
+		}
 		return true;
 	}
 }

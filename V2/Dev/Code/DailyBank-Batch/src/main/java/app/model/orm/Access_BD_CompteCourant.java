@@ -85,6 +85,48 @@ public class Access_BD_CompteCourant {
 
 		return alResult;
 	}
+	
+	/**
+	 * Recherche des CompteCourant d'un client à partir de son id.
+	 *
+	 * @param idNumCli id du client dont on cherche les comptes
+	 * @return Tous les CompteCourant de idNumCli (ou liste vide)
+	 * @throws DataAccessException        Erreur d'accès aux données (requête mal
+	 *                                    formée ou autre)
+	 * @throws DatabaseConnexionException Erreur de connexion
+	 */
+	public ArrayList<CompteCourant> getAllCompteCourants()
+			throws DataAccessException, DatabaseConnexionException {
+
+		ArrayList<CompteCourant> alResult = new ArrayList<>();
+
+		try {
+			Connection con = LogToDatabase.getConnexion();
+			String query = "SELECT * FROM CompteCourant";
+			//query += " ORDER BY idNumCompte";
+
+			PreparedStatement pst = con.prepareStatement(query);
+			//.setInt(1, idNumCli);
+			System.err.println(query);
+
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				int idNumCompte = rs.getInt("idNumCompte");
+				int debitAutorise = rs.getInt("debitAutorise");
+				double solde = rs.getDouble("solde");
+				String estCloture = rs.getString("estCloture");
+				int idNumCliTROUVE = rs.getInt("idNumCli");
+
+				alResult.add(new CompteCourant(idNumCompte, debitAutorise, solde, estCloture, idNumCliTROUVE));
+			}
+			rs.close();
+			pst.close();
+		} catch (SQLException e) {
+			throw new DataAccessException(Table.CompteCourant, Order.SELECT, "Erreur accès", e);
+		}
+
+		return alResult;
+	}
 
 	/**
 	 * Recherche d'un CompteCourant à partir de son id (idNumCompte).

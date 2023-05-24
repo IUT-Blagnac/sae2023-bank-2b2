@@ -1,8 +1,6 @@
 package app.control;
 
-import java.io.File;
-import java.net.URI;
-import java.net.URISyntaxException;
+import java.io.InputStream;
 import java.sql.Date;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
@@ -11,10 +9,8 @@ import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
-import java.util.concurrent.ExecutionException;
 
 import org.apache.commons.io.IOUtils;
-import java.io.InputStream;
 
 import com.itextpdf.io.font.PdfEncodings;
 import com.itextpdf.kernel.colors.ColorConstants;
@@ -28,6 +24,7 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.properties.TextAlignment;
 import com.itextpdf.layout.properties.UnitValue;
 
@@ -47,8 +44,6 @@ import app.model.orm.exception.ManagementRuleViolation;
 import app.model.orm.exception.RowNotFoundOrTooManyRowsException;
 import app.model.pdf.FooterEventHandler;
 
-import com.itextpdf.layout.element.Table;
-
 public class Batch {
     private Client clientDuCompteActu;
     private CompteCourant compteActu;
@@ -57,7 +52,19 @@ public class Batch {
     public void start() {
         System.out.println("COUCOU");
 		int nbClients = 0;
-
+		Access_BD_CompteCourant acCourant = new Access_BD_CompteCourant();
+		try {
+			for(CompteCourant compte : acCourant.getAllCompteCourants() ) {
+				System.out.println(compte.toString());
+				doPrelev(compte.idNumCompte);
+			}
+		} catch (DataAccessException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (DatabaseConnexionException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		try {
 			Access_BD_CompteCourant acc = new Access_BD_CompteCourant();
 			nbClients = acc.getNbCpt();
@@ -75,24 +82,36 @@ public class Batch {
         	doRel();
 		}
 
-        doPrelev();
+       
     }
     
-    private void doPrelev() {
+	private void doPrelev(int idNumCompte) {
     	Access_BD_Operation aop = new Access_BD_Operation();
     	Access_BD_Prelevement apa = new Access_BD_Prelevement();
     	Access_BD_CompteCourant acc = new Access_BD_CompteCourant();
     	Date date = Date.valueOf(LocalDate.now());
     	Calendar calendar = Calendar.getInstance();
     	calendar.setTime(date);
+    	int joursDansLeMois = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
     	int jour = calendar.get(Calendar.DAY_OF_MONTH);
-    	
     	try {
-			for(Prelevement prelevements : apa.getAllPrelevements()) {
+			for(Prelevement prelevements : apa.getPrelevements(idNumCompte)) {
 				if(prelevements.datePrelev == jour) {
 					System.out.println("jour bon");
+					System.out.println(""+prelevements.debitPrelev);
 					try {
-						aop.insertDebit(acc.getCompteCourant(prelevements.idNumCompte), jour, "Prélèvement automatique");
+						aop.insertDebit(acc.getCompteCourant(idNumCompte), prelevements.debitPrelev, "Prélèvement automatique");
+					} catch (ManagementRuleViolation e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (RowNotFoundOrTooManyRowsException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				else if(prelevements.datePrelev > joursDansLeMois && jour == joursDansLeMois) {
+					try {
+						aop.insertDebit(acc.getCompteCourant(idNumCompte), prelevements.debitPrelev, "Prélèvement automatique");
 					} catch (ManagementRuleViolation e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
