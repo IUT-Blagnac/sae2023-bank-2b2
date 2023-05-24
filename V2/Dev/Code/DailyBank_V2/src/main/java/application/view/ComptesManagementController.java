@@ -192,7 +192,7 @@ public class ComptesManagementController {
 		int selectedItem = this.lvComptes.getSelectionModel().getSelectedIndex();
 		if(selectedItem >= 0) {
 			CompteCourant compte = this.oListCompteCourant.get(selectedItem);
-			this.cmDialogController.supprimerCompte(compte);	
+			this.cmDialogController.supprimerCompte(compte);
 		}
 		this.loadList();
 		this.validateComponentState();
@@ -262,7 +262,7 @@ public class ComptesManagementController {
 
 	/**
 	 * Génère un relevé mensuel d'un compte au format PDF.
-	 * 
+	 *
 	 * @throws FileNotFoundException
 	 * @throws IOException
 	 */
@@ -272,37 +272,37 @@ public class ComptesManagementController {
 		Dialog<Pair<String, String>> dialog = new Dialog<>();
 		dialog.setTitle("Relevé mensuel");
 		dialog.setHeaderText("Veuillez sélectionner le mois et l'année du relevé");
-			
+
 		// Set the button types.
 		ButtonType generateButtonType = new ButtonType("Générer", ButtonBar.ButtonData.OK_DONE);
 		dialog.getDialogPane().getButtonTypes().addAll(generateButtonType, ButtonType.CANCEL);
-			
+
 		// Create the month and year ComboBoxes.
 		ComboBox<String> monthComboBox = new ComboBox<>();
 		monthComboBox.setPromptText("Mois");
 		monthComboBox.getItems().addAll("Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
-			
+
 		ComboBox<String> yearComboBox = new ComboBox<>();
 		yearComboBox.setPromptText("Année");
 		yearComboBox.getItems().addAll("2021", "2022", "2023", "2024");  // Add as many years as you need
-			
+
 		GridPane grid = new GridPane();
 		grid.add(new Label("Mois:"), 0, 0);
 		grid.add(monthComboBox, 1, 0);
 		grid.add(new Label("Année:"), 0, 1);
 		grid.add(yearComboBox, 1, 1);
-			
+
 		dialog.getDialogPane().setContent(grid);
 
 		dialog.setResultConverter(dialogButton -> {
 			if (dialogButton == generateButtonType) {
 				return new Pair<>(monthComboBox.getValue(), yearComboBox.getValue());
-			} 
+			}
 			return null;
 		});
-		
+
 		Optional<Pair<String, String>> result = dialog.showAndWait();
-		
+
 		result.ifPresent(monthYear -> {
 			if(!this.cmDialogController.genererPDF(monthYear, this.clientDesComptes, this.oListCompteCourant.get(this.lvComptes.getSelectionModel().getSelectedIndex()))) {
 				Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -312,7 +312,7 @@ public class ComptesManagementController {
 			}
 		});
 
-		
+
 	}
 
 	@FXML
@@ -326,7 +326,7 @@ public class ComptesManagementController {
 	}
 
 	/**
-	 * Simule un emprunt 
+	 * Simule un emprunt
 	 * @author Julien Couderc
 	 */
 	@FXML
@@ -359,7 +359,7 @@ public class ComptesManagementController {
 				this.btnSupprCompte.setDisable(false);
 				this.btnRel.setDisable(false);
 				this.btnPrelev.setDisable(false);
-			}	
+			}
 			else {
 				this.btnModifierCompte.setDisable(true);
 				this.btnSupprCompte.setDisable(true);

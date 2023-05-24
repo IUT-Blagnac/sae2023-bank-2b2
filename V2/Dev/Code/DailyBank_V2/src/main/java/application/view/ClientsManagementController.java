@@ -39,10 +39,10 @@ public class ClientsManagementController {
 	private ObservableList<Client> oListClients;
 
 	// Manipulation de la fenêtre
-	
+
 	/**
      * Initialise le contexte du contrôleur.
-     * 
+     *
      * @param _containingStage La fenêtre contenant la scène associée.
      * @param _cm              Le contrôleur de dialogue associé.
      * @param _dbstate         L'état courant de la banque.
@@ -72,13 +72,13 @@ public class ClientsManagementController {
 	/**
      * Affiche la fenêtre de dialogue.
      */
-	
+
 	public void displayDialog() {
 		this.primaryStage.showAndWait();
 	}
 
 	// Gestion du stage
-	
+
 	/**
 	 * Ferme la fenêtre en appelant la méthode "doCancel()" et consomme l'événement de fermeture.
 	 *
@@ -109,7 +109,7 @@ public class ClientsManagementController {
 	private Button btnComptesClient;
 	private ContextMenu contextMenu = new ContextMenu();
 
-	
+
 	/**
      * Ferme la fenêtre de dialogue.
      */
@@ -118,7 +118,7 @@ public class ClientsManagementController {
 		this.primaryStage.close();
 	}
 
-	
+
 	/**
      * Effectue une recherche de clients en fonction des critères spécifiés.
      */
@@ -178,7 +178,7 @@ public class ClientsManagementController {
 		}
 	}
 
-	
+
 	/**
      * Modifie le client sélectionné.
      */
@@ -194,7 +194,7 @@ public class ClientsManagementController {
 		}
 	}
 
-	
+
 	/**
      * Désactive le client sélectionné.
      */
@@ -202,7 +202,7 @@ public class ClientsManagementController {
 	private void doDesactiverClient() {
 	}
 
-	
+
 	 /**
      * Crée un nouveau client et l'ajoute à la liste des clients.
      */
@@ -215,7 +215,7 @@ public class ClientsManagementController {
 		}
 	}
 
-	
+
 	/**
      * Valide l'état des composants de la fenêtre et active/désactive les boutons en conséquence.
      */
@@ -230,8 +230,8 @@ public class ClientsManagementController {
 			this.btnComptesClient.setDisable(true);
 		}
 	}
-	
-	
+
+
 	 /**
      * Gère les événements de clic sur la liste des clients pour afficher le menu contextuel et effectuer des actions.
      *

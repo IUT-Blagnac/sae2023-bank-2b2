@@ -18,7 +18,7 @@ import model.data.Prelevement;
 	/**
 	@author yannis gibert
 	La classe PrelevementEditorPaneController est un contrôleur qui gère l'affichage et la modification des informations de prelevement automatique pour un compte.
-	
+
 	Elle offre des fonctionnalités pour créer, modifier ou supprimer un prelevement automatique.
 	*/
 public class PrelevEditorPaneController {
@@ -30,15 +30,15 @@ public class PrelevEditorPaneController {
 	private Stage primaryStage;
 
 	// Données de la fenêtre
-	
-	
+
+
 	private EditionMode editionMode;
 	private CompteCourant compteDuPrelev;
 	private Prelevement prelevementEditer;
 	private Prelevement prelevementResultat;
 
 	// Manipulation de la fenêtre
-	
+
 	/**
 	 * @author yannis gibert
 	 * Initialise le contexte du contrôleur avec la fenêtre principale et l'état de l'application.
@@ -77,7 +77,7 @@ public class PrelevEditorPaneController {
 
 	@return Le prelevement résultant après l'opération ou null si l'opération a été annulée
 	*/
-	
+
 	public Prelevement displayDialog(CompteCourant compte, Prelevement prlv, EditionMode mode) {
 		this.compteDuPrelev = compte;
 		this.editionMode = mode;
@@ -135,7 +135,7 @@ public class PrelevEditorPaneController {
 	}
 
 	// Gestion du stage
-	
+
 	/**
 	 * @author yannis gibert
 	 * Gère l'événement de fermeture de la fenêtre en annulant l'opération en cours.
@@ -148,7 +148,7 @@ public class PrelevEditorPaneController {
 		e.consume();
 		return null;
 	}
-	
+
 	/**
 	 * @author yannis gibert
 	 * Gère l'événement de focus sur le champ de beneficiaire en mettant à jour le beneficiaire du prelevement automatique.
@@ -243,7 +243,7 @@ public class PrelevEditorPaneController {
 	private Button btnCancel;
 
 
-	
+
 	/**
 	 * @author yannis gibert
 	 * Gère l'action de l'annulation de l'opération en cours.
@@ -255,7 +255,7 @@ public class PrelevEditorPaneController {
 		this.primaryStage.close();
 	}
 
-	
+
 
 	/**
 	 * @author yannis gibert
@@ -284,7 +284,7 @@ public class PrelevEditorPaneController {
 		}
 
 	}
-	
+
 	/**
 	 * @author yannis gibert
 	 * Vérifie si la saisie des champs est valide.

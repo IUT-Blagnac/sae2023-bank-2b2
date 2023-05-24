@@ -39,16 +39,16 @@ import model.orm.exception.DataAccessException;
 import model.orm.exception.DatabaseConnexionException;
 
 /**
- * 
+ *
  * Quelque test sur l'interface graphique de l'application.
- * 
+ *
  * @author Enzo Fournet
  */
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class TestBank extends ApplicationTest {
 
     private static DailyBankState dailyBankState;
-    
+
     private static boolean resestBD = false;
     private static boolean test1Passed = true;
 
@@ -121,7 +121,7 @@ public class TestBank extends ApplicationTest {
                         }
                     });
                     tache.start();
-                }   
+                }
             });
             Access_BD_Test abt = new Access_BD_Test();
             try {
@@ -152,7 +152,7 @@ public class TestBank extends ApplicationTest {
         clickOn("#btnValider");
     }
 
-    
+
 
     @Test
     @Order(1)
@@ -161,17 +161,17 @@ public class TestBank extends ApplicationTest {
         String motPasse = "Lejeune";
         String prenom = "Michel";
         String nom = "Tuffery";
-        
+
         //verifier que les labels sont bien remplis avec les infos de l'employer
         verifyThat("#lblEmpNom", LabeledMatchers.hasText(nom));
         verifyThat("#lblEmpPrenom", LabeledMatchers.hasText(prenom));
 
         //verifier que l'employer dans dailyBankState est le même
         try {
-            assertEquals(this.dailyBankState.getEmployeActuel().login, login);
-            assertEquals(this.dailyBankState.getEmployeActuel().motPasse, motPasse);
-            assertEquals(this.dailyBankState.getEmployeActuel().prenom, prenom);
-            assertEquals(this.dailyBankState.getEmployeActuel().nom, nom);
+            assertEquals(TestBank.dailyBankState.getEmployeActuel().login, login);
+            assertEquals(TestBank.dailyBankState.getEmployeActuel().motPasse, motPasse);
+            assertEquals(TestBank.dailyBankState.getEmployeActuel().prenom, prenom);
+            assertEquals(TestBank.dailyBankState.getEmployeActuel().nom, nom);
         } catch (AssertionError e) {
             test1Passed = false;
         }
@@ -205,14 +205,14 @@ public class TestBank extends ApplicationTest {
         //verifier que le nombre d'employe dans la BD est le même que dans la liste view
         assertEquals(nbEmployeLV, nbEmployeBD);
 
-        
+
         try {
             employesBD = access_BD_Test.getAllEmploye();
         } catch (Exception e) {
             assertEquals(true, false, e.toString());
             e.printStackTrace();
         }
-        employesLV = new ArrayList<>(lvEmployes.getItems()); 
+        employesLV = new ArrayList<>(lvEmployes.getItems());
 
        //foreach dans deux ArrayList à la fois  pour vérifier que les employes sont les mêmes
         for(int i = 0; i < employesBD.size() && i < employesLV.size(); i++) {
@@ -237,10 +237,10 @@ public class TestBank extends ApplicationTest {
             assertEquals(true, false, e.toString());
             e.printStackTrace();
         }
-        
+
         doubleClickOn(employesBD.toString());
 
-        
+
         TextField txtNom = find("#txtNom");
         String nomVrf = txtNom.getText() + "test";
         txtNom.setText(nomVrf);
@@ -301,7 +301,7 @@ public class TestBank extends ApplicationTest {
             assertEquals(true, false, e.toString());
             e.printStackTrace();
         }
-        
+
 
         clickOn("Gestion");
         clickOn("#mitemEmploye");
@@ -372,7 +372,7 @@ public class TestBank extends ApplicationTest {
         clickOn("Gestion");
         clickOn("#mitemEmploye");
 
-        clickOn("#btnNouvelEmploye"); 
+        clickOn("#btnNouvelEmploye");
 
         String nomVrf = "Fournet";
         String prenomVrf = "Enzo";
@@ -411,7 +411,7 @@ public class TestBank extends ApplicationTest {
             lvEmployes.scrollTo(lvEmployes.getItems().size() - 1);
 
             /*
-            * il est impossible de récupérer le nouvel employe dans la liste view donc on vérifie que le dernier employe de la liste view 
+            * il est impossible de récupérer le nouvel employe dans la liste view donc on vérifie que le dernier employe de la liste view
             * est le même que nouvelEmpl directement sans utiliser l'inteface
             */
             assertEquals(lvEmployes.getItems().get(lvEmployes.getItems().size() - 1).toString(), nouvelEmpl.toString());
@@ -422,10 +422,10 @@ public class TestBank extends ApplicationTest {
             assertEquals(true, false, e.toString());
             e.printStackTrace();
         }
-        
-        //on vérifie que l'employeBD est le même que nouvelEmpl pour être sure que les valeur présente dans la BD sont les bonnes 
+
+        //on vérifie que l'employeBD est le même que nouvelEmpl pour être sure que les valeur présente dans la BD sont les bonnes
         assertEquals(employeBD.toString(), nouvelEmpl.toString());
-        
+
     }
 
     /**
@@ -434,7 +434,7 @@ public class TestBank extends ApplicationTest {
      * @param query
      * @return
      */
-    public <T extends Node> T find(final String query) { 
+    public <T extends Node> T find(final String query) {
         Set<Node> nodes = lookup(query).queryAll();
 
         if (nodes.isEmpty()) {
@@ -451,7 +451,7 @@ public class TestBank extends ApplicationTest {
                 }
             }
 
-            if (selectedNode != null) { 
+            if (selectedNode != null) {
                 nodes.remove(selectedNode);
             }
         } while (!nodes.isEmpty() && selectedNode != null);
@@ -463,7 +463,7 @@ public class TestBank extends ApplicationTest {
             System.out.println(node);
         }
         return (T) nodes.iterator().next();
-    } 
+    }
 
     public Stage getStageFromNode(Node node) {
         Scene scene = node.getScene();

@@ -41,7 +41,7 @@ public class EmployesManagementController {
 	 * lors de la création de la fenêtre <br/>
 	 * ELle permet de passer les références nécessaires à la gestion des employés
 	 * <br/>
-	 * 
+	 *
 	 * @author Enzo Fournet
 	 * @param _containingStage
 	 * @param _em
@@ -57,14 +57,14 @@ public class EmployesManagementController {
 	}
 
 	/**
-	 * 
+	 *
 	 * Cette méthode est appelée par le contrôleur de dialogue EmployesManagement
 	 * lors de la création de la fenêtre <br/>
 	 * ELle permet de passer les références nécessaires à la gestion des employés et
 	 * de lancer la configuration de la fenêtre <br/>
-	 * 
+	 *
 	 * @author Enzo Fournet
-	 * 
+	 *
 	 */
 	private void configure() {
 		this.primaryStage.setOnCloseRequest(e -> this.closeWindow(e));
@@ -79,7 +79,7 @@ public class EmployesManagementController {
 
 	/**
 	 * Elle permet d'afficher la fenêtre de gestion des employés <br/>
-	 * 
+	 *
 	 * @author Enzo Fournet
 	 */
 	public void displayDialog() {
@@ -89,7 +89,7 @@ public class EmployesManagementController {
 	/**
 	 * Cette méthode est appelée lorsque l'événement de fermeture de la fenêtre se produit.
 	 * Elle exécute l'action d'annulation et consomme l'événement pour éviter toute autre action par défaut.
-	 * 
+	 *
 	 * @author Enzo Fournet
 	 * @param e L'événement de fermeture de la fenêtre.
 	 * @return null car aucun objet n'est renvoyé.
@@ -129,7 +129,7 @@ public class EmployesManagementController {
 
 	/**
 	 * Méthode appelée par le contrôleur lors de la fermeture de la fenêtre <br/>
-	 * 
+	 *
 	 * @author Enzo Fournet
 	 */
     @FXML
@@ -141,7 +141,7 @@ public class EmployesManagementController {
 	 * Méthode appelée par le contrôleur lors du cloque sur un employé<br/>
 	 * Elle permets de rendre actif les boutons de modification et de suppression<br/>
 	 * d'un employé ainsi que de consultation en fonction des droit de l'utilisateur actuelle<br/>
-	 * 
+	 *
 	 * @author Enzo Fournet
 	 */
 	@FXML
@@ -176,7 +176,7 @@ public class EmployesManagementController {
 	/**
 	 * Cette méthode est appelée lors de la recherche d'un employé <br/>
 	 * Elle récupére les paramètre de recherche et les utilise pour rechercher correctement un employe<br/>
-	 * 
+	 *
 	 * @author Enzo Fournet
 	 */
     @FXML
@@ -228,7 +228,7 @@ public class EmployesManagementController {
 
 	/**
 	 * Cette méthode est appelée lors de  d'un nouvel employé <br/>
-	 * 
+	 *
 	 * @author Enzo Fournet
 	 */
 	@FXML
@@ -246,7 +246,7 @@ public class EmployesManagementController {
 
 	/**
 	 * Cette méthode est appeler lors du clique sur le bouton de suppression d'un employé <br/>
-	 * 
+	 *
 	 * @author Enzo Fournet
 	 */
 	@FXML
@@ -264,7 +264,7 @@ public class EmployesManagementController {
 	/**
 	 * Cette méthode est appeler lors du clique sur le bouton de consultation d'un employé <br/>
 	 * Elle permets de lancer la consultation d'un employé<br/>
-	 * 
+	 *
 	 * @author Enzo Fournet
 	 */
 	@FXML
@@ -281,7 +281,7 @@ public class EmployesManagementController {
 	/**
 	 * Cette méthode est appeler lors du clique sur le bouton de création d'un employé <br/>
 	 * Elle permets de lancer la création d'un nouvel employé<br/>
-	 * 
+	 *
 	 * @author Enzo Fournet
 	 */
 	@FXML
@@ -295,7 +295,7 @@ public class EmployesManagementController {
 
 	/**
 	 * Les 3 méthode qui suivent permettent de chnager l'afficge du menu de droit dans la recherche des employés
-	 * 
+	 *
 	 * @author Enzo Fournet
 	 */
 	@FXML
@@ -307,7 +307,7 @@ public class EmployesManagementController {
 	 * Cette méthode est appelée lorsqu'on sélectionne l'option "Droit Guichetier".
 	 * Elle met à jour le libellé du menu de droite avec le texte de l'option "Droit
 	 * Guichetier".
-	 * 
+	 *
 	 * @author Enzo Fournet
 	 */
 	@FXML
@@ -319,7 +319,7 @@ public class EmployesManagementController {
 	 * Cette méthode est appelée lorsqu'on sélectionne l'option "Droit Aucun". Elle
 	 * met à jour le libellé du menu de droite avec le texte de l'option "Droit
 	 * Aucun".
-	 * 
+	 *
 	 * @author Enzo Fournet
 	 */
 	@FXML
@@ -331,7 +331,7 @@ public class EmployesManagementController {
 	 * Cette méthode est appeler lors d'un double clicque sur un employé de la liste <br/>
 	 * Elle permet au double clique de lancer la consulation ou la modification d'un employé<br/>
 	 * En fonction des droits de l'employé actuel sur l'employé selectionné<br/>
-	 * 
+	 *
 	 * @author Enzo Fournet
 	 * @param event L'événement de la souris associé au clic sur la liste des
 	 *              employés.

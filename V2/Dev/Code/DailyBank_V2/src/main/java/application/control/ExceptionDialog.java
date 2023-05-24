@@ -19,7 +19,7 @@ public class ExceptionDialog {
 	/**
 	 * Constructeur de la classe de ExceptionDialog.
 	 * Cette classe permet de gérer l'affichage des exeptions.
-	 * 
+	 *
 	 * @param _parentStage Fenêtre parente de LoginDialog (sur laquelle se centrer
 	 *                     et être modale)
 	 * @param _dbstate     Etat courant de l'application

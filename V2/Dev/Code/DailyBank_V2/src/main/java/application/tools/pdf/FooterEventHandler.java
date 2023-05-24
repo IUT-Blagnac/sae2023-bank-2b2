@@ -14,11 +14,11 @@ import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.properties.TextAlignment;
 
 /**
- * 
+ *
  * Classe permettant de gérer le footer d'un document PDF
- * 
+ *
  * @author Enzo Fournet
- * 
+ *
  */
 public class FooterEventHandler implements IEventHandler {
 

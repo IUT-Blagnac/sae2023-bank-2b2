@@ -84,7 +84,7 @@ public class EmpruntSimulationController {
 
 	/**
 	 * Initialise le contexte du contrôleur avec les paramètres fournis.
-	 * 
+	 *
 	 * @param _containingStage La fenêtre physique contenant la scène
 	 * @param _cm              Le contrôleur de dialogue associé
 	 * @param _dbstate         L'état courant de l'application
@@ -359,8 +359,8 @@ public class EmpruntSimulationController {
 					table.addCell("Mensualité de l'assurance").setFont(font).setFontSize(10);
 				}
 
-				for (int i = 0; i < rows.length; i++) {
-				    String[] cells = rows[i].split("\t");
+				for (String row : rows) {
+				    String[] cells = row.split("\t");
 				    for (String cell : cells) {
 				        if (cell.equals("-0.00")) {
 				            cell = "0.00";

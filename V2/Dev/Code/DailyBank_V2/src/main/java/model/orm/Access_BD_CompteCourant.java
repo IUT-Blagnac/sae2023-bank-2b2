@@ -117,7 +117,7 @@ public class Access_BD_CompteCourant {
 			throw new DataAccessException(Table.CompteCourant, Order.SELECT, "Erreur accès", e);
 		}
 	}
-	
+
 	/**
 	 * Insertion d'un compte.
 	 *
@@ -171,11 +171,11 @@ public class Access_BD_CompteCourant {
 			throw new DataAccessException(Table.CompteCourant, Order.INSERT, "Erreur accès", e);
 		}
 	}
-	
+
 	/**
 	 * Suppression d'un CompteCourant.
 	 *
-	 * cc.idNumCompte (clé primaire) doit exister seul, le compte n'est pas supprimé mais seulement désactivé 
+	 * cc.idNumCompte (clé primaire) doit exister seul, le compte n'est pas supprimé mais seulement désactivé
 	 * empêchant alors les opérations
 	 * cc.idNumCli non mis à jour (un cc ne change pas de client)
 	 *
@@ -251,7 +251,7 @@ public class Access_BD_CompteCourant {
 			PreparedStatement pst = con.prepareStatement(query);
 			pst.setInt(1, cc.debitAutorise);
 			pst.setInt(2, cc.idNumCompte);
-			
+
 			System.err.println(query);
 
 			int result = pst.executeUpdate();

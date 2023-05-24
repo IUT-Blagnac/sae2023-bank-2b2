@@ -116,7 +116,7 @@ public class Access_BD_Prelevement {
 			throw new DataAccessException(Table.PrelevementAutomatique, Order.SELECT, "Erreur accès", e);
 		}
 	}
-	
+
 	/**
 	 * Insertion d'un prelevement.
 	 *
@@ -169,7 +169,7 @@ public class Access_BD_Prelevement {
 			throw new DataAccessException(Table.PrelevementAutomatique, Order.INSERT, "Erreur accès", e);
 		}
 	}
-	
+
 
 	/**
 	 * Suppression d'un Prelevement.

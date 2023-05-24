@@ -15,7 +15,7 @@ import model.orm.exception.Table;
 
 /**
  * Classe d'accès aux Employe en BD Oracle.
- * 
+ *
  * @author Enzo Fournet
  */
 public class Access_BD_Employe {
@@ -25,7 +25,7 @@ public class Access_BD_Employe {
 
 	/**
 	 * Recherche d'un employé par son login / mot de passe.
-	 * 
+	 *
 	 * @author Enzo Fournet
 	 * @param login    login de l'employé recherché
 	 * @param password mot de passe donné
@@ -86,9 +86,9 @@ public class Access_BD_Employe {
 	}
 
 	/**
-	 * 
+	 *
 	 * Cette méthode permet de récupérer un employé en fonction de son id.
-	 * 
+	 *
 	 * @author Enzo Fournet
 	 * @param _idEmploye
 	 * @param _debutNom
@@ -99,10 +99,10 @@ public class Access_BD_Employe {
 	 * @throws DatabaseConnexionException
 	 */
 	public ArrayList<Employe> getEmployes(int _idEmploye, String _debutNom, String _debutPrenom, String _droit) throws DataAccessException, DatabaseConnexionException {
-		ArrayList<Employe> alResult = new ArrayList<Employe>();
+		ArrayList<Employe> alResult = new ArrayList<>();
 		try {
 			Connection con = LogToDatabase.getConnexion();
-			Boolean first = true;
+			boolean first = true;
 
 			PreparedStatement pst;
 
@@ -111,17 +111,17 @@ public class Access_BD_Employe {
 				if (first) {
 					query += " where ";
 					first = false;
-				}	
+				}
 				query += " idEmploye = ? ";
 				if (!_debutNom.equals("") || !_droit.equals("")) {
 					query += " and ";
 				}
-			} 
+			}
 			if(!_debutNom.equals("")) {
 				if (first) {
 					query += " where ";
 					first = false;
-				}	
+				}
 				_debutNom = _debutNom.toUpperCase() + "%";
 				_debutPrenom = _debutPrenom.toUpperCase() + "%";
 				query += " UPPER(nom) like ? ";
@@ -134,11 +134,11 @@ public class Access_BD_Employe {
 				if (first) {
 					query += " where ";
 					first = false;
-				}	
+				}
 				query += " droitsAccess = ? ";
 			}
 			query += " order by idEmploye";
-			
+
 			System.out.println(query);
 
 
@@ -198,9 +198,9 @@ public class Access_BD_Employe {
 	}
 
 	/**
-	 * 
+	 *
 	 * Cette méthode permet d'insérer un employé en base de données.
-	 * 
+	 *
 	 * @author Enzo Fournet
 	 * @param employe
 	 * @throws RowNotFoundOrTooManyRowsException
@@ -254,9 +254,9 @@ public class Access_BD_Employe {
 	}
 
 	/**
-	 * 
+	 *
 	 * Cette méthode permet de mettre à jour un employé en base de données.
-	 * 
+	 *
 	 * @author Enzo Fournet
 	 * @param employe
 	 * @throws RowNotFoundOrTooManyRowsException
@@ -276,7 +276,7 @@ public class Access_BD_Employe {
 			pst.setString(4, employe.login);
 			pst.setString(5, employe.motPasse);
 			pst.setInt(6, employe.idEmploye);
-			
+
 
 			System.err.println(query);
 
@@ -294,9 +294,9 @@ public class Access_BD_Employe {
 	}
 
 	/**
-	 * 
+	 *
 	 * Cette méthode permet de supprimer un employé en base de données.
-	 * 
+	 *
 	 * @author Enzo Fournet
 	 * @param employe
 	 * @throws RowNotFoundOrTooManyRowsException

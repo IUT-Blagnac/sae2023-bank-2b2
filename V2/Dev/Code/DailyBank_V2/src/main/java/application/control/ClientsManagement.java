@@ -29,7 +29,7 @@ public class ClientsManagement {
 	 * @param _parentStage Fenêtre parente de LoginDialog (sur laquelle se centrer
 	 *                     et être modale)
 	 * @param _dbstate     Etat courant de l'application
-	 * 
+	 *
 	 */
 	public ClientsManagement(Stage _parentStage, DailyBankState _dbstate) {
 		this.dailyBankState = _dbstate;
@@ -65,7 +65,7 @@ public class ClientsManagement {
 
 	/**
 	 * Permet de modifier les informations d'un client
-	 * 
+	 *
 	 * @param c le client à modifier
 	 * @return le client modifié
 	 */
@@ -92,7 +92,7 @@ public class ClientsManagement {
 
 	/**
 	 * Permet de créer un nouveau client
-	 * 
+	 *
 	 * @return le nouveau client
 	 */
 	public Client nouveauClient() {
@@ -120,7 +120,7 @@ public class ClientsManagement {
 
 	/**
 	 * Permet d'ouvrir la page des comptes d'un client
-	 * 
+	 *
 	 * @param c le client à gérer
 	 */
 	public void gererComptesClient(Client c) {
@@ -130,7 +130,7 @@ public class ClientsManagement {
 
 	/**
 	 * Permet de récupérer la liste des clients correspondant au critères
-	 * 
+	 *
 	 * @param _numCompte le numéro de compte du client
 	 * @param _debutNom le début du nom du client
 	 * @param _debutPrenom le début du prénom du client
@@ -143,7 +143,7 @@ public class ClientsManagement {
 			// numCompte != -1 => recherche sur numCompte
 			// numCompte == -1 et debutNom non vide => recherche nom/prenom
 			// numCompte == -1 et debutNom vide => recherche tous les clients
-			
+
 			Access_BD_Client ac = new Access_BD_Client();
 			listeCli = ac.getClients(this.dailyBankState.getEmployeActuel().idAg, _numCompte, _debutNom, _debutPrenom);
 

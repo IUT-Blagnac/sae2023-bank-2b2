@@ -31,8 +31,8 @@ public class EmployeEditorPaneController {
 	private EditionMode editionMode;
 	private Employe employeResultat;
 
-	
-	/** 
+
+	/**
 	 * Cette méthode est appelée par le contrôleur de dialogue EmployesManagement <br/>
 	 * pour initialiser le contexte de la fenêtre de dialogue de création ou de modification d'un employé <br/>
 	 * @author Enzo Fournet
@@ -48,24 +48,24 @@ public class EmployeEditorPaneController {
 	/**
 	 * Cette méthode est appelée par le contrôleur de dialogue EmployesManagement <br/>
 	 * Elle permet de fermer la fenêtre de dialogue de création ou de modification d'un employé <br/>
-	 * 
+	 *
 	 * @author Enzo Fournet
-	 * 
+	 *
 	 */
 	private void configure() {
 		this.primaryStage.setOnCloseRequest(e -> this.closeWindow(e));
 	}
 
-	
-	/** 
-	 * 
+
+	/**
+	 *
 	 * Cette méthode est appelée par le contrôleur de dialogue EmployesManagement <br/>
 	 * pour afficher la fenêtre de dialogue de création ou de modification d'un employé <br/>
-	 * 
+	 *
 	 * @author Enzo Fournet
 	 * @param employe
 	 * @param mode
-	 * 
+	 *
 	 * @return Employe
 	 */
 	public Employe displayDialog(Employe employe, EditionMode mode) {
@@ -88,7 +88,7 @@ public class EmployeEditorPaneController {
 			this.txtMotPasse.setDisable(false);
 			this.txtConfrMotPasse.setDisable(false);
 			this.txtIdAgence.setDisable(true);
-			
+
 			this.lblMessage.setText("Informations sur le nouvel employé");
 			this.butOk.setText("Ajouter");
 			this.butCancel.setText("Annuler");
@@ -105,12 +105,12 @@ public class EmployeEditorPaneController {
 				this.menuBtnDroitAccess.setText("Guichetier");
 				this.radioBtnGuichetier.setSelected(true);
 			}
-			
+
 			this.txtLogin.setDisable(false);
 			this.txtMotPasse.setDisable(false);
 			this.txtConfrMotPasse.setDisable(false);
 			this.txtIdAgence.setDisable(true);
-			
+
 			this.lblMessage.setText("Modifications employé");
 			this.butOk.setText("Modifier");
 			this.butCancel.setText("Annuler");
@@ -167,7 +167,7 @@ public class EmployeEditorPaneController {
 		this.txtConfrMotPasse.setText(this.employeEdite.motPasse);
 		this.txtIdAgence.setText("" + this.employeEdite.idAg);
 
-		
+
 
 		this.employeResultat = null;
 
@@ -177,7 +177,7 @@ public class EmployeEditorPaneController {
 
 	/**
 	 * Méthodes de gestion des événements <br/>
-	 * 
+	 *
 	 * @author Enzo Fournet
 	 */
 	private Object closeWindow(WindowEvent e) {
@@ -218,11 +218,11 @@ public class EmployeEditorPaneController {
 	private Button butCancel;
 
 
-	
+
 	/**
 	 * Cette méthode est appelée lorsque la fenêtre est fermée par l'utilisateur <br/>
 	 * Elle permet de gérer la fermeture de la fenêtre en renvoyant un employé null <br/>
-	 * 
+	 *
 	 * @author Enzo Fournet
 	 */
 	@FXML
@@ -235,7 +235,7 @@ public class EmployeEditorPaneController {
 	/**
 	 * Cette méthode est appelée lorsque l'utilisateur clique sur le bouton 'Ok' <br/>
 	 * Elle permet de gérer la validation de la saisie en renvoyant un employé valide <br/>
-	 * 
+	 *
 	 * @author Enzo Fournet
 	 */
 	@FXML
@@ -267,7 +267,7 @@ public class EmployeEditorPaneController {
 
 	/**
 	 * Vérifie que les données saisies sont valides <br/>
-	 * 
+	 *
 	 * @author Enzo Fournet
 	 * @return	true si les données sont valides, false si non
 	 */
@@ -276,14 +276,14 @@ public class EmployeEditorPaneController {
 		this.employeEdite.prenom = this.txtPrenom.getText().trim();
 		if (toggleGroupDroitAccess.getSelectedToggle() != null) {
 			RadioMenuItem rb = (RadioMenuItem) toggleGroupDroitAccess.getSelectedToggle();
-			
+
 			if (rb.getText().equals("Chef d'agence")) {
 				this.employeEdite.droitsAccess = "chefAgence";
 			} else {
 				this.employeEdite.droitsAccess = "guichetier";
 			}
 		}
-		
+
 		this.employeEdite.login = this.txtLogin.getText().trim();
 		this.employeEdite.motPasse = this.txtConfrMotPasse.getText().trim();
 		this.employeEdite.idAg = Integer.parseInt(this.txtIdAgence.getText().trim());
@@ -343,7 +343,7 @@ public class EmployeEditorPaneController {
 			return false;
 		}
 
-		
+
 		return true;
 	}
 
@@ -356,7 +356,7 @@ public class EmployeEditorPaneController {
 	public boolean isValid(String s) {
 		return s.matches("[a-zA-Z0-9/.?,;:+=%$*()\\[\\]&#@!çèàé]*");
 	}
-	
+
 	/**
 	 * Est appelée lorsque l'utilisateur sélectionne un droit d'accès en l'occuernce un chef d'agence <br/>
 	 * Elle permet de mettre à jour le menu déroulant des droits d'accès pour afficher le droit d'accès sélectionné <br/>

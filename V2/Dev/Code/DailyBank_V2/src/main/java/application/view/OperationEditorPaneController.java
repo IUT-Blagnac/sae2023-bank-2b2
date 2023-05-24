@@ -351,8 +351,8 @@ public class OperationEditorPaneController {
 			}
 
 			boolean existe = false;
-			for (int i = 0; i < alComptesCourants.size(); i++) {
-				if (numCompte == alComptesCourants.get(i).idNumCompte) {
+			for (CompteCourant alComptesCourant : alComptesCourants) {
+				if (numCompte == alComptesCourant.idNumCompte) {
 					existe = true;
 					break;
 				}

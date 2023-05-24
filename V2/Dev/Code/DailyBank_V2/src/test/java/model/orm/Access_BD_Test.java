@@ -22,9 +22,9 @@ import model.orm.exception.Table;
 
 /**
  * Classe d'accès aux Employe en BD Oracle pour les tests.
- * 
+ *
  * @author Enzo Fournet
- * 
+ *
  */
 public class Access_BD_Test {
 
@@ -214,7 +214,7 @@ public class Access_BD_Test {
                         System.out.println("creerOperation>>" + inst[i]);
                         int creerOperation = creerOperation(inst[i]);
                         System.out.println("creerOperation>>" + creerOperation);
-                    } else if(inst[i].contains("EXECUTE CreerCompte(")) { 
+                    } else if(inst[i].contains("EXECUTE CreerCompte(")) {
                         System.out.println("creerCompte>>" + inst[i]);
                         int creerCompte = creerCompte(inst[i]);
                         System.out.println("creerCompte>>" + creerCompte);
@@ -226,7 +226,7 @@ public class Access_BD_Test {
                         Statement st = con.createStatement();
                         st.executeUpdate(inst[i]);
                         st.close();
-                    }                    
+                    }
                 }
                 System.out.println(i + ">>" + inst[i]);
             } catch (SQLException e) {
@@ -243,10 +243,10 @@ public class Access_BD_Test {
                     System.out.println(e.getMessage());
                     System.out.println("************************");
                 }
-                
-                
+
+
             }
-                
+
         }
         try {
             con.commit();
@@ -457,26 +457,26 @@ public class Access_BD_Test {
         String procedureName = "{ CALL Debiter(?, ?, ?, ?) }";
         Connection con = LogToDatabase.getConnexion();
         CallableStatement stmt = con.prepareCall(procedureName);
-            
+
         // Passer les paramètres IN à la procédure stockée
         stmt.setInt(1, idNumCompte);
         stmt.setFloat(2, montant);
         stmt.setString(3, typeOperation);
-            
+
         // Enregistrer le paramètre OUT de la procédure stockée
         stmt.registerOutParameter(4, java.sql.Types.NUMERIC);
-    
+
         // Exécuter la procédure stockée
         stmt.execute();
-            
+
         // Récupérer la valeur du paramètre OUT
         int result = stmt.getInt(4);
-            
+
         stmt.close();
         con.close();
 
         System.out.println("result>>" + result);
         return result;
     }
-    
+
 }

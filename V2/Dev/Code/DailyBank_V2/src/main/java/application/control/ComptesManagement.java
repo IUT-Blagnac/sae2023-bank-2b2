@@ -77,7 +77,7 @@ public class ComptesManagement {
 
 	/**
 	 * Permet d'ouvrir la page de gestion des opérations d'un compte
-	 * 
+	 *
 	 * @param cpt le compte qu'on souhaite récupérer ses opérations
 	 */
 	public void gererOperationsDUnCompte(CompteCourant cpt) {
@@ -85,10 +85,10 @@ public class ComptesManagement {
 				this.clientDesComptes, cpt);
 		om.doOperationsManagementDialog();
 	}
-		
+
 	/**
 	 * Permet de cloturer un compte
-	 * 
+	 *
 	 * @param compte le compte que l'on souhaite supprimer
 	 * @return le compte courant
 	 */
@@ -117,10 +117,10 @@ public class ComptesManagement {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * Permet de modifier les informations d'un compte
-	 * 
+	 *
 	 * @param c le compte qu'on souhaite modifier
 	 * @return le compte modifié
 	 */
@@ -147,7 +147,7 @@ public class ComptesManagement {
 
 	/**
 	 * Permet de créer un nouveau compte courant
-	 * 
+	 *
 	 * @return le nouveau compte courant
 	 */
 	public CompteCourant creerNouveauCompte() {
@@ -178,7 +178,7 @@ public class ComptesManagement {
 
 	/**
 	 * Permet de récupérer tout les comptes courant d'un client
-	 * 
+	 *
 	 * @return une liste de compte courant
 	 */
 	public ArrayList<CompteCourant> getComptesDunClient() {

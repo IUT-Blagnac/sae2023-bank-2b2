@@ -41,7 +41,7 @@ public class OperationsManagementController {
 	private ObservableList<Operation> oListOperations;
 
 	// Manipulation de la fenêtre
-	
+
 	/**
      * Initialise le contexte du contrôleur.
      *
@@ -61,7 +61,7 @@ public class OperationsManagementController {
 		this.configure();
 	}
 
-	
+
 	/**
 	 * Configure les paramètres et les éléments de l'interface graphique.
 	 */
@@ -84,7 +84,7 @@ public class OperationsManagementController {
 	}
 
 	// Gestion du stage
-	
+
 	 /**
      * Ferme la fenêtre et effectue les actions appropriées.
      *
@@ -112,7 +112,7 @@ public class OperationsManagementController {
 	@FXML
 	private Button btnVirement;
 
-	
+
 	/**
      * Annule l'action en cours et ferme la fenêtre.
      */
@@ -134,7 +134,7 @@ public class OperationsManagementController {
 		}
 	}
 
-	
+
 	 /**
      * Effectue l'opération de crédit.
      */
@@ -147,7 +147,7 @@ public class OperationsManagementController {
 		}
 	}
 
-	
+
 	 /**
      * Effectue l'opération de virement.
      */
@@ -174,7 +174,7 @@ public class OperationsManagementController {
 			this.btnVirement.setDisable(true);
 		}
 	}
-	
+
 	/**
      * Met à jour les informations du compte et du client affichées dans l'interface graphique.
      */
