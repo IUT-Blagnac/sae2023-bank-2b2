@@ -6,6 +6,7 @@ import java.net.URISyntaxException;
 import java.sql.Date;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -111,8 +112,17 @@ public class Batch {
     }
 
     private void doRel() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		DecimalFormat df = new DecimalFormat("0.000");
 		ArrayList<Operation> listeOpes;
+		Date jdate = Date.valueOf(LocalDate.now());
+    	Calendar calendar = Calendar.getInstance();
+    	calendar.setTime(jdate);
+    	int jour = calendar.get(Calendar.DAY_OF_MONTH);
+
+		if (jour == 1) {
+			
+		}
 
         int idNumCli = compteActu.idNumCli;
         //récupérer le client
@@ -166,9 +176,13 @@ public class Batch {
 			title.setTextAlignment(TextAlignment.CENTER);
 			document.add(title);
 
-			String currentMonth = java.time.LocalDate.now().getMonth().getDisplayName(TextStyle.FULL, Locale.FRENCH);
-			currentMonth = "\n Releve de compte du mois de " + currentMonth.substring(0, 1).toUpperCase() + currentMonth.substring(1);
-			Paragraph date = new Paragraph("Date de génération du relevé : " + java.time.LocalDate.now() + currentMonth).setFontSize(12);
+			LocalDate today = LocalDate.now();
+			LocalDate lastMonth = today.minusMonths(1);
+
+			String lastMonthName = lastMonth.getMonth().getDisplayName(TextStyle.FULL, Locale.FRENCH);
+			lastMonthName = "\n Releve de compte du mois de " + lastMonthName.substring(0, 1).toUpperCase() + lastMonthName.substring(1);
+
+			Paragraph date = new Paragraph(lastMonthName + "\nDate de génération du relevé : " + today.format(formatter)).setFontSize(12);
 			date.setTextAlignment(TextAlignment.RIGHT);
 			document.add(date);
 
@@ -210,7 +224,9 @@ public class Batch {
 			Double oldSolde = this.compteActu.solde;
 			listeOpes = getOperationsDunCompte(compteActu);
 			for (Operation currOp : listeOpes) {
-				oldSolde -= currOp.montant;
+				if (currOp.dateOp.toLocalDate().getMonth() ==  lastMonth.getMonth()) {
+					oldSolde -= currOp.montant;
+				}
 			}
 						
 			Cell rightCell = new Cell().add(new Paragraph(df.format(oldSolde))
@@ -232,7 +248,7 @@ public class Batch {
 			for (Operation currOp : listeOpes) {
 				if (currOp.dateOp.toLocalDate().getMonth() == java.time.LocalDate.now().getMonth()) {
 					table.addCell(new Cell().add(new Paragraph(currOp.idNumCompte+"").setFontSize(11).setFontColor(ColorConstants.BLACK).setFont(lightFont)));
-					table.addCell(new Cell().add(new Paragraph(currOp.dateOp+"").setFontSize(11).setFontColor(ColorConstants.BLACK).setFont(lightFont)));
+					table.addCell(new Cell().add(new Paragraph(currOp.dateOp.toLocalDate().format(formatter)+"").setFontSize(11).setFontColor(ColorConstants.BLACK).setFont(lightFont)));
 					table.addCell(new Cell().add(new Paragraph(currOp.idOperation+"").setFontSize(11).setFontColor(ColorConstants.BLACK).setFont(lightFont)));
 					table.addCell(new Cell().add(new Paragraph((currOp.montant+"").replace(".", ",")).setFontSize(11).setFontColor(ColorConstants.BLACK).setFont(lightFont)));
 					table.addCell(new Cell().add(new Paragraph(currOp.idTypeOp+"").setFontSize(11).setFontColor(ColorConstants.BLACK).setFont(lightFont)));

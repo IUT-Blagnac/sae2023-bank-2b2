@@ -251,8 +251,7 @@ public class OperationEditorPaneController {
 
 			try {
 				montant = Double.parseDouble(this.txtMontant.getText().trim());
-				if (montant <= 0)
-					throw new NumberFormatException();
+				if (montant <= 0) throw new NumberFormatException();
 			} catch (NumberFormatException nfe) {
 				this.txtMontant.getStyleClass().add("borderred");
 				this.lblMontant.getStyleClass().add("borderred");
