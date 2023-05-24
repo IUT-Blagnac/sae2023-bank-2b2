@@ -358,14 +358,17 @@ public class EmpruntSimulationController {
 
 				// Ajouter les données du tableau
 				for (int i = 0; i < rows.length; i++) {
-					String[] cells = rows[i].split("\t");
-					for (String cell : cells) {
-						if (cell.equals("-0.00")) {
-							cell = "0.00";
-						}
-						table.addCell(cell).setFont(contentFont).setFontSize(10);
-					}
+				    String[] cells = rows[i].split("\t");
+				    System.out.println("Voici la cells "+i+" "+cells.toString());
+				    for (String cell : cells) {
+				        if (cell.equals("-0.00")) {
+				            cell = "0.00";
+				        }
+				        table.addCell(cell).setFont(contentFont).setFontSize(10);
+				    }
 				}
+
+
 
 				document.add(table);
 

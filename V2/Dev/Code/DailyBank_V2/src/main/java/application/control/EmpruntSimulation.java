@@ -55,15 +55,7 @@ public class EmpruntSimulation {
 	}
 
 	/**
-	 * Cette méthode permet d'afficher le dialogue de gestion d'un compte. <br/>
-	 * Que ce soit pour une création, une modification, une suppression ou une
-	 * consultation <br/>
-	 * il donc faut passer en paramètre le client a qui appartient le compte, le
-	 * compte concerné et le mode d'édition qui sera utilisé. <br/>
-	 * 
-	 * @param client le client a qui appartient le compte
-	 * @param cpte   le compte qu'on souhaite editer
-	 * @param em     le mode d'édition
+	 * Cette méthode permet d'afficher le dialogue de la simulation d'un emprunt
 	 * 
 	 * @return le compte courant edité
 	 */
