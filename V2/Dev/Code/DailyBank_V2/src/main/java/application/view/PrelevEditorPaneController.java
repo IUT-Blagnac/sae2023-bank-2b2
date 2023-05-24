@@ -139,6 +139,7 @@ public class PrelevEditorPaneController {
 	// Gestion du stage
 	
 	/**
+	 * @author yannis gibert
 	 * Gère l'événement de fermeture de la fenêtre en annulant l'opération en cours.
 	 *
 	 * @param e L'événement de fermeture de la fenêtre
@@ -151,7 +152,8 @@ public class PrelevEditorPaneController {
 	}
 	
 	/**
-	 * Gère l'événement de focus sur le champ de découvert autorisé en mettant à jour la valeur du découvert autorisé du compte courant.
+	 * @author yannis gibert
+	 * Gère l'événement de focus sur le champ de beneficiaire en mettant à jour le beneficiaire du prelevement automatique.
 	 *
 	 * @param txtField Le champ de texte du découvert autorisé
 	 * @param oldPropertyValue La valeur précédente de la propriété "focused"
@@ -173,7 +175,8 @@ public class PrelevEditorPaneController {
 	}
 
 	/**
-	 * Gère l'événement de focus sur le champ de découvert autorisé en mettant à jour la valeur du découvert autorisé du compte courant.
+	 * @author yannis gibert
+	 * Gère l'événement de focus sur le champ de date prélèvement en mettant à jour la valeur du date occurence du prélèvement automatique.
 	 *
 	 * @param txtField Le champ de texte du découvert autorisé
 	 * @param oldPropertyValue La valeur précédente de la propriété "focused"
@@ -198,7 +201,8 @@ public class PrelevEditorPaneController {
 	}
 
 	/**
-	 * Gère l'événement de focus sur le champ de solde en mettant à jour la valeur du solde du compte courant.
+	 * @author yannis gibert
+	 * Gère l'événement de focus sur le champ de montant en mettant à jour la valeur du montant du prelevement automatique.
 	 *
 	 * @param txtField Le champ de texte du solde
 	 * @param oldPropertyValue La valeur précédente de la propriété "focused"
@@ -243,6 +247,7 @@ public class PrelevEditorPaneController {
 
 	
 	/**
+	 * @author yannis gibert
 	 * Gère l'action de l'annulation de l'opération en cours.
 	 * Réinitialise le compte résultat et ferme la fenêtre principale.
 	 */
@@ -255,6 +260,7 @@ public class PrelevEditorPaneController {
 	
 
 	/**
+	 * @author yannis gibert
 	 * Gère l'action du bouton "Ajouter" en fonction du mode d'édition.
 	 * Vérifie la validité de la saisie, attribue le compte édité au compte résultat et ferme la fenêtre principale.
 	 */
@@ -282,6 +288,7 @@ public class PrelevEditorPaneController {
 	}
 	
 	/**
+	 * @author yannis gibert
 	 * Vérifie si la saisie des champs est valide.
 	 *
 	 * @return true si la saisie est valide, false sinon

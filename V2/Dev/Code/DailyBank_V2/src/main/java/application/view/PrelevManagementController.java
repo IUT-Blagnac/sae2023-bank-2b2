@@ -20,7 +20,8 @@ import model.data.Prelevement;
 
 
 /**
- * Cette classe est le contrôleur de la gestion des comptes.
+ * @author yannis gibert
+ * Cette classe est le contrôleur de la gestion des prelevements.
  * Elle gère les interactions avec l'interface graphique et effectue les opérations correspondantes.
  */
 public class PrelevManagementController {
@@ -28,7 +29,7 @@ public class PrelevManagementController {
 	// Etat courant de l'application
 	private DailyBankState dailyBankState;
 
-	// Contrôleur de Dialogue associé à ComptesManagementController
+	// Contrôleur de Dialogue associé à PrelevManagement
 	private PrelevManagement cmDialogController;
 
 	// Fenêtre physique ou est la scène contenant le fichier xml contrôlé par this
@@ -44,11 +45,12 @@ public class PrelevManagementController {
 	// Manipulation de la fenêtre
 	
 	/**
+	 * @author yannis gibert
 	 * Initialise le contexte du contrôleur avec les paramètres fournis.
 	 * @param _containingStage La fenêtre physique contenant la scène
 	 * @param _cm Le contrôleur de dialogue associé
 	 * @param _dbstate L'état courant de l'application
-	 * @param client Le client associé aux comptes
+	 * @param compte le compte associé aux prelevements
 	 */
 	public void initContext(Stage _containingStage, PrelevManagement _cm, DailyBankState _dbstate, CompteCourant compte) {
 		this.cmDialogController = _cm;
@@ -60,6 +62,7 @@ public class PrelevManagementController {
 
 	
 	/**
+	 * @author yannis gibert
 	 * Configure les éléments de l'interface graphique.
 	 */
 	private void configure() {
@@ -82,6 +85,7 @@ public class PrelevManagementController {
 	}
 
 	/**
+	 * @author yannis gibert
 	 * Affiche la fenêtre de gestion des comptes.
 	 */
 	public void displayDialog() {
@@ -90,6 +94,7 @@ public class PrelevManagementController {
 	
 	
 	/**
+	 * @author yannis gibert
 	 * Gère l'événement de fermeture de la fenêtre en annulant ce qui était en cours.
 	 *
 	 * @param e L'événement de fermeture de la fenêtre
@@ -116,18 +121,20 @@ public class PrelevManagementController {
 	private ContextMenu contextMenu = new ContextMenu();
 
 	/**
-	 * Annule et ferme la fenêtre de gestion des comptes.
+	 * @author yannis gibert
+	 * Annule et ferme la fenêtre de gestion des prelevements.
 	 */
 	@FXML
 	private void doCancel() {
 		this.primaryStage.close();
 	}
 	
-	//Modification d'un compte
+	//Modification d'un prelevement
 	
 	/**
-	 * Modifie un compte sélectionné.
-	 * Charge ensuite la liste des comptes et met à jour l'état des composants.
+	 * @author yannis gibert
+	 * Modifie un prelevement sélectionné.
+	 * Charge ensuite la liste des prelevements et met à jour l'état des composants.
 	 */
 	@FXML
 	private void doModifierPrelev() {
@@ -143,11 +150,12 @@ public class PrelevManagementController {
 		this.validateComponentState();
 	}
 
-	//Suppression d'un compte courant
+	//Suppression d'un prelevement
 	
 	/**
-	 * Supprime un compte courant sélectionné.
-	 * Charge ensuite la liste des comptes et met à jour l'état des composants.
+	 * @author yannis gibert
+	 * Supprime un prelevement sélectionné.
+	 * Charge ensuite la liste des prelevements et met à jour l'état des composants.
 	 */
 	@FXML
 	private void doSupprimerPrelev() {
@@ -160,11 +168,12 @@ public class PrelevManagementController {
 		this.validateComponentState();
 	}
 
-	//Ajout d'un nouveau compte courant
+	//Ajout d'un nouveau prelevement
 	
 	/**
-	 * Ajoute un nouveau compte courant.
-	 * Charge ensuite la liste des comptes.
+	 * @author yannis gibert
+	 * Ajoute un nouveau prelevement
+	 * Charge ensuite la liste des prelevements.
 	 */
 	@FXML
 	private void doNouveauPrelev() {
@@ -177,7 +186,8 @@ public class PrelevManagementController {
 	
 
 	/**
-	 * Charge la liste des comptes du client et l'affiche dans la vue.
+	 * @author yannis gibert
+	 * Charge la liste des prelevements du cmopte et l'affiche dans la vue.
 	 */
 	private void loadList() {
 		ArrayList<Prelevement> listePrelev;
@@ -187,7 +197,7 @@ public class PrelevManagementController {
 	}
 
 	/**
-	 * Valide l'état des composants en fonction de la sélection d'un compte.
+	 * Valide l'état des composants en fonction de la sélection d'un prelevement.
 	 * Active ou désactive les boutons en conséquence.
 	 */
 	private void validateComponentState() {
