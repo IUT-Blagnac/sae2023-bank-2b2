@@ -58,6 +58,10 @@ public class TestBank extends ApplicationTest {
         dailyBankState = DailyBankMainFrame.getDailyBankState();
     }
 
+    /**
+     * Méthode pour se connecter à l'application avant chaque test et la réinitialiser si ce n'est pas déjà fait
+     * @author Enzo Fournet
+     */
     @BeforeEach
     public void beforeEach() {
         //On réinitialise la BD si ce n'est pas déjà fait en utilisant la méthode resestBD
@@ -87,6 +91,10 @@ public class TestBank extends ApplicationTest {
         stage.show();
     }
 
+    /**
+     * Méthode pour réinitialiser la BD si ce n'est pas déjà fait dans les tests en cours.
+     * @author Enzo Fournet
+     */
     public void resestBD() {
         if(!resestBD) {
             Platform.runLater(new Runnable() {
@@ -135,6 +143,10 @@ public class TestBank extends ApplicationTest {
         }
     }
 
+    /**
+     * Méthode pour se déconnecter de l'application si l'on est connecté
+     * @author Enzo Fournet
+     */
     public void verifCoDECO() {
         Button btnDeconn = this.find("#btnDeconn");
         if (btnDeconn != null) {
@@ -142,6 +154,12 @@ public class TestBank extends ApplicationTest {
         }
     }
 
+    /**
+     * Méthode pour se connecter à l'application
+     * @author Enzo Fournet
+     * @param login
+     * @param motPasse
+     */
     public void connecter(String login, String motPasse) {
         //lancer la feneêtre de connexion
         this.clickOn("#btnConn");
@@ -154,6 +172,11 @@ public class TestBank extends ApplicationTest {
 
 
 
+    /**
+     * Méthode pour tester la connexion d'un employe et vérifier que les labels sont bien remplis avec les infos de l'employer <br/>
+     * actuel et que l'employer dans dailyBankState est le même que celui de la BD
+     * @author Enzo Fournet
+     */
     @Test
     @Order(1)
     public void testLogin() {
@@ -177,6 +200,11 @@ public class TestBank extends ApplicationTest {
         }
     }
 
+    /**
+     * Méthode pour tester l'affichage de la liste des employe dans la liste view <br/>
+     * de compteManagementController et vérifier que les employes affichés sont les mêmes que dans la BD
+     * @author Enzo Fournet
+     */
     @Test
     public void testListEmploye() {
         int nbEmployeBD = 0;
@@ -222,6 +250,10 @@ public class TestBank extends ApplicationTest {
         }
     }
 
+    /**
+     * Méthode pour tester la modification d'un employe
+     * @author Enzo Fournet
+     */
     @Test
     public void testModifierUnEmploye() {
         Employe employesBD = null;
@@ -290,6 +322,10 @@ public class TestBank extends ApplicationTest {
         assertEquals(motPasseVrf, txtMotPasse.getText());
     }
 
+    /**
+     * Méthode pour tester la consultation d'un employe
+     * @author Enzo Fournet
+     */
     @Test
     public void testConsulterEmployes() {
         ArrayList<Employe> employesBD = null;
@@ -333,6 +369,10 @@ public class TestBank extends ApplicationTest {
         }
     }
 
+    /**
+     * Méthode pour tester la suppression d'un employe
+     * @author Enzo Fournet
+     */
     @Test
     public void testSupprimerGuichetier() {
         Access_BD_Test access_BD_Test = new Access_BD_Test();
@@ -364,6 +404,10 @@ public class TestBank extends ApplicationTest {
         assertEquals(null, employeBD);
     }
 
+    /**
+     * Méthode pour tester la création d'un employe
+     * @author Enzo Fournet
+     */
     @Test //pas encore fonctionnel
     public void testNouvelEmploye() {
         Access_BD_Test access_BD_Test = new Access_BD_Test();
@@ -430,6 +474,7 @@ public class TestBank extends ApplicationTest {
 
     /**
      * Méthode pour trouver un élément dans la fenêtre de test à partir de son id
+     * @author Enzo Fournet
      * @param <T>
      * @param query
      * @return
@@ -456,15 +501,16 @@ public class TestBank extends ApplicationTest {
             }
         } while (!nodes.isEmpty() && selectedNode != null);
 
-
-        System.out.println("node restant");
-        System.out.println("size" + nodes.size());
-        for (Node node : nodes) {
-            System.out.println(node);
-        }
         return (T) nodes.iterator().next();
     }
-
+ 
+    /**
+     * Méthode qui permet de récupérer le stage à partir d'un noeud 
+     * 
+     * @author Enzo Fournet
+     * @param node
+     * @return
+     */
     public Stage getStageFromNode(Node node) {
         Scene scene = node.getScene();
         if (scene != null) {

@@ -909,7 +909,7 @@ Pour executer les test il existe deux solution :
 
 `` mvn clean install ``
 
-Cette commande permet de lancer la création du Jar du projet et donc lance dans la foulé les tests pour vérifier sue l'app focntionne correctement.
+Cette commande permet de lancer la création du Jar du projet et donc lance dans la foulé les tests pour vérifier que l'app focntionne correctement.
 
 * La seconde
 
@@ -925,3 +925,107 @@ Ils sont aussi utilisable même si la connexion automatique est utilisé et lors
 A noter que le test `` testLogin `` permet vérifier que la connexion fonctionne correctement et si cela échoue les autres tests ne s'executeront pas.
 
 Ci dessous vous retrouverai quelque exemple sur le fcontionnement de ces tests.
+
+==== Exemple de test
+
+Ci dessous un exemple de test qui permet de 
+
+```java
+@Test
+    public void testListEmploye() {
+        int nbEmployeBD = 0;
+        int nbEmployeLV = 0;
+        ArrayList<Employe> employesBD = null;
+        ArrayList<Employe> employesLV = null;
+        Employe employeBD = null;
+        Employe employeLV = null;
+
+        this.clickOn("Gestion");
+        this.clickOn("#mitemEmploye");
+
+        //récupérer le nombre d'employe dans la liste view affcihée
+        ListView lvEmployes = this.find("#lvEmployes");
+        nbEmployeLV = lvEmployes.getItems().size();
+
+        //récupérer le nombre d'employe dans la BD
+        Access_BD_Test access_BD_Test = new Access_BD_Test();
+        try {
+            nbEmployeBD = access_BD_Test.getNumberEmploye();
+        } catch (DataAccessException | DatabaseConnexionException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+
+        //verifier que le nombre d'employe dans la BD est le même que dans la liste view
+        assertEquals(nbEmployeLV, nbEmployeBD);
+
+        try {
+            employesBD = access_BD_Test.getAllEmploye();
+        } catch (Exception e) {
+            assertEquals(true, false, e.toString());
+            e.printStackTrace();
+        }
+        employesLV = new ArrayList<>(lvEmployes.getItems());
+
+       //foreach dans deux ArrayList à la fois  pour vérifier que les employes sont les mêmes
+        for(int i = 0; i < employesBD.size() && i < employesLV.size(); i++) {
+            employeBD = employesBD.get(i);
+            employeLV = employesLV.get(i);
+            assertEquals(employeBD.toString(), employeLV.toString());
+        }
+    }
+```
+
+Cette méthode permet de vérifier que la liste des employés affiché dans l'interface est la même que celle de la base de données.
+Pour cela, on récupère le nombre d'employé dans la liste view et dans la base de données. Si ces deux nombres sont égaux, on récupère les employés de la base de données et de la liste view et on les compare un par un afin de vérifier qu'ils sont tous les mêmes.
+
+Lors de la récupération de la liste des employés sur l'application, on utilise la méthode find() qui permet de récupérer un élément de l'interface en fonction de son id, ou même du text présent sur l'élément en question. 
+Cette méthode est aussi trés efficace puisque elle est capable de rechercher les node (élément de l'interface) seulement dans la prtie de l'interface en premier plan au moment de l'execution du test. Cela permet de ne pas recupérer des éléement qui proviendrait de fenêtre qui ne sont pas affiché à l'écran ou qui sont caché par d'autre.
+
+La méthode find() retourne un objet de type Node qui est un objet de base de JavaFX. Cet objet est ensuite casté en fonction de l'objet que l'on souhaite récupérer. Par exemple, si on souhaite récupérer comme ici une ListView, on cast l'objet Node en ListView.
+
+La méthode find() accompagné de la méthode getStageFromNode qui permet de récupérer le Stage des nodes récupéré.
+
+```java
+public <T extends Node> T find(final String query) {
+        Set<Node> nodes = this.lookup(query).queryAll();
+
+        if (nodes.isEmpty()) {
+            return null;
+        }
+
+        Node selectedNode;
+        do {
+            selectedNode = null;
+            for (Node node : nodes) {
+                if (!this.getStageFromNode(node).isFocused()) {
+                    selectedNode = node;
+                    break; // sortir de la boucle dès qu'on trouve un noeud non focusé
+                }
+            }
+
+            if (selectedNode != null) {
+                nodes.remove(selectedNode);
+            }
+        } while (!nodes.isEmpty() && selectedNode != null);
+
+        return (T) nodes.iterator().next();
+    }
+ 
+    /**
+     * Méthode qui permet de récupérer le stage à partir d'un noeud 
+     * 
+     * @author Enzo Fournet
+     * @param node
+     * @return
+     */
+    public Stage getStageFromNode(Node node) {
+        Scene scene = node.getScene();
+        if (scene != null) {
+            Window window = scene.getWindow();
+            if (window instanceof Stage) {
+                return (Stage) window;
+            }
+        }
+        return null;
+```
