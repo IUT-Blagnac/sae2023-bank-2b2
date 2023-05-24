@@ -6,8 +6,10 @@ import java.net.URISyntaxException;
 import java.sql.Date;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
+import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
 import org.apache.commons.io.IOUtils;
@@ -53,13 +55,25 @@ public class Batch {
 
     public void start() {
         System.out.println("COUCOU");
-        try {
-            Access_BD_CompteCourant acc = new Access_BD_CompteCourant();
-            compteActu = acc.getCompteCourant(1);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        doRel();
+		int nbClients = 0;
+
+		try {
+			Access_BD_CompteCourant acc = new Access_BD_CompteCourant();
+			nbClients = acc.getNbCpt();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		for (int i = 1; i < nbClients-1; i++) {
+        	try {
+        	    Access_BD_CompteCourant acc = new Access_BD_CompteCourant();
+        	    compteActu = acc.getCompteCourant(i);
+        	} catch (Exception e) {
+        	    e.printStackTrace();
+        	}
+        	doRel();
+		}
+
         doPrelev();
     }
     
@@ -122,7 +136,7 @@ public class Batch {
 
 		try {
 			// Initialize PDF writer
-			PdfWriter writer = new PdfWriter("Relevé de compte mensuel - " + compteActu.idNumCompte + ".pdf");
+			PdfWriter writer = new PdfWriter("Relevé de compte mensuel - " + compteActu.idNumCompte + " - " + java.time.LocalDate.now().toString() + ".pdf");
 			// Initialize PDF document
 			PdfDocument pdf = new PdfDocument(writer);
 			// Initialize document
@@ -151,10 +165,15 @@ public class Batch {
 			Paragraph title = new Paragraph("Relevé de compte").setFontSize(18).setFont(boldFont);
 			title.setTextAlignment(TextAlignment.CENTER);
 			document.add(title);
-			//Ajouter la date à droite du titre
-			Paragraph date = new Paragraph("Date de génération du relevé : " + java.time.LocalDate.now()).setFontSize(12);
+
+			String currentMonth = java.time.LocalDate.now().getMonth().getDisplayName(TextStyle.FULL, Locale.FRENCH);
+			currentMonth = "\n Releve de compte du mois de " + currentMonth.substring(0, 1).toUpperCase() + currentMonth.substring(1);
+			Paragraph date = new Paragraph("Date de génération du relevé : " + java.time.LocalDate.now() + currentMonth).setFontSize(12);
 			date.setTextAlignment(TextAlignment.RIGHT);
 			document.add(date);
+
+			
+
 			Paragraph infosClient = new Paragraph(
 				"Client : " + this.clientDuCompteActu.nom + " " + this.clientDuCompteActu.prenom + " (ID : " + this.clientDuCompteActu.idNumCli + ") \n" +
 				this.clientDuCompteActu.email + "\n" +
@@ -211,11 +230,13 @@ public class Batch {
 				.setFont(boldFont);
 			table.addCell(outerCell);
 			for (Operation currOp : listeOpes) {
-				table.addCell(new Cell().add(new Paragraph(currOp.idNumCompte+"").setFontSize(11).setFontColor(ColorConstants.BLACK).setFont(lightFont)));
-				table.addCell(new Cell().add(new Paragraph(currOp.dateOp+"").setFontSize(11).setFontColor(ColorConstants.BLACK).setFont(lightFont)));
-				table.addCell(new Cell().add(new Paragraph(currOp.idOperation+"").setFontSize(11).setFontColor(ColorConstants.BLACK).setFont(lightFont)));
-				table.addCell(new Cell().add(new Paragraph((currOp.montant+"").replace(".", ",")).setFontSize(11).setFontColor(ColorConstants.BLACK).setFont(lightFont)));
-				table.addCell(new Cell().add(new Paragraph(currOp.idTypeOp+"").setFontSize(11).setFontColor(ColorConstants.BLACK).setFont(lightFont)));
+				if (currOp.dateOp.toLocalDate().getMonth() == java.time.LocalDate.now().getMonth()) {
+					table.addCell(new Cell().add(new Paragraph(currOp.idNumCompte+"").setFontSize(11).setFontColor(ColorConstants.BLACK).setFont(lightFont)));
+					table.addCell(new Cell().add(new Paragraph(currOp.dateOp+"").setFontSize(11).setFontColor(ColorConstants.BLACK).setFont(lightFont)));
+					table.addCell(new Cell().add(new Paragraph(currOp.idOperation+"").setFontSize(11).setFontColor(ColorConstants.BLACK).setFont(lightFont)));
+					table.addCell(new Cell().add(new Paragraph((currOp.montant+"").replace(".", ",")).setFontSize(11).setFontColor(ColorConstants.BLACK).setFont(lightFont)));
+					table.addCell(new Cell().add(new Paragraph(currOp.idTypeOp+"").setFontSize(11).setFontColor(ColorConstants.BLACK).setFont(lightFont)));
+				}
 			}
 			innerTable = new Table(2)
 				.setWidth(UnitValue.createPercentValue(100))

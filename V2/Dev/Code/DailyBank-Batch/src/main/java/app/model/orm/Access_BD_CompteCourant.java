@@ -24,6 +24,26 @@ public class Access_BD_CompteCourant {
 	public Access_BD_CompteCourant() {
 	}
 
+	public int getNbCpt() throws DataAccessException, DatabaseConnexionException {
+		int nbCpt = 0;
+		try {
+			Connection con = LogToDatabase.getConnexion();
+			String query = "SELECT COUNT(*) FROM CompteCourant";
+
+			PreparedStatement pst = con.prepareStatement(query);
+
+			ResultSet rs = pst.executeQuery();
+			if (rs.next()) {
+				nbCpt = rs.getInt(1);
+			}
+			rs.close();
+			pst.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return nbCpt;
+	}
+
 	/**
 	 * Recherche des CompteCourant d'un client à partir de son id.
 	 *
