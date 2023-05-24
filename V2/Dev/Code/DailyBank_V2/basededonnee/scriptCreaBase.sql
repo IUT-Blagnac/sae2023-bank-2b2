@@ -188,6 +188,7 @@ INSERT INTO TypeOperation VALUES ('Paiement Carte Bleue'); -- débit
 INSERT INTO TypeOperation VALUES ('Virement Compte à Compte'); -- débit ou crédit : accessible guichet
 INSERT INTO TypeOperation VALUES ('Prélèvement automatique'); -- débit
 INSERT INTO TypeOperation VALUES ('Prélèvement agios');  -- débit
+NSERT INTO TypeOperation VALUES ('Premier depot');
 
 -- On crée une séquence afin de générer la clé primaire des opérations
 DROP SEQUENCE seq_id_operation;

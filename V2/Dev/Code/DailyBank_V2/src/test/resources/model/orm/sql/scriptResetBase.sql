@@ -154,6 +154,7 @@ INSERT INTO TypeOperation VALUES ('Paiement Carte Bleue')/
 INSERT INTO TypeOperation VALUES ('Virement Compte à Compte')/  
 INSERT INTO TypeOperation VALUES ('Prélèvement automatique')/  
 INSERT INTO TypeOperation VALUES ('Prélèvement agios')/   
+NSERT INTO TypeOperation VALUES ('Premier depot')/
 
 DROP SEQUENCE seq_id_operation/ 
 CREATE SEQUENCE seq_id_operation

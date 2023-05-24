@@ -10,3 +10,4 @@ SELECT * FROM operation where idnumcompte = 1 order by idoperation;
 
 SHOW ERRORS PROCEDURE Crediter;
 SHOW ERRORS PROCEDURE Debiter;
+SHOW ERRORS PROCEDURE effectuerVirement;
