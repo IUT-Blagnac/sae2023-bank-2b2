@@ -121,173 +121,171 @@ public class Batch {
     	int jour = calendar.get(Calendar.DAY_OF_MONTH);
 
 		if (jour == 1) {
-			
-		}
+        	int idNumCli = compteActu.idNumCli;
+        	//récupérer le client
+        	try {
+        	    Access_BD_Client ac = new Access_BD_Client();
+        	    clientDuCompteActu = ac.getClient(idNumCli);
+        	} catch (Exception e) {
+        	    e.printStackTrace();
+        	}
 
-        int idNumCli = compteActu.idNumCli;
-        //récupérer le client
-        try {
-            Access_BD_Client ac = new Access_BD_Client();
-            clientDuCompteActu = ac.getClient(idNumCli);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        int idAg = clientDuCompteActu.idAg;
-        //récupérer l'agence
-        try {
-            Access_BD_AgenceBancaire aab = new Access_BD_AgenceBancaire();
-            agenceActuelle = aab.getAgenceBancaire(idAg);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        	int idAg = clientDuCompteActu.idAg;
+        	//récupérer l'agence
+        	try {
+        	    Access_BD_AgenceBancaire aab = new Access_BD_AgenceBancaire();
+        	    agenceActuelle = aab.getAgenceBancaire(idAg);
+        	} catch (Exception e) {
+        	    e.printStackTrace();
+        	}
 
 
 
-		try {
-			// Initialize PDF writer
-			PdfWriter writer = new PdfWriter("Relevé de compte mensuel - " + compteActu.idNumCompte + " - " + java.time.LocalDate.now().toString() + ".pdf");
-			// Initialize PDF document
-			PdfDocument pdf = new PdfDocument(writer);
-			// Initialize document
-			Document document = new Document(pdf);
-			PdfFont font = null;
-			InputStream fontStream = Batch.class.getResourceAsStream("font/Helvetica.ttf");
-			font = PdfFontFactory.createFont(IOUtils.toByteArray(fontStream), PdfEncodings.IDENTITY_H, EmbeddingStrategy.PREFER_EMBEDDED);
+			try {
+				// Initialize PDF writer
+				PdfWriter writer = new PdfWriter("Relevé de compte mensuel - " + compteActu.idNumCompte + " - " + java.time.LocalDate.now().toString() + ".pdf");
+				// Initialize PDF document
+				PdfDocument pdf = new PdfDocument(writer);
+				// Initialize document
+				Document document = new Document(pdf);
+				PdfFont font = null;
+				InputStream fontStream = Batch.class.getResourceAsStream("font/Helvetica.ttf");
+				font = PdfFontFactory.createFont(IOUtils.toByteArray(fontStream), PdfEncodings.IDENTITY_H, EmbeddingStrategy.PREFER_EMBEDDED);
 
-			
-			PdfFont boldFont = null;
-			InputStream boldFontStream = Batch.class.getResourceAsStream("font/Helvetica-Bold.ttf");
-			boldFont = PdfFontFactory.createFont(IOUtils.toByteArray(boldFontStream), PdfEncodings.IDENTITY_H, EmbeddingStrategy.PREFER_EMBEDDED);
-			
-			PdfFont lightFont = null;
-			InputStream lightFontStream = Batch.class.getResourceAsStream("font/Helvetica-Light.ttf");
-			lightFont = PdfFontFactory.createFont(IOUtils.toByteArray(lightFontStream), PdfEncodings.IDENTITY_H, EmbeddingStrategy.PREFER_EMBEDDED);
 
-			document.setFont(font);
-			//ajouter les metadata
-			pdf.getDocumentInfo().setTitle("Relevé mensuel");
-			pdf.getDocumentInfo().setAuthor("DailyBank");
-			pdf.getDocumentInfo().setCreator("DailyBank");
-			pdf.getDocumentInfo().setSubject("Relevé mensuel");
-			pdf.getDocumentInfo().setKeywords("DailyBank, Relevé mensuel");
-			// Ajouter un titre centré en haut du pdf avec une police de taille 18
-			Paragraph title = new Paragraph("Relevé de compte").setFontSize(18).setFont(boldFont);
-			title.setTextAlignment(TextAlignment.CENTER);
-			document.add(title);
+				PdfFont boldFont = null;
+				InputStream boldFontStream = Batch.class.getResourceAsStream("font/Helvetica-Bold.ttf");
+				boldFont = PdfFontFactory.createFont(IOUtils.toByteArray(boldFontStream), PdfEncodings.IDENTITY_H, EmbeddingStrategy.PREFER_EMBEDDED);
 
-			LocalDate today = LocalDate.now();
-			LocalDate lastMonth = today.minusMonths(1);
+				PdfFont lightFont = null;
+				InputStream lightFontStream = Batch.class.getResourceAsStream("font/Helvetica-Light.ttf");
+				lightFont = PdfFontFactory.createFont(IOUtils.toByteArray(lightFontStream), PdfEncodings.IDENTITY_H, EmbeddingStrategy.PREFER_EMBEDDED);
 
-			String lastMonthName = lastMonth.getMonth().getDisplayName(TextStyle.FULL, Locale.FRENCH);
-			lastMonthName = "\n Releve de compte du mois de " + lastMonthName.substring(0, 1).toUpperCase() + lastMonthName.substring(1);
+				document.setFont(font);
+				//ajouter les metadata
+				pdf.getDocumentInfo().setTitle("Relevé mensuel");
+				pdf.getDocumentInfo().setAuthor("DailyBank");
+				pdf.getDocumentInfo().setCreator("DailyBank");
+				pdf.getDocumentInfo().setSubject("Relevé mensuel");
+				pdf.getDocumentInfo().setKeywords("DailyBank, Relevé mensuel");
+				// Ajouter un titre centré en haut du pdf avec une police de taille 18
+				Paragraph title = new Paragraph("Relevé de compte").setFontSize(18).setFont(boldFont);
+				title.setTextAlignment(TextAlignment.CENTER);
+				document.add(title);
 
-			Paragraph date = new Paragraph(lastMonthName + "\nDate de génération du relevé : " + today.format(formatter)).setFontSize(12);
-			date.setTextAlignment(TextAlignment.RIGHT);
-			document.add(date);
+				LocalDate today = LocalDate.now();
+				LocalDate lastMonth = today.minusMonths(1);
 
-			
+				String lastMonthName = lastMonth.getMonth().getDisplayName(TextStyle.FULL, Locale.FRENCH);
+				lastMonthName = "\n Releve de compte du mois de " + lastMonthName.substring(0, 1).toUpperCase() + lastMonthName.substring(1);
 
-			Paragraph infosClient = new Paragraph(
-				"Client : " + this.clientDuCompteActu.nom + " " + this.clientDuCompteActu.prenom + " (ID : " + this.clientDuCompteActu.idNumCli + ") \n" +
-				this.clientDuCompteActu.email + "\n" +
-				this.clientDuCompteActu.adressePostale + "\n" +
-				"De l'agence : " + this.agenceActuelle.nomAg + " (ID : " + this.clientDuCompteActu.idAg + ")"
-				).setFontSize(12);
-			infosClient.setTextAlignment(TextAlignment.LEFT);
-			document.add(infosClient);
-			Paragraph infosCompte = new Paragraph("Compte : " + this.compteActu.idNumCompte).setFontSize(12);
-			infosCompte.setTextAlignment(TextAlignment.LEFT);
-			document.add(infosCompte);
-			document.add(new Paragraph("Bonjour, vous retrouverez ci dessous votre relevé de compte :"));
-			//make space between paragraphs
-			document.add(new Paragraph("\n").setFontSize(30));
-			//ajouter un tableau
-			float[] pointColumnWidths = {150F, 150F, 150F, 150F, 250F};
-			Table table = new Table(pointColumnWidths);				
-			table.addHeaderCell(new Cell().add(new Paragraph("ID Compte").setFontSize(10).setFontColor(ColorConstants.GRAY).setFont(boldFont)));
-			table.addHeaderCell(new Cell().add(new Paragraph("Date").setFontSize(10).setFontColor(ColorConstants.GRAY).setFont(boldFont)));
-			table.addHeaderCell(new Cell().add(new Paragraph("ID Opération").setFontSize(10).setFontColor(ColorConstants.GRAY).setFont(boldFont)));
-			table.addHeaderCell(new Cell().add(new Paragraph("Montant").setFontSize(10).setFontColor(ColorConstants.GRAY).setFont(boldFont)));
-			table.addHeaderCell(new Cell().add(new Paragraph("Type").setFontSize(10).setFontColor(ColorConstants.GRAY).setFont(boldFont)));
-			
-			Table innerTable = new Table(2)
-				.setWidth(UnitValue.createPercentValue(100))
-				.setBorder(Border.NO_BORDER);
-			Cell leftCell = new Cell().add(new Paragraph("Solde avant transactions : ")
-			    .setFontSize(11)
-			    .setFontColor(ColorConstants.BLACK)
-			    .setFont(lightFont)
-			    .setTextAlignment(TextAlignment.LEFT))
-				.setBorder(Border.NO_BORDER)
-				.setFont(boldFont);
-			Double oldSolde = this.compteActu.solde;
-			listeOpes = getOperationsDunCompte(compteActu);
-			for (Operation currOp : listeOpes) {
-				if (currOp.dateOp.toLocalDate().getMonth() ==  lastMonth.getMonth()) {
-					oldSolde -= currOp.montant;
+				Paragraph date = new Paragraph(lastMonthName + "\nDate de génération du relevé : " + today.format(formatter)).setFontSize(12);
+				date.setTextAlignment(TextAlignment.RIGHT);
+				document.add(date);
+
+
+
+				Paragraph infosClient = new Paragraph(
+					"Client : " + this.clientDuCompteActu.nom + " " + this.clientDuCompteActu.prenom + " (ID : " + this.clientDuCompteActu.idNumCli + ") \n" +
+					this.clientDuCompteActu.email + "\n" +
+					this.clientDuCompteActu.adressePostale + "\n" +
+					"De l'agence : " + this.agenceActuelle.nomAg + " (ID : " + this.clientDuCompteActu.idAg + ")"
+					).setFontSize(12);
+				infosClient.setTextAlignment(TextAlignment.LEFT);
+				document.add(infosClient);
+				Paragraph infosCompte = new Paragraph("Compte : " + this.compteActu.idNumCompte).setFontSize(12);
+				infosCompte.setTextAlignment(TextAlignment.LEFT);
+				document.add(infosCompte);
+				document.add(new Paragraph("Bonjour, vous retrouverez ci dessous votre relevé de compte :"));
+				//make space between paragraphs
+				document.add(new Paragraph("\n").setFontSize(30));
+				//ajouter un tableau
+				float[] pointColumnWidths = {150F, 150F, 150F, 150F, 250F};
+				Table table = new Table(pointColumnWidths);				
+				table.addHeaderCell(new Cell().add(new Paragraph("ID Compte").setFontSize(10).setFontColor(ColorConstants.GRAY).setFont(boldFont)));
+				table.addHeaderCell(new Cell().add(new Paragraph("Date").setFontSize(10).setFontColor(ColorConstants.GRAY).setFont(boldFont)));
+				table.addHeaderCell(new Cell().add(new Paragraph("ID Opération").setFontSize(10).setFontColor(ColorConstants.GRAY).setFont(boldFont)));
+				table.addHeaderCell(new Cell().add(new Paragraph("Montant").setFontSize(10).setFontColor(ColorConstants.GRAY).setFont(boldFont)));
+				table.addHeaderCell(new Cell().add(new Paragraph("Type").setFontSize(10).setFontColor(ColorConstants.GRAY).setFont(boldFont)));
+
+				Table innerTable = new Table(2)
+					.setWidth(UnitValue.createPercentValue(100))
+					.setBorder(Border.NO_BORDER);
+				Cell leftCell = new Cell().add(new Paragraph("Solde avant transactions : ")
+				    .setFontSize(11)
+				    .setFontColor(ColorConstants.BLACK)
+				    .setFont(lightFont)
+				    .setTextAlignment(TextAlignment.LEFT))
+					.setBorder(Border.NO_BORDER)
+					.setFont(boldFont);
+				Double oldSolde = this.compteActu.solde;
+				listeOpes = getOperationsDunCompte(compteActu);
+				for (Operation currOp : listeOpes) {
+					if (currOp.dateOp.toLocalDate().getMonth() ==  lastMonth.getMonth()) {
+						oldSolde -= currOp.montant;
+					}
 				}
-			}
-						
-			Cell rightCell = new Cell().add(new Paragraph(df.format(oldSolde))
-			    .setFontSize(11)
-			    .setFontColor(ColorConstants.BLACK)
-			    .setFont(lightFont)
-			    .setTextAlignment(TextAlignment.RIGHT))
-				.setBorder(Border.NO_BORDER)
-				.setFont(boldFont);
-						
-			innerTable.addCell(leftCell);
-			innerTable.addCell(rightCell);
-						
-			Cell outerCell = new Cell(1,5);
-			outerCell.add(innerTable)
-				.setPadding(0)
-				.setFont(boldFont);
-			table.addCell(outerCell);
-			for (Operation currOp : listeOpes) {
-				if (currOp.dateOp.toLocalDate().getMonth() == java.time.LocalDate.now().getMonth()) {
-					table.addCell(new Cell().add(new Paragraph(currOp.idNumCompte+"").setFontSize(11).setFontColor(ColorConstants.BLACK).setFont(lightFont)));
-					table.addCell(new Cell().add(new Paragraph(currOp.dateOp.toLocalDate().format(formatter)+"").setFontSize(11).setFontColor(ColorConstants.BLACK).setFont(lightFont)));
-					table.addCell(new Cell().add(new Paragraph(currOp.idOperation+"").setFontSize(11).setFontColor(ColorConstants.BLACK).setFont(lightFont)));
-					table.addCell(new Cell().add(new Paragraph((currOp.montant+"").replace(".", ",")).setFontSize(11).setFontColor(ColorConstants.BLACK).setFont(lightFont)));
-					table.addCell(new Cell().add(new Paragraph(currOp.idTypeOp+"").setFontSize(11).setFontColor(ColorConstants.BLACK).setFont(lightFont)));
+
+				Cell rightCell = new Cell().add(new Paragraph(df.format(oldSolde))
+				    .setFontSize(11)
+				    .setFontColor(ColorConstants.BLACK)
+				    .setFont(lightFont)
+				    .setTextAlignment(TextAlignment.RIGHT))
+					.setBorder(Border.NO_BORDER)
+					.setFont(boldFont);
+
+				innerTable.addCell(leftCell);
+				innerTable.addCell(rightCell);
+
+				Cell outerCell = new Cell(1,5);
+				outerCell.add(innerTable)
+					.setPadding(0)
+					.setFont(boldFont);
+				table.addCell(outerCell);
+				for (Operation currOp : listeOpes) {
+					if (currOp.dateOp.toLocalDate().getMonth() == lastMonth.getMonth()) {
+						table.addCell(new Cell().add(new Paragraph(currOp.idNumCompte+"").setFontSize(11).setFontColor(ColorConstants.BLACK).setFont(lightFont)));
+						table.addCell(new Cell().add(new Paragraph(currOp.dateOp.toLocalDate().format(formatter)+"").setFontSize(11).setFontColor(ColorConstants.BLACK).setFont(lightFont)));
+						table.addCell(new Cell().add(new Paragraph(currOp.idOperation+"").setFontSize(11).setFontColor(ColorConstants.BLACK).setFont(lightFont)));
+						table.addCell(new Cell().add(new Paragraph((currOp.montant+"").replace(".", ",")).setFontSize(11).setFontColor(ColorConstants.BLACK).setFont(lightFont)));
+						table.addCell(new Cell().add(new Paragraph(currOp.idTypeOp+"").setFontSize(11).setFontColor(ColorConstants.BLACK).setFont(lightFont)));
+					}
 				}
+				innerTable = new Table(2)
+					.setWidth(UnitValue.createPercentValue(100))
+					.setBorder(Border.NO_BORDER);
+				leftCell = new Cell().add(new Paragraph("Solde aprés transactions : ")
+				    .setFontSize(11)
+				    .setFontColor(ColorConstants.BLACK)
+				    .setFont(lightFont)
+				    .setTextAlignment(TextAlignment.LEFT))
+					.setBorder(Border.NO_BORDER)
+					.setFont(boldFont);
+
+				rightCell = new Cell().add(new Paragraph(df.format(compteActu.solde))
+				    .setFontSize(11)
+				    .setFontColor(ColorConstants.BLACK)
+				    .setFont(lightFont)
+				    .setTextAlignment(TextAlignment.RIGHT))
+					.setBorder(Border.NO_BORDER)
+					.setFont(boldFont);
+
+				innerTable.addCell(leftCell);
+				innerTable.addCell(rightCell);
+
+				outerCell = new Cell(1,5);
+				outerCell.add(innerTable)
+					.setPadding(0)
+					.setFont(boldFont);
+				table.addCell(outerCell.setFont(boldFont));
+				document.add(table);
+				pdf.addEventHandler(PdfDocumentEvent.END_PAGE, new FooterEventHandler(document));
+				// Close document
+				document.close();
+			} catch(Exception e) {
+			    // Handle exception here
+			    e.printStackTrace();
 			}
-			innerTable = new Table(2)
-				.setWidth(UnitValue.createPercentValue(100))
-				.setBorder(Border.NO_BORDER);
-			leftCell = new Cell().add(new Paragraph("Solde aprés transactions : ")
-			    .setFontSize(11)
-			    .setFontColor(ColorConstants.BLACK)
-			    .setFont(lightFont)
-			    .setTextAlignment(TextAlignment.LEFT))
-				.setBorder(Border.NO_BORDER)
-				.setFont(boldFont);
-						
-			rightCell = new Cell().add(new Paragraph(df.format(compteActu.solde))
-			    .setFontSize(11)
-			    .setFontColor(ColorConstants.BLACK)
-			    .setFont(lightFont)
-			    .setTextAlignment(TextAlignment.RIGHT))
-				.setBorder(Border.NO_BORDER)
-				.setFont(boldFont);
-						
-			innerTable.addCell(leftCell);
-			innerTable.addCell(rightCell);
-						
-			outerCell = new Cell(1,5);
-			outerCell.add(innerTable)
-				.setPadding(0)
-				.setFont(boldFont);
-			table.addCell(outerCell.setFont(boldFont));
-			document.add(table);
-			pdf.addEventHandler(PdfDocumentEvent.END_PAGE, new FooterEventHandler(document));
-			// Close document
-			document.close();
-		} catch(Exception e) {
-		    // Handle exception here
-		    e.printStackTrace();
 		}
 	}
 
