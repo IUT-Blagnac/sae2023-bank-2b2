@@ -8,6 +8,7 @@ import java.lang.reflect.Array;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.text.DecimalFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -292,6 +293,7 @@ public class ComptesManagementController {
 	 */
 	@FXML
 	private void doRel() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		DecimalFormat df = new DecimalFormat("0.000");
 		ArrayList<Operation> listeOpes;
 		// Créez un objet FileChooser
@@ -354,7 +356,7 @@ public class ComptesManagementController {
 				title.setTextAlignment(TextAlignment.CENTER);
 				document.add(title);
 				//Ajouter la date à droite du titre
-				Paragraph date = new Paragraph("Date de génération du relevé : " + java.time.LocalDate.now()).setFontSize(12);
+				Paragraph date = new Paragraph("Date de génération du relevé : " + java.time.LocalDate.now().format(formatter)).setFontSize(12);
 				date.setTextAlignment(TextAlignment.RIGHT);
 				document.add(date);
 
@@ -400,6 +402,7 @@ public class ComptesManagementController {
 				Double oldSolde = this.lvComptes.getSelectionModel().getSelectedItem().solde;
 				listeOpes = this.cmDialogController.getOperationsDunCompte(this.lvComptes.getSelectionModel().getSelectedItem());
 				for (Operation currOp : listeOpes) {
+					System.out.println(currOp.idOperation + currOp.montant);
 					oldSolde -= currOp.montant;
 				}
 
@@ -422,7 +425,7 @@ public class ComptesManagementController {
 
 				for (Operation currOp : listeOpes) {
 					table.addCell(new Cell().add(new Paragraph(currOp.idNumCompte+"").setFontSize(11).setFontColor(ColorConstants.BLACK).setFont(lightFont)));
-					table.addCell(new Cell().add(new Paragraph(currOp.dateOp+"").setFontSize(11).setFontColor(ColorConstants.BLACK).setFont(lightFont)));
+					table.addCell(new Cell().add(new Paragraph(currOp.dateOp.toLocalDate().format(formatter)+"").setFontSize(11).setFontColor(ColorConstants.BLACK).setFont(lightFont)));
 					table.addCell(new Cell().add(new Paragraph(currOp.idOperation+"").setFontSize(11).setFontColor(ColorConstants.BLACK).setFont(lightFont)));
 					table.addCell(new Cell().add(new Paragraph((currOp.montant+"").replace(".", ",")).setFontSize(11).setFontColor(ColorConstants.BLACK).setFont(lightFont)));
 					table.addCell(new Cell().add(new Paragraph(currOp.idTypeOp+"").setFontSize(11).setFontColor(ColorConstants.BLACK).setFont(lightFont)));
@@ -463,6 +466,8 @@ public class ComptesManagementController {
 
 				// Close document
 				document.close();
+				pdf.close();
+				writer.close();
 			} catch(Exception e) {
 				// Handle exception here
 				e.printStackTrace();

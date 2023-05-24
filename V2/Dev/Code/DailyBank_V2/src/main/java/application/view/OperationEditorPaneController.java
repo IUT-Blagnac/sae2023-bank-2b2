@@ -228,7 +228,6 @@ public class OperationEditorPaneController {
 				return;
 			}
 			if (this.compteEdite.solde - montant < this.compteEdite.debitAutorise && !this.btnExceptionnel.isSelected()) {
-				System.out.println(" pas exceptionnel");
 				info = "Dépassement du découvert ! - Cpt. : " + this.compteEdite.idNumCompte + "  "
 						+ String.format(Locale.ENGLISH, "%12.02f", this.compteEdite.solde) + "  /  "
 						+ String.format(Locale.ENGLISH, "%8d", this.compteEdite.debitAutorise);
@@ -251,8 +250,7 @@ public class OperationEditorPaneController {
 
 			try {
 				montant = Double.parseDouble(this.txtMontant.getText().trim());
-				if (montant <= 0)
-					throw new NumberFormatException();
+				if (montant <= 0) throw new NumberFormatException();
 			} catch (NumberFormatException nfe) {
 				this.txtMontant.getStyleClass().add("borderred");
 				this.lblMontant.getStyleClass().add("borderred");
