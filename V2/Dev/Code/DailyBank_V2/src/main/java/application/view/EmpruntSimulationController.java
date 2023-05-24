@@ -143,6 +143,12 @@ public class EmpruntSimulationController {
 		e.consume();
 		return null;
 	}
+	
+	private void validateComponentState() {
+		if(this.dailyBankState.getEmployeActuel().droitsAccess == "chefAgence") {
+			
+		}
+	}
 
 	/**
 	 * Annule et ferme la fenêtre de la simulation de l'emprunt.
