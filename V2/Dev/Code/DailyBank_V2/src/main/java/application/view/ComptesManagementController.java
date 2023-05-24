@@ -81,7 +81,7 @@ public class ComptesManagementController {
 	FileChooser fileChooser = new FileChooser();
 
 	// Manipulation de la fenêtre
-	
+
 	/**
 	 * Initialise le contexte du contrôleur avec les paramètres fournis.
 	 * @param _containingStage La fenêtre physique contenant la scène
@@ -97,7 +97,7 @@ public class ComptesManagementController {
 		this.configure();
 	}
 
-	
+
 	/**
 	 * Configure les éléments de l'interface graphique.
 	 */
@@ -126,8 +126,8 @@ public class ComptesManagementController {
 	public void displayDialog() {
 		this.primaryStage.showAndWait();
 	}
-	
-	
+
+
 	/**
 	 * Gère l'événement de fermeture de la fenêtre en annulant ce qui était en cours.
 	 *
@@ -156,7 +156,9 @@ public class ComptesManagementController {
 	private Button btnPrelev;
 	@FXML
 	private Button btnRel;
-	
+	@FXML
+	private Button btnEmprunt;
+
 	private ContextMenu contextMenu = new ContextMenu();
 
 	/**
@@ -181,9 +183,9 @@ public class ComptesManagementController {
 		this.loadList();
 		this.validateComponentState();
 	}
-	
+
 	//Modification d'un compte
-	
+
 	/**
 	 * Modifie un compte sélectionné.
 	 * Charge ensuite la liste des comptes et met à jour l'état des composants.
@@ -203,7 +205,7 @@ public class ComptesManagementController {
 	}
 
 	//Suppression d'un compte courant
-	
+
 	/**
 	 * Supprime un compte courant sélectionné.
 	 * Charge ensuite la liste des comptes et met à jour l'état des composants.
@@ -220,7 +222,7 @@ public class ComptesManagementController {
 	}
 
 	//Ajout d'un nouveau compte courant
-	
+
 	/**
 	 * Ajoute un nouveau compte courant.
 	 * Charge ensuite la liste des comptes.
@@ -233,9 +235,9 @@ public class ComptesManagementController {
 			this.oListCompteCourant.add(compte);
 		}
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Méthode exécutée lorsqu'un clic de souris est détecté sur la liste des comptes.
 	 * Affiche un menu contextuel en fonction du bouton de la souris utilisé et de l'élément sélectionné.
@@ -243,14 +245,14 @@ public class ComptesManagementController {
 	 * @param event L'événement de clic de souris.
 	 */
 	@FXML
-    private void onClicList(MouseEvent event) {
+	private void onClicList(MouseEvent event) {
 		int selectedIndice = this.lvComptes.getSelectionModel().getSelectedIndex();
-        if(lvComptes.getItems().size() != 0 && selectedIndice >= 0) {
+		if(lvComptes.getItems().size() != 0 && selectedIndice >= 0) {
 			CompteCourant compteSelected = this.oListCompteCourant.get(selectedIndice);
-            MouseButton mb = event.getButton();
-            if(MouseButton.SECONDARY==mb) {
+			MouseButton mb = event.getButton();
+			if(MouseButton.SECONDARY==mb) {
 				contextMenu.hide();
-                contextMenu = new ContextMenu();
+				contextMenu = new ContextMenu();
 				MenuItem menuItem1 = new MenuItem("Voir les opérations");
 				menuItem1.setOnAction(e -> {
 					doVoirOperations();
@@ -268,20 +270,20 @@ public class ComptesManagementController {
 					contextMenu.getItems().add(menuItem2);
 					contextMenu.getItems().add(menuItem3);
 				}
-                contextMenu.show(lvComptes , event.getScreenX(), event.getScreenY());
-            }
-            if(MouseButton.PRIMARY==mb) {
-                contextMenu.hide();
-                if(event.getClickCount() > 1) {
+				contextMenu.show(lvComptes , event.getScreenX(), event.getScreenY());
+			}
+			if(MouseButton.PRIMARY==mb) {
+				contextMenu.hide();
+				if(event.getClickCount() > 1) {
 					if (!compteSelected.isCloture()) {
 						doModifierCompte();
 					}
-                }
-            }
-        }
-    }
+				}
+			}
+		}
+	}
 
-			/**
+	/**
 	 * Génère un relevé mensuel d'un compte au format PDF.
 	 * 
 	 * @throws FileNotFoundException
@@ -300,7 +302,7 @@ public class ComptesManagementController {
 		FileChooser.ExtensionFilter exttFilter = new FileChooser.ExtensionFilter("Tout les fichiers", "*.*");
 		fileChooser.getExtensionFilters().add(extFilter);
 		fileChooser.getExtensionFilters().add(exttFilter);
-		
+
 		//définisser le nom par défaut du fichier
 		fileChooser.setInitialFileName("Relevé de compte " + this.lvComptes.getSelectionModel().getSelectedItem().idNumCompte + " .pdf");
 
@@ -308,8 +310,8 @@ public class ComptesManagementController {
 		File file = fileChooser.showSaveDialog(new Stage());
 
 		if(file != null) {
-		    try {
-		    	// Initialize PDF writer
+			try {
+				// Initialize PDF writer
 				PdfWriter writer = new PdfWriter(file.getPath());
 				// Initialize PDF document
 				PdfDocument pdf = new PdfDocument(writer);
@@ -326,16 +328,16 @@ public class ComptesManagementController {
 
 				PdfFont boldFont = null;
 				try {
-				    URI boldUri = ComptesManagementController.class.getResource("font/Helvetica-Bold.ttf").toURI();
-				    File boldFontFile = new File(boldUri);
-				    boldFont = PdfFontFactory.createFont(boldFontFile.getPath());
+					URI boldUri = ComptesManagementController.class.getResource("font/Helvetica-Bold.ttf").toURI();
+					File boldFontFile = new File(boldUri);
+					boldFont = PdfFontFactory.createFont(boldFontFile.getPath());
 				} catch (URISyntaxException e) {}
 
 				PdfFont lightFont = null;
 				try {
-				    URI lightUri = ComptesManagementController.class.getResource("font/Helvetica-Light.ttf").toURI();
-				    File lightFontFile = new File(lightUri);
-				    lightFont = PdfFontFactory.createFont(lightFontFile.getPath());
+					URI lightUri = ComptesManagementController.class.getResource("font/Helvetica-Light.ttf").toURI();
+					File lightFontFile = new File(lightUri);
+					lightFont = PdfFontFactory.createFont(lightFontFile.getPath());
 				} catch (URISyntaxException e) {}
 
 				document.setFont(font);
@@ -356,11 +358,11 @@ public class ComptesManagementController {
 				document.add(date);
 
 				Paragraph infosClient = new Paragraph(
-					"Client : " + this.clientDesComptes.nom + " " + this.clientDesComptes.prenom + " (ID : " + this.clientDesComptes.idNumCli + ") \n" +
-					this.clientDesComptes.email + "\n" +
-					this.clientDesComptes.adressePostale + "\n" +
-					"De l'agence : " + this.dailyBankState.getAgenceActuelle().nomAg + " (ID : " + this.dailyBankState.getAgenceActuelle().idAg + ")"
-					).setFontSize(12);
+						"Client : " + this.clientDesComptes.nom + " " + this.clientDesComptes.prenom + " (ID : " + this.clientDesComptes.idNumCli + ") \n" +
+								this.clientDesComptes.email + "\n" +
+								this.clientDesComptes.adressePostale + "\n" +
+								"De l'agence : " + this.dailyBankState.getAgenceActuelle().nomAg + " (ID : " + this.dailyBankState.getAgenceActuelle().idAg + ")"
+						).setFontSize(12);
 				infosClient.setTextAlignment(TextAlignment.LEFT);
 				document.add(infosClient);
 
@@ -381,40 +383,40 @@ public class ComptesManagementController {
 				table.addHeaderCell(new Cell().add(new Paragraph("ID Opération").setFontSize(10).setFontColor(ColorConstants.GRAY).setFont(boldFont)));
 				table.addHeaderCell(new Cell().add(new Paragraph("Montant").setFontSize(10).setFontColor(ColorConstants.GRAY).setFont(boldFont)));
 				table.addHeaderCell(new Cell().add(new Paragraph("Type").setFontSize(10).setFontColor(ColorConstants.GRAY).setFont(boldFont)));
-				
+
 				Table innerTable = new Table(2)
-					.setWidth(UnitValue.createPercentValue(100))
-					.setBorder(Border.NO_BORDER);
+						.setWidth(UnitValue.createPercentValue(100))
+						.setBorder(Border.NO_BORDER);
 
 				Cell leftCell = new Cell().add(new Paragraph("Solde avant transactions : ")
-				    .setFontSize(11)
-				    .setFontColor(ColorConstants.BLACK)
-				    .setFont(lightFont)
-				    .setTextAlignment(TextAlignment.LEFT))
-					.setBorder(Border.NO_BORDER)
-					.setFont(boldFont);
+						.setFontSize(11)
+						.setFontColor(ColorConstants.BLACK)
+						.setFont(lightFont)
+						.setTextAlignment(TextAlignment.LEFT))
+						.setBorder(Border.NO_BORDER)
+						.setFont(boldFont);
 
 				Double oldSolde = this.lvComptes.getSelectionModel().getSelectedItem().solde;
 				listeOpes = this.cmDialogController.getOperationsDunCompte(this.lvComptes.getSelectionModel().getSelectedItem());
 				for (Operation currOp : listeOpes) {
 					oldSolde -= currOp.montant;
 				}
-							
+
 				Cell rightCell = new Cell().add(new Paragraph(df.format(oldSolde))
-				    .setFontSize(11)
-				    .setFontColor(ColorConstants.BLACK)
-				    .setFont(lightFont)
-				    .setTextAlignment(TextAlignment.RIGHT))
-					.setBorder(Border.NO_BORDER)
-					.setFont(boldFont);
-							
+						.setFontSize(11)
+						.setFontColor(ColorConstants.BLACK)
+						.setFont(lightFont)
+						.setTextAlignment(TextAlignment.RIGHT))
+						.setBorder(Border.NO_BORDER)
+						.setFont(boldFont);
+
 				innerTable.addCell(leftCell);
 				innerTable.addCell(rightCell);
-							
+
 				Cell outerCell = new Cell(1,5);
 				outerCell.add(innerTable)
-					.setPadding(0)
-					.setFont(boldFont);
+				.setPadding(0)
+				.setFont(boldFont);
 				table.addCell(outerCell);
 
 				for (Operation currOp : listeOpes) {
@@ -426,32 +428,32 @@ public class ComptesManagementController {
 				}
 
 				innerTable = new Table(2)
-					.setWidth(UnitValue.createPercentValue(100))
-					.setBorder(Border.NO_BORDER);
+						.setWidth(UnitValue.createPercentValue(100))
+						.setBorder(Border.NO_BORDER);
 
 				leftCell = new Cell().add(new Paragraph("Solde aprés transactions : ")
-				    .setFontSize(11)
-				    .setFontColor(ColorConstants.BLACK)
-				    .setFont(lightFont)
-				    .setTextAlignment(TextAlignment.LEFT))
-					.setBorder(Border.NO_BORDER)
-					.setFont(boldFont);
-							
+						.setFontSize(11)
+						.setFontColor(ColorConstants.BLACK)
+						.setFont(lightFont)
+						.setTextAlignment(TextAlignment.LEFT))
+						.setBorder(Border.NO_BORDER)
+						.setFont(boldFont);
+
 				rightCell = new Cell().add(new Paragraph(df.format(this.lvComptes.getSelectionModel().getSelectedItem().solde))
-				    .setFontSize(11)
-				    .setFontColor(ColorConstants.BLACK)
-				    .setFont(lightFont)
-				    .setTextAlignment(TextAlignment.RIGHT))
-					.setBorder(Border.NO_BORDER)
-					.setFont(boldFont);
-							
+						.setFontSize(11)
+						.setFontColor(ColorConstants.BLACK)
+						.setFont(lightFont)
+						.setTextAlignment(TextAlignment.RIGHT))
+						.setBorder(Border.NO_BORDER)
+						.setFont(boldFont);
+
 				innerTable.addCell(leftCell);
 				innerTable.addCell(rightCell);
-							
+
 				outerCell = new Cell(1,5);
 				outerCell.add(innerTable)
-					.setPadding(0)
-					.setFont(boldFont);
+				.setPadding(0)
+				.setFont(boldFont);
 				table.addCell(outerCell.setFont(boldFont));
 
 				document.add(table);
@@ -460,13 +462,13 @@ public class ComptesManagementController {
 
 				// Close document
 				document.close();
-		    } catch(Exception e) {
-		        // Handle exception here
-		        e.printStackTrace();
-		    }
+			} catch(Exception e) {
+				// Handle exception here
+				e.printStackTrace();
+			}
 		}
 	}
-	
+
 	@FXML
 	public void gererPrelevCompte() {
 		int selectedIndice = this.lvComptes.getSelectionModel().getSelectedIndex();
@@ -474,7 +476,7 @@ public class ComptesManagementController {
 			PrelevManagement pm = new PrelevManagement(this.primaryStage, this.dailyBankState, this.oListCompteCourant.get(selectedIndice));
 			pm.doPrelevManagementDialog();
 		}
-		
+
 	}
 
 	/**
@@ -487,7 +489,7 @@ public class ComptesManagementController {
 		es.doEmpruntSimulationDialog();
 	}
 
-	
+
 	/**
 	 * Charge la liste des comptes du client et l'affiche dans la vue.
 	 */
@@ -525,5 +527,11 @@ public class ComptesManagementController {
 			this.btnRel.setDisable(true);
 			this.btnPrelev.setDisable(true);
 		}
+		if(this.dailyBankState.getEmployeActuel().droitsAccess == "chefAgence") {
+			this.btnEmprunt.setVisible(true);
+		}else {
+			this.btnEmprunt.setVisible(false);
+		}
 	}
+
 }

@@ -143,6 +143,8 @@ public class EmpruntSimulationController {
 		e.consume();
 		return null;
 	}
+	
+	
 
 	/**
 	 * Annule et ferme la fenêtre de la simulation de l'emprunt.
