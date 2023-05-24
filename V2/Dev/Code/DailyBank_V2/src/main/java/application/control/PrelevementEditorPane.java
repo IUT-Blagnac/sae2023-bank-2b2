@@ -21,8 +21,9 @@ public class PrelevementEditorPane {
 	private PrelevEditorPaneController pepcViewController;
 
 	/**
-	 * Constructeur de la classe de CompteEditorPane.
-	 * Cette classe permet de gérer l'affichage d'un dialogue de gestion des comptes.
+	 * @author yannis gibert
+	 * Constructeur de la classe de PrelevementEditorPane.
+	 * Cette classe permet de gérer l'affichage d'un dialogue de gestion des prelevements.
 	 * 
 	 * @param _parentStage Fenêtre parente de LoginDialog (sur laquelle se centrer
 	 *                     et être modale)
@@ -54,15 +55,16 @@ public class PrelevementEditorPane {
 	}
 
 	/** 
-	 * Cette méthode permet d'afficher le dialogue de gestion d'un compte. <br/>
+	 * @author yannis gibert
+	 * Cette méthode permet d'afficher le dialogue de gestion d'un prelevement. <br/>
 	 * Que ce soit pour une création, une modification, une suppression ou une consultation <br/> 
-	 * il donc faut passer en paramètre le client a qui appartient le compte, le compte concerné et le mode d'édition qui sera utilisé. <br/>
+	 * il donc faut passer en paramètre le compte a qui appartient le prelevement, le prelevement concerné et le mode d'édition qui sera utilisé. <br/>
 	 * 
-	 * @param client le client a qui appartient le compte
-	 * @param cpte le compte qu'on souhaite editer
+	 * @param compte le compte a qui appartient le prelevement
+	 * @param prlv le prelevement qu'on souhaite editer
 	 * @param em le mode d'édition
 	 * 
-	 * @return le compte courant edité
+	 * @return le prelevement edité
 	 */
 	public Prelevement doPrelevementEditorDialog(CompteCourant compte, Prelevement prlv, EditionMode em) {
 		return this.pepcViewController.displayDialog(compte, prlv, em);

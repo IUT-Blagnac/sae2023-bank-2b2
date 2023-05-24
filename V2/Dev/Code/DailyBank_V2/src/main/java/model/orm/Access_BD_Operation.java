@@ -234,12 +234,6 @@ public class Access_BD_Operation {
 
 			call.execute();
 
-			int res = call.getInt(4);
-
-			if (res != 0) { // Erreur applicative
-				throw new ManagementRuleViolation(Table.Operation, Order.INSERT,
-						"Erreur de règle de gestion : découvert autorisé dépassé", null);
-			}
 		} catch (SQLException e) {
 			throw new DataAccessException(Table.Operation, Order.INSERT, "Erreur accès", e);
 		}

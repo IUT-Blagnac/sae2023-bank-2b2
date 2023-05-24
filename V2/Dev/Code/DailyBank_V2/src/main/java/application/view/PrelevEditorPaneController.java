@@ -18,10 +18,10 @@ import model.data.CompteCourant;
 import model.data.Prelevement;
 
 	/**
+	@author yannis gibert
+	La classe PrelevementEditorPaneController est un contrôleur qui gère l'affichage et la modification des informations de prelevement automatique pour un compte.
 	
-	La classe CompteEditorPaneController est un contrôleur qui gère l'affichage et la modification des informations de compte bancaire pour un client.
-	
-	Elle offre des fonctionnalités pour créer, modifier ou supprimer un compte bancaire.
+	Elle offre des fonctionnalités pour créer, modifier ou supprimer un prelevement automatique.
 	*/
 public class PrelevEditorPaneController {
 
@@ -42,6 +42,7 @@ public class PrelevEditorPaneController {
 	// Manipulation de la fenêtre
 	
 	/**
+	 * @author yannis gibert
 	 * Initialise le contexte du contrôleur avec la fenêtre principale et l'état de l'application.
 	 *
 	 * @param _containingStage La fenêtre principale contenant la scène
@@ -54,6 +55,7 @@ public class PrelevEditorPaneController {
 	}
 
 	/**
+	 * @author yannis gibert
 	 * Configure la fenêtre en définissant les gestionnaires d'événements pour la fermeture de la fenêtre
 	 * et le focus sur les champs de découvert autorisé et de solde.
 	 */
@@ -66,16 +68,16 @@ public class PrelevEditorPaneController {
 	}
 
 	/**
+	@author yannis gibert
+	Affiche la boîte de dialogue pour la création, la modification ou la suppression d'un prelevement automatique.
 
-	Affiche la boîte de dialogue pour la création, la modification ou la suppression d'un compte courant.
+	@param compte le compte associé au prelevement
 
-	@param client Le client associé au compte
-
-	@param cpte Le compte courant à afficher/modifier/supprimer
+	@param prlv le prevelement à afficher/modifier/supprimer
 
 	@param mode Le mode d'édition (CREATION, MODIFICATION, SUPPRESSION)
 
-	@return Le compte courant résultant après l'opération ou null si l'opération a été annulée
+	@return Le prelevement résultant après l'opération ou null si l'opération a été annulée
 	*/
 	
 	public Prelevement displayDialog(CompteCourant compte, Prelevement prlv, EditionMode mode) {
