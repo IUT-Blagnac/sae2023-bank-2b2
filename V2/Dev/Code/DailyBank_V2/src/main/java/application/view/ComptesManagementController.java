@@ -1,52 +1,21 @@
 package application.view;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.lang.reflect.Array;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.text.DecimalFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Optional;
-
-import javax.management.monitor.Monitor;
-import javax.swing.border.TitledBorder;
-import javax.swing.text.StyleConstants.FontConstants;
-
-import com.itextpdf.kernel.colors.ColorConstants;
-import com.itextpdf.kernel.events.PdfDocumentEvent;
-import com.itextpdf.kernel.pdf.PdfDocument;
-import com.itextpdf.kernel.pdf.PdfWriter;
-import com.itextpdf.layout.Document;
-import com.itextpdf.layout.borders.Border;
-import com.itextpdf.layout.element.AreaBreak;
-import com.itextpdf.layout.element.Cell;
-import com.itextpdf.layout.element.Div;
-import com.itextpdf.layout.element.IBlockElement;
-import com.itextpdf.layout.element.Paragraph;
-import com.itextpdf.layout.element.Table;
-import com.itextpdf.layout.properties.AreaBreakType;
-import com.itextpdf.layout.properties.TextAlignment;
-import com.itextpdf.layout.properties.*;
-import com.itextpdf.io.font.*;
-import com.itextpdf.kernel.font.PdfFont;
-import com.itextpdf.kernel.font.PdfFontFactory;
 
 import application.DailyBankState;
 import application.control.ComptesManagement;
 import application.control.EmpruntSimulation;
 import application.control.PrelevManagement;
 import application.tools.ConstantesIHM;
-import application.tools.pdf.FooterEventHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContextMenu;
@@ -62,11 +31,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Pair;
-import javafx.scene.control.ButtonBar;
-
 import model.data.Client;
 import model.data.CompteCourant;
-import model.data.Operation;
 
 
 /**

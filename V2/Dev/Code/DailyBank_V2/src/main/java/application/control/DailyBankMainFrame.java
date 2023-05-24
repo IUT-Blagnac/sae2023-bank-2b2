@@ -1,11 +1,15 @@
 package application.control;
 
+import java.awt.Taskbar;
+
 import application.DailyBankApp;
 import application.DailyBankState;
 import application.view.DailyBankMainFrameController;
 import javafx.application.Application;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.data.Employe;
@@ -13,10 +17,6 @@ import model.orm.Access_BD_Employe;
 import model.orm.LogToDatabase;
 import model.orm.exception.ApplicationException;
 import model.orm.exception.DatabaseConnexionException;
-
-import javafx.scene.image.Image;
-import java.awt.Taskbar;
-import javafx.embed.swing.SwingFXUtils;
 
 
 /**

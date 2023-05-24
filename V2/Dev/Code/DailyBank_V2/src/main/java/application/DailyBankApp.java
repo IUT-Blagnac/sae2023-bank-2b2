@@ -1,7 +1,6 @@
 package application;
 
 import application.control.DailyBankMainFrame;
-import javafx.stage.Stage;
 
 /**
  * 

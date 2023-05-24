@@ -1,17 +1,15 @@
 package application.view;
 
-import java.util.Locale;
-
 import application.DailyBankState;
 import application.tools.AlertUtilities;
 import application.tools.ConstantesIHM;
 import application.tools.EditionMode;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.data.CompteCourant;

@@ -4,14 +4,12 @@ import application.DailyBankApp;
 import application.DailyBankState;
 import application.tools.EditionMode;
 import application.tools.StageManagement;
-import application.view.CompteEditorPaneController;
 import application.view.PrelevEditorPaneController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.data.Client;
 import model.data.CompteCourant;
 import model.data.Prelevement;
 
