@@ -48,6 +48,11 @@ public class EmpruntSimulationController {
 	private Stage primaryStage;
 
 	private Client client;
+	
+	private double montantEmprunt;
+	private double tauxEmprunt;
+	private int duree;
+	private double tauxAssurance;
 
 	@FXML
 	private TextField txtMontant;
@@ -156,11 +161,7 @@ public class EmpruntSimulationController {
 
 	@FXML
 	private void doSimulerEmprunt() {
-		double montant;
-		int duree;
-		double taux;
-		double tauxAssurance = 0;
-
+		
 		this.txtMontant.getStyleClass().remove("borderred");
 		this.lblMontant.getStyleClass().remove("borderred");
 		this.txtDuree.getStyleClass().remove("borderred");
@@ -174,8 +175,8 @@ public class EmpruntSimulationController {
 
 		if (assuranceActive) {
 			try {
-				tauxAssurance = Double.parseDouble(txtTauxAssurance.getText());
-				if (tauxAssurance < 0)
+				this.tauxAssurance = Double.parseDouble(txtTauxAssurance.getText());
+				if (this.tauxAssurance < 0)
 					throw new NumberFormatException();
 			} catch (NumberFormatException nfe) {
 				this.txtTauxAssurance.getStyleClass().add("borderred");
@@ -186,8 +187,8 @@ public class EmpruntSimulationController {
 		}
 
 		try {
-			montant = Double.parseDouble(txtMontant.getText());
-			if (montant <= 0)
+			this.montantEmprunt = Double.parseDouble(txtMontant.getText());
+			if (montantEmprunt <= 0)
 				throw new NumberFormatException();
 		} catch (NumberFormatException nfe) {
 			this.txtMontant.getStyleClass().add("borderred");
@@ -196,7 +197,7 @@ public class EmpruntSimulationController {
 			return;
 		}
 		try {
-			duree = Integer.parseInt(txtDuree.getText());
+			this.duree = Integer.parseInt(txtDuree.getText());
 			if (duree <= 0)
 				throw new NumberFormatException();
 		} catch (NumberFormatException nfe) {
@@ -206,8 +207,8 @@ public class EmpruntSimulationController {
 			return;
 		}
 		try {
-			taux = Double.parseDouble(txtTaux.getText());
-			if (taux <= 0)
+			this.tauxEmprunt = Double.parseDouble(txtTaux.getText());
+			if (tauxEmprunt <= 0)
 				throw new NumberFormatException();
 		} catch (NumberFormatException nfe) {
 			this.txtTaux.getStyleClass().add("borderred");
@@ -216,10 +217,10 @@ public class EmpruntSimulationController {
 			return;
 		}
 
-		double mensualite = calculerMensualite(montant, duree, taux);
-		double capitalRestantDebutPeriode = montant;
+		double mensualite = calculerMensualite(montantEmprunt, duree, tauxEmprunt);
+		double capitalRestantDebutPeriode = montantEmprunt;
 		double capitalRestantFinPeriode = capitalRestantDebutPeriode;
-		double totalPaiement = mensualite * duree * 12 - montant;
+		double totalPaiement = mensualite * duree * 12 - montantEmprunt;
 		double totalAssurance = 0;
 		double echeanceMensualite = mensualite;
 
@@ -229,11 +230,11 @@ public class EmpruntSimulationController {
 		StringBuilder tableauRemboursementAvecAssuranceBuilder = new StringBuilder();
 
 		for (int periode = 1; periode <= duree * 12; periode++) {
-			double interets = capitalRestantDebutPeriode * (taux / 100 / 12);
+			double interets = capitalRestantDebutPeriode * (tauxEmprunt / 100 / 12);
 			double mensualiteAssurance = 0; // Initialise à 0
 
 			if (assuranceActive) {
-				mensualiteAssurance = montant * tauxAssurance / 100 / 12;
+				mensualiteAssurance = montantEmprunt * tauxAssurance / 100 / 12;
 				totalAssurance = mensualiteAssurance * duree * 12;
 				echeanceMensualite = mensualiteAssurance + mensualite;
 			}
@@ -262,10 +263,10 @@ public class EmpruntSimulationController {
 		String tableauRemboursementAvecAssurance = tableauRemboursementAvecAssuranceBuilder.toString();
 
 		if (!assuranceActive) {
-			generatePDF(tableauRemboursement, "Tableau_amortissement.pdf", assuranceActive, totalPaiement,
+			generatePDF(tableauRemboursement, "Tableau_amortissement_"+this.client.nom+this.client.prenom+".pdf", assuranceActive, totalPaiement,
 					totalAssurance, duree, echeanceMensualite);
 		} else {
-			generatePDF(tableauRemboursementAvecAssurance, "Tableau_amortissement_avec_assurance.pdf", assuranceActive,
+			generatePDF(tableauRemboursementAvecAssurance, "Tableau_amortissement_avec_assurance_"+this.client.nom+this.client.prenom+".pdf", assuranceActive,
 					totalPaiement, totalAssurance, duree, echeanceMensualite);
 		}
 
@@ -324,6 +325,17 @@ public class EmpruntSimulationController {
 						.setFontSize(12);
 				infosClient.setTextAlignment(TextAlignment.LEFT);
 				document.add(infosClient);
+				
+				String tauxAssu ="";
+				if(assuranceActive) {
+					 tauxAssu = (" \n Taux de l'assurance : "+this.tauxAssurance+"%");
+				}
+				
+				Paragraph infosEmprunt = new Paragraph(
+						"Montant emprunté : " + this.montantEmprunt +  " euros \n Durée de l'emprunt : " + this.duree +" ans \n" + "Taux de l'emprunt : "+this.tauxEmprunt +"%" +tauxAssu)
+						.setFontSize(12);
+				infosClient.setTextAlignment(TextAlignment.LEFT);
+				document.add(infosEmprunt);
 
 				// Ajouter le tableau d'amortissement
 				String[] rows = tableauRemboursement.split("\n");
@@ -346,16 +358,19 @@ public class EmpruntSimulationController {
 
 				// Ajouter les données du tableau
 				for (int i = 0; i < rows.length; i++) {
-					String[] cells = rows[i].split("\t");
-					for (String cell : cells) {
-						table.addCell(cell).setFont(contentFont).setFontSize(10);
-					}
+				    String[] cells = rows[i].split("\t");
+				    for (String cell : cells) {
+				        if (cell.equals("-0.00")) {
+				            cell = "0.00";
+				        }
+				        table.addCell(cell).setFont(contentFont).setFontSize(10);
+				    }
 				}
+
 
 				document.add(table);
 
 				DecimalFormat decimalFormat = new DecimalFormat("0.##");
-				String euroSymbol = "\u20AC";  // Code Unicode pour le symbole €
 
 
 				// Ajouter le récapitulatif de l'emprunt
@@ -367,13 +382,13 @@ public class EmpruntSimulationController {
 				if(assuranceActive) {
 				Paragraph coutTotal = new Paragraph(
 						"Le coût total du crédit s'élève à " + decimalFormat.format(coutTotalCredit) + " euros \n dont "
-								+ decimalFormat.format(totalAssurance) + " euros de frais d'assurance")
+								+ decimalFormat.format(totalAssurance) + " euros de frais d'assurance.")
 						.setFont(contentFont).setFontSize(12);
 				document.add(coutTotal);
 
 				Paragraph mensualite = new Paragraph(
 						"Les échéances mensuelles s'élèvent à " + decimalFormat.format(echanceMensualite) + " euros \n dont "
-								+ decimalFormat.format(totalAssurance / (12 * duree)) +" euros de frais d'assurance")
+								+ decimalFormat.format(totalAssurance / (12 * duree)) +" euros de frais d'assurance.")
 						.setFont(contentFont).setFontSize(12);
 				document.add(mensualite);
 
