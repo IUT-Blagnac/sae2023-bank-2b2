@@ -32,6 +32,11 @@ import model.data.Client;
 import model.data.CompteCourant;
 import model.data.Operation;
 
+/**
+ * Cette classe permet de générer les pdf de relevé de compte
+ * 
+ * @author Enzo Fournet
+ */
 public class GenPDF {
     private Client clientDesComptes;
     private CompteCourant compteActuel;
@@ -39,6 +44,18 @@ public class GenPDF {
     private Stage primaryStage;
     private DailyBankState dailyBankState;
 
+	/**
+	 * 
+	 * Cette méthode permet d'initialiser le contexte de la classe.
+	 * 
+	 * @author Enzo Fournet
+	 * 
+	 * @param _containingStage
+	 * @param _cm
+	 * @param _dbstate
+	 * @param client
+	 * 
+	 */
     public void initContext(Stage _containingStage, ComptesManagement _cm, DailyBankState _dbstate, Client client) {
 		this.cmDialogController = _cm;
 		this.primaryStage = _containingStage;
@@ -46,8 +63,20 @@ public class GenPDF {
 		this.clientDesComptes = client;
 	}
 
+	
     public void GenPDF() {}
 
+	/**
+	 * 
+	 * Cette méthode permet de générer le pdf du relevé de compte en fonction du mois et de l'année
+	 * 
+	 * @author Enzo Fournet
+	 * @param monthYear mois et année du relevé
+	 * @param clientDesComptes client du compte courant
+	 * @param compteCourant compte courant dont on veut le relevé
+	 * @return true si l'ArrayList n'est pas vide et génére le PDF, false sinon
+	 * 
+	 */
     public boolean genererPDF(Pair<String, String> monthYear, Client clientDesComptes, CompteCourant compteCourant) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		DecimalFormat df = new DecimalFormat("0.000");
@@ -60,17 +89,12 @@ public class GenPDF {
             return false;
         }
 
-
-
-
 		FileChooser fileChooser = new FileChooser();
 
 		// Définissez l'extension de filtrage
 		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PDF files (*.pdf)", "*.pdf");
-		//Afficher tout les fichiers
-		FileChooser.ExtensionFilter exttFilter = new FileChooser.ExtensionFilter("Tout les fichiers", "*.*");
+		
 		fileChooser.getExtensionFilters().add(extFilter);
-		fileChooser.getExtensionFilters().add(exttFilter);
 
 		//définisser le nom par défaut du fichier
 		fileChooser.setInitialFileName("Relevé de compte " + this.compteActuel.idNumCompte + " .pdf");
@@ -127,11 +151,11 @@ public class GenPDF {
 				pdf.getDocumentInfo().setKeywords("DailyBank, Relevé mensuel");
 
 				// Ajouter un titre centré en haut du pdf avec une police de taille 18
-				Paragraph title = new Paragraph("Relevé de compte").setFontSize(18).setFont(boldFont);
+				Paragraph title = new Paragraph("Relevé mensue de compte").setFontSize(18).setFont(boldFont);
 				title.setTextAlignment(TextAlignment.CENTER);
 				document.add(title);
 				//Ajouter la date à droite du titre
-				Paragraph date = new Paragraph("Date de génération du relevé : " + java.time.LocalDate.now().format(formatter)).setFontSize(12);
+				Paragraph date = new Paragraph("Date de génération du relevé sur demande : " + java.time.LocalDate.now().format(formatter)).setFontSize(12);
 				date.setTextAlignment(TextAlignment.RIGHT);
 				document.add(date);
 

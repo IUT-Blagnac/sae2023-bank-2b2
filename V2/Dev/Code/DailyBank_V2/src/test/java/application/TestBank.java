@@ -62,6 +62,12 @@ import model.orm.exception.DatabaseConnexionException;
 
 import static org.testfx.api.FxAssert.verifyThat;
 
+/**
+ * 
+ * Quelque test sur l'interface graphique de l'application.
+ * 
+ * @author Enzo Fournet
+ */
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class TestBank extends ApplicationTest {
 

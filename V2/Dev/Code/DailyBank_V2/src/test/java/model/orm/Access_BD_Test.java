@@ -12,6 +12,12 @@ import model.orm.exception.Order;
 import model.orm.exception.RowNotFoundOrTooManyRowsException;
 import model.orm.exception.Table;
 
+/**
+ * Classe d'accès aux Employe en BD Oracle pour les tests.
+ * 
+ * @author Enzo Fournet
+ * 
+ */
 public class Access_BD_Test {
 
     public int getSeqEmplCurrVal() throws DataAccessException, DatabaseConnexionException {

@@ -43,7 +43,7 @@ public class EmployeEditorPaneController {
 	/** 
 	 * Cette méthode est appelée par le contrôleur de dialogue EmployesManagement <br/>
 	 * pour initialiser le contexte de la fenêtre de dialogue de création ou de modification d'un employé <br/>
-	 * 
+	 * @author Enzo Fournet
 	 * @param _containingStage
 	 * @param _dbstate
 	 */
@@ -53,9 +53,12 @@ public class EmployeEditorPaneController {
 		this.configure();
 	}
 
-	/*
+	/**
 	 * Cette méthode est appelée par le contrôleur de dialogue EmployesManagement <br/>
 	 * Elle permet de fermer la fenêtre de dialogue de création ou de modification d'un employé <br/>
+	 * 
+	 * @author Enzo Fournet
+	 * 
 	 */
 	private void configure() {
 		this.primaryStage.setOnCloseRequest(e -> this.closeWindow(e));
@@ -67,6 +70,7 @@ public class EmployeEditorPaneController {
 	 * Cette méthode est appelée par le contrôleur de dialogue EmployesManagement <br/>
 	 * pour afficher la fenêtre de dialogue de création ou de modification d'un employé <br/>
 	 * 
+	 * @author Enzo Fournet
 	 * @param employe
 	 * @param mode
 	 * 
@@ -179,8 +183,10 @@ public class EmployeEditorPaneController {
 		return this.employeResultat;
 	}
 
-	/*
+	/**
 	 * Méthodes de gestion des événements <br/>
+	 * 
+	 * @author Enzo Fournet
 	 */
 	private Object closeWindow(WindowEvent e) {
 		this.doCancel();
@@ -224,6 +230,8 @@ public class EmployeEditorPaneController {
 	/**
 	 * Cette méthode est appelée lorsque la fenêtre est fermée par l'utilisateur <br/>
 	 * Elle permet de gérer la fermeture de la fenêtre en renvoyant un employé null <br/>
+	 * 
+	 * @author Enzo Fournet
 	 */
 	@FXML
 	private void doCancel() {
@@ -235,6 +243,8 @@ public class EmployeEditorPaneController {
 	/**
 	 * Cette méthode est appelée lorsque l'utilisateur clique sur le bouton 'Ok' <br/>
 	 * Elle permet de gérer la validation de la saisie en renvoyant un employé valide <br/>
+	 * 
+	 * @author Enzo Fournet
 	 */
 	@FXML
 	private void doAjouter() {
@@ -266,6 +276,7 @@ public class EmployeEditorPaneController {
 	/**
 	 * Vérifie que les données saisies sont valides <br/>
 	 * 
+	 * @author Enzo Fournet
 	 * @return	true si les données sont valides, false si non
 	 */
 	private boolean isSaisieValide() {

@@ -15,6 +15,8 @@ import model.orm.exception.Table;
 
 /**
  * Classe d'accès aux Employe en BD Oracle.
+ * 
+ * @author Enzo Fournet
  */
 public class Access_BD_Employe {
 
@@ -23,7 +25,8 @@ public class Access_BD_Employe {
 
 	/**
 	 * Recherche d'un employé par son login / mot de passe.
-	 *
+	 * 
+	 * @author Enzo Fournet
 	 * @param login    login de l'employé recherché
 	 * @param password mot de passe donné
 	 * @return un Employe ou null si non trouvé
@@ -82,6 +85,19 @@ public class Access_BD_Employe {
 		}
 	}
 
+	/**
+	 * 
+	 * Cette méthode permet de récupérer un employé en fonction de son id.
+	 * 
+	 * @author Enzo Fournet
+	 * @param _idEmploye
+	 * @param _debutNom
+	 * @param _debutPrenom
+	 * @param _droit
+	 * @return
+	 * @throws DataAccessException
+	 * @throws DatabaseConnexionException
+	 */
 	public ArrayList<Employe> getEmployes(int _idEmploye, String _debutNom, String _debutPrenom, String _droit) throws DataAccessException, DatabaseConnexionException {
 		ArrayList<Employe> alResult = new ArrayList<Employe>();
 		try {
@@ -181,6 +197,16 @@ public class Access_BD_Employe {
 		return alResult;
 	}
 
+	/**
+	 * 
+	 * Cette méthode permet d'insérer un employé en base de données.
+	 * 
+	 * @author Enzo Fournet
+	 * @param employe
+	 * @throws RowNotFoundOrTooManyRowsException
+	 * @throws DataAccessException
+	 * @throws DatabaseConnexionException
+	 */
 	public void insertEmploye(Employe employe)
 			throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException {
 		try {
@@ -227,6 +253,16 @@ public class Access_BD_Employe {
 		}
 	}
 
+	/**
+	 * 
+	 * Cette méthode permet de mettre à jour un employé en base de données.
+	 * 
+	 * @author Enzo Fournet
+	 * @param employe
+	 * @throws RowNotFoundOrTooManyRowsException
+	 * @throws DataAccessException
+	 * @throws DatabaseConnexionException
+	 */
 	public void updateEmploye(Employe employe) throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException {
 		try {
 			Connection con = LogToDatabase.getConnexion();
@@ -257,6 +293,16 @@ public class Access_BD_Employe {
 		}
 	}
 
+	/**
+	 * 
+	 * Cette méthode permet de supprimer un employé en base de données.
+	 * 
+	 * @author Enzo Fournet
+	 * @param employe
+	 * @throws RowNotFoundOrTooManyRowsException
+	 * @throws DataAccessException
+	 * @throws DatabaseConnexionException
+	 */
 	public void deleteEmploye(Employe employe) throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException {
 		try {
 			Connection con = LogToDatabase.getConnexion();

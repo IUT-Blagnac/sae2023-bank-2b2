@@ -39,9 +39,5 @@ public class Operation {
 	public String toString() {
 		return this.dateOp + " : " + String.format("%25s", this.idTypeOp) + " "
 				+ String.format("%10.02f", this.montant);
-		
-
-//		return "Operation [idOperation=" + idOperation + ", montant=" + montant + ", dateOp=" + dateOp + ", dateValeur="
-//				+ dateValeur + ", idNumCompte=" + idNumCompte + ", idTypeOp=" + idTypeOp + "]";
 	}
 }

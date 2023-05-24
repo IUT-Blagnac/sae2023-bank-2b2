@@ -148,6 +148,11 @@ public class DailyBankMainFrame extends Application {
 
 
 //METHODS FOR TESTS - SI VOUS ETES UN PROFESSEUR CETTE METHODE NE RENTRE PAS EN COMPTE DANS LA NOTATION
+	/**
+	 * @author Enzo Fournet
+	 * @return l'état courant de l'application
+	 * 
+	 */
     public static DailyBankState getDailyBankState() {
         return dailyBankState;
     }

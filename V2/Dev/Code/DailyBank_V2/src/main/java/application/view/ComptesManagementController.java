@@ -338,8 +338,6 @@ public class ComptesManagementController {
 		Optional<Pair<String, String>> result = dialog.showAndWait();
 		
 		result.ifPresent(monthYear -> {
-			System.out.println("Mois=" + monthYear.getKey() + ", Année=" + monthYear.getValue());
-			//si this.cmDialogController.genererPDF return false affichier une alerte qui dit qu'il n'y a pasd'opération sur ce compte pour ce mois et cette année
 			if(!this.cmDialogController.genererPDF(monthYear, this.clientDesComptes, this.oListCompteCourant.get(this.lvComptes.getSelectionModel().getSelectedIndex()))) {
 				Alert alert = new Alert(Alert.AlertType.INFORMATION);
 				alert.setTitle("Information");

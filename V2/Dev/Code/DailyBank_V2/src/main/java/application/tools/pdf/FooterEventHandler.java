@@ -14,11 +14,21 @@ import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.properties.*;
 
+/**
+ * 
+ * Classe permettant de gérer le footer d'un document PDF
+ * 
+ * @author Enzo Fournet
+ * 
+ */
 public class FooterEventHandler implements IEventHandler {
+
     protected Document doc;
+
     public FooterEventHandler(Document doc) {
         this.doc = doc;
     }
+    
     @Override
     public void handleEvent(Event currentEvent) {
         PdfDocumentEvent docEvent = (PdfDocumentEvent) currentEvent;
