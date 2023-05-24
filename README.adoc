@@ -33,7 +33,7 @@
 |2    |Chef d’Agence     | Emprunt | Simuler emprunt|F| | 
 |2    |Chef d’Agence     | Emprunt | Simuler assurance|F| | 
 |2    |Guichetier     | Compte | Effectuer un virement d'un compte vers un autre compte|F|| 
-|2    |Guichetier     | Compte | Relevé PDF|| | 
+|2    |Guichetier     | Compte | Relevé PDF||F| 
 |2    |Guichetier     | CRUD Prélèvement | C|||  
 |2    |Guichetier     | CRUD Prélèvement | R|||  
 |2    |Guichetier     | CRUD Prélèvement | U|||  
