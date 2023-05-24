@@ -2,10 +2,10 @@ package application;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.testfx.api.FxAssert.verifyThat;
-import org.testfx.matcher.control.TextInputControlMatchers;
-import org.testfx.matcher.control.LabeledMatchers;
 
-import org.junit.jupiter.api.AfterAll;
+import java.util.ArrayList;
+import java.util.Set;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.BeforeAll;
@@ -14,53 +14,29 @@ import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.junit.jupiter.api.Timeout;
-import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationTest;
-import org.testfx.robot.impl.SleepRobotImpl;
-import org.testfx.util.WaitForAsyncUtils;
-
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
-import java.util.stream.Collectors;
+import org.testfx.matcher.control.LabeledMatchers;
 
 import application.control.DailyBankMainFrame;
-import application.control.ExceptionDialog;
-import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.Control;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
-import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import model.data.Employe;
 import model.orm.Access_BD_Test;
-import model.orm.exception.ApplicationException;
 import model.orm.exception.DataAccessException;
 import model.orm.exception.DatabaseConnexionException;
-
-import static org.testfx.api.FxAssert.verifyThat;
 
 /**
  * 
