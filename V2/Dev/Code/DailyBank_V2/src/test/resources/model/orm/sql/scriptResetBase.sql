@@ -252,25 +252,19 @@ IS
     vSolde CompteCourant.solde%TYPE;
     vNouveauSolde CompteCourant.solde%TYPE;
 BEGIN
-    -- On récupère le solde actuel du compte
     SELECT solde INTO vSolde FROM CompteCourant WHERE idNumCompte = vidNumCompte;
 
-    -- On calcule le nouveau solde en ajoutant le montant crédité
     vNouveauSolde := vSolde + vMontantCredit;
 
-    -- On insère l'opération de crédit dans la table Operation
     INSERT INTO Operation (idOperation, montant, dateValeur, idNumCompte, idTypeOp)
     VALUES (seq_id_operation.NEXTVAL, vMontantCredit, SYSDATE + 2, vidNumCompte, vTypeOp);
 
-    -- On met à jour le solde du compte correspondant à l'opération
     UPDATE CompteCourant SET solde = vNouveauSolde WHERE idNumCompte = vidNumCompte;
 
     COMMIT;
-   -- On retourne 0 pour indiquer que l'opération s'est bien déroulée
     retour := 0;
 
 EXCEPTION
-    -- En cas d'erreur, on retourne -1
     WHEN OTHERS THEN
         retour := -1;
 END;
