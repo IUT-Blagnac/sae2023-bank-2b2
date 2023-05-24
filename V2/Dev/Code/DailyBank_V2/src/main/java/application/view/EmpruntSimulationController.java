@@ -206,7 +206,7 @@ public class EmpruntSimulationController {
 		}
 		try {
 			this.tauxEmprunt = Double.parseDouble(txtTaux.getText());
-			if (tauxEmprunt <= 0)
+			if (tauxEmprunt <= 0 || tauxEmprunt >=100)
 				throw new NumberFormatException();
 		} catch (NumberFormatException nfe) {
 			this.txtTaux.getStyleClass().add("borderred");
