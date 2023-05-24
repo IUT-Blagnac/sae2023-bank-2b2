@@ -986,7 +986,7 @@ La méthode find() retourne un objet de type Node qui est un objet de base de Ja
 
 La méthode find() accompagné de la méthode getStageFromNode qui permet de récupérer le Stage des nodes récupéré.
 
-```java
+````java
 public <T extends Node> T find(final String query) {
         Set<Node> nodes = this.lookup(query).queryAll();
 
@@ -1011,14 +1011,7 @@ public <T extends Node> T find(final String query) {
 
         return (T) nodes.iterator().next();
     }
- 
-    /**
-     * Méthode qui permet de récupérer le stage à partir d'un noeud 
-     * 
-     * @author Enzo Fournet
-     * @param node
-     * @return
-     */
+
     public Stage getStageFromNode(Node node) {
         Scene scene = node.getScene();
         if (scene != null) {
@@ -1028,4 +1021,26 @@ public <T extends Node> T find(final String query) {
             }
         }
         return null;
-```
+	}
+````
+
+=== Batch - Enzo Fournet (Pas entièrement dévelloper par Enzo mais setup entièrement par Enzo)
+
+
+==== Mise en place du Projet pour le Batch - Enzo Fournet
+
+
+
+==== Présentation
+
+Le batch permet de réaliser des opérations de façon automatique et répétitive. Dans notre cas, le batch permet de réaliser des opérations de façon automatique et répétitive sur la base de données tel que les prélevement menseul à effectuer sur les comptes. Ou encore tout les premier du mois, de créer les relevés de compte mensule de tout les compte de chaque client.
+
+Le batch est docn executer tout les jours à 00h00 et permet de réaliser les opérations suivantes :
+
+==== Prélevement mensuel - Yannis Gibert
+
+
+
+==== Création des relevés de compte mensuel - Enzo Fournet
+
+=== Génération de relevé de compte mensuel sur demande - Enzo Fournet
