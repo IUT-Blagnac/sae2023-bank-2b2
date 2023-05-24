@@ -77,6 +77,10 @@ public class EmpruntSimulationController {
 	@FXML
 	private RadioButton rbNon;
 	@FXML
+	private RadioButton rbMois;
+	@FXML
+	private RadioButton rbAnnee;
+	@FXML
 	private Label lblTauxAssurance;
 	@FXML
 	private TextField txtTauxAssurance;
@@ -196,7 +200,7 @@ public class EmpruntSimulationController {
 		}
 		try {
 			this.duree = Integer.parseInt(txtDuree.getText());
-			if (duree <= 0)
+			if (duree <= 0 || duree>75)
 				throw new NumberFormatException();
 		} catch (NumberFormatException nfe) {
 			this.txtDuree.getStyleClass().add("borderred");
