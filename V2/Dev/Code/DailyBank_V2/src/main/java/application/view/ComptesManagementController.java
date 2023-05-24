@@ -37,6 +37,7 @@ import application.DailyBankState;
 import application.control.ComptesManagement;
 import application.control.EmpruntSimulation;
 import application.control.PrelevManagement;
+import application.tools.ConstantesIHM;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -527,7 +528,7 @@ public class ComptesManagementController {
 			this.btnRel.setDisable(true);
 			this.btnPrelev.setDisable(true);
 		}
-		if(this.dailyBankState.getEmployeActuel().droitsAccess == "chefAgence") {
+		if (ConstantesIHM.isAdmin(this.dailyBankState.getEmployeActuel())) {
 			this.btnEmprunt.setVisible(true);
 		}else {
 			this.btnEmprunt.setVisible(false);

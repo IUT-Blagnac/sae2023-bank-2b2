@@ -221,7 +221,7 @@ public class EmpruntSimulationController {
 		double capitalRestantFinPeriode = capitalRestantDebutPeriode;
 		double totalPaiement = mensualite * duree * 12 - montant;
 		double totalAssurance = 0;
-		double echeanceMensualite = 0;
+		double echeanceMensualite = mensualite;
 
 		DecimalFormat decimalFormat = new DecimalFormat("0.00");
 
@@ -355,6 +355,8 @@ public class EmpruntSimulationController {
 				document.add(table);
 
 				DecimalFormat decimalFormat = new DecimalFormat("0.##");
+				String euroSymbol = "\u20AC";  // Code Unicode pour le symbole €
+
 
 				// Ajouter le récapitulatif de l'emprunt
 				Paragraph recapitulatif = new Paragraph("\nRécapitulatif :\n\n").setFont(font).setFontSize(12);
@@ -362,28 +364,33 @@ public class EmpruntSimulationController {
 
 				double coutTotalCredit = totalPaiement + totalAssurance;
 
+				if(assuranceActive) {
 				Paragraph coutTotal = new Paragraph(
-						"Le coût total du crédit s'élève à " + decimalFormat.format(coutTotalCredit) + "\n dont "
-								+ decimalFormat.format(totalAssurance) + " de frais d'assurance")
+						"Le coût total du crédit s'élève à " + decimalFormat.format(coutTotalCredit) + " euros \n dont "
+								+ decimalFormat.format(totalAssurance) + " euros de frais d'assurance")
 						.setFont(contentFont).setFontSize(12);
 				document.add(coutTotal);
 
 				Paragraph mensualite = new Paragraph(
-						"Les échéances mensuelles s'élèvent à " + decimalFormat.format(echanceMensualite) + "\n dont "
-								+ decimalFormat.format(totalAssurance / (12 * duree)) + " de frais d'assurance")
+						"Les échéances mensuelles s'élèvent à " + decimalFormat.format(echanceMensualite) + " euros \n dont "
+								+ decimalFormat.format(totalAssurance / (12 * duree)) +" euros de frais d'assurance")
 						.setFont(contentFont).setFontSize(12);
 				document.add(mensualite);
 
 				// Ajouter les informations client
 				Paragraph emptyLine = new Paragraph("\n");
 				document.add(emptyLine);
+				}else {
+					Paragraph coutTotal = new Paragraph(
+							"Le coût total du crédit s'élève à " + decimalFormat.format(coutTotalCredit)+" euros.")
+							.setFont(contentFont).setFontSize(12);
+					document.add(coutTotal);
 
-				infosClient = new Paragraph("Client : " + this.client.nom + " " + this.client.prenom + " (ID : "
-						+ this.client.idNumCli + ") \n" + this.client.email + "\n" + this.client.adressePostale + "\n"
-						+ "De l'agence : " + this.dailyBankState.getAgenceActuelle().nomAg + " (ID : "
-						+ this.dailyBankState.getAgenceActuelle().idAg + ")").setFontSize(12);
-				infosClient.setTextAlignment(TextAlignment.LEFT);
-				document.add(infosClient);
+					Paragraph mensualite = new Paragraph(
+							"Les échéances mensuelles s'élèvent à " + decimalFormat.format(echanceMensualite)+" euros.")
+							.setFont(contentFont).setFontSize(12);
+					document.add(mensualite);
+				}
 
 				// Fermer le document
 				document.close();
