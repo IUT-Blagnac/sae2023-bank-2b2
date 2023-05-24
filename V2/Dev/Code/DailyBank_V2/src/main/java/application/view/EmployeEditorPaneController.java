@@ -274,8 +274,8 @@ public class EmployeEditorPaneController {
 	private boolean isSaisieValide() {
 		this.employeEdite.nom = this.txtNom.getText().trim();
 		this.employeEdite.prenom = this.txtPrenom.getText().trim();
-		if (toggleGroupDroitAccess.getSelectedToggle() != null) {
-			RadioMenuItem rb = (RadioMenuItem) toggleGroupDroitAccess.getSelectedToggle();
+		if (this.toggleGroupDroitAccess.getSelectedToggle() != null) {
+			RadioMenuItem rb = (RadioMenuItem) this.toggleGroupDroitAccess.getSelectedToggle();
 
 			if (rb.getText().equals("Chef d'agence")) {
 				this.employeEdite.droitsAccess = "chefAgence";
@@ -300,7 +300,7 @@ public class EmployeEditorPaneController {
 			this.txtPrenom.requestFocus();
 			return false;
 		}
-		if(toggleGroupDroitAccess.getSelectedToggle() == null) {
+		if(this.toggleGroupDroitAccess.getSelectedToggle() == null) {
 			AlertUtilities.showAlert(this.primaryStage, "Erreur de saisie", null, "Un droit d'accès doit être sélectionné",
 					AlertType.WARNING);
 			this.txtPrenom.requestFocus();
@@ -331,7 +331,7 @@ public class EmployeEditorPaneController {
 			this.txtMotPasse.requestFocus();
 			return false;
 		}
-		if (!isValid(this.txtMotPasse.getText().trim())) {
+		if (!this.isValid(this.txtMotPasse.getText().trim())) {
 			AlertUtilities.showAlert(this.primaryStage, "Erreur de saisie", null, "Le mot de passe ne doit contenir que des caractères alphanumériques et les caractères spéciaux suivants : /.?,;:+=%$*()[]&#@!çèàé",
 					AlertType.WARNING);
 			return false;
@@ -363,7 +363,7 @@ public class EmployeEditorPaneController {
 	 */
 	@FXML
 	private void radioBtnChefAgence() {
-		this.menuBtnDroitAccess.setText(radioBtnChefAgence.getText());
+		this.menuBtnDroitAccess.setText(this.radioBtnChefAgence.getText());
 	}
 
 	/**
@@ -372,7 +372,7 @@ public class EmployeEditorPaneController {
 	 */
 	@FXML
 	private void radioBtnGuichetier() {
-		this.menuBtnDroitAccess.setText(radioBtnGuichetier.getText());
+		this.menuBtnDroitAccess.setText(this.radioBtnGuichetier.getText());
 	}
 
 }

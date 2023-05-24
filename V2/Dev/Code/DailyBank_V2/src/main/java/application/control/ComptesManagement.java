@@ -99,7 +99,7 @@ public class ComptesManagement {
 			try {
 				Access_BD_CompteCourant ac = new Access_BD_CompteCourant();
 				if(compte.solde !=  0) {
-					AlertUtilities.showAlert(primaryStage,"Cloturation du compte" ,"Impossible de cloturer le compte" , "Il n'est pas possible de cloturer un compte si le solde de ce dernier n'est pas égal à 0", AlertType.ERROR);
+					AlertUtilities.showAlert(this.primaryStage,"Cloturation du compte" ,"Impossible de cloturer le compte" , "Il n'est pas possible de cloturer un compte si le solde de ce dernier n'est pas égal à 0", AlertType.ERROR);
 					return null;
 				}
 				compte.setCloture("O");
@@ -222,7 +222,7 @@ public class ComptesManagement {
 
     public boolean genererPDF(Pair<String, String> monthYear, Client clientDesComptes, CompteCourant compteCourant) {
 		GenPDF pdf = new GenPDF();
-		pdf.initContext(primaryStage, this, dailyBankState, clientDesComptes);
+		pdf.initContext(this.primaryStage, this, this.dailyBankState, clientDesComptes);
 		return pdf.genererPDF(monthYear, clientDesComptes, compteCourant);
     }
 }

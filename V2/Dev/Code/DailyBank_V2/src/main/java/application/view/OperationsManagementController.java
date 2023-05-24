@@ -164,7 +164,7 @@ public class OperationsManagementController {
      * Valide l'état des composants en fonction du compte courant.
      */
 	private void validateComponentState() {
-		if (!compteConcerne.isCloture() ) {
+		if (!this.compteConcerne.isCloture() ) {
 			this.btnCredit.setDisable(false);
 			this.btnDebit.setDisable(false);
 			this.btnVirement.setDisable(false);

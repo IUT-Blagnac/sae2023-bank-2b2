@@ -53,7 +53,7 @@ public class EmployesManagementController {
 		this.primaryStage = _containingStage;
 		this.dailyBankState = _dbstate;
 		this.configure();
-		this.oListEmployes.addAll(emDialogController.getlisteEmployes(-1, "", "", ""));
+		this.oListEmployes.addAll(this.emDialogController.getlisteEmployes(-1, "", "", ""));
 	}
 
 	/**
@@ -300,7 +300,7 @@ public class EmployesManagementController {
 	 */
 	@FXML
 	private void droitChef() {
-		menuDroit.setText(this.droitChef.getText());
+		this.menuDroit.setText(this.droitChef.getText());
 	}
 
 	/**
@@ -312,7 +312,7 @@ public class EmployesManagementController {
 	 */
 	@FXML
 	private void droitGuichetier() {
-		menuDroit.setText(this.droitGuichetier.getText());
+		this.menuDroit.setText(this.droitGuichetier.getText());
 	}
 
 	/**
@@ -324,7 +324,7 @@ public class EmployesManagementController {
 	 */
 	@FXML
 	private void droitAucun() {
-		menuDroit.setText(this.droitAucun.getText());
+		this.menuDroit.setText(this.droitAucun.getText());
 	}
 
 	/**
@@ -339,51 +339,51 @@ public class EmployesManagementController {
 	@FXML
 	private void onClicList(MouseEvent event) {
 		int selectedIndice = this.lvEmployes.getSelectionModel().getSelectedIndex();
-		if (lvEmployes.getItems().size() != 0 && selectedIndice >= 0) {
+		if (this.lvEmployes.getItems().size() != 0 && selectedIndice >= 0) {
 			MouseButton mb = event.getButton();
 			if (MouseButton.SECONDARY == mb) {
 				Employe selectedEmploye = this.lvEmployes.getSelectionModel().getSelectedItem();
 				Employe currentEmploye = this.dailyBankState.getEmployeActuel();
-				contextMenu.hide();
-				contextMenu = new ContextMenu();
+				this.contextMenu.hide();
+				this.contextMenu = new ContextMenu();
 				if (selectedEmploye.toString().equals(currentEmploye.toString())
 						|| selectedEmploye.droitsAccess.equals("guichetier")) {
 					MenuItem menuItem1 = new MenuItem("Modifier");
 					menuItem1.setOnAction(e -> {
-						doModifierEmploye();
+						this.doModifierEmploye();
 					});
-					contextMenu.getItems().add(menuItem1);
+					this.contextMenu.getItems().add(menuItem1);
 					if (!selectedEmploye.toString().equals(currentEmploye.toString())) {
 						MenuItem menuItem2 = new MenuItem("Supprimer");
 						menuItem2.setOnAction(e -> {
-							doSupprimerEmploye();
+							this.doSupprimerEmploye();
 						});
-						contextMenu.getItems().add(menuItem2);
+						this.contextMenu.getItems().add(menuItem2);
 					}
 					MenuItem menuItem3 = new MenuItem("Consulter");
 					menuItem3.setOnAction(e -> {
-						doConsulterEmploye();
+						this.doConsulterEmploye();
 					});
-					contextMenu.getItems().add(menuItem3);
+					this.contextMenu.getItems().add(menuItem3);
 				} else {
 					MenuItem menuItem = new MenuItem("Consulter");
 					menuItem.setOnAction(e -> {
-						doConsulterEmploye();
+						this.doConsulterEmploye();
 					});
-					contextMenu.getItems().add(menuItem);
+					this.contextMenu.getItems().add(menuItem);
 				}
-				contextMenu.show(lvEmployes, event.getScreenX(), event.getScreenY());
+				this.contextMenu.show(this.lvEmployes, event.getScreenX(), event.getScreenY());
 			}
 			if (MouseButton.PRIMARY == mb) {
-				contextMenu.hide();
+				this.contextMenu.hide();
 				if (event.getClickCount() > 1) {
 					Employe selectedEmploye = this.lvEmployes.getSelectionModel().getSelectedItem();
 					Employe currentEmploye = this.dailyBankState.getEmployeActuel();
 					if (selectedEmploye.toString().equals(currentEmploye.toString())
 							|| selectedEmploye.droitsAccess.equals("guichetier")) {
-						doModifierEmploye();
+						this.doModifierEmploye();
 					} else {
-						doConsulterEmploye();
+						this.doConsulterEmploye();
 					}
 				}
 			}

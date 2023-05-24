@@ -203,24 +203,24 @@ public class Access_BD_Test {
                     System.out.println(">>" + inst[i]);
                     if(inst[i].contains("EXECUTE Debiter(")) {
                         System.out.println("debiter>>" + inst[i]);
-                        int debit = debiter(inst[i]);
+                        int debit = this.debiter(inst[i]);
                         System.out.println("debit>>" + debit);
                     } else if(inst[i].contains("EXECUTE Debiter(")) {
                         System.out.println("crediter>>" + inst[i]);
-                        int credit = crediter(inst[i]);
+                        int credit = this.crediter(inst[i]);
                         System.out.println("credit>>" + credit);
 
                     } else if(inst[i].contains("EXECUTE CreerOperation(")) {
                         System.out.println("creerOperation>>" + inst[i]);
-                        int creerOperation = creerOperation(inst[i]);
+                        int creerOperation = this.creerOperation(inst[i]);
                         System.out.println("creerOperation>>" + creerOperation);
                     } else if(inst[i].contains("EXECUTE CreerCompte(")) {
                         System.out.println("creerCompte>>" + inst[i]);
-                        int creerCompte = creerCompte(inst[i]);
+                        int creerCompte = this.creerCompte(inst[i]);
                         System.out.println("creerCompte>>" + creerCompte);
                     } else if (inst[i].contains("EXECUTE Virer(")) {
                         System.out.println("virer>>" + inst[i]);
-                        int virer = virer(inst[i]);
+                        int virer = this.virer(inst[i]);
                         System.out.println("virer>>" + virer);
                     }else {
                         Statement st = con.createStatement();

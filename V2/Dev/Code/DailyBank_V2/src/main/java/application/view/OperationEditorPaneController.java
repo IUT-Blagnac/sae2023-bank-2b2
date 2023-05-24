@@ -311,7 +311,7 @@ public class OperationEditorPaneController {
 				return;
 			}
 
-			int numCompte = Integer.parseInt(txtNumCompte.getText());
+			int numCompte = Integer.parseInt(this.txtNumCompte.getText());
 
 			int idAg = 0;
 			CompteCourant compteC;

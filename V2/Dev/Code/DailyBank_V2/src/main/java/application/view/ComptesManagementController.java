@@ -224,36 +224,36 @@ public class ComptesManagementController {
 	@FXML
 	private void onClicList(MouseEvent event) {
 		int selectedIndice = this.lvComptes.getSelectionModel().getSelectedIndex();
-		if(lvComptes.getItems().size() != 0 && selectedIndice >= 0) {
+		if(this.lvComptes.getItems().size() != 0 && selectedIndice >= 0) {
 			CompteCourant compteSelected = this.oListCompteCourant.get(selectedIndice);
 			MouseButton mb = event.getButton();
 			if(MouseButton.SECONDARY==mb) {
-				contextMenu.hide();
-				contextMenu = new ContextMenu();
+				this.contextMenu.hide();
+				this.contextMenu = new ContextMenu();
 				MenuItem menuItem1 = new MenuItem("Voir les opérations");
 				menuItem1.setOnAction(e -> {
-					doVoirOperations();
+					this.doVoirOperations();
 				});
-				contextMenu.getItems().add(menuItem1);
+				this.contextMenu.getItems().add(menuItem1);
 				if (!compteSelected.isCloture()) {
 					MenuItem menuItem2 = new MenuItem("Modifier");
 					MenuItem menuItem3 = new MenuItem("Supprimer");
 					menuItem2.setOnAction(e -> {
-						doModifierCompte();
+						this.doModifierCompte();
 					});
 					menuItem3.setOnAction(e -> {
-						doSupprimerCompte();
+						this.doSupprimerCompte();
 					});
-					contextMenu.getItems().add(menuItem2);
-					contextMenu.getItems().add(menuItem3);
+					this.contextMenu.getItems().add(menuItem2);
+					this.contextMenu.getItems().add(menuItem3);
 				}
-				contextMenu.show(lvComptes , event.getScreenX(), event.getScreenY());
+				this.contextMenu.show(this.lvComptes , event.getScreenX(), event.getScreenY());
 			}
 			if(MouseButton.PRIMARY==mb) {
-				contextMenu.hide();
+				this.contextMenu.hide();
 				if(event.getClickCount() > 1) {
 					if (!compteSelected.isCloture()) {
-						doModifierCompte();
+						this.doModifierCompte();
 					}
 				}
 			}

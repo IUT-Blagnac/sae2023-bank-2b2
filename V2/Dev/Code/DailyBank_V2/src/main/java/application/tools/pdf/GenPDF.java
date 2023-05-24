@@ -82,7 +82,7 @@ public class GenPDF {
         this.clientDesComptes = clientDesComptes;
         this.compteActuel = compteCourant;
 
-		ArrayList<Operation> listeOpes = this.cmDialogController.getOperationsDunCompte(compteActuel, monthYear.getKey(), monthYear.getValue());
+		ArrayList<Operation> listeOpes = this.cmDialogController.getOperationsDunCompte(this.compteActuel, monthYear.getKey(), monthYear.getValue());
 
 		if (listeOpes.isEmpty()) {
             return false;
@@ -197,7 +197,7 @@ public class GenPDF {
 						.setBorder(Border.NO_BORDER)
 						.setFont(boldFont);
 
-				Double oldSolde = compteActuel.solde;
+				Double oldSolde = this.compteActuel.solde;
 				System.out.println("oldSolde : " + oldSolde);
 
 				for (Operation currOp : listeOpes) {

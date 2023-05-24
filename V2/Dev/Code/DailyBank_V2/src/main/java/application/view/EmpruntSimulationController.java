@@ -107,28 +107,28 @@ public class EmpruntSimulationController {
 
 	public void initialize() {
 		// Créer un groupe pour les boutons radios
-		toggleGroup = new ToggleGroup();
-		rbOui.setToggleGroup(toggleGroup);
-		rbNon.setToggleGroup(toggleGroup);
+		this.toggleGroup = new ToggleGroup();
+		this.rbOui.setToggleGroup(this.toggleGroup);
+		this.rbNon.setToggleGroup(this.toggleGroup);
 
 		// Sélectionner le bouton radio "Non" par défaut
-		rbNon.setSelected(true);
-		lblTauxAssurance.setVisible(false);
-		txtTauxAssurance.setVisible(false);
-		txtTauxAssurance.setDisable(true);
+		this.rbNon.setSelected(true);
+		this.lblTauxAssurance.setVisible(false);
+		this.txtTauxAssurance.setVisible(false);
+		this.txtTauxAssurance.setDisable(true);
 
 		// Ajouter un écouteur de changement de sélection
-		toggleGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
-			if (newValue == rbNon) {
+		this.toggleGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+			if (newValue == this.rbNon) {
 				// Masquer le label et le champ de texte
-				lblTauxAssurance.setVisible(false);
-				txtTauxAssurance.setVisible(false);
-				txtTauxAssurance.setDisable(true);
+				this.lblTauxAssurance.setVisible(false);
+				this.txtTauxAssurance.setVisible(false);
+				this.txtTauxAssurance.setDisable(true);
 			} else {
 				// Afficher le label et le champ de texte
-				lblTauxAssurance.setVisible(true);
-				txtTauxAssurance.setVisible(true);
-				txtTauxAssurance.setDisable(false);
+				this.lblTauxAssurance.setVisible(true);
+				this.txtTauxAssurance.setVisible(true);
+				this.txtTauxAssurance.setDisable(false);
 			}
 		});
 	}
@@ -167,11 +167,11 @@ public class EmpruntSimulationController {
 		this.txtTauxAssurance.getStyleClass().remove("borderred");
 		this.lblTauxAssurance.getStyleClass().remove("borderred");
 
-		boolean assuranceActive = rbOui.isSelected(); // Vérifie si l'assurance est active
+		boolean assuranceActive = this.rbOui.isSelected(); // Vérifie si l'assurance est active
 
 		if (assuranceActive) {
 			try {
-				this.tauxAssurance = Double.parseDouble(txtTauxAssurance.getText());
+				this.tauxAssurance = Double.parseDouble(this.txtTauxAssurance.getText());
 				if (this.tauxAssurance < 0)
 					throw new NumberFormatException();
 			} catch (NumberFormatException nfe) {
@@ -183,8 +183,8 @@ public class EmpruntSimulationController {
 		}
 
 		try {
-			this.montantEmprunt = Double.parseDouble(txtMontant.getText());
-			if (montantEmprunt <= 0)
+			this.montantEmprunt = Double.parseDouble(this.txtMontant.getText());
+			if (this.montantEmprunt <= 0)
 				throw new NumberFormatException();
 		} catch (NumberFormatException nfe) {
 			this.txtMontant.getStyleClass().add("borderred");
@@ -193,8 +193,8 @@ public class EmpruntSimulationController {
 			return;
 		}
 		try {
-			this.duree = Integer.parseInt(txtDuree.getText());
-			if (duree <= 0 || duree>75)
+			this.duree = Integer.parseInt(this.txtDuree.getText());
+			if (this.duree <= 0 || this.duree>75)
 				throw new NumberFormatException();
 		} catch (NumberFormatException nfe) {
 			this.txtDuree.getStyleClass().add("borderred");
@@ -203,8 +203,8 @@ public class EmpruntSimulationController {
 			return;
 		}
 		try {
-			this.tauxEmprunt = Double.parseDouble(txtTaux.getText());
-			if (tauxEmprunt <= 0 || tauxEmprunt >=100)
+			this.tauxEmprunt = Double.parseDouble(this.txtTaux.getText());
+			if (this.tauxEmprunt <= 0 || this.tauxEmprunt >=100)
 				throw new NumberFormatException();
 		} catch (NumberFormatException nfe) {
 			this.txtTaux.getStyleClass().add("borderred");
@@ -213,10 +213,10 @@ public class EmpruntSimulationController {
 			return;
 		}
 
-		double mensualite = calculerMensualite(montantEmprunt, duree, tauxEmprunt);
-		double capitalRestantDebutPeriode = montantEmprunt;
+		double mensualite = this.calculerMensualite(this.montantEmprunt, this.duree, this.tauxEmprunt);
+		double capitalRestantDebutPeriode = this.montantEmprunt;
 		double capitalRestantFinPeriode = capitalRestantDebutPeriode;
-		double totalPaiement = mensualite * duree * 12 - montantEmprunt;
+		double totalPaiement = mensualite * this.duree * 12 - this.montantEmprunt;
 		double totalAssurance = 0;
 		double echeanceMensualite = mensualite;
 
@@ -225,13 +225,13 @@ public class EmpruntSimulationController {
 		StringBuilder tableauRemboursementBuilder = new StringBuilder();
 		StringBuilder tableauRemboursementAvecAssuranceBuilder = new StringBuilder();
 
-		for (int periode = 1; periode <= duree * 12; periode++) {
-			double interets = capitalRestantDebutPeriode * (tauxEmprunt / 100 / 12);
+		for (int periode = 1; periode <= this.duree * 12; periode++) {
+			double interets = capitalRestantDebutPeriode * (this.tauxEmprunt / 100 / 12);
 			double mensualiteAssurance = 0; // Initialise à 0
 
 			if (assuranceActive) {
-				mensualiteAssurance = montantEmprunt * tauxAssurance / 100 / 12;
-				totalAssurance = mensualiteAssurance * duree * 12;
+				mensualiteAssurance = this.montantEmprunt * this.tauxAssurance / 100 / 12;
+				totalAssurance = mensualiteAssurance * this.duree * 12;
 				echeanceMensualite = mensualiteAssurance + mensualite;
 			}
 			double principal = mensualite - interets;
@@ -259,10 +259,10 @@ public class EmpruntSimulationController {
 		String tableauRemboursementAvecAssurance = tableauRemboursementAvecAssuranceBuilder.toString();
 
 		if (!assuranceActive) {
-			generatePDF(tableauRemboursement, "Tableau_amortissement_" + this.client.nom +"_"+ this.client.prenom + ".pdf",
+			this.generatePDF(tableauRemboursement, "Tableau_amortissement_" + this.client.nom +"_"+ this.client.prenom + ".pdf",
 					assuranceActive, totalPaiement, totalAssurance, echeanceMensualite);
 		} else {
-			generatePDF(tableauRemboursementAvecAssurance,
+			this.generatePDF(tableauRemboursementAvecAssurance,
 					"Tableau_amortissement_avec_assurance_" + this.client.nom +"_"+ this.client.prenom + ".pdf",
 					assuranceActive, totalPaiement, totalAssurance, echeanceMensualite);
 		}
@@ -289,7 +289,7 @@ public class EmpruntSimulationController {
 			fileChooser.setInitialFileName(fileName);
 
 			// Afficher la boîte de dialogue FileChooser
-			File file = fileChooser.showSaveDialog(primaryStage);
+			File file = fileChooser.showSaveDialog(this.primaryStage);
 			if (file != null) {
 				// Créer un nouveau document PDF
 				PdfWriter writer = new PdfWriter(file.getPath());
@@ -391,7 +391,7 @@ public class EmpruntSimulationController {
 
 					Paragraph mensualite = new Paragraph("Les échéances mensuelles s'élèvent à "
 							+ decimalFormat.format(echanceMensualite) + " euros \n dont "
-							+ decimalFormat.format(totalAssurance / (12 * duree)) + " euros de frais d'assurance.")
+							+ decimalFormat.format(totalAssurance / (12 * this.duree)) + " euros de frais d'assurance.")
 							.setFont(contentFont).setFontSize(12);
 					document.add(mensualite);
 

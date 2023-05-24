@@ -49,7 +49,7 @@ public class EmployesManagement {
 			this.primaryStage.setTitle("Gestion des employes");
 			this.primaryStage.setResizable(false);
 
-            System.out.println(emcViewController);
+            System.out.println(this.emcViewController);
             this.emcViewController = loader.getController();
             this.emcViewController.initContext(this.primaryStage, this, _dbstate);
         } catch (Exception e) {

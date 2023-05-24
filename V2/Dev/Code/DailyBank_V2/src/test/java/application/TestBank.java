@@ -61,7 +61,7 @@ public class TestBank extends ApplicationTest {
     @BeforeEach
     public void beforeEach() {
         //On réinitialise la BD si ce n'est pas déjà fait en utilisant la méthode resestBD
-        resestBD();
+        this.resestBD();
 
         //On vérifie que le test1 est passé puisque les autres tests en dépendent
         Assumptions.assumeTrue(test1Passed, "Test1 echec, impossible d'executer les autres tests");
@@ -71,15 +71,15 @@ public class TestBank extends ApplicationTest {
         String motPasse = "Lejeune";
 
         //On verifie si l'on doit se déconnecter avec ka méthode verifCoDECO
-        verifCoDECO();
+        this.verifCoDECO();
         //On se connecte avec la méthode connecter
-        connecter(login, motPasse);
+        this.connecter(login, motPasse);
     }
 
     @AfterEach
     public void afterEach() {
-        release(new KeyCode[] {});
-        release(new MouseButton[] {});
+        this.release(new KeyCode[] {});
+        this.release(new MouseButton[] {});
     }
 
     @Override
@@ -127,7 +127,7 @@ public class TestBank extends ApplicationTest {
             try {
                 abt.resestBD();
                 resestBD = true;
-                sleep(2000);
+                this.sleep(2000);
             } catch (DataAccessException | DatabaseConnexionException e) {
                 e.printStackTrace();
                 resestBD = false;
@@ -136,20 +136,20 @@ public class TestBank extends ApplicationTest {
     }
 
     public void verifCoDECO() {
-        Button btnDeconn = find("#btnDeconn");
+        Button btnDeconn = this.find("#btnDeconn");
         if (btnDeconn != null) {
-            clickOn("#btnDeconn");
+            this.clickOn("#btnDeconn");
         }
     }
 
     public void connecter(String login, String motPasse) {
         //lancer la feneêtre de connexion
-        clickOn("#btnConn");
+        this.clickOn("#btnConn");
 
         //remplir les champs de login
-        clickOn("#txtLogin").write(login);
-        clickOn("#txtPassword").write(motPasse);
-        clickOn("#btnValider");
+        this.clickOn("#txtLogin").write(login);
+        this.clickOn("#txtPassword").write(motPasse);
+        this.clickOn("#btnValider");
     }
 
 
@@ -186,11 +186,11 @@ public class TestBank extends ApplicationTest {
         Employe employeBD = null;
         Employe employeLV = null;
 
-        clickOn("Gestion");
-        clickOn("#mitemEmploye");
+        this.clickOn("Gestion");
+        this.clickOn("#mitemEmploye");
 
         //récupérer le nombre d'employe dans la liste view affcihée
-        ListView lvEmployes = find("#lvEmployes");
+        ListView lvEmployes = this.find("#lvEmployes");
         nbEmployeLV = lvEmployes.getItems().size();
 
         //récupérer le nombre d'employe dans la BD
@@ -227,8 +227,8 @@ public class TestBank extends ApplicationTest {
         Employe employesBD = null;
 
 
-        clickOn("Gestion");
-        clickOn("#mitemEmploye");
+        this.clickOn("Gestion");
+        this.clickOn("#mitemEmploye");
 
         Access_BD_Test access_BD_Test = new Access_BD_Test();
         try {
@@ -238,32 +238,32 @@ public class TestBank extends ApplicationTest {
             e.printStackTrace();
         }
 
-        doubleClickOn(employesBD.toString());
+        this.doubleClickOn(employesBD.toString());
 
 
-        TextField txtNom = find("#txtNom");
+        TextField txtNom = this.find("#txtNom");
         String nomVrf = txtNom.getText() + "test";
         txtNom.setText(nomVrf);
 
-        TextField txtPrenom = find("#txtPrenom");
+        TextField txtPrenom = this.find("#txtPrenom");
         String prenomVrf = txtPrenom.getText() + "test";
         txtPrenom.setText(prenomVrf);
 
-        clickOn("Guichetier");
-        clickOn("Chef d'agence");
+        this.clickOn("Guichetier");
+        this.clickOn("Chef d'agence");
 
-        TextField txtLogin = find("#txtLogin");
+        TextField txtLogin = this.find("#txtLogin");
         String loginVrf = txtLogin.getText() + "test";
         txtLogin.setText(loginVrf);
 
-        TextField txtMotPasse = find("#txtMotPasse");
+        TextField txtMotPasse = this.find("#txtMotPasse");
         String motPasseVrf = txtMotPasse.getText() + "test";
         txtMotPasse.setText(motPasseVrf);
 
-        TextField txtConfrMotPasse = find("#txtConfrMotPasse");
+        TextField txtConfrMotPasse = this.find("#txtConfrMotPasse");
         txtConfrMotPasse.setText(motPasseVrf);
 
-        clickOn("Modifier");
+        this.clickOn("Modifier");
 
         try {
             employesBD = access_BD_Test.getEmploye(loginVrf, motPasseVrf);
@@ -272,21 +272,21 @@ public class TestBank extends ApplicationTest {
             e.printStackTrace();
         }
 
-        doubleClickOn(employesBD.toString());
+        this.doubleClickOn(employesBD.toString());
 
-        txtNom = find("#txtNom");
+        txtNom = this.find("#txtNom");
         assertEquals(nomVrf, txtNom.getText());
 
-        txtPrenom = find("#txtPrenom");
+        txtPrenom = this.find("#txtPrenom");
         assertEquals(prenomVrf, txtPrenom.getText());
 
-        MenuButton mbtnDroit = find("#menuBtnDroitAccess");
+        MenuButton mbtnDroit = this.find("#menuBtnDroitAccess");
         assertEquals("Chef d'agence", mbtnDroit.getText());
 
-        txtLogin = find("#txtLogin");
+        txtLogin = this.find("#txtLogin");
         assertEquals(loginVrf, txtLogin.getText());
 
-        txtMotPasse = find("#txtMotPasse");
+        txtMotPasse = this.find("#txtMotPasse");
         assertEquals(motPasseVrf, txtMotPasse.getText());
     }
 
@@ -303,33 +303,33 @@ public class TestBank extends ApplicationTest {
         }
 
 
-        clickOn("Gestion");
-        clickOn("#mitemEmploye");
+        this.clickOn("Gestion");
+        this.clickOn("#mitemEmploye");
 
         for (Employe employeVrf : employesBD) {
-            clickOn(employeVrf.toString());
-            clickOn("#btnConsultEmploye");
+            this.clickOn(employeVrf.toString());
+            this.clickOn("#btnConsultEmploye");
 
-            TextField txtNom = find("#txtNom");
+            TextField txtNom = this.find("#txtNom");
             assertEquals(employeVrf.nom, txtNom.getText());
 
-            TextField txtPrenom = find("#txtPrenom");
+            TextField txtPrenom = this.find("#txtPrenom");
             assertEquals(employeVrf.prenom, txtPrenom.getText());
 
-            MenuButton mbtnDroit = find("#menuBtnDroitAccess");
+            MenuButton mbtnDroit = this.find("#menuBtnDroitAccess");
             if (employeVrf.droitsAccess.equals("chefAgence")) {
                 assertEquals("Chef d'agence", mbtnDroit.getText());
             } else {
                 assertEquals("Guichetier", mbtnDroit.getText());
             }
 
-            TextField txtLogin = find("#txtLogin");
+            TextField txtLogin = this.find("#txtLogin");
             assertEquals(employeVrf.login, txtLogin.getText());
 
-            TextField txtMotPasse = find("#txtMotPasse");
+            TextField txtMotPasse = this.find("#txtMotPasse");
             assertEquals(employeVrf.motPasse, txtMotPasse.getText());
 
-            clickOn("OK");
+            this.clickOn("OK");
         }
     }
 
@@ -345,14 +345,14 @@ public class TestBank extends ApplicationTest {
             e.printStackTrace();
         }
 
-        clickOn("Gestion");
-        clickOn("#mitemEmploye");
+        this.clickOn("Gestion");
+        this.clickOn("#mitemEmploye");
 
-        clickOn(employeBD.toString());
-        clickOn("#btnSuprEmploye");
-        clickOn("Supprimer");
+        this.clickOn(employeBD.toString());
+        this.clickOn("#btnSuprEmploye");
+        this.clickOn("Supprimer");
 
-        assertEquals(null, find(employeBD.toString()));
+        assertEquals(null, this.find(employeBD.toString()));
 
         try {
             employeBD = access_BD_Test.getEmploye("FP", "TheEnterprise");
@@ -369,10 +369,10 @@ public class TestBank extends ApplicationTest {
         Access_BD_Test access_BD_Test = new Access_BD_Test();
         Employe employeBD = null;
 
-        clickOn("Gestion");
-        clickOn("#mitemEmploye");
+        this.clickOn("Gestion");
+        this.clickOn("#mitemEmploye");
 
-        clickOn("#btnNouvelEmploye");
+        this.clickOn("#btnNouvelEmploye");
 
         String nomVrf = "Fournet";
         String prenomVrf = "Enzo";
@@ -380,22 +380,22 @@ public class TestBank extends ApplicationTest {
         String loginVrf = "EF";
         String motPasseVrf = "enzofournet";
 
-        ((TextField) find("#txtNom")).setText(nomVrf);
-        ((TextField) find("#txtPrenom")).setText(prenomVrf);
+        ((TextField) this.find("#txtNom")).setText(nomVrf);
+        ((TextField) this.find("#txtPrenom")).setText(prenomVrf);
 
         if (droitVrf.equals("Chef d'agence")) {
-            clickOn("#menuBtnDroitAccess");
-            clickOn("Chef d'agence");
+            this.clickOn("#menuBtnDroitAccess");
+            this.clickOn("Chef d'agence");
         } else {
-            clickOn("#menuBtnDroitAccess");
-            clickOn("Guichetier");
+            this.clickOn("#menuBtnDroitAccess");
+            this.clickOn("Guichetier");
         }
 
-        ((TextField) find("#txtLogin")).setText(loginVrf);
-        ((TextField) find("#txtMotPasse")).setText(motPasseVrf);
-        ((TextField) find("#txtConfrMotPasse")).setText(motPasseVrf);
+        ((TextField) this.find("#txtLogin")).setText(loginVrf);
+        ((TextField) this.find("#txtMotPasse")).setText(motPasseVrf);
+        ((TextField) this.find("#txtConfrMotPasse")).setText(motPasseVrf);
 
-        clickOn("#butOk");
+        this.clickOn("#butOk");
         int nbEmploye = 0;
         try {
             nbEmploye = access_BD_Test.getSeqEmplCurrVal();
@@ -407,7 +407,7 @@ public class TestBank extends ApplicationTest {
         Employe nouvelEmpl = new Employe(nbEmploye, nomVrf, prenomVrf, droitVrf, loginVrf, motPasseVrf, dailyBankState.getAgenceActuelle().idAg);
 
         Platform.runLater(() -> {
-            ListView lvEmployes = find("#lvEmployes");
+            ListView lvEmployes = this.find("#lvEmployes");
             lvEmployes.scrollTo(lvEmployes.getItems().size() - 1);
 
             /*
@@ -435,7 +435,7 @@ public class TestBank extends ApplicationTest {
      * @return
      */
     public <T extends Node> T find(final String query) {
-        Set<Node> nodes = lookup(query).queryAll();
+        Set<Node> nodes = this.lookup(query).queryAll();
 
         if (nodes.isEmpty()) {
             return null;
@@ -445,7 +445,7 @@ public class TestBank extends ApplicationTest {
         do {
             selectedNode = null;
             for (Node node : nodes) {
-                if (!getStageFromNode(node).isFocused()) {
+                if (!this.getStageFromNode(node).isFocused()) {
                     selectedNode = node;
                     break; // sortir de la boucle dès qu'on trouve un noeud non focusé
                 }

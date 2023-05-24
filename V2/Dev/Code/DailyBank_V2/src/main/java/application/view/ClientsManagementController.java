@@ -52,7 +52,7 @@ public class ClientsManagementController {
 		this.primaryStage = _containingStage;
 		this.dailyBankState = _dbstate;
 		this.configure();
-		this.oListClients.addAll(cmDialogController.getlisteComptes(-1, "", ""));
+		this.oListClients.addAll(this.cmDialogController.getlisteComptes(-1, "", ""));
 	}
 
 	/**
@@ -240,26 +240,26 @@ public class ClientsManagementController {
 	@FXML
     private void onClicList(MouseEvent event) {
 		int selectedIndice = this.lvClients.getSelectionModel().getSelectedIndex();
-        if(lvClients.getItems().size() != 0 && selectedIndice >= 0) {
+        if(this.lvClients.getItems().size() != 0 && selectedIndice >= 0) {
             MouseButton mb = event.getButton();
             if(MouseButton.SECONDARY==mb) {
-				contextMenu.hide();
-                contextMenu = new ContextMenu();
+				this.contextMenu.hide();
+                this.contextMenu = new ContextMenu();
 				MenuItem menuItem1 = new MenuItem("Modifier");
 				MenuItem menuItem2 = new MenuItem("Comptes client");
 				menuItem1.setOnAction(e -> {
-					doModifierClient();
+					this.doModifierClient();
 				});
 				menuItem2.setOnAction(e -> {
-					doComptesClient();
+					this.doComptesClient();
 				});
-				contextMenu.getItems().addAll(menuItem1 ,menuItem2);
-                contextMenu.show(lvClients , event.getScreenX(), event.getScreenY());
+				this.contextMenu.getItems().addAll(menuItem1 ,menuItem2);
+                this.contextMenu.show(this.lvClients , event.getScreenX(), event.getScreenY());
             }
             if(MouseButton.PRIMARY==mb) {
-                contextMenu.hide();
+                this.contextMenu.hide();
                 if(event.getClickCount() > 1) {
-						doModifierClient();
+						this.doModifierClient();
                 }
             }
         }

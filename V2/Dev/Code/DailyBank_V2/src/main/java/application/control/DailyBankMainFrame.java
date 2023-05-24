@@ -44,7 +44,7 @@ public class DailyBankMainFrame extends Application {
 		//si MACOS est utilisé chagement d'icon pour la barre des taches
 		Taskbar taskbar = Taskbar.getTaskbar();
         try {
-            java.awt.Image dockIcon = SwingFXUtils.fromFXImage(new Image(getClass().getResourceAsStream("images/icon.png")), null);
+            java.awt.Image dockIcon = SwingFXUtils.fromFXImage(new Image(this.getClass().getResourceAsStream("images/icon.png")), null);
             taskbar.setIconImage(dockIcon);
         } catch (IllegalArgumentException | UnsupportedOperationException e) {//le catch ne retourne rien pour en pas perturber l'execution du programme sur les autres OS}
 		}

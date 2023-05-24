@@ -34,7 +34,7 @@ public class FooterEventHandler implements IEventHandler {
         PdfDocument pdfDoc = docEvent.getDocument();
         PdfPage page = docEvent.getPage();
         Rectangle pageSize = page.getPageSize();
-        PdfCanvas pdfCanvas = new PdfCanvas(page.getLastContentStream(), page.getResources(), doc.getPdfDocument());
+        PdfCanvas pdfCanvas = new PdfCanvas(page.getLastContentStream(), page.getResources(), this.doc.getPdfDocument());
         Canvas canvas = new Canvas(pdfCanvas, pageSize);
 
         int pageNumber = pdfDoc.getPageNumber(page);
