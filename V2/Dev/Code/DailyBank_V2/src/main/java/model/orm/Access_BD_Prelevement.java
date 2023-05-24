@@ -18,7 +18,7 @@ import model.orm.exception.Table;
 
 /**
  *
- * Classe d'accès aux CompteCourant en BD Oracle.
+ * Classe d'accès aux Prelevement en BD Oracle.
  *
  */
 public class Access_BD_Prelevement {
@@ -27,10 +27,10 @@ public class Access_BD_Prelevement {
 	}
 
 	/**
-	 * Recherche des CompteCourant d'un client à partir de son id.
+	 * Recherche des prelevements d'un compte à partir de son id.
 	 *
-	 * @param idNumCli id du client dont on cherche les comptes
-	 * @return Tous les CompteCourant de idNumCli (ou liste vide)
+	 * @param idNumCompte id du compte dont on cherche les prelevements
+	 * @return Tous les Prelevements de idNumCompte (ou liste vide)
 	 * @throws DataAccessException        Erreur d'accès aux données (requête mal
 	 *                                    formée ou autre)
 	 * @throws DatabaseConnexionException Erreur de connexion
@@ -68,10 +68,10 @@ public class Access_BD_Prelevement {
 	}
 
 	/**
-	 * Recherche d'un CompteCourant à partir de son id (idNumCompte).
+	 * Recherche d'un Prelevement à partir de son id (idNumPrelev).
 	 *
-	 * @param idNumCompte id du compte (clé primaire)
-	 * @return Le compte ou null si non trouvé
+	 * @param idNumPrelev id du prelevement (clé primaire)
+	 * @return Le prelevement ou null si non trouvé
 	 * @throws RowNotFoundOrTooManyRowsException La requête renvoie plus de 1 ligne
 	 * @throws DataAccessException               Erreur d'accès aux données (requête
 	 *                                           mal formée ou autre)
@@ -120,9 +120,9 @@ public class Access_BD_Prelevement {
 	}
 	
 	/**
-	 * Insertion d'un compte.
+	 * Insertion d'un prelevement.
 	 *
-	 * @param compte IN/OUT Tous les attributs IN sauf idNumCompte en OUT
+	 * @param compte IN/OUT Tous les attributs IN sauf idPrelev en OUT
 	 * @throws RowNotFoundOrTooManyRowsException La requête insère 0 ou plus de 1
 	 *                                           ligne
 	 * @throws DataAccessException               Erreur d'accès aux données (requête
@@ -174,24 +174,20 @@ public class Access_BD_Prelevement {
 	
 
 	/**
-	 * Suppression d'un CompteCourant.
+	 * Suppression d'un Prelevement.
 	 *
-	 * cc.idNumCompte (clé primaire) doit exister seul, le compte n'est pas supprimé mais seulement désactivé 
-	 * empêchant alors les opérations
-	 * cc.idNumCli non mis à jour (un cc ne change pas de client)
+	 * prelev.idPrelev (clé primaire) doit exister seul
+	 * stoppant alors le prélèvement automatique
 	 *
-	 * @param cc IN cc.idNumCompte (clé primaire) doit exister seul
+	 * @param prelev IN prelev.idPrelev (clé primaire) doit exister seul
 	 * @throws RowNotFoundOrTooManyRowsException La requête modifie 0 ou plus de 1
 	 *                                           ligne
 	 * @throws DataAccessException               Erreur d'accès aux données (requête
 	 *                                           mal formée ou autre)
 	 * @throws DatabaseConnexionException        Erreur de connexion
-	 * @throws ManagementRuleViolation           Erreur sur le solde courant par
-	 *                                           rapport au débitAutorisé (solde <
-	 *                                           débitAutorisé)
 	 */
 	public void deletePrelevement(Prelevement prelev) throws RowNotFoundOrTooManyRowsException, DataAccessException,
-			DatabaseConnexionException, ManagementRuleViolation {
+			DatabaseConnexionException{
 		try {
 
 			Connection con = LogToDatabase.getConnexion();
@@ -216,21 +212,16 @@ public class Access_BD_Prelevement {
 	}
 
 	/**
-	 * Mise à jour d'un CompteCourant.
+	 * modification d'un Prelevement.
 	 *
-	 * cc.idNumCompte (clé primaire) doit exister seul cc.debitAutorise est mis à
-	 * jour cc.solde non mis à jour (ne peut se faire que par une opération)
-	 * cc.idNumCli non mis à jour (un cc ne change pas de client)
+	 * prelev.idPrelev (clé primaire) doit exister seul
 	 *
-	 * @param cc IN cc.idNumCompte (clé primaire) doit exister seul
+	 * @param prelev IN prelev.idPrelev (clé primaire) doit exister seul
 	 * @throws RowNotFoundOrTooManyRowsException La requête modifie 0 ou plus de 1
 	 *                                           ligne
 	 * @throws DataAccessException               Erreur d'accès aux données (requête
 	 *                                           mal formée ou autre)
 	 * @throws DatabaseConnexionException        Erreur de connexion
-	 * @throws ManagementRuleViolation           Erreur sur le solde courant par
-	 *                                           rapport au débitAutorisé (solde <
-	 *                                           débitAutorisé)
 	 */
 	public void updatePrelevement(Prelevement prelev) throws RowNotFoundOrTooManyRowsException, DataAccessException,
 			DatabaseConnexionException, ManagementRuleViolation {

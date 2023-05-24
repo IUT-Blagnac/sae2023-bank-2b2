@@ -89,16 +89,16 @@ public class Batch {
     	Access_BD_Operation aop = new Access_BD_Operation();
     	Access_BD_Prelevement apa = new Access_BD_Prelevement();
     	Access_BD_CompteCourant acc = new Access_BD_CompteCourant();
-    	Date date = Date.valueOf(LocalDate.now());
+    	Date date = Date.valueOf(LocalDate.now().plusDays(7));
     	Calendar calendar = Calendar.getInstance();
     	calendar.setTime(date);
     	int joursDansLeMois = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+    	
     	int jour = calendar.get(Calendar.DAY_OF_MONTH);
+    	System.out.println(""+joursDansLeMois);
     	try {
 			for(Prelevement prelevements : apa.getPrelevements(idNumCompte)) {
 				if(prelevements.datePrelev == jour) {
-					System.out.println("jour bon");
-					System.out.println(""+prelevements.debitPrelev);
 					try {
 						aop.insertDebit(acc.getCompteCourant(idNumCompte), prelevements.debitPrelev, "Prélèvement automatique");
 					} catch (ManagementRuleViolation e) {
@@ -110,6 +110,7 @@ public class Batch {
 					}
 				}
 				else if(prelevements.datePrelev > joursDansLeMois && jour == joursDansLeMois) {
+					System.out.println("tkt");
 					try {
 						aop.insertDebit(acc.getCompteCourant(idNumCompte), prelevements.debitPrelev, "Prélèvement automatique");
 					} catch (ManagementRuleViolation e) {

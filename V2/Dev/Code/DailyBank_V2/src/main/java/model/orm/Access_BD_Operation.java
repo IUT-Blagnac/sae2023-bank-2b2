@@ -296,9 +296,66 @@ public class Access_BD_Operation {
 			// 4 type du quatrième paramètre qui est déclaré en OUT, cf. déf procédure
 
 			call.execute();
-
+			int res = call.getInt(4);
+			if (res != 0) { // Erreur applicative
+				throw new ManagementRuleViolation(Table.Operation, Order.INSERT,
+						"Erreur de règle de gestion : erreur", null);
+			}
 		} catch (SQLException e) {
 			throw new DataAccessException(Table.Operation, Order.INSERT, "Erreur accès", e);
+		}
+	}
+	
+	/**
+	 * @author yannis gibert
+	 * Enregistrement d'un premier depot lors de la création d'un compte courant.
+	 *
+	 * - insère l'opèration du premier dépot dans la base de données. <BR />
+	 *
+	 * @param idNumCompte compte crédité
+	 * @param montant     montant crédité
+	 * @param typeOp      libellé de l'opération effectuée (cf TypeOperation)
+	 * @throws DataAccessException        Erreur d'accès aux données (requête mal
+	 *                                    formée ou autre)
+	 * @throws DatabaseConnexionException Erreur de connexion
+	 * @throws ManagementRuleViolation    Si dépassement découvert autorisé
+	 */
+	public void insertPremierDepot(int idNumCompte,double montant,String typeOp) throws DatabaseConnexionException, ManagementRuleViolation, DataAccessException{
+		try {
+			Connection con = LogToDatabase.getConnexion();
+
+				String query = "INSERT INTO Operation VALUES (" + "seq_id_operation.NEXTVAL" + ", " + "?" + ", " + "?" + ", "
+						+ "?" + ", " + "?" + "," +"?" + ")";
+				PreparedStatement pst = con.prepareStatement(query);
+				pst.setDouble(1, montant);
+				pst.setDate(2, Date.valueOf(LocalDate.now()));
+				pst.setDate(3,Date.valueOf(LocalDate.now().plusDays(2)));
+				pst.setInt(4, idNumCompte);
+				pst.setString(5,typeOp);
+				System.err.println(query);
+				int result = pst.executeUpdate();
+				pst.close();
+				if (result != 1) {
+					con.rollback();
+					throw new RowNotFoundOrTooManyRowsException(Table.Operation, Order.INSERT,
+							"Insert anormal (insert de moins ou plus d'une ligne)", null, result);
+				}
+
+				query = "SELECT seq_id_operation.CURRVAL from DUAL";
+				System.err.println(query);
+				PreparedStatement pst4 = con.prepareStatement(query);
+				ResultSet rs = pst4.executeQuery();
+				rs.next();			
+				con.commit();
+				rs.close();
+				pst4.close();
+			
+			
+		} catch (SQLException e) {
+			throw new DataAccessException(Table.Operation, Order.INSERT, "Erreur accès", e);
+		} catch (RowNotFoundOrTooManyRowsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	
