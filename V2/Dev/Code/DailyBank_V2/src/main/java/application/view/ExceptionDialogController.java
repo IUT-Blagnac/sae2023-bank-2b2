@@ -41,7 +41,7 @@ public class ExceptionDialogController {
 		this.aException = _ae;
 		this.configure();
 	}
-	
+
 	/**
      * Configure la fenêtre de dialogue en initialisant les différents composants.
      */
@@ -65,7 +65,7 @@ public class ExceptionDialogController {
 	}
 
 	// Gestion du stage
-	
+
 	/**
      * Gère l'événement de fermeture de la fenêtre.
      *

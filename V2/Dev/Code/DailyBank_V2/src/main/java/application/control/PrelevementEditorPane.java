@@ -4,14 +4,12 @@ import application.DailyBankApp;
 import application.DailyBankState;
 import application.tools.EditionMode;
 import application.tools.StageManagement;
-import application.view.CompteEditorPaneController;
 import application.view.PrelevEditorPaneController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.data.Client;
 import model.data.CompteCourant;
 import model.data.Prelevement;
 
@@ -24,7 +22,7 @@ public class PrelevementEditorPane {
 	 * @author yannis gibert
 	 * Constructeur de la classe de PrelevementEditorPane.
 	 * Cette classe permet de gérer l'affichage d'un dialogue de gestion des prelevements.
-	 * 
+	 *
 	 * @param _parentStage Fenêtre parente de LoginDialog (sur laquelle se centrer
 	 *                     et être modale)
 	 * @param _dbstate     Etat courant de l'application
@@ -54,16 +52,16 @@ public class PrelevementEditorPane {
 		}
 	}
 
-	/** 
+	/**
 	 * @author yannis gibert
 	 * Cette méthode permet d'afficher le dialogue de gestion d'un prelevement. <br/>
-	 * Que ce soit pour une création, une modification, une suppression ou une consultation <br/> 
+	 * Que ce soit pour une création, une modification, une suppression ou une consultation <br/>
 	 * il donc faut passer en paramètre le compte a qui appartient le prelevement, le prelevement concerné et le mode d'édition qui sera utilisé. <br/>
-	 * 
+	 *
 	 * @param compte le compte a qui appartient le prelevement
 	 * @param prlv le prelevement qu'on souhaite editer
 	 * @param em le mode d'édition
-	 * 
+	 *
 	 * @return le prelevement edité
 	 */
 	public Prelevement doPrelevementEditorDialog(CompteCourant compte, Prelevement prlv, EditionMode em) {

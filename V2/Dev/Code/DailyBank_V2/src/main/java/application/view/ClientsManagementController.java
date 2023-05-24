@@ -11,7 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseButton;
@@ -40,10 +39,10 @@ public class ClientsManagementController {
 	private ObservableList<Client> oListClients;
 
 	// Manipulation de la fenêtre
-	
+
 	/**
      * Initialise le contexte du contrôleur.
-     * 
+     *
      * @param _containingStage La fenêtre contenant la scène associée.
      * @param _cm              Le contrôleur de dialogue associé.
      * @param _dbstate         L'état courant de la banque.
@@ -53,7 +52,7 @@ public class ClientsManagementController {
 		this.primaryStage = _containingStage;
 		this.dailyBankState = _dbstate;
 		this.configure();
-		this.oListClients.addAll(cmDialogController.getlisteComptes(-1, "", ""));
+		this.oListClients.addAll(this.cmDialogController.getlisteComptes(-1, "", ""));
 	}
 
 	/**
@@ -73,13 +72,13 @@ public class ClientsManagementController {
 	/**
      * Affiche la fenêtre de dialogue.
      */
-	
+
 	public void displayDialog() {
 		this.primaryStage.showAndWait();
 	}
 
 	// Gestion du stage
-	
+
 	/**
 	 * Ferme la fenêtre en appelant la méthode "doCancel()" et consomme l'événement de fermeture.
 	 *
@@ -110,7 +109,7 @@ public class ClientsManagementController {
 	private Button btnComptesClient;
 	private ContextMenu contextMenu = new ContextMenu();
 
-	
+
 	/**
      * Ferme la fenêtre de dialogue.
      */
@@ -119,7 +118,7 @@ public class ClientsManagementController {
 		this.primaryStage.close();
 	}
 
-	
+
 	/**
      * Effectue une recherche de clients en fonction des critères spécifiés.
      */
@@ -179,7 +178,7 @@ public class ClientsManagementController {
 		}
 	}
 
-	
+
 	/**
      * Modifie le client sélectionné.
      */
@@ -195,7 +194,7 @@ public class ClientsManagementController {
 		}
 	}
 
-	
+
 	/**
      * Désactive le client sélectionné.
      */
@@ -203,7 +202,7 @@ public class ClientsManagementController {
 	private void doDesactiverClient() {
 	}
 
-	
+
 	 /**
      * Crée un nouveau client et l'ajoute à la liste des clients.
      */
@@ -216,7 +215,7 @@ public class ClientsManagementController {
 		}
 	}
 
-	
+
 	/**
      * Valide l'état des composants de la fenêtre et active/désactive les boutons en conséquence.
      */
@@ -231,8 +230,8 @@ public class ClientsManagementController {
 			this.btnComptesClient.setDisable(true);
 		}
 	}
-	
-	
+
+
 	 /**
      * Gère les événements de clic sur la liste des clients pour afficher le menu contextuel et effectuer des actions.
      *
@@ -241,26 +240,26 @@ public class ClientsManagementController {
 	@FXML
     private void onClicList(MouseEvent event) {
 		int selectedIndice = this.lvClients.getSelectionModel().getSelectedIndex();
-        if(lvClients.getItems().size() != 0 && selectedIndice >= 0) {
+        if(this.lvClients.getItems().size() != 0 && selectedIndice >= 0) {
             MouseButton mb = event.getButton();
             if(MouseButton.SECONDARY==mb) {
-				contextMenu.hide();
-                contextMenu = new ContextMenu();
+				this.contextMenu.hide();
+                this.contextMenu = new ContextMenu();
 				MenuItem menuItem1 = new MenuItem("Modifier");
 				MenuItem menuItem2 = new MenuItem("Comptes client");
 				menuItem1.setOnAction(e -> {
-					doModifierClient();
+					this.doModifierClient();
 				});
 				menuItem2.setOnAction(e -> {
-					doComptesClient();
+					this.doComptesClient();
 				});
-				contextMenu.getItems().addAll(menuItem1 ,menuItem2);
-                contextMenu.show(lvClients , event.getScreenX(), event.getScreenY());
+				this.contextMenu.getItems().addAll(menuItem1 ,menuItem2);
+                this.contextMenu.show(this.lvClients , event.getScreenX(), event.getScreenY());
             }
             if(MouseButton.PRIMARY==mb) {
-                contextMenu.hide();
+                this.contextMenu.hide();
                 if(event.getClickCount() > 1) {
-						doModifierClient();
+						this.doModifierClient();
                 }
             }
         }

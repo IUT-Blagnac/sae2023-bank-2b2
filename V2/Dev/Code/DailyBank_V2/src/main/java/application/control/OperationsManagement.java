@@ -33,7 +33,7 @@ public class OperationsManagement {
 	/**
 	 * Constructeur de la classe de OperationsManagement. Cette classe permet de gérer l'affichage d'un dialogue de <br/>
 	 * gestion des opérations.
-	 * 
+	 *
 	 * @param _parentStage
 	 * @param _dbstate
 	 * @param client
@@ -75,10 +75,10 @@ public class OperationsManagement {
 		this.omcViewController.displayDialog();
 	}
 
-	
-	/** 
+
+	/**
 	 * Cette méthode permet d'enregistrer une opération de débit.
-	 * 
+	 *
 	 * @return Operation
 	 */
 	public Operation enregistrerDebit() {
@@ -107,7 +107,7 @@ public class OperationsManagement {
 
 	/**
 	 * Cette méthode permet d'enregistrer une opération de crédit.
-	 * 
+	 *
 	 * @return Operation
 	 */
 	public Operation enregistrerCredit() {
@@ -133,10 +133,10 @@ public class OperationsManagement {
 		}
 		return op;
 	}
-	
+
 	/**
 	 * Cette méthode permet d'enregistrer un virement.
-	 * 
+	 *
 	 * @return Operation
 	 */
 	public Operation enregistrerVirement() {
@@ -147,7 +147,7 @@ public class OperationsManagement {
 	            Access_BD_Operation ao = new Access_BD_Operation();
 	            // Appeler la procédure de virement SQL
 	            ao.insertVirement(this.compteConcerne,op.idNumCompte , op.montant, op.idTypeOp,this.dailyBankState);
-	            
+
 
 	        } catch (DatabaseConnexionException e) {
 	            ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);

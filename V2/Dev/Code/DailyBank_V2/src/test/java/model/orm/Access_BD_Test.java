@@ -1,8 +1,16 @@
 package model.orm;
 
-import java.sql.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 
 import model.data.Employe;
@@ -14,9 +22,9 @@ import model.orm.exception.Table;
 
 /**
  * Classe d'accès aux Employe en BD Oracle pour les tests.
- * 
+ *
  * @author Enzo Fournet
- * 
+ *
  */
 public class Access_BD_Test {
 
@@ -195,30 +203,30 @@ public class Access_BD_Test {
                     System.out.println(">>" + inst[i]);
                     if(inst[i].contains("EXECUTE Debiter(")) {
                         System.out.println("debiter>>" + inst[i]);
-                        int debit = debiter(inst[i]);
+                        int debit = this.debiter(inst[i]);
                         System.out.println("debit>>" + debit);
                     } else if(inst[i].contains("EXECUTE Debiter(")) {
                         System.out.println("crediter>>" + inst[i]);
-                        int credit = crediter(inst[i]);
+                        int credit = this.crediter(inst[i]);
                         System.out.println("credit>>" + credit);
 
                     } else if(inst[i].contains("EXECUTE CreerOperation(")) {
                         System.out.println("creerOperation>>" + inst[i]);
-                        int creerOperation = creerOperation(inst[i]);
+                        int creerOperation = this.creerOperation(inst[i]);
                         System.out.println("creerOperation>>" + creerOperation);
-                    } else if(inst[i].contains("EXECUTE CreerCompte(")) { 
+                    } else if(inst[i].contains("EXECUTE CreerCompte(")) {
                         System.out.println("creerCompte>>" + inst[i]);
-                        int creerCompte = creerCompte(inst[i]);
+                        int creerCompte = this.creerCompte(inst[i]);
                         System.out.println("creerCompte>>" + creerCompte);
                     } else if (inst[i].contains("EXECUTE Virer(")) {
                         System.out.println("virer>>" + inst[i]);
-                        int virer = virer(inst[i]);
+                        int virer = this.virer(inst[i]);
                         System.out.println("virer>>" + virer);
                     }else {
                         Statement st = con.createStatement();
                         st.executeUpdate(inst[i]);
                         st.close();
-                    }                    
+                    }
                 }
                 System.out.println(i + ">>" + inst[i]);
             } catch (SQLException e) {
@@ -235,10 +243,10 @@ public class Access_BD_Test {
                     System.out.println(e.getMessage());
                     System.out.println("************************");
                 }
-                
-                
+
+
             }
-                
+
         }
         try {
             con.commit();
@@ -449,26 +457,26 @@ public class Access_BD_Test {
         String procedureName = "{ CALL Debiter(?, ?, ?, ?) }";
         Connection con = LogToDatabase.getConnexion();
         CallableStatement stmt = con.prepareCall(procedureName);
-            
+
         // Passer les paramètres IN à la procédure stockée
         stmt.setInt(1, idNumCompte);
         stmt.setFloat(2, montant);
         stmt.setString(3, typeOperation);
-            
+
         // Enregistrer le paramètre OUT de la procédure stockée
         stmt.registerOutParameter(4, java.sql.Types.NUMERIC);
-    
+
         // Exécuter la procédure stockée
         stmt.execute();
-            
+
         // Récupérer la valeur du paramètre OUT
         int result = stmt.getInt(4);
-            
+
         stmt.close();
         con.close();
 
         System.out.println("result>>" + result);
         return result;
     }
-    
+
 }

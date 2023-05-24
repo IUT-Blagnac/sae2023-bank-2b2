@@ -9,7 +9,6 @@ import application.tools.EditionMode;
 import application.tools.StageManagement;
 import application.tools.pdf.GenPDF;
 import application.view.ComptesManagementController;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
@@ -20,7 +19,6 @@ import javafx.util.Pair;
 import model.data.Client;
 import model.data.CompteCourant;
 import model.data.Operation;
-import model.orm.Access_BD_Client;
 import model.orm.Access_BD_CompteCourant;
 import model.orm.Access_BD_Operation;
 import model.orm.exception.ApplicationException;
@@ -79,7 +77,7 @@ public class ComptesManagement {
 
 	/**
 	 * Permet d'ouvrir la page de gestion des opérations d'un compte
-	 * 
+	 *
 	 * @param cpt le compte qu'on souhaite récupérer ses opérations
 	 */
 	public void gererOperationsDUnCompte(CompteCourant cpt) {
@@ -87,10 +85,10 @@ public class ComptesManagement {
 				this.clientDesComptes, cpt);
 		om.doOperationsManagementDialog();
 	}
-		
+
 	/**
 	 * Permet de cloturer un compte
-	 * 
+	 *
 	 * @param compte le compte que l'on souhaite supprimer
 	 * @return le compte courant
 	 */
@@ -101,7 +99,7 @@ public class ComptesManagement {
 			try {
 				Access_BD_CompteCourant ac = new Access_BD_CompteCourant();
 				if(compte.solde !=  0) {
-					AlertUtilities.showAlert(primaryStage,"Cloturation du compte" ,"Impossible de cloturer le compte" , "Il n'est pas possible de cloturer un compte si le solde de ce dernier n'est pas égal à 0", AlertType.ERROR);
+					AlertUtilities.showAlert(this.primaryStage,"Cloturation du compte" ,"Impossible de cloturer le compte" , "Il n'est pas possible de cloturer un compte si le solde de ce dernier n'est pas égal à 0", AlertType.ERROR);
 					return null;
 				}
 				compte.setCloture("O");
@@ -119,10 +117,10 @@ public class ComptesManagement {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * Permet de modifier les informations d'un compte
-	 * 
+	 *
 	 * @param c le compte qu'on souhaite modifier
 	 * @return le compte modifié
 	 */
@@ -149,7 +147,7 @@ public class ComptesManagement {
 
 	/**
 	 * Permet de créer un nouveau compte courant
-	 * 
+	 *
 	 * @return le nouveau compte courant
 	 */
 	public CompteCourant creerNouveauCompte() {
@@ -180,7 +178,7 @@ public class ComptesManagement {
 
 	/**
 	 * Permet de récupérer tout les comptes courant d'un client
-	 * 
+	 *
 	 * @return une liste de compte courant
 	 */
 	public ArrayList<CompteCourant> getComptesDunClient() {
@@ -224,7 +222,7 @@ public class ComptesManagement {
 
     public boolean genererPDF(Pair<String, String> monthYear, Client clientDesComptes, CompteCourant compteCourant) {
 		GenPDF pdf = new GenPDF();
-		pdf.initContext(primaryStage, this, dailyBankState, clientDesComptes);
+		pdf.initContext(this.primaryStage, this, this.dailyBankState, clientDesComptes);
 		return pdf.genererPDF(monthYear, clientDesComptes, compteCourant);
     }
 }

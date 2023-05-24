@@ -1,15 +1,12 @@
 package application.view;
 
 import java.util.Locale;
-import java.util.regex.Pattern;
 
 import application.DailyBankState;
-import application.tools.AlertUtilities;
 import application.tools.ConstantesIHM;
 import application.tools.EditionMode;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -19,9 +16,9 @@ import model.data.Client;
 import model.data.CompteCourant;
 
 	/**
-	
+
 	La classe CompteEditorPaneController est un contrôleur qui gère l'affichage et la modification des informations de compte bancaire pour un client.
-	
+
 	Elle offre des fonctionnalités pour créer, modifier ou supprimer un compte bancaire.
 	*/
 public class CompteEditorPaneController {
@@ -33,15 +30,15 @@ public class CompteEditorPaneController {
 	private Stage primaryStage;
 
 	// Données de la fenêtre
-	
-	
+
+
 	private EditionMode editionMode;
 	private Client clientDuCompte;
 	private CompteCourant compteEdite;
 	private CompteCourant compteResultat;
 
 	// Manipulation de la fenêtre
-	
+
 	/**
 	 * Initialise le contexte du contrôleur avec la fenêtre principale et l'état de l'application.
 	 *
@@ -77,7 +74,7 @@ public class CompteEditorPaneController {
 
 	@return Le compte courant résultant après l'opération ou null si l'opération a été annulée
 	*/
-	
+
 	public CompteCourant displayDialog(Client client, CompteCourant cpte, EditionMode mode) {
 		this.clientDuCompte = client;
 		this.editionMode = mode;
@@ -136,7 +133,7 @@ public class CompteEditorPaneController {
 	}
 
 	// Gestion du stage
-	
+
 	/**
 	 * Gère l'événement de fermeture de la fenêtre en annulant l'opération en cours.
 	 *
@@ -221,7 +218,7 @@ public class CompteEditorPaneController {
 	private Button btnCancel;
 
 
-	
+
 	/**
 	 * Gère l'action de l'annulation de l'opération en cours.
 	 * Réinitialise le compte résultat et ferme la fenêtre principale.
@@ -232,7 +229,7 @@ public class CompteEditorPaneController {
 		this.primaryStage.close();
 	}
 
-	
+
 
 	/**
 	 * Gère l'action du bouton "Ajouter" en fonction du mode d'édition.
@@ -260,13 +257,13 @@ public class CompteEditorPaneController {
 		}
 
 	}
-	
+
 	/**
 	 * Vérifie si la saisie des champs est valide.
 	 *
 	 * @return true si la saisie est valide, false sinon
 	 */
-	private boolean isSaisieValide() {	
+	private boolean isSaisieValide() {
 		return true;
 	}
 }

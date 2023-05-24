@@ -20,7 +20,7 @@ public class OperationEditorPane {
 
 	/**
 	 * Constructeur de classe OperationEditorPane
-	 * 
+	 *
 	 * @param _parentStage
 	 * @param _dbstate
 	 */
@@ -50,10 +50,10 @@ public class OperationEditorPane {
 		}
 	}
 
-	
-	/** 
+
+	/**
 	 * Cette méthode permet de faire apparaître la fenêtre de dialogue de création d'une opération
-	 * 
+	 *
 	 * @param cpte
 	 * @param cm
 	 * @return Operation

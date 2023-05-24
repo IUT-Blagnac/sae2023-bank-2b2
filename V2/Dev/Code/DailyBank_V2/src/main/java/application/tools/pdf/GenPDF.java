@@ -7,7 +7,6 @@ import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-import com.itextpdf.commons.bouncycastle.pkcs.IPKCS8EncryptedPrivateKeyInfo;
 import com.itextpdf.kernel.colors.ColorConstants;
 import com.itextpdf.kernel.events.PdfDocumentEvent;
 import com.itextpdf.kernel.font.PdfFont;
@@ -34,7 +33,7 @@ import model.data.Operation;
 
 /**
  * Cette classe permet de générer les pdf de relevé de compte
- * 
+ *
  * @author Enzo Fournet
  */
 public class GenPDF {
@@ -45,16 +44,16 @@ public class GenPDF {
     private DailyBankState dailyBankState;
 
 	/**
-	 * 
+	 *
 	 * Cette méthode permet d'initialiser le contexte de la classe.
-	 * 
+	 *
 	 * @author Enzo Fournet
-	 * 
+	 *
 	 * @param _containingStage
 	 * @param _cm
 	 * @param _dbstate
 	 * @param client
-	 * 
+	 *
 	 */
     public void initContext(Stage _containingStage, ComptesManagement _cm, DailyBankState _dbstate, Client client) {
 		this.cmDialogController = _cm;
@@ -63,19 +62,19 @@ public class GenPDF {
 		this.clientDesComptes = client;
 	}
 
-	
+
     public void GenPDF() {}
 
 	/**
-	 * 
+	 *
 	 * Cette méthode permet de générer le pdf du relevé de compte en fonction du mois et de l'année
-	 * 
+	 *
 	 * @author Enzo Fournet
 	 * @param monthYear mois et année du relevé
 	 * @param clientDesComptes client du compte courant
 	 * @param compteCourant compte courant dont on veut le relevé
 	 * @return true si l'ArrayList n'est pas vide et génére le PDF, false sinon
-	 * 
+	 *
 	 */
     public boolean genererPDF(Pair<String, String> monthYear, Client clientDesComptes, CompteCourant compteCourant) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -83,8 +82,8 @@ public class GenPDF {
         this.clientDesComptes = clientDesComptes;
         this.compteActuel = compteCourant;
 
-		ArrayList<Operation> listeOpes = this.cmDialogController.getOperationsDunCompte(compteActuel, monthYear.getKey(), monthYear.getValue());
-        
+		ArrayList<Operation> listeOpes = this.cmDialogController.getOperationsDunCompte(this.compteActuel, monthYear.getKey(), monthYear.getValue());
+
 		if (listeOpes.isEmpty()) {
             return false;
         }
@@ -93,7 +92,7 @@ public class GenPDF {
 
 		// Définissez l'extension de filtrage
 		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PDF files (*.pdf)", "*.pdf");
-		
+
 		fileChooser.getExtensionFilters().add(extFilter);
 
 		//définisser le nom par défaut du fichier
@@ -179,7 +178,7 @@ public class GenPDF {
 
 				//ajouter un tableau
 				float[] pointColumnWidths = {150F, 150F, 150F, 150F, 250F};
-				Table table = new Table(pointColumnWidths);				
+				Table table = new Table(pointColumnWidths);
 				table.addHeaderCell(new Cell().add(new Paragraph("ID Compte").setFontSize(10).setFontColor(ColorConstants.GRAY).setFont(boldFont)));
 				table.addHeaderCell(new Cell().add(new Paragraph("Date").setFontSize(10).setFontColor(ColorConstants.GRAY).setFont(boldFont)));
 				table.addHeaderCell(new Cell().add(new Paragraph("ID Opération").setFontSize(10).setFontColor(ColorConstants.GRAY).setFont(boldFont)));
@@ -198,9 +197,9 @@ public class GenPDF {
 						.setBorder(Border.NO_BORDER)
 						.setFont(boldFont);
 
-				Double oldSolde = compteActuel.solde;
+				Double oldSolde = this.compteActuel.solde;
 				System.out.println("oldSolde : " + oldSolde);
-				
+
 				for (Operation currOp : listeOpes) {
 					System.out.println("id : " + currOp.idOperation + "| Montant :" + currOp.montant);
 					oldSolde -= currOp.montant;

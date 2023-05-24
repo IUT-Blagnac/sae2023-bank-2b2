@@ -43,7 +43,7 @@ public class PrelevManagementController {
 	FileChooser fileChooser = new FileChooser();
 
 	// Manipulation de la fenêtre
-	
+
 	/**
 	 * @author yannis gibert
 	 * Initialise le contexte du contrôleur avec les paramètres fournis.
@@ -60,7 +60,7 @@ public class PrelevManagementController {
 		this.configure();
 	}
 
-	
+
 	/**
 	 * @author yannis gibert
 	 * Configure les éléments de l'interface graphique.
@@ -91,8 +91,8 @@ public class PrelevManagementController {
 	public void displayDialog() {
 		this.primaryStage.showAndWait();
 	}
-	
-	
+
+
 	/**
 	 * @author yannis gibert
 	 * Gère l'événement de fermeture de la fenêtre en annulant ce qui était en cours.
@@ -128,9 +128,9 @@ public class PrelevManagementController {
 	private void doCancel() {
 		this.primaryStage.close();
 	}
-	
+
 	//Modification d'un prelevement
-	
+
 	/**
 	 * @author yannis gibert
 	 * Modifie un prelevement sélectionné.
@@ -151,7 +151,7 @@ public class PrelevManagementController {
 	}
 
 	//Suppression d'un prelevement
-	
+
 	/**
 	 * @author yannis gibert
 	 * Supprime un prelevement sélectionné.
@@ -162,14 +162,14 @@ public class PrelevManagementController {
 		int selectedItem = this.lvPrelevement.getSelectionModel().getSelectedIndex();
 		if(selectedItem >= 0) {
 			Prelevement prelev = this.oListPrelevement.get(selectedItem);
-			this.cmDialogController.supprimerPrelevement(prelev);	
+			this.cmDialogController.supprimerPrelevement(prelev);
 		}
 		this.loadList();
 		this.validateComponentState();
 	}
 
 	//Ajout d'un nouveau prelevement
-	
+
 	/**
 	 * @author yannis gibert
 	 * Ajoute un nouveau prelevement
@@ -182,8 +182,8 @@ public class PrelevManagementController {
 		if (prelev != null) {
 			this.oListPrelevement.add(prelev);
 		}
-	}	
-	
+	}
+
 
 	/**
 	 * @author yannis gibert
@@ -203,10 +203,10 @@ public class PrelevManagementController {
 	private void validateComponentState() {
 		int selectedIndice = this.lvPrelevement.getSelectionModel().getSelectedIndex();
 		if (selectedIndice >= 0) {
-			
+
 			this.btnModifierPrelev.setDisable(false);
 			this.btnSupprPrelev.setDisable(false);
-			
+
 		} else {
 			this.btnModifierPrelev.setDisable(true);
 			this.btnSupprPrelev.setDisable(true);

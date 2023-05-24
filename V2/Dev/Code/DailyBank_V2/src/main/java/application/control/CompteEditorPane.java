@@ -21,7 +21,7 @@ public class CompteEditorPane {
 	/**
 	 * Constructeur de la classe de CompteEditorPane.
 	 * Cette classe permet de gérer l'affichage d'un dialogue de gestion des comptes.
-	 * 
+	 *
 	 * @param _parentStage Fenêtre parente de LoginDialog (sur laquelle se centrer
 	 *                     et être modale)
 	 * @param _dbstate     Etat courant de l'application
@@ -51,15 +51,15 @@ public class CompteEditorPane {
 		}
 	}
 
-	/** 
+	/**
 	 * Cette méthode permet d'afficher le dialogue de gestion d'un compte. <br/>
-	 * Que ce soit pour une création, une modification, une suppression ou une consultation <br/> 
+	 * Que ce soit pour une création, une modification, une suppression ou une consultation <br/>
 	 * il donc faut passer en paramètre le client a qui appartient le compte, le compte concerné et le mode d'édition qui sera utilisé. <br/>
-	 * 
+	 *
 	 * @param client le client a qui appartient le compte
 	 * @param cpte le compte qu'on souhaite editer
 	 * @param em le mode d'édition
-	 * 
+	 *
 	 * @return le compte courant edité
 	 */
 	public CompteCourant doCompteEditorDialog(Client client, CompteCourant cpte, EditionMode em) {

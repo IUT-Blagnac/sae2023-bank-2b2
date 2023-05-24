@@ -8,7 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Month;
-import java.time.Year;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
@@ -37,11 +36,11 @@ public class Access_BD_Operation {
 	 * Recherche de toutes les opérations d'un compte.
 	 *
 	 * @author Enzo Fournet
-	 * 
+	 *
 	 * @param idNumCompte id du compte dont on cherche toutes les opérations
 	 * @param month       mois de l'opération
 	 * @param year        année de l'opération
-	 * 
+	 *
 	 * @return Toutes les opérations du compte au mos et à l'année donnée, liste vide si pas d'opération.
 	 * @throws DataAccessException        Erreur d'accès aux données (requête mal
 	 *                                    formée ou autre)
@@ -57,7 +56,7 @@ public class Access_BD_Operation {
 		if (month.isEmpty() || year.isEmpty()) {
 			return alResult;
 		}
-		
+
 		try {
 			Connection con = LogToDatabase.getConnexion();
 			String query = "SELECT * FROM Operation where idNumCompte = ? AND EXTRACT(MONTH FROM dateOp) = ? AND EXTRACT(YEAR FROM dateOp) = ?";
@@ -93,9 +92,9 @@ public class Access_BD_Operation {
 	 * Recherche de toutes les opérations d'un compte.
 	 *
 	 * @author Enzo Fournet
-	 * 
+	 *
 	 * @param idNumCompte id du compte dont on cherche toutes les opérations
-	 * 
+	 *
 	 * @return Toutes les opérations du compte, liste vide si pas d'opération.
 	 * @throws DataAccessException        Erreur d'accès aux données (requête mal
 	 *                                    formée ou autre)
@@ -263,12 +262,12 @@ public class Access_BD_Operation {
 					throw new RowNotFoundOrTooManyRowsException(Table.CompteCourant, Order.UPDATE,
 							"Update anormal (update de moins ou plus d'une ligne)", null, result1);
 				}
-				
+
 				con.commit();
 				rs.close();
 				pst4.close();
 			}
-			
+
 		} catch (SQLException e) {
 			throw new DataAccessException(Table.Operation, Order.INSERT, "Erreur accès", e);
 		} catch (RowNotFoundOrTooManyRowsException e) {
@@ -305,7 +304,7 @@ public class Access_BD_Operation {
 			throw new DataAccessException(Table.Operation, Order.INSERT, "Erreur accès", e);
 		}
 	}
-	
+
 	/**
 	 * @author yannis gibert
 	 * Enregistrement d'un premier depot lors de la création d'un compte courant.
@@ -345,12 +344,12 @@ public class Access_BD_Operation {
 				System.err.println(query);
 				PreparedStatement pst4 = con.prepareStatement(query);
 				ResultSet rs = pst4.executeQuery();
-				rs.next();			
+				rs.next();
 				con.commit();
 				rs.close();
 				pst4.close();
-			
-			
+
+
 		} catch (SQLException e) {
 			throw new DataAccessException(Table.Operation, Order.INSERT, "Erreur accès", e);
 		} catch (RowNotFoundOrTooManyRowsException e) {
@@ -358,18 +357,18 @@ public class Access_BD_Operation {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void insertVirement(CompteCourant compte, int idNumCompteDest, double montant, String typeOp, DailyBankState dailyBankState)
 	        throws DatabaseConnexionException, ManagementRuleViolation, DataAccessException {
 	    try {
 	        Access_BD_Operation ao = new Access_BD_Operation();
-	        
+
 	        // Débiter le compte source
 	        ao.insertDebit(compte, montant, typeOp,dailyBankState);
-	        
+
 	        // Créditer le compte destination
 	        ao.insertCredit(idNumCompteDest, montant, typeOp);
-	        
+
 	    } catch (DatabaseConnexionException e) {
 	        throw e;
 	    } catch (ManagementRuleViolation | DataAccessException e) {

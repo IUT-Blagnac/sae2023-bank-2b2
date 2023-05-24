@@ -3,21 +3,16 @@ import java.util.ArrayList;
 
 import application.DailyBankApp;
 import application.DailyBankState;
-import application.tools.AlertUtilities;
 import application.tools.EditionMode;
 import application.tools.StageManagement;
-import application.view.ComptesManagementController;
 import application.view.PrelevManagementController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.data.Client;
 import model.data.CompteCourant;
 import model.data.Prelevement;
-import model.orm.Access_BD_CompteCourant;
 import model.orm.Access_BD_Prelevement;
 import model.orm.exception.ApplicationException;
 import model.orm.exception.DatabaseConnexionException;
@@ -33,7 +28,7 @@ public class PrelevManagement {
 
 	/**
 	 * @author yannis gibert
-	 * 
+	 *
 	 * Création d'un page de gestion des prelevements.<BR />
 	 *
 	 * @param _parentStage Fenêtre parente de LoginDialog (sur laquelle se centrer
@@ -74,12 +69,12 @@ public class PrelevManagement {
 	 */
 	public void doPrelevManagementDialog() {
 		this.pmcViewController.displayDialog();
-	}	
+	}
 
 	/**
 	 * @author yannis gibert
 	 * Permet de récupérer tout les prelevements d'un compte
-	 * 
+	 *
 	 * @return une liste de prelevement
 	 */
 	public ArrayList<Prelevement> getPrelevementDunCompte() {
@@ -100,11 +95,11 @@ public class PrelevManagement {
 		}
 		return listePrelev;
 	}
-	
+
 	/**
 	 * @author yannis gibert
 	 * Permet de créer un nouveau prelevement
-	 * 
+	 *
 	 * @return le nouveau prelevement
 	 */
 	public Prelevement creerNouveauPrelev() {
@@ -130,11 +125,11 @@ public class PrelevManagement {
 		}
 		return prelev;
 	}
-	
+
 	/**
 	 * @author yannis gibert
 	 * Permet de modifier les informations d'un prelevement
-	 * 
+	 *
 	 * @param prelev le prelevement qu'on souhaite modifier
 	 * @return le prelevement modifié
 	 */
@@ -158,11 +153,11 @@ public class PrelevManagement {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * @author yannis gibert
 	 * Permet de supprimer un prelevement
-	 * 
+	 *
 	 * @param prelev le prelevement que l'on souhaite supprimer
 	 * @return le prelevement
 	 */

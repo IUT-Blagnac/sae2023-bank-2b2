@@ -1,7 +1,5 @@
 package model.data;
 
-import java.sql.Date;
-
 public class Prelevement {
 
 	public int idNumPrelev;
@@ -39,5 +37,5 @@ public class Prelevement {
 		return s;
 	}
 
-	
+
 }

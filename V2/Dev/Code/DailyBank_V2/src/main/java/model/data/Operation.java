@@ -33,7 +33,7 @@ public class Operation {
 	public Operation() {
 		this(-1000, 0, null, null, -1000, null);
 	}
-	
+
 
 	@Override
 	public String toString() {

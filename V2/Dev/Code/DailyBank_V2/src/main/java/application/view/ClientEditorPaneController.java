@@ -45,8 +45,8 @@ public class ClientEditorPaneController {
      *
      * @param  _containingStage : la fenêtre physique contenant la scène
      * @param  _dbstate : l'état courant de l'application
-     */ 
-	
+     */
+
 	public void initContext(Stage _containingStage, DailyBankState _dbstate) {
 		this.primaryStage = _containingStage;
 		this.dailyBankState = _dbstate;
@@ -56,12 +56,12 @@ public class ClientEditorPaneController {
 	/**
 	 * Configure l'action à effectuer lorsque la fenêtre est fermée.
 	 */
-	
+
 	private void configure() {
 		this.primaryStage.setOnCloseRequest(e -> this.closeWindow(e));
 	}
-	
-	
+
+
 	/**
      * Affiche la boîte de dialogue d'édition du client.
      *
@@ -69,7 +69,7 @@ public class ClientEditorPaneController {
      * @param mode   le mode d'édition (CREATION, MODIFICATION, SUPPRESSION)
      * @return le client édité ou null en cas d'annulation
      */
-	
+
 	public Client displayDialog(Client client, EditionMode mode) {
 
 		this.editionMode = mode;
@@ -153,14 +153,14 @@ public class ClientEditorPaneController {
 		return this.clientResultat;
 	}
 
-	
+
 	 /**
      * Gère la fermeture de la fenêtre.
      *
      * @param e l'événement de fermeture de fenêtre
      * @return null
      */
-	
+
 	private Object closeWindow(WindowEvent e) {
 		this.doCancel();
 		e.consume();
@@ -194,19 +194,19 @@ public class ClientEditorPaneController {
 	@FXML
 	private Button butCancel;
 
-	
+
 	/**
      * Annule l'édition et ferme la fenêtre.
      */
-	
+
 	@FXML
 	private void doCancel() {
 		this.clientResultat = null;
 		this.primaryStage.close();
 	}
 
-	
-	
+
+
 	 /**
      * Effectue l'ajout, la modification ou la suppression du client en fonction du mode d'édition.
      */
@@ -233,13 +233,13 @@ public class ClientEditorPaneController {
 
 	}
 
-	
+
 	/**
 	 * Vérifie si la saisie du formulaire est valide.
 	 *
 	 * @return true si la saisie est valide, sinon false
 	 */
-	
+
 	private boolean isSaisieValide() {
 		this.clientEdite.nom = this.txtNom.getText().trim();
 		this.clientEdite.prenom = this.txtPrenom.getText().trim();

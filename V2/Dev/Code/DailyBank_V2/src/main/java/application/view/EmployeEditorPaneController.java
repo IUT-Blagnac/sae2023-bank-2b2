@@ -1,9 +1,6 @@
 package application.view;
 
-import java.util.regex.Pattern;
-
 import application.DailyBankState;
-import application.control.ExceptionDialog;
 import application.tools.AlertUtilities;
 import application.tools.ConstantesIHM;
 import application.tools.EditionMode;
@@ -11,19 +8,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.data.Employe;
-import model.orm.exception.ApplicationException;
-import model.orm.exception.Order;
-import model.orm.exception.Table;
 
 public class EmployeEditorPaneController {
 
@@ -39,8 +31,8 @@ public class EmployeEditorPaneController {
 	private EditionMode editionMode;
 	private Employe employeResultat;
 
-	
-	/** 
+
+	/**
 	 * Cette méthode est appelée par le contrôleur de dialogue EmployesManagement <br/>
 	 * pour initialiser le contexte de la fenêtre de dialogue de création ou de modification d'un employé <br/>
 	 * @author Enzo Fournet
@@ -56,24 +48,24 @@ public class EmployeEditorPaneController {
 	/**
 	 * Cette méthode est appelée par le contrôleur de dialogue EmployesManagement <br/>
 	 * Elle permet de fermer la fenêtre de dialogue de création ou de modification d'un employé <br/>
-	 * 
+	 *
 	 * @author Enzo Fournet
-	 * 
+	 *
 	 */
 	private void configure() {
 		this.primaryStage.setOnCloseRequest(e -> this.closeWindow(e));
 	}
 
-	
-	/** 
-	 * 
+
+	/**
+	 *
 	 * Cette méthode est appelée par le contrôleur de dialogue EmployesManagement <br/>
 	 * pour afficher la fenêtre de dialogue de création ou de modification d'un employé <br/>
-	 * 
+	 *
 	 * @author Enzo Fournet
 	 * @param employe
 	 * @param mode
-	 * 
+	 *
 	 * @return Employe
 	 */
 	public Employe displayDialog(Employe employe, EditionMode mode) {
@@ -96,7 +88,7 @@ public class EmployeEditorPaneController {
 			this.txtMotPasse.setDisable(false);
 			this.txtConfrMotPasse.setDisable(false);
 			this.txtIdAgence.setDisable(true);
-			
+
 			this.lblMessage.setText("Informations sur le nouvel employé");
 			this.butOk.setText("Ajouter");
 			this.butCancel.setText("Annuler");
@@ -113,12 +105,12 @@ public class EmployeEditorPaneController {
 				this.menuBtnDroitAccess.setText("Guichetier");
 				this.radioBtnGuichetier.setSelected(true);
 			}
-			
+
 			this.txtLogin.setDisable(false);
 			this.txtMotPasse.setDisable(false);
 			this.txtConfrMotPasse.setDisable(false);
 			this.txtIdAgence.setDisable(true);
-			
+
 			this.lblMessage.setText("Modifications employé");
 			this.butOk.setText("Modifier");
 			this.butCancel.setText("Annuler");
@@ -175,7 +167,7 @@ public class EmployeEditorPaneController {
 		this.txtConfrMotPasse.setText(this.employeEdite.motPasse);
 		this.txtIdAgence.setText("" + this.employeEdite.idAg);
 
-		
+
 
 		this.employeResultat = null;
 
@@ -185,7 +177,7 @@ public class EmployeEditorPaneController {
 
 	/**
 	 * Méthodes de gestion des événements <br/>
-	 * 
+	 *
 	 * @author Enzo Fournet
 	 */
 	private Object closeWindow(WindowEvent e) {
@@ -226,11 +218,11 @@ public class EmployeEditorPaneController {
 	private Button butCancel;
 
 
-	
+
 	/**
 	 * Cette méthode est appelée lorsque la fenêtre est fermée par l'utilisateur <br/>
 	 * Elle permet de gérer la fermeture de la fenêtre en renvoyant un employé null <br/>
-	 * 
+	 *
 	 * @author Enzo Fournet
 	 */
 	@FXML
@@ -243,7 +235,7 @@ public class EmployeEditorPaneController {
 	/**
 	 * Cette méthode est appelée lorsque l'utilisateur clique sur le bouton 'Ok' <br/>
 	 * Elle permet de gérer la validation de la saisie en renvoyant un employé valide <br/>
-	 * 
+	 *
 	 * @author Enzo Fournet
 	 */
 	@FXML
@@ -275,23 +267,23 @@ public class EmployeEditorPaneController {
 
 	/**
 	 * Vérifie que les données saisies sont valides <br/>
-	 * 
+	 *
 	 * @author Enzo Fournet
 	 * @return	true si les données sont valides, false si non
 	 */
 	private boolean isSaisieValide() {
 		this.employeEdite.nom = this.txtNom.getText().trim();
 		this.employeEdite.prenom = this.txtPrenom.getText().trim();
-		if (toggleGroupDroitAccess.getSelectedToggle() != null) {
-			RadioMenuItem rb = (RadioMenuItem) toggleGroupDroitAccess.getSelectedToggle();
-			
+		if (this.toggleGroupDroitAccess.getSelectedToggle() != null) {
+			RadioMenuItem rb = (RadioMenuItem) this.toggleGroupDroitAccess.getSelectedToggle();
+
 			if (rb.getText().equals("Chef d'agence")) {
 				this.employeEdite.droitsAccess = "chefAgence";
 			} else {
 				this.employeEdite.droitsAccess = "guichetier";
 			}
 		}
-		
+
 		this.employeEdite.login = this.txtLogin.getText().trim();
 		this.employeEdite.motPasse = this.txtConfrMotPasse.getText().trim();
 		this.employeEdite.idAg = Integer.parseInt(this.txtIdAgence.getText().trim());
@@ -308,7 +300,7 @@ public class EmployeEditorPaneController {
 			this.txtPrenom.requestFocus();
 			return false;
 		}
-		if(toggleGroupDroitAccess.getSelectedToggle() == null) {
+		if(this.toggleGroupDroitAccess.getSelectedToggle() == null) {
 			AlertUtilities.showAlert(this.primaryStage, "Erreur de saisie", null, "Un droit d'accès doit être sélectionné",
 					AlertType.WARNING);
 			this.txtPrenom.requestFocus();
@@ -339,7 +331,7 @@ public class EmployeEditorPaneController {
 			this.txtMotPasse.requestFocus();
 			return false;
 		}
-		if (!isValid(this.txtMotPasse.getText().trim())) {
+		if (!this.isValid(this.txtMotPasse.getText().trim())) {
 			AlertUtilities.showAlert(this.primaryStage, "Erreur de saisie", null, "Le mot de passe ne doit contenir que des caractères alphanumériques et les caractères spéciaux suivants : /.?,;:+=%$*()[]&#@!çèàé",
 					AlertType.WARNING);
 			return false;
@@ -351,7 +343,7 @@ public class EmployeEditorPaneController {
 			return false;
 		}
 
-		
+
 		return true;
 	}
 
@@ -364,14 +356,14 @@ public class EmployeEditorPaneController {
 	public boolean isValid(String s) {
 		return s.matches("[a-zA-Z0-9/.?,;:+=%$*()\\[\\]&#@!çèàé]*");
 	}
-	
+
 	/**
 	 * Est appelée lorsque l'utilisateur sélectionne un droit d'accès en l'occuernce un chef d'agence <br/>
 	 * Elle permet de mettre à jour le menu déroulant des droits d'accès pour afficher le droit d'accès sélectionné <br/>
 	 */
 	@FXML
 	private void radioBtnChefAgence() {
-		this.menuBtnDroitAccess.setText(radioBtnChefAgence.getText());
+		this.menuBtnDroitAccess.setText(this.radioBtnChefAgence.getText());
 	}
 
 	/**
@@ -380,7 +372,7 @@ public class EmployeEditorPaneController {
 	 */
 	@FXML
 	private void radioBtnGuichetier() {
-		this.menuBtnDroitAccess.setText(radioBtnGuichetier.getText());
+		this.menuBtnDroitAccess.setText(this.radioBtnGuichetier.getText());
 	}
 
 }

@@ -1,13 +1,11 @@
 package model.orm;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import model.data.CompteCourant;
 import model.data.Prelevement;
 import model.orm.exception.DataAccessException;
 import model.orm.exception.DatabaseConnexionException;
@@ -118,7 +116,7 @@ public class Access_BD_Prelevement {
 			throw new DataAccessException(Table.PrelevementAutomatique, Order.SELECT, "Erreur accès", e);
 		}
 	}
-	
+
 	/**
 	 * Insertion d'un prelevement.
 	 *
@@ -171,7 +169,7 @@ public class Access_BD_Prelevement {
 			throw new DataAccessException(Table.PrelevementAutomatique, Order.INSERT, "Erreur accès", e);
 		}
 	}
-	
+
 
 	/**
 	 * Suppression d'un Prelevement.

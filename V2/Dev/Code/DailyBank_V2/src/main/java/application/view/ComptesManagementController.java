@@ -1,52 +1,21 @@
 package application.view;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.lang.reflect.Array;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.text.DecimalFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Optional;
-
-import javax.management.monitor.Monitor;
-import javax.swing.border.TitledBorder;
-import javax.swing.text.StyleConstants.FontConstants;
-
-import com.itextpdf.kernel.colors.ColorConstants;
-import com.itextpdf.kernel.events.PdfDocumentEvent;
-import com.itextpdf.kernel.pdf.PdfDocument;
-import com.itextpdf.kernel.pdf.PdfWriter;
-import com.itextpdf.layout.Document;
-import com.itextpdf.layout.borders.Border;
-import com.itextpdf.layout.element.AreaBreak;
-import com.itextpdf.layout.element.Cell;
-import com.itextpdf.layout.element.Div;
-import com.itextpdf.layout.element.IBlockElement;
-import com.itextpdf.layout.element.Paragraph;
-import com.itextpdf.layout.element.Table;
-import com.itextpdf.layout.properties.AreaBreakType;
-import com.itextpdf.layout.properties.TextAlignment;
-import com.itextpdf.layout.properties.*;
-import com.itextpdf.io.font.*;
-import com.itextpdf.kernel.font.PdfFont;
-import com.itextpdf.kernel.font.PdfFontFactory;
 
 import application.DailyBankState;
 import application.control.ComptesManagement;
 import application.control.EmpruntSimulation;
 import application.control.PrelevManagement;
 import application.tools.ConstantesIHM;
-import application.tools.pdf.FooterEventHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContextMenu;
@@ -62,11 +31,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Pair;
-import javafx.scene.control.ButtonBar;
-
 import model.data.Client;
 import model.data.CompteCourant;
-import model.data.Operation;
 
 
 /**
@@ -226,7 +192,7 @@ public class ComptesManagementController {
 		int selectedItem = this.lvComptes.getSelectionModel().getSelectedIndex();
 		if(selectedItem >= 0) {
 			CompteCourant compte = this.oListCompteCourant.get(selectedItem);
-			this.cmDialogController.supprimerCompte(compte);	
+			this.cmDialogController.supprimerCompte(compte);
 		}
 		this.loadList();
 		this.validateComponentState();
@@ -258,36 +224,36 @@ public class ComptesManagementController {
 	@FXML
 	private void onClicList(MouseEvent event) {
 		int selectedIndice = this.lvComptes.getSelectionModel().getSelectedIndex();
-		if(lvComptes.getItems().size() != 0 && selectedIndice >= 0) {
+		if(this.lvComptes.getItems().size() != 0 && selectedIndice >= 0) {
 			CompteCourant compteSelected = this.oListCompteCourant.get(selectedIndice);
 			MouseButton mb = event.getButton();
 			if(MouseButton.SECONDARY==mb) {
-				contextMenu.hide();
-				contextMenu = new ContextMenu();
+				this.contextMenu.hide();
+				this.contextMenu = new ContextMenu();
 				MenuItem menuItem1 = new MenuItem("Voir les opérations");
 				menuItem1.setOnAction(e -> {
-					doVoirOperations();
+					this.doVoirOperations();
 				});
-				contextMenu.getItems().add(menuItem1);
+				this.contextMenu.getItems().add(menuItem1);
 				if (!compteSelected.isCloture()) {
 					MenuItem menuItem2 = new MenuItem("Modifier");
 					MenuItem menuItem3 = new MenuItem("Supprimer");
 					menuItem2.setOnAction(e -> {
-						doModifierCompte();
+						this.doModifierCompte();
 					});
 					menuItem3.setOnAction(e -> {
-						doSupprimerCompte();
+						this.doSupprimerCompte();
 					});
-					contextMenu.getItems().add(menuItem2);
-					contextMenu.getItems().add(menuItem3);
+					this.contextMenu.getItems().add(menuItem2);
+					this.contextMenu.getItems().add(menuItem3);
 				}
-				contextMenu.show(lvComptes , event.getScreenX(), event.getScreenY());
+				this.contextMenu.show(this.lvComptes , event.getScreenX(), event.getScreenY());
 			}
 			if(MouseButton.PRIMARY==mb) {
-				contextMenu.hide();
+				this.contextMenu.hide();
 				if(event.getClickCount() > 1) {
 					if (!compteSelected.isCloture()) {
-						doModifierCompte();
+						this.doModifierCompte();
 					}
 				}
 			}
@@ -296,7 +262,7 @@ public class ComptesManagementController {
 
 	/**
 	 * Génère un relevé mensuel d'un compte au format PDF.
-	 * 
+	 *
 	 * @throws FileNotFoundException
 	 * @throws IOException
 	 */
@@ -306,37 +272,37 @@ public class ComptesManagementController {
 		Dialog<Pair<String, String>> dialog = new Dialog<>();
 		dialog.setTitle("Relevé mensuel");
 		dialog.setHeaderText("Veuillez sélectionner le mois et l'année du relevé");
-			
+
 		// Set the button types.
 		ButtonType generateButtonType = new ButtonType("Générer", ButtonBar.ButtonData.OK_DONE);
 		dialog.getDialogPane().getButtonTypes().addAll(generateButtonType, ButtonType.CANCEL);
-			
+
 		// Create the month and year ComboBoxes.
 		ComboBox<String> monthComboBox = new ComboBox<>();
 		monthComboBox.setPromptText("Mois");
 		monthComboBox.getItems().addAll("Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
-			
+
 		ComboBox<String> yearComboBox = new ComboBox<>();
 		yearComboBox.setPromptText("Année");
 		yearComboBox.getItems().addAll("2021", "2022", "2023", "2024");  // Add as many years as you need
-			
+
 		GridPane grid = new GridPane();
 		grid.add(new Label("Mois:"), 0, 0);
 		grid.add(monthComboBox, 1, 0);
 		grid.add(new Label("Année:"), 0, 1);
 		grid.add(yearComboBox, 1, 1);
-			
+
 		dialog.getDialogPane().setContent(grid);
 
 		dialog.setResultConverter(dialogButton -> {
 			if (dialogButton == generateButtonType) {
 				return new Pair<>(monthComboBox.getValue(), yearComboBox.getValue());
-			} 
+			}
 			return null;
 		});
-		
+
 		Optional<Pair<String, String>> result = dialog.showAndWait();
-		
+
 		result.ifPresent(monthYear -> {
 			if(!this.cmDialogController.genererPDF(monthYear, this.clientDesComptes, this.oListCompteCourant.get(this.lvComptes.getSelectionModel().getSelectedIndex()))) {
 				Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -346,7 +312,7 @@ public class ComptesManagementController {
 			}
 		});
 
-		
+
 	}
 
 	@FXML
@@ -360,7 +326,7 @@ public class ComptesManagementController {
 	}
 
 	/**
-	 * Simule un emprunt 
+	 * Simule un emprunt
 	 * @author Julien Couderc
 	 */
 	@FXML
@@ -393,7 +359,7 @@ public class ComptesManagementController {
 				this.btnSupprCompte.setDisable(false);
 				this.btnRel.setDisable(false);
 				this.btnPrelev.setDisable(false);
-			}	
+			}
 			else {
 				this.btnModifierCompte.setDisable(true);
 				this.btnSupprCompte.setDisable(true);
