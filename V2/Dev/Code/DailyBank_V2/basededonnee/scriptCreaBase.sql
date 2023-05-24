@@ -204,9 +204,17 @@ CREATE SEQUENCE seq_id_compte
   START WITH 1 INCREMENT BY 1;
   
 INSERT INTO CompteCourant VALUES (seq_id_compte.NEXTVAL, -200, 200, 1);  -- cli 1, gabin
+INSERT INTO Operation (idOperation, montant, dateop ,dateValeur, idNumCompte, idTypeOp)
+	VALUES (seq_id_operation.NEXTVAL, 100,to_date('01/02/2023', 'DD/MM/YYYY') ,to_date('03/02/2023', 'DD/MM/YYYY'), seq_id_compte.CURRVAL, 'Dépôt Espèces');
+INSERT INTO Operation (idOperation, montant, dateop ,dateValeur, idNumCompte, idTypeOp)
+	VALUES (seq_id_operation.NEXTVAL, 100,to_date('01/04/2023', 'DD/MM/YYYY') ,to_date('03/04/2023', 'DD/MM/YYYY'), seq_id_compte.CURRVAL, 'Dépôt Espèces');
+INSERT INTO Operation (idOperation, montant, dateop ,dateValeur, idNumCompte, idTypeOp)
+	VALUES (seq_id_operation.NEXTVAL, 100,to_date('05/04/2023', 'DD/MM/YYYY') ,to_date('07/04/2023', 'DD/MM/YYYY'), seq_id_compte.CURRVAL, 'Dépôt Espèces');
 INSERT INTO Operation (idOperation, montant, dateValeur, idNumCompte, idTypeOp)
 	VALUES (seq_id_operation.NEXTVAL, 200, sysdate +2, seq_id_compte.CURRVAL, 'Dépôt Espèces');
-	
+-- insérer 100 opérations pour le compte 1 à des dates aléatoire entre 
+
+
 INSERT INTO CompteCourant VALUES (seq_id_compte.NEXTVAL, 0,    200, 1);  -- cli 1, gabin
 INSERT INTO Operation (idOperation, montant, dateValeur, idNumCompte, idTypeOp)
 	VALUES (seq_id_operation.NEXTVAL, 200, sysdate +2, seq_id_compte.CURRVAL, 'Dépôt Espèces');

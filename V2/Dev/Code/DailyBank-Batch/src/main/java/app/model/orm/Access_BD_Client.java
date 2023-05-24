@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import app.model.data.Client;
-import app.model.data.Employe;
 import app.model.orm.exception.DataAccessException;
 import app.model.orm.exception.DatabaseConnexionException;
 import app.model.orm.exception.Order;

@@ -1,6 +1,7 @@
 package application.view;
 
 import java.util.Locale;
+import java.util.regex.Pattern;
 
 import application.DailyBankState;
 import application.tools.AlertUtilities;
@@ -126,7 +127,7 @@ public class CompteEditorPaneController {
 		this.txtIdNumCompte.setText("" + this.compteEdite.idNumCompte);
 		this.txtIdAgence.setText("" + this.dailyBankState.getEmployeActuel().idAg);
 		this.txtDecAutorise.setText("" + this.compteEdite.debitAutorise);
-		this.txtSolde.setText(String.format(Locale.ENGLISH, "%10.02f", this.compteEdite.solde));
+		this.txtSolde.setText(""+this.compteEdite.solde);
 
 		this.compteResultat = null;
 
@@ -265,8 +266,7 @@ public class CompteEditorPaneController {
 	 *
 	 * @return true si la saisie est valide, false sinon
 	 */
-	private boolean isSaisieValide() {
-
+	private boolean isSaisieValide() {	
 		return true;
 	}
 }

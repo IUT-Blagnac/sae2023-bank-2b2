@@ -1,13 +1,11 @@
 package app.model.orm;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import app.model.data.CompteCourant;
 import app.model.data.Prelevement;
 import app.model.orm.exception.DataAccessException;
 import app.model.orm.exception.DatabaseConnexionException;
