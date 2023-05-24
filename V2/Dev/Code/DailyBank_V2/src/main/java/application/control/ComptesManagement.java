@@ -7,6 +7,7 @@ import application.DailyBankState;
 import application.tools.AlertUtilities;
 import application.tools.EditionMode;
 import application.tools.StageManagement;
+import application.tools.pdf.GenPDF;
 import application.view.ComptesManagementController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +16,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 import model.data.Client;
 import model.data.CompteCourant;
 import model.data.Operation;
@@ -200,12 +202,12 @@ public class ComptesManagement {
 		return listeCpt;
 	}
 
-	public ArrayList<Operation> getOperationsDunCompte(CompteCourant selectedItem) {
+	public ArrayList<Operation> getOperationsDunCompte(CompteCourant selectedItem, String month, String year) {
 		ArrayList<Operation> listeOp = new ArrayList<>();
 
 		try {
 			Access_BD_Operation aop = new Access_BD_Operation();
-			listeOp = aop.getOperations(selectedItem.idNumCompte);
+			listeOp = aop.getOperations(selectedItem.idNumCompte, month, year);
 		} catch (DatabaseConnexionException e) {
 			ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
 			ed.doExceptionDialog();
@@ -219,4 +221,10 @@ public class ComptesManagement {
 
 		return listeOp;
 	}
+
+    public boolean genererPDF(Pair<String, String> monthYear, Client clientDesComptes, CompteCourant compteCourant) {
+		GenPDF pdf = new GenPDF();
+		pdf.initContext(primaryStage, this, dailyBankState, clientDesComptes);
+		return pdf.genererPDF(monthYear, clientDesComptes, compteCourant);
+    }
 }

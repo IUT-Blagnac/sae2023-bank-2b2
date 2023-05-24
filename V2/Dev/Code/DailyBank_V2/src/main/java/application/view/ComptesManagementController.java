@@ -11,7 +11,9 @@ import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Optional;
 
+import javax.management.monitor.Monitor;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.StyleConstants.FontConstants;
 
@@ -39,25 +41,32 @@ import application.control.ComptesManagement;
 import application.control.EmpruntSimulation;
 import application.control.PrelevManagement;
 import application.tools.ConstantesIHM;
+import application.tools.pdf.FooterEventHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContextMenu;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import javafx.util.Pair;
+import javafx.scene.control.ButtonBar;
 
 import model.data.Client;
 import model.data.CompteCourant;
 import model.data.Operation;
-import model.pdf.FooterEventHandler;
 
 
 /**
@@ -293,188 +302,53 @@ public class ComptesManagementController {
 	 */
 	@FXML
 	private void doRel() {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		DecimalFormat df = new DecimalFormat("0.000");
-		ArrayList<Operation> listeOpes;
-		// Créez un objet FileChooser
-		FileChooser fileChooser = new FileChooser();
+		//afficher une alerte qui pemt de sélectionner le mois et l'année
+		Dialog<Pair<String, String>> dialog = new Dialog<>();
+		dialog.setTitle("Relevé mensuel");
+		dialog.setHeaderText("Veuillez sélectionner le mois et l'année du relevé");
+			
+		// Set the button types.
+		ButtonType generateButtonType = new ButtonType("Générer", ButtonBar.ButtonData.OK_DONE);
+		dialog.getDialogPane().getButtonTypes().addAll(generateButtonType, ButtonType.CANCEL);
+			
+		// Create the month and year ComboBoxes.
+		ComboBox<String> monthComboBox = new ComboBox<>();
+		monthComboBox.setPromptText("Mois");
+		monthComboBox.getItems().addAll("Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
+			
+		ComboBox<String> yearComboBox = new ComboBox<>();
+		yearComboBox.setPromptText("Année");
+		yearComboBox.getItems().addAll("2021", "2022", "2023", "2024");  // Add as many years as you need
+			
+		GridPane grid = new GridPane();
+		grid.add(new Label("Mois:"), 0, 0);
+		grid.add(monthComboBox, 1, 0);
+		grid.add(new Label("Année:"), 0, 1);
+		grid.add(yearComboBox, 1, 1);
+			
+		dialog.getDialogPane().setContent(grid);
 
-		// Définissez l'extension de filtrage
-		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PDF files (*.pdf)", "*.pdf");
-		//Afficher tout les fichiers
-		FileChooser.ExtensionFilter exttFilter = new FileChooser.ExtensionFilter("Tout les fichiers", "*.*");
-		fileChooser.getExtensionFilters().add(extFilter);
-		fileChooser.getExtensionFilters().add(exttFilter);
-
-		//définisser le nom par défaut du fichier
-		fileChooser.setInitialFileName("Relevé de compte " + this.lvComptes.getSelectionModel().getSelectedItem().idNumCompte + " .pdf");
-
-		// Affichez la boîte de dialogue FileChooser
-		File file = fileChooser.showSaveDialog(new Stage());
-
-		if(file != null) {
-			try {
-				// Initialize PDF writer
-				PdfWriter writer = new PdfWriter(file.getPath());
-				// Initialize PDF document
-				PdfDocument pdf = new PdfDocument(writer);
-
-				// Initialize document
-				Document document = new Document(pdf);
-
-				PdfFont font = null;
-				try {
-					URI uri = ComptesManagementController.class.getResource("font/Helvetica.ttf").toURI();
-					File fontFile = new File(uri);
-					font = PdfFontFactory.createFont(fontFile.getPath());
-				} catch (URISyntaxException e) {}
-
-				PdfFont boldFont = null;
-				try {
-					URI boldUri = ComptesManagementController.class.getResource("font/Helvetica-Bold.ttf").toURI();
-					File boldFontFile = new File(boldUri);
-					boldFont = PdfFontFactory.createFont(boldFontFile.getPath());
-				} catch (URISyntaxException e) {}
-
-				PdfFont lightFont = null;
-				try {
-					URI lightUri = ComptesManagementController.class.getResource("font/Helvetica-Light.ttf").toURI();
-					File lightFontFile = new File(lightUri);
-					lightFont = PdfFontFactory.createFont(lightFontFile.getPath());
-				} catch (URISyntaxException e) {}
-
-				document.setFont(font);
-				//ajouter les metadata
-				pdf.getDocumentInfo().setTitle("Relevé mensuel");
-				pdf.getDocumentInfo().setAuthor("DailyBank");
-				pdf.getDocumentInfo().setCreator("DailyBank");
-				pdf.getDocumentInfo().setSubject("Relevé mensuel");
-				pdf.getDocumentInfo().setKeywords("DailyBank, Relevé mensuel");
-
-				// Ajouter un titre centré en haut du pdf avec une police de taille 18
-				Paragraph title = new Paragraph("Relevé de compte").setFontSize(18).setFont(boldFont);
-				title.setTextAlignment(TextAlignment.CENTER);
-				document.add(title);
-				//Ajouter la date à droite du titre
-				Paragraph date = new Paragraph("Date de génération du relevé : " + java.time.LocalDate.now().format(formatter)).setFontSize(12);
-				date.setTextAlignment(TextAlignment.RIGHT);
-				document.add(date);
-
-				Paragraph infosClient = new Paragraph(
-						"Client : " + this.clientDesComptes.nom + " " + this.clientDesComptes.prenom + " (ID : " + this.clientDesComptes.idNumCli + ") \n" +
-								this.clientDesComptes.email + "\n" +
-								this.clientDesComptes.adressePostale + "\n" +
-								"De l'agence : " + this.dailyBankState.getAgenceActuelle().nomAg + " (ID : " + this.dailyBankState.getAgenceActuelle().idAg + ")"
-						).setFontSize(12);
-				infosClient.setTextAlignment(TextAlignment.LEFT);
-				document.add(infosClient);
-
-				Paragraph infosCompte = new Paragraph("Compte : " + this.lvComptes.getSelectionModel().getSelectedItem().idNumCompte).setFontSize(12);
-				infosCompte.setTextAlignment(TextAlignment.LEFT);
-				document.add(infosCompte);
-
-				document.add(new Paragraph("Bonjour, vous retrouverez ci dessous votre relevé de compte :"));
-
-				//make space between paragraphs
-				document.add(new Paragraph("\n").setFontSize(30));
-
-				//ajouter un tableau
-				float[] pointColumnWidths = {150F, 150F, 150F, 150F, 250F};
-				Table table = new Table(pointColumnWidths);				
-				table.addHeaderCell(new Cell().add(new Paragraph("ID Compte").setFontSize(10).setFontColor(ColorConstants.GRAY).setFont(boldFont)));
-				table.addHeaderCell(new Cell().add(new Paragraph("Date").setFontSize(10).setFontColor(ColorConstants.GRAY).setFont(boldFont)));
-				table.addHeaderCell(new Cell().add(new Paragraph("ID Opération").setFontSize(10).setFontColor(ColorConstants.GRAY).setFont(boldFont)));
-				table.addHeaderCell(new Cell().add(new Paragraph("Montant").setFontSize(10).setFontColor(ColorConstants.GRAY).setFont(boldFont)));
-				table.addHeaderCell(new Cell().add(new Paragraph("Type").setFontSize(10).setFontColor(ColorConstants.GRAY).setFont(boldFont)));
-
-				Table innerTable = new Table(2)
-						.setWidth(UnitValue.createPercentValue(100))
-						.setBorder(Border.NO_BORDER);
-
-				Cell leftCell = new Cell().add(new Paragraph("Solde avant transactions : ")
-						.setFontSize(11)
-						.setFontColor(ColorConstants.BLACK)
-						.setFont(lightFont)
-						.setTextAlignment(TextAlignment.LEFT))
-						.setBorder(Border.NO_BORDER)
-						.setFont(boldFont);
-
-				Double oldSolde = this.lvComptes.getSelectionModel().getSelectedItem().solde;
-				System.out.println("oldSolde : " + oldSolde);
-				listeOpes = this.cmDialogController.getOperationsDunCompte(this.lvComptes.getSelectionModel().getSelectedItem());
-				for (Operation currOp : listeOpes) {
-					System.out.println("id : " + currOp.idOperation + "| Montant :" + currOp.montant);
-					oldSolde -= currOp.montant;
-					System.out.println("oldSolde : " + oldSolde);
-				}
-
-				Cell rightCell = new Cell().add(new Paragraph(df.format(oldSolde))
-						.setFontSize(11)
-						.setFontColor(ColorConstants.BLACK)
-						.setFont(lightFont)
-						.setTextAlignment(TextAlignment.RIGHT))
-						.setBorder(Border.NO_BORDER)
-						.setFont(boldFont);
-
-				innerTable.addCell(leftCell);
-				innerTable.addCell(rightCell);
-
-				Cell outerCell = new Cell(1,5);
-				outerCell.add(innerTable)
-				.setPadding(0)
-				.setFont(boldFont);
-				table.addCell(outerCell);
-
-				for (Operation currOp : listeOpes) {
-					table.addCell(new Cell().add(new Paragraph(currOp.idNumCompte+"").setFontSize(11).setFontColor(ColorConstants.BLACK).setFont(lightFont)));
-					table.addCell(new Cell().add(new Paragraph(currOp.dateOp.toLocalDate().format(formatter)+"").setFontSize(11).setFontColor(ColorConstants.BLACK).setFont(lightFont)));
-					table.addCell(new Cell().add(new Paragraph(currOp.idOperation+"").setFontSize(11).setFontColor(ColorConstants.BLACK).setFont(lightFont)));
-					table.addCell(new Cell().add(new Paragraph((currOp.montant+"").replace(".", ",")).setFontSize(11).setFontColor(ColorConstants.BLACK).setFont(lightFont)));
-					table.addCell(new Cell().add(new Paragraph(currOp.idTypeOp+"").setFontSize(11).setFontColor(ColorConstants.BLACK).setFont(lightFont)));
-				}
-
-				innerTable = new Table(2)
-						.setWidth(UnitValue.createPercentValue(100))
-						.setBorder(Border.NO_BORDER);
-
-				leftCell = new Cell().add(new Paragraph("Solde aprés transactions : ")
-						.setFontSize(11)
-						.setFontColor(ColorConstants.BLACK)
-						.setFont(lightFont)
-						.setTextAlignment(TextAlignment.LEFT))
-						.setBorder(Border.NO_BORDER)
-						.setFont(boldFont);
-
-				rightCell = new Cell().add(new Paragraph(df.format(this.lvComptes.getSelectionModel().getSelectedItem().solde))
-						.setFontSize(11)
-						.setFontColor(ColorConstants.BLACK)
-						.setFont(lightFont)
-						.setTextAlignment(TextAlignment.RIGHT))
-						.setBorder(Border.NO_BORDER)
-						.setFont(boldFont);
-
-				innerTable.addCell(leftCell);
-				innerTable.addCell(rightCell);
-
-				outerCell = new Cell(1,5);
-				outerCell.add(innerTable)
-				.setPadding(0)
-				.setFont(boldFont);
-				table.addCell(outerCell.setFont(boldFont));
-
-				document.add(table);
-
-				pdf.addEventHandler(PdfDocumentEvent.END_PAGE, new FooterEventHandler(document));
-
-				// Close document
-				document.close();
-				pdf.close();
-				writer.close();
-			} catch(Exception e) {
-				// Handle exception here
-				e.printStackTrace();
+		dialog.setResultConverter(dialogButton -> {
+			if (dialogButton == generateButtonType) {
+				return new Pair<>(monthComboBox.getValue(), yearComboBox.getValue());
+			} 
+			return null;
+		});
+		
+		Optional<Pair<String, String>> result = dialog.showAndWait();
+		
+		result.ifPresent(monthYear -> {
+			System.out.println("Mois=" + monthYear.getKey() + ", Année=" + monthYear.getValue());
+			//si this.cmDialogController.genererPDF return false affichier une alerte qui dit qu'il n'y a pasd'opération sur ce compte pour ce mois et cette année
+			if(!this.cmDialogController.genererPDF(monthYear, this.clientDesComptes, this.oListCompteCourant.get(this.lvComptes.getSelectionModel().getSelectedIndex()))) {
+				Alert alert = new Alert(Alert.AlertType.INFORMATION);
+				alert.setTitle("Information");
+				alert.setHeaderText("Aucune opération sur ce compte pour ce mois et cette année");
+				alert.showAndWait();
 			}
-		}
+		});
+
+		
 	}
 
 	@FXML

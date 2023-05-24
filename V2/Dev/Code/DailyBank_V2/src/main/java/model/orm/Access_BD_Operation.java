@@ -7,8 +7,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.Month;
+import java.time.Year;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
 
 import application.DailyBankState;
 import model.data.CompteCourant;
@@ -31,8 +36,67 @@ public class Access_BD_Operation {
 	/**
 	 * Recherche de toutes les opérations d'un compte.
 	 *
+	 * @author Enzo Fournet
+	 * 
 	 * @param idNumCompte id du compte dont on cherche toutes les opérations
-	 * @return Toutes les opérations du compte, liste vide si pas d'opération
+	 * @param month       mois de l'opération
+	 * @param year        année de l'opération
+	 * 
+	 * @return Toutes les opérations du compte au mos et à l'année donnée, liste vide si pas d'opération.
+	 * @throws DataAccessException        Erreur d'accès aux données (requête mal
+	 *                                    formée ou autre)
+	 * @throws DatabaseConnexionException Erreur de connexion
+	 */
+	public ArrayList<Operation> getOperations(int idNumCompte, String month, String year) throws DataAccessException, DatabaseConnexionException {
+		DateTimeFormatter parser = new DateTimeFormatterBuilder()
+    		.parseCaseInsensitive()
+    		.appendPattern("MMMM")
+    		.toFormatter(Locale.FRENCH);
+		ArrayList<Operation> alResult = new ArrayList<>();
+
+		if (month.isEmpty() || year.isEmpty()) {
+			return alResult;
+		}
+		
+		try {
+			Connection con = LogToDatabase.getConnexion();
+			String query = "SELECT * FROM Operation where idNumCompte = ? AND EXTRACT(MONTH FROM dateOp) = ? AND EXTRACT(YEAR FROM dateOp) = ?";
+			query += " ORDER BY dateOp, idOperation";
+
+			PreparedStatement pst = con.prepareStatement(query);
+			pst.setInt(1, idNumCompte);
+			pst.setInt(2, Month.from(parser.parse(month)).getValue());
+			System.out.println(Month.from(parser.parse(month)).getValue());
+			pst.setInt(3, Integer.parseInt(year));
+
+
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				int idOperation = rs.getInt("idOperation");
+				double montant = rs.getDouble("montant");
+				Date dateOp = rs.getDate("dateOp");
+				Date dateValeur = rs.getDate("dateValeur");
+				int idNumCompteTrouve = rs.getInt("idNumCompte");
+				String idTypeOp = rs.getString("idTypeOp");
+
+				alResult.add(new Operation(idOperation, montant, dateOp, dateValeur, idNumCompteTrouve, idTypeOp));
+			}
+			rs.close();
+			pst.close();
+			return alResult;
+		} catch (SQLException e) {
+			throw new DataAccessException(Table.Operation, Order.SELECT, "Erreur accès", e);
+		}
+	}
+
+	/**
+	 * Recherche de toutes les opérations d'un compte.
+	 *
+	 * @author Enzo Fournet
+	 * 
+	 * @param idNumCompte id du compte dont on cherche toutes les opérations
+	 * 
+	 * @return Toutes les opérations du compte, liste vide si pas d'opération.
 	 * @throws DataAccessException        Erreur d'accès aux données (requête mal
 	 *                                    formée ou autre)
 	 * @throws DatabaseConnexionException Erreur de connexion
@@ -40,7 +104,6 @@ public class Access_BD_Operation {
 	public ArrayList<Operation> getOperations(int idNumCompte) throws DataAccessException, DatabaseConnexionException {
 
 		ArrayList<Operation> alResult = new ArrayList<>();
-
 		try {
 			Connection con = LogToDatabase.getConnexion();
 			String query = "SELECT * FROM Operation where idNumCompte = ?";
