@@ -13,7 +13,9 @@
   - Responsable de la documentation et developpeur : Enzo Fournet
   
 ===== Rôles en V2 :
-
+  - Developpeur en chef : Enzo Fournet 
+  - Chef de projet et developpeur : Yannis Gibert
+  - Responsable de la documentation et developpeur : Julien Couderc
 
 ==== Répartition des tâches et état d'avancement
 [options="header,footer"]
