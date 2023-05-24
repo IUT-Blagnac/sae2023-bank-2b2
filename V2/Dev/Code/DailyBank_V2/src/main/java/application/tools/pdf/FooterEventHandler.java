@@ -28,7 +28,7 @@ public class FooterEventHandler implements IEventHandler {
     public FooterEventHandler(Document doc) {
         this.doc = doc;
     }
-    
+
     @Override
     public void handleEvent(Event currentEvent) {
         PdfDocumentEvent docEvent = (PdfDocumentEvent) currentEvent;
