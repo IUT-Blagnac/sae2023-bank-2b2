@@ -240,18 +240,18 @@ public class EmpruntSimulationController {
 			capitalRestantFinPeriode = capitalRestantDebutPeriode - principal;
 
 			tableauRemboursementBuilder.append(periode).append("\t")
-					.append(decimalFormat.format(capitalRestantDebutPeriode)).append("\t")
-					.append(decimalFormat.format(interets)).append("\t").append(decimalFormat.format(principal))
-					.append("\t").append(decimalFormat.format(mensualite)).append("\t")
-					.append(decimalFormat.format(capitalRestantFinPeriode)).append("\n");
+			.append(decimalFormat.format(capitalRestantDebutPeriode)).append("\t")
+			.append(decimalFormat.format(interets)).append("\t").append(decimalFormat.format(principal))
+			.append("\t").append(decimalFormat.format(mensualite)).append("\t")
+			.append(decimalFormat.format(capitalRestantFinPeriode)).append("\n");
 
 			if (assuranceActive) {
 				tableauRemboursementAvecAssuranceBuilder.append(periode).append("\t")
-						.append(decimalFormat.format(capitalRestantDebutPeriode)).append("\t")
-						.append(decimalFormat.format(interets)).append("\t").append(decimalFormat.format(principal))
-						.append("\t").append(decimalFormat.format(mensualite)).append("\t")
-						.append(decimalFormat.format(capitalRestantFinPeriode)).append("\t")
-						.append(decimalFormat.format(mensualiteAssurance)).append("\n");
+				.append(decimalFormat.format(capitalRestantDebutPeriode)).append("\t")
+				.append(decimalFormat.format(interets)).append("\t").append(decimalFormat.format(principal))
+				.append("\t").append(decimalFormat.format(mensualite)).append("\t")
+				.append(decimalFormat.format(capitalRestantFinPeriode)).append("\t")
+				.append(decimalFormat.format(mensualiteAssurance)).append("\n");
 			}
 
 			capitalRestantDebutPeriode = capitalRestantFinPeriode;
@@ -261,12 +261,12 @@ public class EmpruntSimulationController {
 		String tableauRemboursementAvecAssurance = tableauRemboursementAvecAssuranceBuilder.toString();
 
 		if (!assuranceActive) {
-			generatePDF(tableauRemboursement, "Tableau_amortissement_" + this.client.nom + this.client.prenom + ".pdf",
-					assuranceActive, totalPaiement, totalAssurance, duree, echeanceMensualite);
+			generatePDF(tableauRemboursement, "Tableau_amortissement_" + this.client.nom +"_"+ this.client.prenom + ".pdf",
+					assuranceActive, totalPaiement, totalAssurance, echeanceMensualite);
 		} else {
 			generatePDF(tableauRemboursementAvecAssurance,
-					"Tableau_amortissement_avec_assurance_" + this.client.nom + this.client.prenom + ".pdf",
-					assuranceActive, totalPaiement, totalAssurance, duree, echeanceMensualite);
+					"Tableau_amortissement_avec_assurance_" + this.client.nom +"_"+ this.client.prenom + ".pdf",
+					assuranceActive, totalPaiement, totalAssurance, echeanceMensualite);
 		}
 
 	}
@@ -275,9 +275,14 @@ public class EmpruntSimulationController {
 	 * Génère un fichier PDF contenant le tableau d'amortissement du prêt.
 	 *
 	 * @param tableauRemboursement Le tableau d'amortissement au format String
+	 * @param fileName             Le nom du fichier PDF à générer
+	 * @param assuranceActive      Indique si l'assurance est active ou non
+	 * @param totalPaiement        Le montant total des paiements
+	 * @param totalAssurance       Le montant total de l'assurance
+	 * @param echanceMensualite    L'échéance de la mensualité
 	 */
 	private void generatePDF(String tableauRemboursement, String fileName, Boolean assuranceActive,
-			Double totalPaiement, Double totalAssurance, int duree, double echanceMensualite) {
+			Double totalPaiement, Double totalAssurance, double echanceMensualite) {
 		try {
 			// Créer un objet FileChooser pour sélectionner le fichier de sauvegarde
 			FileChooser fileChooser = new FileChooser();
@@ -318,9 +323,9 @@ public class EmpruntSimulationController {
 
 				Paragraph infosClient = new Paragraph(
 						"Client : " + this.client.nom + " " + this.client.prenom + " (ID : " + this.client.idNumCli
-								+ ") \n" + this.client.email + "\n" + this.client.adressePostale + "\n"
-								+ "De l'agence : " + this.dailyBankState.getAgenceActuelle().nomAg + " (ID : "
-								+ this.dailyBankState.getAgenceActuelle().idAg + ")")
+						+ ") \n" + this.client.email + "\n" + this.client.adressePostale + "\n"
+						+ "De l'agence : " + this.dailyBankState.getAgenceActuelle().nomAg + " (ID : "
+						+ this.dailyBankState.getAgenceActuelle().idAg + ")")
 						.setFontSize(12);
 				infosClient.setTextAlignment(TextAlignment.LEFT);
 				document.add(infosClient);
@@ -332,7 +337,7 @@ public class EmpruntSimulationController {
 
 				Paragraph infosEmprunt = new Paragraph(
 						"Montant emprunté : " + this.montantEmprunt + " euros \n Durée de l'emprunt : " + this.duree
-								+ " ans \n" + "Taux de l'emprunt : " + this.tauxEmprunt + "%" + tauxAssu)
+						+ " ans \n" + "Taux de l'emprunt : " + this.tauxEmprunt + "%" + tauxAssu)
 						.setFontSize(12);
 				infosClient.setTextAlignment(TextAlignment.LEFT);
 				document.add(infosEmprunt);
@@ -356,16 +361,18 @@ public class EmpruntSimulationController {
 					table.addCell("Mensualité de l'assurance").setFont(font).setFontSize(10);
 				}
 
-				// Ajouter les données du tableau
 				for (int i = 0; i < rows.length; i++) {
-					String[] cells = rows[i].split("\t");
-					for (String cell : cells) {
-						if (cell.equals("-0.00")) {
-							cell = "0.00";
-						}
-						table.addCell(cell).setFont(contentFont).setFontSize(10);
-					}
+				    String[] cells = rows[i].split("\t");
+				    for (String cell : cells) {
+				        if (cell.equals("-0.00")) {
+				            cell = "0.00";
+				        } else if (cell.startsWith("-")) {
+				            cell = cell.substring(1); // Supprimer le signe négatif
+				        }
+				        table.addCell(cell).setFont(contentFont).setFontSize(10);
+				    }
 				}
+
 
 				document.add(table);
 
