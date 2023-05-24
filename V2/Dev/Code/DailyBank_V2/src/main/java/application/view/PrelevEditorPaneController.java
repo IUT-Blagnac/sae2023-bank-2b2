@@ -18,10 +18,10 @@ import model.data.CompteCourant;
 import model.data.Prelevement;
 
 	/**
+	@author yannis gibert
+	La classe PrelevementEditorPaneController est un contrôleur qui gère l'affichage et la modification des informations de prelevement automatique pour un compte.
 	
-	La classe CompteEditorPaneController est un contrôleur qui gère l'affichage et la modification des informations de compte bancaire pour un client.
-	
-	Elle offre des fonctionnalités pour créer, modifier ou supprimer un compte bancaire.
+	Elle offre des fonctionnalités pour créer, modifier ou supprimer un prelevement automatique.
 	*/
 public class PrelevEditorPaneController {
 
@@ -42,6 +42,7 @@ public class PrelevEditorPaneController {
 	// Manipulation de la fenêtre
 	
 	/**
+	 * @author yannis gibert
 	 * Initialise le contexte du contrôleur avec la fenêtre principale et l'état de l'application.
 	 *
 	 * @param _containingStage La fenêtre principale contenant la scène
@@ -54,6 +55,7 @@ public class PrelevEditorPaneController {
 	}
 
 	/**
+	 * @author yannis gibert
 	 * Configure la fenêtre en définissant les gestionnaires d'événements pour la fermeture de la fenêtre
 	 * et le focus sur les champs de découvert autorisé et de solde.
 	 */
@@ -66,16 +68,16 @@ public class PrelevEditorPaneController {
 	}
 
 	/**
+	@author yannis gibert
+	Affiche la boîte de dialogue pour la création, la modification ou la suppression d'un prelevement automatique.
 
-	Affiche la boîte de dialogue pour la création, la modification ou la suppression d'un compte courant.
+	@param compte le compte associé au prelevement
 
-	@param client Le client associé au compte
-
-	@param cpte Le compte courant à afficher/modifier/supprimer
+	@param prlv le prevelement à afficher/modifier/supprimer
 
 	@param mode Le mode d'édition (CREATION, MODIFICATION, SUPPRESSION)
 
-	@return Le compte courant résultant après l'opération ou null si l'opération a été annulée
+	@return Le prelevement résultant après l'opération ou null si l'opération a été annulée
 	*/
 	
 	public Prelevement displayDialog(CompteCourant compte, Prelevement prlv, EditionMode mode) {
@@ -137,6 +139,7 @@ public class PrelevEditorPaneController {
 	// Gestion du stage
 	
 	/**
+	 * @author yannis gibert
 	 * Gère l'événement de fermeture de la fenêtre en annulant l'opération en cours.
 	 *
 	 * @param e L'événement de fermeture de la fenêtre
@@ -149,7 +152,8 @@ public class PrelevEditorPaneController {
 	}
 	
 	/**
-	 * Gère l'événement de focus sur le champ de découvert autorisé en mettant à jour la valeur du découvert autorisé du compte courant.
+	 * @author yannis gibert
+	 * Gère l'événement de focus sur le champ de beneficiaire en mettant à jour le beneficiaire du prelevement automatique.
 	 *
 	 * @param txtField Le champ de texte du découvert autorisé
 	 * @param oldPropertyValue La valeur précédente de la propriété "focused"
@@ -171,7 +175,8 @@ public class PrelevEditorPaneController {
 	}
 
 	/**
-	 * Gère l'événement de focus sur le champ de découvert autorisé en mettant à jour la valeur du découvert autorisé du compte courant.
+	 * @author yannis gibert
+	 * Gère l'événement de focus sur le champ de date prélèvement en mettant à jour la valeur du date occurence du prélèvement automatique.
 	 *
 	 * @param txtField Le champ de texte du découvert autorisé
 	 * @param oldPropertyValue La valeur précédente de la propriété "focused"
@@ -196,7 +201,8 @@ public class PrelevEditorPaneController {
 	}
 
 	/**
-	 * Gère l'événement de focus sur le champ de solde en mettant à jour la valeur du solde du compte courant.
+	 * @author yannis gibert
+	 * Gère l'événement de focus sur le champ de montant en mettant à jour la valeur du montant du prelevement automatique.
 	 *
 	 * @param txtField Le champ de texte du solde
 	 * @param oldPropertyValue La valeur précédente de la propriété "focused"
@@ -241,6 +247,7 @@ public class PrelevEditorPaneController {
 
 	
 	/**
+	 * @author yannis gibert
 	 * Gère l'action de l'annulation de l'opération en cours.
 	 * Réinitialise le compte résultat et ferme la fenêtre principale.
 	 */
@@ -253,6 +260,7 @@ public class PrelevEditorPaneController {
 	
 
 	/**
+	 * @author yannis gibert
 	 * Gère l'action du bouton "Ajouter" en fonction du mode d'édition.
 	 * Vérifie la validité de la saisie, attribue le compte édité au compte résultat et ferme la fenêtre principale.
 	 */
@@ -280,6 +288,7 @@ public class PrelevEditorPaneController {
 	}
 	
 	/**
+	 * @author yannis gibert
 	 * Vérifie si la saisie des champs est valide.
 	 *
 	 * @return true si la saisie est valide, false sinon

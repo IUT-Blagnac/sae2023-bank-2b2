@@ -78,7 +78,9 @@ public class OperationEditorPaneController {
 		this.categorieOperation = mode;
 		this.compteEdite = cpte;
 		this.btnExceptionnel.setDisable(true);
+		this.btnExceptionnel.setVisible(false);
 		this.btnExceptionnel.setSelected(false);
+		this.lblExceptionnel.setVisible(false);
 		switch (mode) {
 		case DEBIT:
 
@@ -88,8 +90,11 @@ public class OperationEditorPaneController {
 			this.lblMessage.setText(info);
 			this.lblCompte.setVisible(false);
 			this.txtNumCompte.setVisible(false);
-			if(this.dailyBankState.isChefDAgence())
+			if(this.dailyBankState.isChefDAgence()) {
 				this.btnExceptionnel.setDisable(false);
+				this.btnExceptionnel.setVisible(true);
+				this.lblExceptionnel.setVisible(true);
+			}
 			this.btnOk.setText("Effectuer Débit");
 			this.btnCancel.setText("Annuler débit");
 
@@ -105,8 +110,7 @@ public class OperationEditorPaneController {
 					+ String.format(Locale.ENGLISH, "%8d", this.compteEdite.debitAutorise);
 			this.lblMessage.setText(info);
 			this.lblCompte.setVisible(false);
-			this.txtMontant.setVisible(false);
-
+			this.txtNumCompte.setVisible(false);
 			this.btnOk.setText("Effectuer Crédit");
 			this.btnCancel.setText("Annuler Crédit");
 
@@ -250,14 +254,18 @@ public class OperationEditorPaneController {
 
 			try {
 				montant = Double.parseDouble(this.txtMontant.getText().trim());
-				if (montant <= 0) throw new NumberFormatException();
+				if (montant <= 0) {
+					throw new NumberFormatException();
+				}
 			} catch (NumberFormatException nfe) {
+				System.out.println("montant : "+this.txtMontant.getText().trim());
 				this.txtMontant.getStyleClass().add("borderred");
 				this.lblMontant.getStyleClass().add("borderred");
 				this.txtMontant.requestFocus();
 				return;
 			}
 			if (montant > 999999) {
+				System.out.println("ccccc");
 				info = "Dépassement du montant du crédit dépassé (>1M) ";
 				this.lblMessage.setText(info);
 				this.txtMontant.getStyleClass().add("borderred");
