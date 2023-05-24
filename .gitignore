@@ -9,3 +9,5 @@ target/
 
 appmap.yml
 tmp/
+
+*.pdf

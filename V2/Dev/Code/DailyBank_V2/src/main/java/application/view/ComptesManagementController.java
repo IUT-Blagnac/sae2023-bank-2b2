@@ -400,10 +400,12 @@ public class ComptesManagementController {
 						.setFont(boldFont);
 
 				Double oldSolde = this.lvComptes.getSelectionModel().getSelectedItem().solde;
+				System.out.println("oldSolde : " + oldSolde);
 				listeOpes = this.cmDialogController.getOperationsDunCompte(this.lvComptes.getSelectionModel().getSelectedItem());
 				for (Operation currOp : listeOpes) {
-					System.out.println(currOp.idOperation + currOp.montant);
+					System.out.println("id : " + currOp.idOperation + "| Montant :" + currOp.montant);
 					oldSolde -= currOp.montant;
+					System.out.println("oldSolde : " + oldSolde);
 				}
 
 				Cell rightCell = new Cell().add(new Paragraph(df.format(oldSolde))
