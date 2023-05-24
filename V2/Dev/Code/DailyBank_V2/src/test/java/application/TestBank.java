@@ -278,6 +278,9 @@ public class TestBank extends ApplicationTest {
         String motPasseVrf = txtMotPasse.getText() + "test";
         txtMotPasse.setText(motPasseVrf);
 
+        TextField txtConfrMotPasse = find("#txtConfrMotPasse");
+        txtConfrMotPasse.setText(motPasseVrf);
+
         clickOn("Modifier");
 
         try {
@@ -393,7 +396,7 @@ public class TestBank extends ApplicationTest {
         String prenomVrf = "Enzo";
         String droitVrf = "guichetier";
         String loginVrf = "EF";
-        String motPasseVrf = "enzo";
+        String motPasseVrf = "enzofournet";
 
         ((TextField) find("#txtNom")).setText(nomVrf);
         ((TextField) find("#txtPrenom")).setText(prenomVrf);
@@ -408,9 +411,9 @@ public class TestBank extends ApplicationTest {
 
         ((TextField) find("#txtLogin")).setText(loginVrf);
         ((TextField) find("#txtMotPasse")).setText(motPasseVrf);
+        ((TextField) find("#txtConfrMotPasse")).setText(motPasseVrf);
 
         clickOn("#butOk");
-
         int nbEmploye = 0;
         try {
             nbEmploye = access_BD_Test.getSeqEmplCurrVal();

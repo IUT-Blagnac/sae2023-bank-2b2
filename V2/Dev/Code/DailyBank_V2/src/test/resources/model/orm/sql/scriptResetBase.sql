@@ -154,6 +154,7 @@ INSERT INTO TypeOperation VALUES ('Paiement Carte Bleue')/
 INSERT INTO TypeOperation VALUES ('Virement Compte à Compte')/  
 INSERT INTO TypeOperation VALUES ('Prélèvement automatique')/  
 INSERT INTO TypeOperation VALUES ('Prélèvement agios')/   
+NSERT INTO TypeOperation VALUES ('Premier depot')/
 
 DROP SEQUENCE seq_id_operation/ 
 CREATE SEQUENCE seq_id_operation
@@ -240,15 +241,42 @@ BEGIN
 END;
 / 
 
+
+
+CREATE OR REPLACE PROCEDURE Crediter (
+    vidNumCompte CompteCourant.idNumCompte%TYPE,
+    vMontantCredit Operation.montant%TYPE,
+    vTypeOp TypeOperation.idTypeOp%TYPE,
+    retour OUT NUMBER
+)
+IS
+    vSolde CompteCourant.solde%TYPE;
+    vNouveauSolde CompteCourant.solde%TYPE;
+BEGIN
+    SELECT solde INTO vSolde FROM CompteCourant WHERE idNumCompte = vidNumCompte;
+
+    vNouveauSolde := vSolde + vMontantCredit;
+
+    INSERT INTO Operation (idOperation, montant, dateValeur, idNumCompte, idTypeOp)
+    VALUES (seq_id_operation.NEXTVAL, vMontantCredit, SYSDATE + 2, vidNumCompte, vTypeOp);
+
+    UPDATE CompteCourant SET solde = vNouveauSolde WHERE idNumCompte = vidNumCompte;
+
+    COMMIT;
+    retour := 0;
+
+EXCEPTION
+    WHEN OTHERS THEN
+        retour := -1;
+END;
+/
+
+
+
+
+
 EXECUTE Debiter(1, TO_NUMBER('15,2'), 'Retrait Espèces', :ret)/ 
-
-
 EXECUTE Debiter(1, TO_NUMBER('500'), 'Retrait Espèces', :ret)/ 
-
-
-
-
-
 EXECUTE Debiter(1, 120, 'Retrait Espèces', :ret)/  
 EXECUTE Debiter(1, 40, 'Retrait Espèces', :ret)/  
 EXECUTE Debiter(1, 2, 'Retrait Espèces', :ret)/  
