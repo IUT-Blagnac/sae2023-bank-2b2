@@ -157,8 +157,10 @@ public class ComptesManagement {
 		if (compte != null) {
 			try {
 				Access_BD_CompteCourant acCC = new Access_BD_CompteCourant();
+				Access_BD_Operation acOp = new Access_BD_Operation();
 				acCC.insertCompte(compte);
 				acCC.updateCompteCourant(compte);
+				acOp.insertCredit(compte.idNumCompte, compte.solde, "Premier dépôt");
 				if (Math.random() < -1) {
 					throw new ApplicationException(Table.CompteCourant, Order.INSERT, "todo : test exceptions", null);
 				}

@@ -32,12 +32,14 @@ public class PrelevManagement {
 	private CompteCourant prelevDesComptes;
 
 	/**
-	 * Création d'un page de gestion des comptes.<BR />
+	 * @author yannis gibert
+	 * 
+	 * Création d'un page de gestion des prelevements.<BR />
 	 *
 	 * @param _parentStage Fenêtre parente de LoginDialog (sur laquelle se centrer
 	 *                     et être modale)
 	 * @param _dbstate     Etat courant de l'application
-	 * @param client le client dont on souhaite voir les comptes
+	 * @param compte le compte dont on souhaite voir les prelevements
 	 */
 	public PrelevManagement(Stage _parentStage, DailyBankState _dbstate, CompteCourant compte) {
 
@@ -67,16 +69,18 @@ public class PrelevManagement {
 	}
 
 	/**
-	 * Affiche la page des comptes d'un client
+	 * @author yannis gibert
+	 * Affiche la page des prelevements d'un compte
 	 */
 	public void doPrelevManagementDialog() {
 		this.pmcViewController.displayDialog();
 	}	
 
 	/**
-	 * Permet de récupérer tout les comptes courant d'un client
+	 * @author yannis gibert
+	 * Permet de récupérer tout les prelevements d'un compte
 	 * 
-	 * @return une liste de compte courant
+	 * @return une liste de prelevement
 	 */
 	public ArrayList<Prelevement> getPrelevementDunCompte() {
 		ArrayList<Prelevement> listePrelev = new ArrayList<>();
@@ -98,9 +102,10 @@ public class PrelevManagement {
 	}
 	
 	/**
-	 * Permet de créer un nouveau compte courant
+	 * @author yannis gibert
+	 * Permet de créer un nouveau prelevement
 	 * 
-	 * @return le nouveau compte courant
+	 * @return le nouveau prelevement
 	 */
 	public Prelevement creerNouveauPrelev() {
 		Prelevement prelev;
@@ -127,10 +132,11 @@ public class PrelevManagement {
 	}
 	
 	/**
-	 * Permet de modifier les informations d'un compte
+	 * @author yannis gibert
+	 * Permet de modifier les informations d'un prelevement
 	 * 
-	 * @param c le compte qu'on souhaite modifier
-	 * @return le compte modifié
+	 * @param prelev le prelevement qu'on souhaite modifier
+	 * @return le prelevement modifié
 	 */
 	public Prelevement modifierPrelevement(Prelevement prelev) {
 		PrelevementEditorPane cep = new PrelevementEditorPane(this.primaryStage, this.dailyBankState);
@@ -154,10 +160,11 @@ public class PrelevManagement {
 	}
 	
 	/**
-	 * Permet de cloturer un compte
+	 * @author yannis gibert
+	 * Permet de supprimer un prelevement
 	 * 
-	 * @param compte le compte que l'on souhaite supprimer
-	 * @return le compte courant
+	 * @param prelev le prelevement que l'on souhaite supprimer
+	 * @return le prelevement
 	 */
 	public Prelevement supprimerPrelevement(Prelevement prelev) {
 		PrelevementEditorPane pep = new PrelevementEditorPane(this.primaryStage, this.dailyBankState);
