@@ -28,8 +28,8 @@
 |1    |Guichetier     | Compte | Effectuer un virement|F|| 
 |1    |Guichetier     | Compte | Clôturer|||F 
 |2    |Chef d’Agence     | Compte | Débit exceptionnel|| | 
-|2    |Chef d’Agence     | Emprunt | Simuler emprunt|| | 
-|2    |Chef d’Agence     | Emprunt | Simuler assurance|| | 
+|2    |Chef d’Agence     | Emprunt | Simuler emprunt|F| | 
+|2    |Chef d’Agence     | Emprunt | Simuler assurance|F| | 
 |2    |Guichetier     | Compte | Effectuer un virement d'un compte vers un autre compte||| 
 |2    |Guichetier     | Compte | Relevé PDF|| | 
 |2    |Guichetier     | CRUD Prélèvement | C|||  
