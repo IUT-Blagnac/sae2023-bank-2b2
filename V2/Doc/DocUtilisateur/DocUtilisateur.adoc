@@ -376,7 +376,7 @@ Vous serez ensuite invité à choisir un emplacement pour enregistrer le relevé
 
 Exemple de relevé de compte :
 
-image::RessourcesAdoc/img/Relevé-de-compte.png[Alt Page de connexion, 50%]
+image::RessourcesAdoc/img/Relevé-de-compte.jpeg[Alt Page de connexion, 50%]
 
 == Nous contacter
 

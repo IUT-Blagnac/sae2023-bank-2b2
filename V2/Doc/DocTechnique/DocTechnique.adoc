@@ -997,6 +997,14 @@ Attention, install lance aussi des tests dévelloper avec JUNIT 5 et testFX. Si 
 
 === Quelques Tests Automatisé - Enzo Fournet
 
+ATTENTION : Les tests fonctionne lors d'une execution depuis un terminal, ainsi que depuis VSCode mais ne fonctinne pas que Eclipse 2023, cependant ils fonctionne sur Eclipse 2022-12. Au cas ou les tests ne focntionnerai pas voici ci dessous des video de démo :
+
+https://youtu.be/RYiIPmh0AP8[Demo VSCode]
+
+https://youtu.be/0KjJjjqiQb0[Demo Terminal]
+
+https://youtu.be/6NtRQUejEds[Demo Eclipse 2022-12]
+
 J'ai pris l'initiative de dévelloper des test JavaFX afin de tester le bon fonctionnement de l'interface.
 J'ai donc utilisé https://github.com/junit-team/junit5[JUnit 5] et https://github.com/TestFX/TestFX/issues/751[TestFX].
 Je vais donc expliquer dans les grandes lignes mon systeme de tests.
@@ -1013,7 +1021,7 @@ Cette commande permet de lancer la création du Jar du projet et donc lance dans
 
 * La seconde
 
-`` mvn test ``
+`` mvn clean test ``
 
 Cette commande permet tout simplement d'executer les tests.
 
@@ -1128,6 +1136,64 @@ public <T extends Node> T find(final String query) {
 
 
 ==== Mise en place du Projet pour le Batch - Enzo Fournet
+
+La batch est un deuxième projet Java qui s'organise comme ci dessous :
+
+````bash
+M1 ➜  DailyBank-Batch git:(main) ✗ tree     
+.
+├── dependency-reduced-pom.xml
+├── pom.xml
+└── src
+    ├── main
+    │   ├── java
+    │   │   └── app
+    │   │       ├── BatchApp.java
+    │   │       ├── control
+    │   │       │   └── Batch.java
+    │   │       └── model
+    │   │           ├── data
+    │   │           │   ├── AgenceBancaire.java
+    │   │           │   ├── Client.java
+    │   │           │   ├── CompteCourant.java
+    │   │           │   ├── Employe.java
+    │   │           │   ├── Operation.java
+    │   │           │   ├── Prelevement.java
+    │   │           │   └── TypeOperation.java
+    │   │           ├── orm
+    │   │           │   ├── Access_BD_AgenceBancaire.java
+    │   │           │   ├── Access_BD_Client.java
+    │   │           │   ├── Access_BD_CompteCourant.java
+    │   │           │   ├── Access_BD_Employe.java
+    │   │           │   ├── Access_BD_Operation.java
+    │   │           │   ├── Access_BD_Prelevement.java
+    │   │           │   ├── Access_BD_TypeOperation.java
+    │   │           │   ├── LogToDatabase.java
+    │   │           │   └── exception
+    │   │           │       ├── ApplicationException.java
+    │   │           │       ├── DataAccessException.java
+    │   │           │       ├── DatabaseConnexionException.java
+    │   │           │       ├── ManagementRuleViolation.java
+    │   │           │       ├── Order.java
+    │   │           │       ├── RowNotFoundOrTooManyRowsException.java
+    │   │           │       └── Table.java
+    │   │           └── pdf
+    │   │               └── FooterEventHandler.java
+    │   └── resources
+    │       └── app
+    │           └── control
+    │               └── font
+    │                   ├── Helvetica-Bold.ttf
+    │                   ├── Helvetica-Light.ttf
+    │                   └── Helvetica.ttf
+    └── test
+        └── java
+            └── BatchTest.java
+
+17 directories, 31 files
+`````
+
+`
 
 
 ==== Présentation
