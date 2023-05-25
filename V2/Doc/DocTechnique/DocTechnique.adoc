@@ -1146,54 +1146,52 @@ M1 ➜  DailyBank-Batch git:(main) ✗ tree
 ├── pom.xml
 └── src
     ├── main
-    │   ├── java
-    │   │   └── app
-    │   │       ├── BatchApp.java
-    │   │       ├── control
-    │   │       │   └── Batch.java
-    │   │       └── model
-    │   │           ├── data
-    │   │           │   ├── AgenceBancaire.java
-    │   │           │   ├── Client.java
-    │   │           │   ├── CompteCourant.java
-    │   │           │   ├── Employe.java
-    │   │           │   ├── Operation.java
-    │   │           │   ├── Prelevement.java
-    │   │           │   └── TypeOperation.java
-    │   │           ├── orm
-    │   │           │   ├── Access_BD_AgenceBancaire.java
-    │   │           │   ├── Access_BD_Client.java
-    │   │           │   ├── Access_BD_CompteCourant.java
-    │   │           │   ├── Access_BD_Employe.java
-    │   │           │   ├── Access_BD_Operation.java
-    │   │           │   ├── Access_BD_Prelevement.java
-    │   │           │   ├── Access_BD_TypeOperation.java
-    │   │           │   ├── LogToDatabase.java
-    │   │           │   └── exception
-    │   │           │       ├── ApplicationException.java
-    │   │           │       ├── DataAccessException.java
-    │   │           │       ├── DatabaseConnexionException.java
-    │   │           │       ├── ManagementRuleViolation.java
-    │   │           │       ├── Order.java
-    │   │           │       ├── RowNotFoundOrTooManyRowsException.java
-    │   │           │       └── Table.java
-    │   │           └── pdf
-    │   │               └── FooterEventHandler.java
-    │   └── resources
-    │       └── app
-    │           └── control
-    │               └── font
-    │                   ├── Helvetica-Bold.ttf
-    │                   ├── Helvetica-Light.ttf
-    │                   └── Helvetica.ttf
+    │   ├── java
+    │   │   └── app
+    │   │       ├── BatchApp.java
+    │   │       ├── control
+    │   │       │   └── Batch.java
+    │   │       └── model
+    │   │           ├── data
+    │   │           │   ├── AgenceBancaire.java
+    │   │           │   ├── Client.java
+    │   │           │   ├── CompteCourant.java
+    │   │           │   ├── Employe.java
+    │   │           │   ├── Operation.java
+    │   │           │   ├── Prelevement.java
+    │   │           │   └── TypeOperation.java
+    │   │           ├── orm
+    │   │           │   ├── Access_BD_AgenceBancaire.java
+    │   │           │   ├── Access_BD_Client.java
+    │   │           │   ├── Access_BD_CompteCourant.java
+    │   │           │   ├── Access_BD_Employe.java
+    │   │           │   ├── Access_BD_Operation.java
+    │   │           │   ├── Access_BD_Prelevement.java
+    │   │           │   ├── Access_BD_TypeOperation.java
+    │   │           │   ├── LogToDatabase.java
+    │   │           │   └── exception
+    │   │           │       ├── ApplicationException.java
+    │   │           │       ├── DataAccessException.java
+    │   │           │       ├── DatabaseConnexionException.java
+    │   │           │       ├── ManagementRuleViolation.java
+    │   │           │       ├── Order.java
+    │   │           │       ├── RowNotFoundOrTooManyRowsException.java
+    │   │           │       └── Table.java
+    │   │           └── pdf
+    │   │               └── FooterEventHandler.java
+    │   └── resources
+    │       └── app
+    │           └── control
+    │               └── font
+    │                   ├── Helvetica-Bold.ttf
+    │                   ├── Helvetica-Light.ttf
+    │                   └── Helvetica.ttf
     └── test
         └── java
             └── BatchTest.java
 
 17 directories, 31 files
-`````
-
-`
+````
 
 
 ==== Présentation
