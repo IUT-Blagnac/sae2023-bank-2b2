@@ -212,9 +212,7 @@ autorisé est de -100 euros.
 
 ^|ID ^|Action ^|Comportement attendu ^|Pré-conditions ^|Résultat
 ^|All_G_COP.1 ^|Cliquer sur le bouton "Enregistrer Débit". ^|La page des débit du compte s’affiche avec un bouton "Débit exceptionnel". ^| Un compte actif est sélectionné et l'utilisateur est chef d'agence ^|OK
-^|All_G_COP.2  ^|Rentrer un montant 5000 dans le champ "Montant". ^|Le nouveau solde est -5000euros. On a créé une nouvelle opération dans la liste des opérations avec le bon montant et la bonne date ^| Le débit exceptionnel est sélectionné et l'utilisateur est chef d'agence
- ^|OK
-^|All_G_COP.2  ^|Rentrer un montant 50 dans le champ "Montant". ^|Le nouveau solde est -50euros. On a créé une nouvelle opération dans la liste des opérations avec le bon montant et la bonne date et l'erreur de dépassement de Découvert Autorisé n'est pas renvoyée ^| Le débit exceptionnel est sélectionné et l'utilisateur est chef d'agence
+^|All_G_COP.2  ^|Rentrer un montant 5000 dans le champ "Montant". ^|Le nouveau solde est -5000euros. On a créé une nouvelle opération dans la liste des opérations avec le bon montant et la bonne date, le blocage ne s'effectue pas et le Pop up n'apparait pas^| Le débit exceptionnel est sélectionné et l'utilisateur est chef d'agence et le Découvert Autorisé est inférieur à 5000euros.
  ^|OK
 
 
@@ -397,7 +395,7 @@ Un CRUD employés permet de créer, lire, mettre à jour et supprimer des inform
 
 5+|
 ^|ID ^|Action ^|Comportement attendu ^|Pré-conditions ^|Résultat
-^|All_G_C.1 ^|Lancer le batch". ^|Le compte est débité de la somme du prélèvement automatique et l'action s'enregistre dans la liste des opérations du compte en tant que "Prélèvement Automatique". ^| La date d'occurence du prélèvement est la date du jour actuel ^|OK
+^|All_G_C.1 ^|Lancer le batch. ^|Le compte est débité de la somme du prélèvement automatique et l'action s'enregistre dans la liste des opérations du compte en tant que "Prélèvement Automatique". ^| La date d'occurence du prélèvement est la date du jour actuel ^|OK
 
 5+|
 
