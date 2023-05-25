@@ -1139,9 +1139,7 @@ public <T extends Node> T find(final String query) {
 
 La batch est un deuxième projet Java qui s'organise comme ci dessous :
 
-````bash
-M1 ➜  DailyBank-Batch git:(main) ✗ tree     
-.
+````bash  
 ├── dependency-reduced-pom.xml
 ├── pom.xml
 └── src
@@ -1189,8 +1187,6 @@ M1 ➜  DailyBank-Batch git:(main) ✗ tree
     └── test
         └── java
             └── BatchTest.java
-
-17 directories, 31 files
 ````
 
 
