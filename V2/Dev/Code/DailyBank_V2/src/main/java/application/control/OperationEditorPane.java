@@ -31,7 +31,7 @@ public class OperationEditorPane {
 					OperationEditorPaneController.class.getResource("operationeditorpane.fxml"));
 			BorderPane root = loader.load();
 
-			Scene scene = new Scene(root, 500 + 20, 250 + 10);
+			Scene scene = new Scene(root, 700 + 20, 350 + 10);
 			scene.getStylesheets().add(DailyBankApp.class.getResource("application.css").toExternalForm());
 
 			this.primaryStage = new Stage();
