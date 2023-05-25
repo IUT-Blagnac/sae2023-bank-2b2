@@ -355,6 +355,29 @@ Suite à la cloturation du compte vous pouvez voir comme ci-dessous que le compt
 
 image::RessourcesAdoc/img/ResultatCloturerCompte.png[Alt Page de connexion, 50%]
 
+=== Générer une relevé de compte :
+``Réalisé par Enzo Fournet``
+
+*Prérequis : Être connecté en tant que guichetier ou chef d'agence et s'être rendu dans la gestion des clients*
+
+Lorsque vous arrivé dans la age de gestion des clients il vous suffit de selectionner un client puis de cliquer sur le bouton "Comptes client"  sur la droite de la page. 
+
+image::RessourcesAdoc/img/MenuClient.png[Alt Page de connexion, 50%]
+
+Une fois sur la page de gestion des comptes du client vous pouvez voir la liste des comptes du client et vous pouvez cliquer sur le bouton "Relevé de compte" sur la droite de la page.
+
+image::RessourcesAdoc/img/RelCpt.png[Alt Page de connexion, 50%]
+
+Cela ouvrira une fenêtre qui vous permettra de séléectionner l'année et le mois du relevé de compte que vous voulez générer.
+
+image::RessourcesAdoc/img/RelCptChoix.png[Alt Page de connexion, 50%]
+
+Vous serez ensuite invité à choisir un emplacement pour enregistrer le relevé de compte.
+
+Exemple de relevé de compte :
+
+image::RessourcesAdoc/img/Relevé-de-compte.png[Alt Page de connexion, 50%]
+
 == Nous contacter
 
 Si vous avez des questions ou si vous avez besoin d'aide, n'hésitez pas à nous contacter à l'adresse suivante: support@DailyBank.com

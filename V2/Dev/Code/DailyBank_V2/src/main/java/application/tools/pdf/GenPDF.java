@@ -274,7 +274,8 @@ public class GenPDF {
 				e.printStackTrace();
                 return false;
 			}
+		}else {
+			return true;
 		}
-        return false;
     }
 }

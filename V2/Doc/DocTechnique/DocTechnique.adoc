@@ -1130,7 +1130,6 @@ public <T extends Node> T find(final String query) {
 ==== Mise en place du Projet pour le Batch - Enzo Fournet
 
 
-
 ==== Présentation
 
 Le batch permet de réaliser des opérations de façon automatique et répétitive. Dans notre cas, le batch permet de réaliser des opérations de façon automatique et répétitive sur la base de données tel que les prélevement menseul à effectuer sur les comptes. Ou encore tout les premier du mois, de créer les relevés de compte mensule de tout les compte de chaque client.
