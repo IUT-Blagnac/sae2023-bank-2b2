@@ -81,8 +81,6 @@ public class Batch {
         	}
         	doRel();
 		}
-
-       
     }
     
 	private void doPrelev(int idNumCompte) {

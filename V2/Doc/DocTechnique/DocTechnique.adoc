@@ -1189,6 +1189,171 @@ La batch est un deuxième projet Java qui s'organise comme ci dessous :
             └── BatchTest.java
 ```
 
+J'ai donc récupérer une partie des libarairie qui était présente dans le projet principal et je les ai mis dans le projet batch. J'ai également récupérer les classes de la base de données et les classes de gestion des exceptions ainsi que de model.data. J'ai également récupérer les classes de gestion des pdf. Ces classes permettent donc de férer les données du batc de la même façon que dans le projet principal.
+
+Si dessous le POM du projet batch :
+
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>sae-s2.01-2023</groupId>
+  <artifactId>DailyBank-Batch</artifactId>
+  <version>1.0</version>
+  <name>DailyBank-Batch</name>
+
+  <properties>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.shade.plugin.version>3.4.1</maven.shade.plugin.version>
+    	<junit.version>5.7.2</junit.version>
+	</properties>
+
+  <dependencies>
+    <!-- Dépendance pour ojdbc oracle : driver d'accès à une BD Oracle depuis java -->
+		<!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc10 -->
+		<dependency>
+			<groupId>com.oracle.database.jdbc</groupId>
+			<artifactId>ojdbc10</artifactId>
+			<version>19.18.0.0</version>
+		</dependency>
+
+
+		<!-- Dépendance pour .jar de génération d'un pdf 
+			Exemples de code :
+			- http://igm.univ-mlv.fr/~dr/XPOSE2004/sguinchard/iText/creation.html
+			- https://www.vogella.com/tutorials/JavaPDF/article.html
+		-->
+		<!-- https://mvnrepository.com/artifact/com.itextpdf/itextpdf -->
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>itext7-core</artifactId>
+			<version>8.0.0</version>
+			<type>pom</type>
+		</dependency>
+
+    <dependency>
+    		<groupId>org.junit.jupiter</groupId>
+    		<artifactId>junit-jupiter-engine</artifactId>
+    		<version>${junit.version}</version>
+    		<scope>test</scope>
+	</dependency>
+
+	<dependency>
+	    <groupId>commons-io</groupId>
+	    <artifactId>commons-io</artifactId>
+	    <version>2.11.0</version> <!-- or the latest version available -->
+	</dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      	<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-shade-plugin</artifactId>
+			<version>${maven.shade.plugin.version}</version>
+			<executions>
+				<execution>
+					<goals>
+						<goal>shade</goal>
+					</goals>
+					<configuration>
+						<shadedArtifactAttached>true</shadedArtifactAttached>
+						<transformers>
+							<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+								<mainClass>app.BatchApp</mainClass>
+							</transformer>
+						</transformers>
+					</configuration>
+				</execution>
+			</executions>
+		</plugin>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-javadoc-plugin</artifactId>
+			<version>3.5.0</version>
+			<configuration>
+				<show>public</show>
+				<nohelp>false</nohelp>
+			</configuration>
+		</plugin>
+		<plugin>
+    		<groupId>org.apache.maven.plugins</groupId>
+    		<artifactId>maven-surefire-plugin</artifactId>
+    		<version>3.0.0-M5</version>
+		</plugin>
+		<plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>3.1.0</version>
+            <configuration>
+                <mainClass>app.BatchApp</mainClass>
+            </configuration>
+        </plugin>
+    </plugins>
+  </build>
+</project>
+```
+
+Lors de sont execution la classe `` BatchApp.java `` est donc executer. Cette classe permet de lancer un batch qui va effectuer les opérations nécessaire.
+
+```java
+package app;
+
+import app.control.Batch;
+
+public class BatchApp {
+    public static void main( String[] args ) {
+		Batch batch = new Batch();
+        batch.start();
+    }
+}
+```
+
+Extrait de la classe `` Batch.java ``
+
+```java
+public class Batch {
+    private Client clientDuCompteActu;
+    private CompteCourant compteActu;
+    private AgenceBancaire agenceActuelle;
+
+    public void start() {
+        System.out.println("COUCOU");
+		int nbClients = 0;
+		Access_BD_CompteCourant acCourant = new Access_BD_CompteCourant();
+		try {
+			for(CompteCourant compte : acCourant.getAllCompteCourants() ) {
+				System.out.println(compte.toString());
+				doPrelev(compte.idNumCompte);
+			}
+		} catch (DataAccessException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (DatabaseConnexionException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			Access_BD_CompteCourant acc = new Access_BD_CompteCourant();
+			nbClients = acc.getNbCpt();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		for (int i = 1; i < nbClients-1; i++) {
+        	try {
+        	    Access_BD_CompteCourant acc = new Access_BD_CompteCourant();
+        	    compteActu = acc.getCompteCourant(i);
+        	} catch (Exception e) {
+        	    e.printStackTrace();
+        	}
+        	doRel();
+		}
+    }
+...
+}
+```
 
 ==== Présentation
 
@@ -1200,6 +1365,94 @@ Le batch est docn executer tout les jours à 00h00 et permet de réaliser les op
 
 
 
-==== Création des relevés de compte mensuel - Enzo Fournet
+==== Création des relevés de compte mensuel Automatique - Enzo Fournet
+
+Lorsque le Batch est executer si nous sommes le 1er du mois, il va créer les relevés de compte mensuel de tout les comptes de tout les clients.
+
+Puisque la seule interaction que les utilisateur peuvent avoir avec eux est la récupération des relevé de compte mensuel. Il n'y a donc pas de diagramme de classe pour le batch.
+
+
+
+Cependant ci dessous la partie du diagramme de classe du projet principal qui concerne les relevés de compte mensuel.
+
+.extrait digram de la BD - classe client et CompteCourant
+image::RessourceAdoc/img/dcCptClt.png[Alt dc relevé, 50%]
+
+Classe associé à la création des relevés de compte mensuel (Dans le Batch):
+
+*Côté ``application`` :* +
+____
+• _BatchApp.java_
+____
+
+*Côté ``application.control`` :* +
+____
+• _Batch.java_
+____
+
+*Côté ``model.data`` :* + 
+____
+• _Client.java_
+• _CompteCourant.java_
+• _Operation.java_
+• _AgenceBancaire.java_
+____
+
+*Côté ``model.orm / model.orm.exception`` :* +
+____
+• _Access_BD_Client.java_
+• _Access_BD_CompteCourant.java_
+____
+
+*Côté ``model.pdf`` :* +
+____
+• _FooterEventHandler.java_
+____
+
 
 === Génération de relevé de compte mensuel sur demande - Enzo Fournet
+
+Lorsque un Guichetier le souhaite il peut générer un relevé de compte mensuel pour un compte d'un client en choissisant la date de début et la date de fin du relevé de compte.
+
+==== Partie du use case
+
+.diagram de cas d'utilisation de génération de relevé de compte mensuel
+image::RessourceAdoc/img/us_Guichetir_RelCpt.png[Alt ucRelevé, 50%]
+
+==== Partie du diagramme de classe
+
+.extrait digram de la BD - classe client et CompteCourant
+image::RessourceAdoc/img/dcCptClt.png[Alt dc relevé, 50%]
+
+==== Classes associées à l’implémentation de la fonctionnalité
+
+Pour l’implémentation de cette action, plusieurs classes ont été impliquées :
+
+*Côté ``application.control`` :* +
+____
+• _ComptesManagement.java_
+____
+
+*Côté ``application.view`` :* +
+____
+• _CompteManagementController.java_
+____
+
+*Côté ``model.data`` :* +
+____
+• _Client.java_
+• _CompteCourant.java_
+• _Operation.java_
+____
+
+*Côté ``model.orm / model.orm.exception`` :* +
+____
+• _Access_BD_Client.java_
+• _Access_BD_CompteCourant.java_
+____
+
+*Côté ``application.tools`` :* +
+____
+• _FooterEventHandler.java_
+• _GenPDF.java_
+____
