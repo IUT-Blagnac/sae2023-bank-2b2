@@ -1139,7 +1139,7 @@ public <T extends Node> T find(final String query) {
 
 La batch est un deuxième projet Java qui s'organise comme ci dessous :
 
-```
+```bash
 ├── dependency-reduced-pom.xml
 ├── pom.xml
 └── src
