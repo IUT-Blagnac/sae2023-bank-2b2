@@ -326,6 +326,8 @@ image::RessourcesAdoc/img/OperationVirementDestinataire.png[Alt Liste Opération
  
 *Prérequis : Être connecté en tant que chef d'agence et s'être rendu dans la gestion des clients*
 
+Lorsque vous êtes dans la gestion des clients, un bouton en bas à droite "Simuler un emprunt" est activé, il vous suffit de cliquer dessus.
+
 
 === Créer un compte :
 ``Réalisé par Yannis Gibert``
