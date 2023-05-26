@@ -321,6 +321,11 @@ image::RessourcesAdoc/img/OperationVirementEmetteur.png[Alt Liste Opération Eme
 
 image::RessourcesAdoc/img/OperationVirementDestinataire.png[Alt Liste Opération Destinataire, 50%]
 
+=== Simuler un emprunt avec/sans assurance
+``Réalisé par Julien Couderc``
+ 
+*Prérequis : Être connecté en tant que chef d'agence et s'être rendu dans la gestion des clients*
+
 
 === Créer un compte :
 ``Réalisé par Yannis Gibert``
