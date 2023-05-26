@@ -79,7 +79,7 @@ Vous avez aussi la possibilité de fare un clique droit sur un employé pour fai
 
 Les boutons lattéraux sont aussi utilisable pour modifier ou consulter un employé et seront dégrissé si vousavez pas les droits pour faire l'action demandé.
 
-==== Consultation d'un employé :
+===== Consultation d'un employé :
 *Prérequis : Être connecté en tant que chef d'agence et s'être rendu dans la gestion des emplyés*
 
 Une fois que vous avez accédé à la gestion des employés.
@@ -99,7 +99,7 @@ Pour revenir à la page de gestion des employés il vous suffit de cliquer sur l
 
 image::RessourcesAdoc/img/ConsultEmpl-btn.png[Alt Bouton de retour à la page de gestion des employés, 70%]
 
-==== Création d'un nouvel employé :
+===== Création d'un nouvel employé :
 
 *Prérequis : Être connecté en tant que chef d'agence et s'être rendu dans la gestion des emplyés*
 
@@ -109,7 +109,7 @@ Vous devrez alors remplir tout les champs disponnible du formulaire de création
 
 image::RessourcesAdoc/img/CreaEmpl.png[Alt Page de création d'un compte, 70%]
 
-==== Modification d'un employé :
+===== Modification d'un employé :
 
 *Prérequis : Être connecté en tant que chef d'agence et s'être rendu dans la gestion des emplyés*
 
@@ -130,7 +130,7 @@ Pour Valider les modifications il vous suffit de cliquer sur le bouton "Modifier
 
 image::RessourcesAdoc/img/ModifEmpl-btn.png[Alt Page de modification d'un employé, 70%]
 
-==== Suppression d'un employé :
+===== Suppression d'un employé :
 *Prérequis : Être connecté en tant que chef d'agence et s'être rendu dans la gestion des employés*
 
 Une fois que vous avez accédé à la gestion des employés.
@@ -146,186 +146,26 @@ image::RessourcesAdoc/img/SupprEmpl.png[Alt Page de suppression d'un employé, 7
 
 Pour Valider la suppression il vous suffit de cliquer sur le bouton "Supprimer" en bas à droite de la page et pour annuler la suppression il vous suffit de cliquer sur le bouton "Annuler" en bas à droite de la page.
 
-=== Gestion des clients :
+==== Réalisé un débit exceptionnel :
+``Réalisé par Yannis Gibert``
 
-==== Création d'un client
+*Prérequis : Être connecté en tant que chef d'agence et s'être rendu dans la gestion des opérations d'un compte*
 
+Lorsque vous arrivé dans la page de gestion des opérations du compte il vous suffit de selectionner "Enregistrer débit", ce qui ouvrira la page de débit d'un compte.
 
-*Prérequis : Être connecté en tant que guichetier ou chef d'agence et s'être rendu dans la gestion des clients*
+image::RessourcesAdoc/img/DebitExce.png[Alt Page des opérations, 50%]
 
-Une fois que vous avez accédé à la gestion des clients.
-Vous pouvez créer un nouveau compte en cliquant sur le bouton "Ajouter" en bas à droite de la page. Ou annuler en cliquant sur le bouton "Annuler" en bas à droite de la page.
+Une fois sur la page d'enregistrement des débits vous devez rentrer un montant du débit, selectionner le type d'opération et alors si vous le souhaitez vous pouvez cliquer sur le bouton "Debit Exceptionnel" qui n'est visible que si vous êtes connecté en tant que chef d'agence. En selectionnant ce dernier vous autoriser alors l'opération à dépasser le Découvert Autorisé.
 
-image::RessourcesAdoc/img/MenuGestion.png[Alt Gestion, 50%]
+image::RessourcesAdoc/img/DebitExcePage.png[Alt Page de débit, 50%]
 
-Une fois sur la page des clients vous pouvez voir la liste de tout les clients étant dans la même agence que le guichetier. Vous pouvez en cliquant sur un client activer le bouton "Modifier client", en cliquant sur ce dernier vous serez redirigé vers la page de gestion des comptes du client sélectionné.
+En cliquant sur "Debiter" le debit s'effectuera et débitera le compte du montant choisit même si après l'opération le compte aura dépassé son Découvert autorisé.
 
-image::RessourcesAdoc/img/GestionClient.png[Alt Gestion Client, 50%]
+Et vous verrez alors le débit sur la page des opérations.
 
-En arrivant sur cette page, il est possible de changer toutes les informations ci-dessous, ainsi, vous pouvez changer le nom, le prénom, l'adresse, le numéro de téléphone, l'e-mail et si le client est actif ou non. Puis, lorsque vous voulez confirmer ces changements, il vous suffit de cliquer sur le bouton "Modifier" et les informations seront mises à jour.
+image::RessourcesAdoc/img/DebitExceResultat.png[Alt Page de débit, 50%]
 
-image::RessourcesAdoc/img/InformationClient.png[Alt Information Client, 50%]
-
-==== Recherche d'un client
-
-
-Pour pouvoir rechercher un client, il faut suivre les étapes précédentes jusqu'à être dans la page des clients. Puis, vous pouvez faire une recherche d'un client en tapant son numéro, son nom ou alors son nom et prénom.
-
-image::RessourcesAdoc/img/RechercheClient.png[Alt Recherche Client, 50%]
-
-Voici la recherche par son numéro :
-
-image::RessourcesAdoc/img/ClientRechercheNum.png[Alt Recherche Client num, 50%]
-
-Voici la recherche par son nom :
-
-image::RessourcesAdoc/img/ClientRechercheNom.png[Alt Recherche Client nom, 50%]
-
-
-=== Gestion des comptes :
-
-==== Création d'un compte :
-``Réalisée par Yannis Gibert``
-
-*Prérequis : Être connecté en tant que guichetier ou chef d'agence et s'être rendu dans la gestion des clients*
-
-Une fois que vous avez accédé à la gestion des clients.
-Vous pouvez créer un nouveau compte en cliquant sur le bouton "Ajouter" en bas à droite de la page. Ou annuler en cliquant sur le bouton "Annuler" en bas à droite de la page.
-
-[horizontal]
-
-Une fois sur la page d'accueil, il vous suffit de survoler le bouton "Gestion" avec votre souris, ce qui ouvrira un menu déroulant permettant de choisir entre Clients et Employés. Ici, ce qui nous intéresse est la section Clients, il vous suffit donc de cliquer dessus pour accéder au menu des clients.
-
-image::RessourcesAdoc/img/MenuGestion.png[Alt Page de connexion, 50%]
-
-Une fois sur la page des clients vous pouvez voir la liste de tout les clients étant dans la même agence que le guichetier. Vous pouvez en cliquant sur un client activer le bouton "Comptes client", en cliquant sur ce dernier vous serez redirigé vers la page de gestion des comptes du client sélectionné.
-
-image::RessourcesAdoc/img/MenuClient.png[Alt Page de connexion, 50%]
-
-Une fois sur la page des comptes du client il vous suffit de cliquer sur "Nouveau Compte" ce qui lancera la page de création d'un nouveau compte.
-
-image::RessourcesAdoc/img/MenuCompte.png[Alt Page de connexion, 50%]
-
-Vous voici sur la page de création du compte, les informations "Id client", "Id agence" et "Numéro compte" sont remplis automatiquement et non modifiable, en dessous vous trouverez la case "Découvert autorisé" que vous pouvez modifiez afin de saisir le découvert que vous souhaitez accorder à ce compte. Dernièrement vous trouverez la case "Solde (premier dépot)" que vous pouvez également modifier afin d'effectuer un premier dépot sur le compte du montant saisie. Une fois toutes les informations saisie vous pouvez alors cliquez sur le bouton "Ajouter" afin de valider la création du compte ou alors cliquer sur "Annuler" afin d'annuler la création du compte.
-
-image::RessourcesAdoc/img/CréationCompte.png[Alt Page de connexion, 50%]
-
-==== Cloturation d'un compte :
-``Réalisée par Yannis Gibert``
-
-Une fois sur la page d'acceuil il vous suffit de passer la souris sur le bouton "Gestion" ce qui ouvre un menu déroulant permettant de sélectionner entre Clients et Employés. Ici ce que nous intéressera est la partie Clients, il suffit donc de cliquer dessus afin d'accéder au menu des clients.
-
-image::RessourcesAdoc/img/MenuGestion.png[Alt Page de connexion, 50%]
-
-Une fois sur la page des clients vous pouvez voir la liste de tout les clients étant dans la même agence que le guichetier. Vous pouvez en cliquant sur un client activer le bouton "Comptes client", en cliquant sur ce dernier vous serez redirigé vers la page de gestion des comptes du client sélectionné.
-
-image::RessourcesAdoc/img/MenuClient.png[Alt Page de connexion, 50%]
-
-Une fois sur la page des comptes du client il vous suffit de cliquer sur un compte afin de le sélectionner. Si le compte n'est pas cloturé alors le bouton "Cloturer" sera disponible, vous pouvez savoir si un compte est cloturé ou non en regardant la liste, si il est indiqué "Ouvert" cela signifie que le compte n'est pas cloturé et sinon si il est indiqué "Cloture" alors cela signifie que le compte est cloturé. En cliquant dessus la fenêtre de cloturation du compte s'ouvre.
-
-image::RessourcesAdoc/img/MenuCompte2.png[Alt Page de connexion, 50%]
-
-Vous voici sur la page de cloturation du compte, vous ne pouvez modifier aucune information sur cette page mais seulement les consulter afin de s'assurer qu'il s'agit bien du bon compte. Vous trouverez en bas un bouton "Supprimer", en cliquant dessus si le solde du compte est inférieur ou égal à 0 alors la page se ferme et le compte sera alors cloturé.
-
-image::RessourcesAdoc/img/CloturerCompte.png[Alt Page de connexion, 50%]
-
-Néanmoins si le solde du compte n'est pas égal à 0 alors un message d'erreur s'affichera et empêchera la cloturation du compte, en cliquant sur "OK" vous retournez sur la page de gestion des comptes du client.
-
-image::RessourcesAdoc/img/ErreurCloturation.png[Alt Page de connexion, 50%]
-
-==== Modification d'un compte :
-``Réalisée par Yannis Gibert``
-
-Une fois sur la page d'accueil, il vous suffit de passer la souris sur le bouton "Gestion" ce qui ouvre un menu déroulant permettant de sélectionner entre Clients et Employés. Ici ce que nous intéressera est la partie Clients, il suffit donc de cliquer dessus afin d'accéder au menu des clients.
-
-image::RessourcesAdoc/img/MenuGestion.png[Alt Page de connexion, 50%]
-
-Une fois sur la page des clients vous pouvez voir la liste de tout les clients étant dans la même agence que le guichetier. Vous pouvez en cliquant sur un client activer le bouton "Comptes client", en cliquant sur ce dernier vous serez redirigé vers la page de gestion des comptes du client sélectionné.
-
-image::RessourcesAdoc/img/MenuClient.png[Alt Page de connexion, 50%]
-
-Une fois sur la page des comptes du client il vous suffit de cliquer sur un compte afin de le sélectionner. Si le compte n'est pas cloturé alors le bouton "Modifier" sera disponible, vous pouvez savoir si un compte est cloturé ou non en regardant la liste, si il est indiqué "Ouvert" cela signifie que le compte n'est pas cloturé et sinon si il est indiqué "Cloture" alors cela signifie que le compte est cloturé. En cliquant dessus la fenêtre de modification du compte s'ouvre.
-
-image::RessourcesAdoc/img/MenuCompte3.png[Alt Page de connexion, 50%]
-
-Vous voici sur la page de modification du compte, vous ne pouvez y modifier qu'une seule information qui est le Découvert Autorisé. Une fois les modifications effectuées il vous suffit de cliquer sur "Modifier" afin de valider la modification du compte
-
-image::RessourcesAdoc/img/ModifierCompte.png[Alt Page de connexion, 50%]
-
-==== Débit d'un compte :
-``Réalisé par Julien Couderc ``
-
-Pour effectuer un débit, il vous suffit de vous connecter, puis passer la souris sur le bouton "Gestion" ce qui ouvre un menu déroulant permettant de sélectionner entre Clients et Employés. Ici ce que nous intéressera est la partie Clients, il suffit donc de cliquer dessus afin d'accéder au menu des clients.
-
-image::RessourcesAdoc/img/MenuGestion.png[Alt Gestion Client, 50%]
-
-Une fois sur la page des clients vous pouvez voir la liste de tout les clients étant dans la même agence que le guichetier. Vous pouvez en cliquant sur un client activer le bouton "Comptes client", en cliquant sur ce dernier vous serez redirigé vers la page de gestion des comptes du client sélectionné.
-
-image::RessourcesAdoc/img/MenuClient.png[Alt Comptes Clients, 50%]
-
-Sur cette nouvelle page, vous devez cliquer sur un compte ouvert, puis cliquer sur voir opérations de ce compte.
-
-image::RessourcesAdoc/img/voirOperations.png[Alt Voir Opérations, 50%]
-
-A partir de là, vous pouvez choisir l'opération que vous voulez, en ce qui nous concerne actuellement, nous allons faire un débit.
-
-image::RessourcesAdoc/img/OperationDebit.png[Alt Choix Débit, 50%]
-
-Une fois la page ouverte, vous pouvez sélectionner le type de débit que vous voulez effectuer, vous avez le choix entre "Retrait Espèces" et "Retrait Carte Bleue".
-
-image::RessourcesAdoc/img/OperationTypeDebit.png[Alt Choix Type Débit, 50%]
-
-Ensuite, il vous faut entrer un montant valide, c'est à dire, que le solde du compte ne dépasse pas le dévouvert maximum autorisé et puis cliquer sur effectuer le débit.
-
-image::RessourcesAdoc/img/OperationDebitEffectue.png[Alt Effectue Débit, 50%]
-
-Une fois le débit effectué, l'opération est ajoutée à la liste des opérations avec le type de l'opération ainsi que le montant.
-
-image::RessourcesAdoc/img/OperationDebitResultat.png[Alt Liste Opération, 50%]
-
-
-=== Crédit d'un compte :
-``Réalisé par Julien Couderc ``
-
-Pour réalisé un crédit, il suffit de répéter les étapes précédentes jusqu'à arriver à la sélection de l'opération, il vous faut cliquer sur "Enregistrer crédit".
-
-image::RessourcesAdoc/img/OperationCredit.png[Alt Choix crédit, 50%]
-
-Une fois la page ouverte, vous pouvez sélectionner le type de débit que vous voulez effectuer, vous avez le choix entre "Dépôt Espèces" et "Dépôt Chèque".
-
-image::RessourcesAdoc/img/OperationTypeCredit.png[Alt Choix type crédit, 50%]
-
-Ensuite, il vous faut entrer un montant valide, c'est à dire, que le montant ne doit pas dépasser 1 million d'euros et puis cliquer sur effectuer le crédit.
-
-image::RessourcesAdoc/img/OperationCreditEffectue.png[Alt Effectuer crédit, 50%]
-
-Une fois le crédit effectué, l'opération est ajoutée à la liste des opérations avec le type de l'opération ainsi que le montant.
-
-image::RessourcesAdoc/img/OperationCreditEffectues.png[Alt Liste Opération, 50%]
-
-
-=== Virement d'un compte à un autre :
-``Réalisé par Julien Couderc ``
-
-Pour réalisé un virement, il suffit de répéter les étapes précédentes jusqu'à arriver à la sélection de l'opération, il vous faut cliquer sur "Enregistrer virement".
-
-image::RessourcesAdoc/img/OperationVirement.png[Alt Choix virement, 50%]
-
-Une fois la page ouverte, vous devez entrer un numéro de compte présent dans l'agence.
-
-image::RessourcesAdoc/img/OperationTypeVirement.png[Alt Choix compte virement, 50%]
-
-Ensuite, il vous faut entrer un montant valide, c'est à dire, que le montant ne doit pas dépasser 1 million d'euros mais aussi vous ne devez pas dépasser votre découvert maximal autorisé et puis cliquer sur effectuer le virement.
-
-image::RessourcesAdoc/img/OperationVirementEffectue.png[Alt Effectuer virement, 50%]
-
-Une fois le virement effectué, l'opération est ajoutée à la liste des opérations avec le type de l'opération ainsi que le montant. Cette opération est ajoutée aux deux comptes concernés.
-
-image::RessourcesAdoc/img/OperationVirementEmetteur.png[Alt Liste Opération Emetteur, 50%]
-
-image::RessourcesAdoc/img/OperationVirementDestinataire.png[Alt Liste Opération Destinataire, 50%]
-
-=== Simuler un emprunt avec/sans assurance :
+==== Simuler un emprunt avec/sans assurance :
 ``Réalisé par Julien Couderc``
  
 *Prérequis : Être connecté en tant que chef d'agence et s'être rendu dans la gestion des clients*
@@ -359,13 +199,187 @@ image::RessourcesAdoc/img/pdfEmpruntSansAssu2.png[Alt pdf Emprunt, 50%]
 
 *Cas de la simulation de l'emprunt sans asurance* 
 
+=== Client
+==== Gestion des clients :
+
+===== Création d'un client
 
 
+*Prérequis : Être connecté en tant que guichetier ou chef d'agence et s'être rendu dans la gestion des clients*
+
+Une fois que vous avez accédé à la gestion des clients.
+Vous pouvez créer un nouveau compte en cliquant sur le bouton "Ajouter" en bas à droite de la page. Ou annuler en cliquant sur le bouton "Annuler" en bas à droite de la page.
+
+image::RessourcesAdoc/img/MenuGestion.png[Alt Gestion, 50%]
+
+Une fois sur la page des clients vous pouvez voir la liste de tout les clients étant dans la même agence que le guichetier. Vous pouvez en cliquant sur un client activer le bouton "Modifier client", en cliquant sur ce dernier vous serez redirigé vers la page de gestion des comptes du client sélectionné.
+
+image::RessourcesAdoc/img/GestionClient.png[Alt Gestion Client, 50%]
+
+En arrivant sur cette page, il est possible de changer toutes les informations ci-dessous, ainsi, vous pouvez changer le nom, le prénom, l'adresse, le numéro de téléphone, l'e-mail et si le client est actif ou non. Puis, lorsque vous voulez confirmer ces changements, il vous suffit de cliquer sur le bouton "Modifier" et les informations seront mises à jour.
+
+image::RessourcesAdoc/img/InformationClient.png[Alt Information Client, 50%]
+
+===== Recherche d'un client
 
 
+Pour pouvoir rechercher un client, il faut suivre les étapes précédentes jusqu'à être dans la page des clients. Puis, vous pouvez faire une recherche d'un client en tapant son numéro, son nom ou alors son nom et prénom.
+
+image::RessourcesAdoc/img/RechercheClient.png[Alt Recherche Client, 50%]
+
+Voici la recherche par son numéro :
+
+image::RessourcesAdoc/img/ClientRechercheNum.png[Alt Recherche Client num, 50%]
+
+Voici la recherche par son nom :
+
+image::RessourcesAdoc/img/ClientRechercheNom.png[Alt Recherche Client nom, 50%]
 
 
-=== Créer un compte :
+==== Gestion des comptes :
+
+===== Création d'un compte :
+``Réalisée par Yannis Gibert``
+
+*Prérequis : Être connecté en tant que guichetier ou chef d'agence et s'être rendu dans la gestion des clients*
+
+Une fois que vous avez accédé à la gestion des clients.
+Vous pouvez créer un nouveau compte en cliquant sur le bouton "Ajouter" en bas à droite de la page. Ou annuler en cliquant sur le bouton "Annuler" en bas à droite de la page.
+
+[horizontal]
+
+Une fois sur la page d'accueil, il vous suffit de survoler le bouton "Gestion" avec votre souris, ce qui ouvrira un menu déroulant permettant de choisir entre Clients et Employés. Ici, ce qui nous intéresse est la section Clients, il vous suffit donc de cliquer dessus pour accéder au menu des clients.
+
+image::RessourcesAdoc/img/MenuGestion.png[Alt Page de connexion, 50%]
+
+Une fois sur la page des clients vous pouvez voir la liste de tout les clients étant dans la même agence que le guichetier. Vous pouvez en cliquant sur un client activer le bouton "Comptes client", en cliquant sur ce dernier vous serez redirigé vers la page de gestion des comptes du client sélectionné.
+
+image::RessourcesAdoc/img/MenuClient.png[Alt Page de connexion, 50%]
+
+Une fois sur la page des comptes du client il vous suffit de cliquer sur "Nouveau Compte" ce qui lancera la page de création d'un nouveau compte.
+
+image::RessourcesAdoc/img/MenuCompte.png[Alt Page de connexion, 50%]
+
+Vous voici sur la page de création du compte, les informations "Id client", "Id agence" et "Numéro compte" sont remplis automatiquement et non modifiable, en dessous vous trouverez la case "Découvert autorisé" que vous pouvez modifiez afin de saisir le découvert que vous souhaitez accorder à ce compte. Dernièrement vous trouverez la case "Solde (premier dépot)" que vous pouvez également modifier afin d'effectuer un premier dépot sur le compte du montant saisie. Une fois toutes les informations saisie vous pouvez alors cliquez sur le bouton "Ajouter" afin de valider la création du compte ou alors cliquer sur "Annuler" afin d'annuler la création du compte.
+
+image::RessourcesAdoc/img/CréationCompte.png[Alt Page de connexion, 50%]
+
+===== Cloturation d'un compte :
+``Réalisée par Yannis Gibert``
+
+Une fois sur la page d'acceuil il vous suffit de passer la souris sur le bouton "Gestion" ce qui ouvre un menu déroulant permettant de sélectionner entre Clients et Employés. Ici ce que nous intéressera est la partie Clients, il suffit donc de cliquer dessus afin d'accéder au menu des clients.
+
+image::RessourcesAdoc/img/MenuGestion.png[Alt Page de connexion, 50%]
+
+Une fois sur la page des clients vous pouvez voir la liste de tout les clients étant dans la même agence que le guichetier. Vous pouvez en cliquant sur un client activer le bouton "Comptes client", en cliquant sur ce dernier vous serez redirigé vers la page de gestion des comptes du client sélectionné.
+
+image::RessourcesAdoc/img/MenuClient.png[Alt Page de connexion, 50%]
+
+Une fois sur la page des comptes du client il vous suffit de cliquer sur un compte afin de le sélectionner. Si le compte n'est pas cloturé alors le bouton "Cloturer" sera disponible, vous pouvez savoir si un compte est cloturé ou non en regardant la liste, si il est indiqué "Ouvert" cela signifie que le compte n'est pas cloturé et sinon si il est indiqué "Cloture" alors cela signifie que le compte est cloturé. En cliquant dessus la fenêtre de cloturation du compte s'ouvre.
+
+image::RessourcesAdoc/img/MenuCompte2.png[Alt Page de connexion, 50%]
+
+Vous voici sur la page de cloturation du compte, vous ne pouvez modifier aucune information sur cette page mais seulement les consulter afin de s'assurer qu'il s'agit bien du bon compte. Vous trouverez en bas un bouton "Supprimer", en cliquant dessus si le solde du compte est inférieur ou égal à 0 alors la page se ferme et le compte sera alors cloturé.
+
+image::RessourcesAdoc/img/CloturerCompte.png[Alt Page de connexion, 50%]
+
+Néanmoins si le solde du compte n'est pas égal à 0 alors un message d'erreur s'affichera et empêchera la cloturation du compte, en cliquant sur "OK" vous retournez sur la page de gestion des comptes du client.
+
+image::RessourcesAdoc/img/ErreurCloturation.png[Alt Page de connexion, 50%]
+
+===== Modification d'un compte :
+``Réalisée par Yannis Gibert``
+
+Une fois sur la page d'accueil, il vous suffit de passer la souris sur le bouton "Gestion" ce qui ouvre un menu déroulant permettant de sélectionner entre Clients et Employés. Ici ce que nous intéressera est la partie Clients, il suffit donc de cliquer dessus afin d'accéder au menu des clients.
+
+image::RessourcesAdoc/img/MenuGestion.png[Alt Page de connexion, 50%]
+
+Une fois sur la page des clients vous pouvez voir la liste de tout les clients étant dans la même agence que le guichetier. Vous pouvez en cliquant sur un client activer le bouton "Comptes client", en cliquant sur ce dernier vous serez redirigé vers la page de gestion des comptes du client sélectionné.
+
+image::RessourcesAdoc/img/MenuClient.png[Alt Page de connexion, 50%]
+
+Une fois sur la page des comptes du client il vous suffit de cliquer sur un compte afin de le sélectionner. Si le compte n'est pas cloturé alors le bouton "Modifier" sera disponible, vous pouvez savoir si un compte est cloturé ou non en regardant la liste, si il est indiqué "Ouvert" cela signifie que le compte n'est pas cloturé et sinon si il est indiqué "Cloture" alors cela signifie que le compte est cloturé. En cliquant dessus la fenêtre de modification du compte s'ouvre.
+
+image::RessourcesAdoc/img/MenuCompte3.png[Alt Page de connexion, 50%]
+
+Vous voici sur la page de modification du compte, vous ne pouvez y modifier qu'une seule information qui est le Découvert Autorisé. Une fois les modifications effectuées il vous suffit de cliquer sur "Modifier" afin de valider la modification du compte
+
+image::RessourcesAdoc/img/ModifierCompte.png[Alt Page de connexion, 50%]
+
+===== Débit d'un compte :
+``Réalisé par Julien Couderc ``
+
+Pour effectuer un débit, il vous suffit de vous connecter, puis passer la souris sur le bouton "Gestion" ce qui ouvre un menu déroulant permettant de sélectionner entre Clients et Employés. Ici ce que nous intéressera est la partie Clients, il suffit donc de cliquer dessus afin d'accéder au menu des clients.
+
+image::RessourcesAdoc/img/MenuGestion.png[Alt Gestion Client, 50%]
+
+Une fois sur la page des clients vous pouvez voir la liste de tout les clients étant dans la même agence que le guichetier. Vous pouvez en cliquant sur un client activer le bouton "Comptes client", en cliquant sur ce dernier vous serez redirigé vers la page de gestion des comptes du client sélectionné.
+
+image::RessourcesAdoc/img/MenuClient.png[Alt Comptes Clients, 50%]
+
+Sur cette nouvelle page, vous devez cliquer sur un compte ouvert, puis cliquer sur voir opérations de ce compte.
+
+image::RessourcesAdoc/img/voirOperations.png[Alt Voir Opérations, 50%]
+
+A partir de là, vous pouvez choisir l'opération que vous voulez, en ce qui nous concerne actuellement, nous allons faire un débit.
+
+image::RessourcesAdoc/img/OperationDebit.png[Alt Choix Débit, 50%]
+
+Une fois la page ouverte, vous pouvez sélectionner le type de débit que vous voulez effectuer, vous avez le choix entre "Retrait Espèces" et "Retrait Carte Bleue".
+
+image::RessourcesAdoc/img/OperationTypeDebit.png[Alt Choix Type Débit, 50%]
+
+Ensuite, il vous faut entrer un montant valide, c'est à dire, que le solde du compte ne dépasse pas le dévouvert maximum autorisé et puis cliquer sur effectuer le débit.
+
+image::RessourcesAdoc/img/OperationDebitEffectue.png[Alt Effectue Débit, 50%]
+
+Une fois le débit effectué, l'opération est ajoutée à la liste des opérations avec le type de l'opération ainsi que le montant.
+
+image::RessourcesAdoc/img/OperationDebitResultat.png[Alt Liste Opération, 50%]
+
+
+==== Crédit d'un compte :
+``Réalisé par Julien Couderc ``
+
+Pour réalisé un crédit, il suffit de répéter les étapes précédentes jusqu'à arriver à la sélection de l'opération, il vous faut cliquer sur "Enregistrer crédit".
+
+image::RessourcesAdoc/img/OperationCredit.png[Alt Choix crédit, 50%]
+
+Une fois la page ouverte, vous pouvez sélectionner le type de débit que vous voulez effectuer, vous avez le choix entre "Dépôt Espèces" et "Dépôt Chèque".
+
+image::RessourcesAdoc/img/OperationTypeCredit.png[Alt Choix type crédit, 50%]
+
+Ensuite, il vous faut entrer un montant valide, c'est à dire, que le montant ne doit pas dépasser 1 million d'euros et puis cliquer sur effectuer le crédit.
+
+image::RessourcesAdoc/img/OperationCreditEffectue.png[Alt Effectuer crédit, 50%]
+
+Une fois le crédit effectué, l'opération est ajoutée à la liste des opérations avec le type de l'opération ainsi que le montant.
+
+image::RessourcesAdoc/img/OperationCreditEffectues.png[Alt Liste Opération, 50%]
+
+
+==== Virement d'un compte à un autre :
+``Réalisé par Julien Couderc ``
+
+Pour réalisé un virement, il suffit de répéter les étapes précédentes jusqu'à arriver à la sélection de l'opération, il vous faut cliquer sur "Enregistrer virement".
+
+image::RessourcesAdoc/img/OperationVirement.png[Alt Choix virement, 50%]
+
+Une fois la page ouverte, vous devez entrer un numéro de compte présent dans l'agence.
+
+image::RessourcesAdoc/img/OperationTypeVirement.png[Alt Choix compte virement, 50%]
+
+Ensuite, il vous faut entrer un montant valide, c'est à dire, que le montant ne doit pas dépasser 1 million d'euros mais aussi vous ne devez pas dépasser votre découvert maximal autorisé et puis cliquer sur effectuer le virement.
+
+image::RessourcesAdoc/img/OperationVirementEffectue.png[Alt Effectuer virement, 50%]
+
+Une fois le virement effectué, l'opération est ajoutée à la liste des opérations avec le type de l'opération ainsi que le montant. Cette opération est ajoutée aux deux comptes concernés.
+
+image::RessourcesAdoc/img/OperationVirementEmetteur.png[Alt Liste Opération Emetteur, 50%]
+
+image::RessourcesAdoc/img/OperationVirementDestinataire.png[Alt Liste Opération Destinataire, 50%]
+
+==== Créer un compte :
 ``Réalisé par Yannis Gibert``
 
 Voici la page des comptes avant la création d'un nouveau compte : 
@@ -376,7 +390,7 @@ Suite à la création du compte vous pouvez voir comme ci-dessous que le nouveau
 
 image::RessourcesAdoc/img/ResultatCreerCompte.png[Alt Page de connexion, 50%]
 
-=== Modifier un compte :
+==== Modifier un compte :
 ``Réalisé par Yannis Gibert``
 
 Voici la page des comptes avant la modification, on prendra comme exemple le dernier compte de la liste dont on va modifier le découvert autorisé pour le passé de -200 à -6000 : 
@@ -387,7 +401,7 @@ Suite à la modification du compte vous pouvez voir comme ci-dessous que le comp
 
 image::RessourcesAdoc/img/ResultatModifierCompte.png[Alt Page de connexion, 50%]
 
-=== Clôturer un compte :
+==== Clôturer un compte :
 ``Réalisé par Yannis Gibert``
 
 Voici la page des comptes avant la cloturation d'un compte, nous allons cloturer le dernier compte de la liste en guise d'exemple.
@@ -398,7 +412,7 @@ Suite à la clôturation du compte vous pouvez voir comme ci-dessous que le comp
 
 image::RessourcesAdoc/img/ResultatCloturerCompte.png[Alt Page de connexion, 50%]
 
-=== Générer une relevé de compte :
+==== Générer une relevé de compte :
 ``Réalisé par Enzo Fournet``
 
 *Prérequis : Être connecté en tant que guichetier ou chef d'agence et s'être rendu dans la gestion des clients*
@@ -421,29 +435,10 @@ Exemple de relevé de compte :
 
 image::RessourcesAdoc/img/Relevé-de-compte.jpeg[Alt Page de connexion, 50%]
 
-=== Faire un débit exceptionnel :
-``Réalisé par Yannis Gibert``
-
-*Prérequis : Être connecté en tant que chef d'agence et s'être rendu dans la gestion des opérations d'un compte*
-
-Lorsque vous arrivé dans la page de gestion des opérations du compte il vous suffit de selectionner "Enregistrer débit", ce qui ouvrira la page de débit d'un compte.
-
-image::RessourcesAdoc/img/DebitExce.png[Alt Page des opérations, 50%]
-
-Une fois sur la page d'enregistrement des débits vous devez rentrer un montant du débit, selectionner le type d'opération et alors si vous le souhaitez vous pouvez cliquer sur le bouton "Debit Exceptionnel" qui n'est visible que si vous êtes connecté en tant que chef d'agence. En selectionnant ce dernier vous autoriser alors l'opération à dépasser le Découvert Autorisé.
-
-image::RessourcesAdoc/img/DebitExcePage.png[Alt Page de débit, 50%]
-
-En cliquant sur "Debiter" le debit s'effectuera et débitera le compte du montant choisit même si après l'opération le compte aura dépassé son Découvert autorisé.
-
-Et vous verrez alors le débit sur la page des opérations.
-
-image::RessourcesAdoc/img/DebitExceResultat.png[Alt Page de débit, 50%]
-
-=== Gestion des Prélèvements automatique :
+==== Gestion des Prélèvements automatique :
 ``Réalisée par Yannis Gibert``
 
-==== Accéder à la gestion des prélèvements automatique :
+===== Accéder à la gestion des prélèvements automatique :
 *Prérequis : Être connecté en tant que chef d'agence ou guichetier et être sur la page de gestion des comptes.*
 
 Une fois sur la page de gestion des comptes en cliquant sur un compte non cloturé le bouton "Prélèvement" se dégrisera vous laissant alors la possibilité de cliquer dessus.
@@ -457,7 +452,7 @@ image::RessourcesAdoc/img/MenuPrelev.png[Alt page de gestion des prélèvements,
 Vous pouvez voir la liste des prélèvements automatique du compte, vous avez alors la possibilité de consulter, créer, modifier ou supprimer un prélèvement automatique.
 
 
-==== Consultation des prélèvement automatique :
+===== Consultation des prélèvement automatique :
 *Prérequis : Être connecté en tant que chef d'agence ou guichetier et s'être rendu sur la page de gestion des prélèvements automatique*
 
 Une fois que vous avez accédé à la gestion des prélèvements automatique vous avez la possibilité de consulter tout les prélèvements automatique du compte. Vous pouvez alors voir toute les informations sur ces derniers comme le montant du prélèvement, la date d'occurence du prélèvement, le bénéficiaire l'id du compte à qui appartient le prélèvement et l'id du prélèvement.
@@ -465,7 +460,7 @@ Une fois que vous avez accédé à la gestion des prélèvements automatique vou
 image::RessourcesAdoc/img/MenuPrelevConsultation.png[Alt liste des prélèvements, 70%]
 
 
-==== Création d'un nouveau prélèvement:
+===== Création d'un nouveau prélèvement:
 
 *Prérequis : Être connecté en tant que chef d'agence ou guichetier et s'être rendu sur la page de gestion des prélèvements automatique*
 
@@ -503,7 +498,7 @@ Vous verrez alors dans la liste des prélèvements le prélèvement avec les mod
 
 image::RessourcesAdoc/img/ModifPrelevResultat.png[Alt resultat de la modification du prélèvement, 70%]
 
-==== Suppression d'un prélèvement automatique :
+===== Suppression d'un prélèvement automatique :
 *Prérequis : Être connecté en tant que chef d'agence ou guichetier et s'être rendu sur la page de gestion des prélèvements automatique*
 
 Une fois que vous avez accédé à la gestion des prélèvements.
