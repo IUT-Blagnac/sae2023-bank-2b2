@@ -715,67 +715,6 @@ image::RessourceAdoc/img/codeVirement.png[Alt code virement, 75%]
 Ce code est essentiel pour enregistrer les virements dans la base de données SQL, en fonction de la procédure "enregistrerVirement". Il gère également les types d'opérations et les montants à virer.
 Lorsqu'on effectue un virement, on fait un débit du côté du compte source et on réalisé un crédit vers le compte du destinataire.
 
-=== Chef d'agence
-
-==== Simuler un emprunt / Simuler une assurance d'emprunt - Julien Couderc
-
-Une simulation d'emprunt est en règle générale, un document émis par une banque permettant de réaliser le meilleure choix en terme de durée de remboursement et de mensualités. Ces simulations sont généralement toujours réalisées avant de faire directement une demande de crédit, sauf si le client connaît déjà le budget qu'il possède. +
-Ici, seul un chef d'agence peut s'occuper, avec un client, de réaliser une simulation d'emprunt : les guichetiers n'ayant pas les droits de disposer de cette fonctionnalité. +
-Le chef d'agence pourra alors effectuer la simulation d'emprunt avec ou sans assurance. Pour cela, il peut entrer le montant de l'emprunt, la durée de l'emprunt, le taux de l'emprunt, le type de remboursement mois/année, les frais de dossiers, et si le client veut une assurance avec le taux de l'assurance. +
-Il peut ensuite générer un pdf avec le récapitulatif de l'emprunt, avec la génération du tableau de la simulation d'emprunt sans assurance, puis si l'option assurance est activée, il y aura un tableau des frais d'assurance et enfin un tableau avec les frais d'assurance et la simulation d'emprunt. Pour finir, il y a un récapitulatif de ce que doit payer le client. +
-
-Avec les conseils de la professeur Marianne de Michiel, la fonctionnalité simuler un emprunt et simuler une assurance d'emprunt n'utilise pas les classes Emprunt et AssuranceEmprunt, par cela, le diagramme de classe n'est pas adapté à l'application.
-
-===== Partie du use case conforme
-
-image::RessourceAdoc/img/emprunt.png[Simulation]
-
-===== Partie du diagramme de classe conforme
-
-image:img/dcemprunt.PNG[Simulation]
-
-La tâche virement inclut 3 classes dans ce diagramme de classes :
-
-____
-• La classe ``Client``, n'étant seulement dédiée qu'en temps que support et donc en lecture, étant donné qu'elle prendra en compte les informations de celui-ci sans pour autant les modifier. En effet, il est seulement nécessaire de savoir quel client envisage une simulation. ;
-____
-
-Dans le code déjà présent, la classe EmpruntSimulationController permet de faire la simulation de l'emprunt et de l'assurance, grâce aux conseils de Marianne de Michiel. 
-
-===== Principales fonctionnalités
-
-Les principales fonctionnalités ont été introduites de manière brève dans l'introduction de cette opération. Pour plus de détails, veuillez vous référer à la https://github.com/IUT-Blagnac/sae2022-bank-4a2/blob/main/V1/Documentation%20Utilisateur%20V1.adoc[_documentation utilisateur_].
-
-===== Classes impliquées à l'implémentation de la fonction
-
-
-*Côté ``application`` :* +
-____
-• _DailyBankState.java_
-____
-
-*Côté ``application.control`` :* +
-____
-• _EmpruntSimulation.java_
-____
-
-*Côté ``application.view`` :* +
-____
-• _ComptesManagementController.java_
-• _EmpruntSimulationController.java_
-____
-
-===== Éléments à connaître / spécificités
-
-image::/V2/images/mensualite.PNG[Simulation]
-
-Il est toujours intéressant de savoir quels facteurs sont pris en compte lors du calcul de la mensualité d'un client, en particulier lorsque le taux d'intérêt est différent de zéro. Ci-dessous, vous trouverez une formule permettant de calculer la mensualité dans ce cas précis.
-
-===== Extraits de code commentés pour des points importants
-
-image::/V2/images/dosimulation.PNG[Simulation]
-
-Voici un morceau de code plutôt important pour effectuer une simulation d'emprunt/assurance, c'est ici qu'est géré la visibilité de la simulation d'emprunt, en effet, si l'employé n'est pas chef d'agence alors il ne verra pas ce bouton et ne pourra pas faire la simulation.
 
 ===  CRUD employés - Enzo Fournet
 
