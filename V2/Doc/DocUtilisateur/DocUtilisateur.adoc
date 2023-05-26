@@ -2,8 +2,8 @@
 :doctype: book
 :toc: left
 :toc-title: Table des matières
-:toclevels: 4
-:sectnums:
+:toclevels: 5
+:sectnums: 5
 Auteurs: Yannis Gibert, Julien Couderc, Enzo Fournet
 
 Date: {docdate} +
@@ -57,10 +57,12 @@ image::RessourcesAdoc/img/co-guich.png[Alt Page de connexion d'un guichetier, 50
 
 == Utilisation de l'application
 
-=== Gestion des Employés :
+=== Chef d'agence
+
+==== Gestion des Employés :
 ``Réalisée par Enzo Fournet``
 
-=== Accéder à la gestion des employés :
+===== Accéder à la gestion des employés :
 *Prérequis : Être connecté en tant que chef d'agence.*
 
 Une fois connecter en tant que chef s'agence vous pouvez 
