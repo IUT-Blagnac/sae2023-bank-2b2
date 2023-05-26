@@ -77,6 +77,7 @@ public class OperationsManagement {
 
 
 	/**
+	 * @author Julien Couderc
 	 * Cette méthode permet d'enregistrer une opération de débit.
 	 *
 	 * @return Operation
@@ -106,6 +107,7 @@ public class OperationsManagement {
 	}
 
 	/**
+	 * @author Julien Couderc
 	 * Cette méthode permet d'enregistrer une opération de crédit.
 	 *
 	 * @return Operation
@@ -135,6 +137,8 @@ public class OperationsManagement {
 	}
 
 	/**
+	 * @author Julien Couderc
+	 *  
 	 * Cette méthode permet d'enregistrer un virement.
 	 *
 	 * @return Operation

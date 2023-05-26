@@ -108,14 +108,26 @@ public class EmpruntSimulationController {
 		this.configure();
 	}
 
+	/**
+	 * Configure la fenêtre principale en définissant le comportement lors de la
+	 * fermeture. Lorsque l'utilisateur essaie de fermer la fenêtre, la méthode
+	 * `closeWindow()` est appelée.
+	 */
 	private void configure() {
 		this.primaryStage.setOnCloseRequest(e -> this.closeWindow(e));
 	}
 
+	/**
+	 * Affiche une boîte de dialogue et attend que l'utilisateur la ferme.
+	 */
 	public void displayDialog() {
 		this.primaryStage.showAndWait();
 	}
 
+	/**
+	 * Initialise les éléments de l'interface utilisateur. Configure les boutons
+	 * radio et ajoute un écouteur de changement de sélection.
+	 */
 	public void initialize() {
 		// Créer un groupe pour les boutons radios
 		this.toggleGroup = new ToggleGroup();
@@ -144,8 +156,6 @@ public class EmpruntSimulationController {
 		});
 	}
 
-	// Gestion du stage
-
 	/**
 	 * Gère l'événement de fermeture de la fenêtre.
 	 *
@@ -166,6 +176,16 @@ public class EmpruntSimulationController {
 		this.primaryStage.close();
 	}
 
+	/**
+	 * 
+	 * @author Julien Couderc 
+	 * Effectue la simulation d'emprunt en récupérant les
+	 * valeurs des champs de saisie et en effectuant les calculs nécessaires
+	 * pour générer les tableaux d'amortissement. Si une valeur saisie est
+	 * invalide, elle est mise en surbrillance en rouge et la méthode se
+	 * termine prématurément. Une fois les calculs effectués, un fichier PDF
+	 * contenant les tableaux est généré.
+	 */
 	@FXML
 	private void doSimulerEmprunt() {
 
@@ -183,8 +203,6 @@ public class EmpruntSimulationController {
 		boolean assuranceActive = this.rbOui.isSelected(); // Vérifie si l'assurance est active
 		boolean remboursementAnnee = this.rbAnnee.isSelected();
 
-		
-
 		try {
 			this.montantEmprunt = Double.parseDouble(this.txtMontant.getText());
 			if (this.montantEmprunt <= 0)
@@ -195,7 +213,7 @@ public class EmpruntSimulationController {
 			this.txtMontant.requestFocus();
 			return;
 		}
-		
+
 		try {
 			this.duree = Integer.parseInt(this.txtDuree.getText());
 			if (this.duree <= 0 || this.duree > 75)
@@ -206,7 +224,7 @@ public class EmpruntSimulationController {
 			this.txtDuree.requestFocus();
 			return;
 		}
-		
+
 		try {
 			this.tauxEmprunt = Double.parseDouble(this.txtTaux.getText());
 			if (this.tauxEmprunt <= 0 || this.tauxEmprunt >= 100)
@@ -217,7 +235,7 @@ public class EmpruntSimulationController {
 			this.txtTaux.requestFocus();
 			return;
 		}
-		
+
 		try {
 			this.fraisDossier = Double.parseDouble(this.txtFraisDossier.getText());
 			if (this.montantEmprunt < 0)
@@ -228,7 +246,7 @@ public class EmpruntSimulationController {
 			this.txtFraisDossier.requestFocus();
 			return;
 		}
-		
+
 		if (assuranceActive) {
 			try {
 				this.tauxAssurance = Double.parseDouble(this.txtTauxAssurance.getText());
@@ -294,19 +312,19 @@ public class EmpruntSimulationController {
 			capitalRestantFinPeriode = capitalRestantDebutPeriode - principal;
 
 			tableauRemboursementBuilder.append(periode).append("\t")
-			.append(decimalFormat.format(capitalRestantDebutPeriode)).append("\t")
-			.append(decimalFormat.format(interets)).append("\t").append(decimalFormat.format(principal))
-			.append("\t").append(decimalFormat.format(rembourser)).append("\t")
-			.append(decimalFormat.format(capitalRestantFinPeriode)).append("\n");
+					.append(decimalFormat.format(capitalRestantDebutPeriode)).append("\t")
+					.append(decimalFormat.format(interets)).append("\t").append(decimalFormat.format(principal))
+					.append("\t").append(decimalFormat.format(rembourser)).append("\t")
+					.append(decimalFormat.format(capitalRestantFinPeriode)).append("\n");
 
 			if (assuranceActive) {
 				tableauRemboursementAvecAssuranceBuilder.append(periode).append("\t")
-				.append(decimalFormat.format(capitalRestantDebutPeriode)).append("\t")
-				.append(decimalFormat.format(interets)).append("\t").append(decimalFormat.format(principal))
-				.append("\t").append(decimalFormat.format(rembourser)).append("\t")
-				.append(decimalFormat.format(capitalRestantFinPeriode)).append("\t")
-				.append(decimalFormat.format(echeanceAssurance)).append("\t")
-				.append(decimalFormat.format(echeanceAssurance + rembourser)).append("\n");
+						.append(decimalFormat.format(capitalRestantDebutPeriode)).append("\t")
+						.append(decimalFormat.format(interets)).append("\t").append(decimalFormat.format(principal))
+						.append("\t").append(decimalFormat.format(rembourser)).append("\t")
+						.append(decimalFormat.format(capitalRestantFinPeriode)).append("\t")
+						.append(decimalFormat.format(echeanceAssurance)).append("\t")
+						.append(decimalFormat.format(echeanceAssurance + rembourser)).append("\n");
 
 			}
 
@@ -315,7 +333,7 @@ public class EmpruntSimulationController {
 
 		if (assuranceActive) {
 			tableauAssuranceBuilder.append(echeanceAssurance).append("\t").append(decimalFormat.format(rembourser))
-			.append("\t").append(decimalFormat.format(echeanceAssurance + rembourser)).append("\n");
+					.append("\t").append(decimalFormat.format(echeanceAssurance + rembourser)).append("\n");
 		}
 
 		String tableauRemboursement = tableauRemboursementBuilder.toString();
@@ -336,7 +354,8 @@ public class EmpruntSimulationController {
 	}
 
 	/**
-	 * Génère et permet de télécharger un fichier PDF contenant le tableau d'amortissement du prêt.
+	 * Génère et permet de télécharger un fichier PDF contenant le tableau
+	 * d'amortissement du prêt.
 	 * 
 	 * @author Julien Couderc
 	 *
@@ -384,65 +403,54 @@ public class EmpruntSimulationController {
 				} catch (URISyntaxException e) {
 				}
 
-				Paragraph title = new Paragraph("Tableau d'amortissement d'emprunt")
-				        .setFont(font).setFontSize(18);
+				Paragraph title = new Paragraph("Tableau d'amortissement d'emprunt").setFont(font).setFontSize(18);
 				title.setTextAlignment(TextAlignment.CENTER);
 				document.add(title);
 
 				// Ajouter la date à droite du titre
 				Paragraph date = new Paragraph("Date de la simulation de l'emprunt : ")
-				        .add(new Text(java.time.LocalDate.now().toString()).setFont(contentFont))
-				        .setFontSize(12);
+						.add(new Text(java.time.LocalDate.now().toString()).setFont(contentFont)).setFontSize(12);
 				date.setTextAlignment(TextAlignment.RIGHT);
 				document.add(date);
 
-				Paragraph infosClient = new Paragraph()
-				        .add(new Text("Client : ").setFont(font))
-				        .add(new Text(this.client.nom + " " + this.client.prenom + " (ID : " + this.client.idNumCli + ")").setFont(contentFont))
-				        .add("\n")
-				        .add(new Text("Mail :  ").setFont(font))
-				        .add(new Text(this.client.email).setFont(contentFont))
-				        .add("\n")
-				        .add(new Text("Adresse : ").setFont(font))
-				        .add(new Text(this.client.adressePostale).setFont(contentFont))
-				        .add("\n")
-				        .add(new Text("De l'agence : ").setFont(font))
-				        .add(new Text(this.dailyBankState.getAgenceActuelle().nomAg + " (ID : " + this.dailyBankState.getAgenceActuelle().idAg + ")").setFont(contentFont))
-				        .setFontSize(12);
+				Paragraph infosClient = new Paragraph().add(new Text("Client : ").setFont(font))
+						.add(new Text(
+								this.client.nom + " " + this.client.prenom + " (ID : " + this.client.idNumCli + ")")
+								.setFont(contentFont))
+						.add("\n").add(new Text("Mail :  ").setFont(font))
+						.add(new Text(this.client.email).setFont(contentFont)).add("\n")
+						.add(new Text("Adresse : ").setFont(font))
+						.add(new Text(this.client.adressePostale).setFont(contentFont)).add("\n")
+						.add(new Text("De l'agence : ").setFont(font))
+						.add(new Text(this.dailyBankState.getAgenceActuelle().nomAg + " (ID : "
+								+ this.dailyBankState.getAgenceActuelle().idAg + ")").setFont(contentFont))
+						.setFontSize(12);
 				infosClient.setTextAlignment(TextAlignment.LEFT);
 				document.add(infosClient);
 
-				
 				String typeRemboursement = "";
 
 				if (remboursementAnnee) {
-				    typeRemboursement = "Année";
+					typeRemboursement = "Année";
 				} else {
-				    typeRemboursement = "Mois";
+					typeRemboursement = "Mois";
 				}
 
-				Paragraph infosEmprunt = new Paragraph()
-				        .add(new Text("Montant emprunté : ").setFont(font))
-				        .add(new Text(this.montantEmprunt + " euros").setFont(contentFont))
-				        .add("\n")
-				        .add(new Text("Durée de l'emprunt : ").setFont(font))
-				        .add(new Text(this.duree + " ans").setFont(contentFont))
-				        .add("\n")
-				        .add(new Text("Taux de l'emprunt : ").setFont(font))
-				        .add(new Text(this.tauxEmprunt + "%").setFont(contentFont))
-				        .add("\n")
-				        .add(new Text("Frais de dossier : ").setFont(font))
-				        .add(new Text(this.fraisDossier + " euros").setFont(contentFont))
-				        .add("\n")
-				        .add(new Text("Type de remboursement : ").setFont(font))
-				        .add(new Text(typeRemboursement).setFont(contentFont))
-				        .add("\n")
-				        .setFontSize(12);
-				
+				Paragraph infosEmprunt = new Paragraph().add(new Text("Montant emprunté : ").setFont(font))
+						.add(new Text(this.montantEmprunt + " euros").setFont(contentFont)).add("\n")
+						.add(new Text("Durée de l'emprunt : ").setFont(font))
+						.add(new Text(this.duree + " ans").setFont(contentFont)).add("\n")
+						.add(new Text("Taux de l'emprunt : ").setFont(font))
+						.add(new Text(this.tauxEmprunt + "%").setFont(contentFont)).add("\n")
+						.add(new Text("Frais de dossier : ").setFont(font))
+						.add(new Text(this.fraisDossier + " euros").setFont(contentFont)).add("\n")
+						.add(new Text("Type de remboursement : ").setFont(font))
+						.add(new Text(typeRemboursement).setFont(contentFont)).add("\n").setFontSize(12);
+
 				if (assuranceActive) {
-				    infosEmprunt.add(new Text("Taux de l'assurance : ").setFont(font));
-				    infosEmprunt.add(new Text(this.tauxAssurance +"%").setFont(contentFont));
-				} 
+					infosEmprunt.add(new Text("Taux de l'assurance : ").setFont(font));
+					infosEmprunt.add(new Text(this.tauxAssurance + "%").setFont(contentFont));
+				}
 				infosEmprunt.setTextAlignment(TextAlignment.LEFT);
 				document.add(infosEmprunt);
 
@@ -452,14 +460,15 @@ public class EmpruntSimulationController {
 
 				Table table = new Table(headers.length);
 				table.setWidth(UnitValue.createPercentValue(100));
-				
+
 				// Ajouter les en-têtes de colonne
 				Cell headerCell;
 
 				headerCell = new Cell().add(new Paragraph("Numéro période").setFont(font).setFontSize(10));
 				table.addCell(headerCell);
 
-				headerCell = new Cell().add(new Paragraph("Capital Restant du en début de période").setFont(font).setFontSize(10));
+				headerCell = new Cell()
+						.add(new Paragraph("Capital Restant du en début de période").setFont(font).setFontSize(10));
 				table.addCell(headerCell);
 
 				headerCell = new Cell().add(new Paragraph("Montant des intérêts").setFont(font).setFontSize(10));
@@ -471,10 +480,9 @@ public class EmpruntSimulationController {
 				headerCell = new Cell().add(new Paragraph("Montant à rembourser").setFont(font).setFontSize(10));
 				table.addCell(headerCell);
 
-				headerCell = new Cell().add(new Paragraph("Capital Restant du en fin de période").setFont(font).setFontSize(10));
+				headerCell = new Cell()
+						.add(new Paragraph("Capital Restant du en fin de période").setFont(font).setFontSize(10));
 				table.addCell(headerCell);
-
-
 
 				for (String row : rows) {
 					String[] cells = row.split("\t");
@@ -508,10 +516,12 @@ public class EmpruntSimulationController {
 					headerCell = new Cell().add(new Paragraph("Echeance de l'assurance").setFont(font).setFontSize(10));
 					tableAssu.addCell(headerCell);
 
-					headerCell = new Cell().add(new Paragraph("Montant à rembourser hors assurance").setFont(font).setFontSize(10));
+					headerCell = new Cell()
+							.add(new Paragraph("Montant à rembourser hors assurance").setFont(font).setFontSize(10));
 					tableAssu.addCell(headerCell);
 
-					headerCell = new Cell().add(new Paragraph("Montant à rembourser hors assurance").setFont(font).setFontSize(10));
+					headerCell = new Cell()
+							.add(new Paragraph("Montant à rembourser hors assurance").setFont(font).setFontSize(10));
 					tableAssu.addCell(headerCell);
 
 					for (String row : rowsAssu) {
@@ -545,7 +555,8 @@ public class EmpruntSimulationController {
 					headerCell = new Cell().add(new Paragraph("Numéro période").setFont(font).setFontSize(10));
 					tableEmpruntAssu.addCell(headerCell);
 
-					headerCell = new Cell().add(new Paragraph("Capital Restant du en début de période").setFont(font).setFontSize(10));
+					headerCell = new Cell()
+							.add(new Paragraph("Capital Restant du en début de période").setFont(font).setFontSize(10));
 					tableEmpruntAssu.addCell(headerCell);
 
 					headerCell = new Cell().add(new Paragraph("Montant des intérêts").setFont(font).setFontSize(10));
@@ -557,13 +568,15 @@ public class EmpruntSimulationController {
 					headerCell = new Cell().add(new Paragraph("Montant à rembourser").setFont(font).setFontSize(10));
 					tableEmpruntAssu.addCell(headerCell);
 
-					headerCell = new Cell().add(new Paragraph("Capital Restant du en fin de période").setFont(font).setFontSize(10));
+					headerCell = new Cell()
+							.add(new Paragraph("Capital Restant du en fin de période").setFont(font).setFontSize(10));
 					tableEmpruntAssu.addCell(headerCell);
 
 					headerCell = new Cell().add(new Paragraph("Montant de l'assurance").setFont(font).setFontSize(10));
 					tableEmpruntAssu.addCell(headerCell);
 
-					headerCell = new Cell().add(new Paragraph("Montant à rembourser avec l'assurance").setFont(font).setFontSize(10));
+					headerCell = new Cell()
+							.add(new Paragraph("Montant à rembourser avec l'assurance").setFont(font).setFontSize(10));
 					tableEmpruntAssu.addCell(headerCell);
 
 					for (String row : rowsEmpruntAssu) {
@@ -593,8 +606,8 @@ public class EmpruntSimulationController {
 					Paragraph coutTotal = new Paragraph("Le coût total de l'emprunt s'élève à "
 							+ decimalFormat.format(coutTotalCredit) + " euros, dont "
 							+ decimalFormat.format(totalAssurance) + " euros de frais d'assurance et "
-							+ decimalFormat.format(fraisDossier) + " euros de de dossier. ")
-							.setFont(contentFont).setFontSize(12);
+							+ decimalFormat.format(fraisDossier) + " euros de de dossier. ").setFont(contentFont)
+							.setFontSize(12);
 					document.add(coutTotal);
 
 					String typeRemboursementLabel = remboursementAnnee ? "annuelle" : "mensuelle";
@@ -607,8 +620,8 @@ public class EmpruntSimulationController {
 					document.add(mensualite);
 				} else {
 					Paragraph coutTotal = new Paragraph(
-							"Le coût total de l'emprunt s'élève à " + decimalFormat.format(coutTotalCredit) + " euros, dont "
-							+ decimalFormat.format(fraisDossier) + " euros de de dossier. ")
+							"Le coût total de l'emprunt s'élève à " + decimalFormat.format(coutTotalCredit)
+									+ " euros, dont " + decimalFormat.format(fraisDossier) + " euros de de dossier. ")
 							.setFont(contentFont).setFontSize(12);
 					document.add(coutTotal);
 
@@ -638,12 +651,29 @@ public class EmpruntSimulationController {
 		}
 	}
 
+	/**
+	 * @author Julien Couderc
+	 *  
+	 * Calcule la mensualité d'un emprunt en fonction du montant, du taux d'intérêt
+	 * et de la durée spécifiés.
+	 * 
+	 * @return La mensualité de l'emprunt.
+	 */
 	private double calculerMensualite() {
 		double tauxMensuel = tauxEmprunt / 100 / 12;
 		int nombreMois = duree * 12;
 		double mensualite = (montantEmprunt * tauxMensuel) / (1 - Math.pow(1 + tauxMensuel, -nombreMois));
 		return mensualite;
 	}
+
+	/**
+	 * @author Julien Couderc
+	 * 
+	 * Calcule l'annuité d'un emprunt en fonction du montant, du taux d'intérêt et
+	 * de la durée spécifiés.
+	 * 
+	 * @return L'annuité de l'emprunt.
+	 */
 
 	private double calculerAnnuité() {
 		double taux = tauxEmprunt / 100;

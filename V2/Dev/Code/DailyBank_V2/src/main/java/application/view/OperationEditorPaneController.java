@@ -41,9 +41,9 @@ public class OperationEditorPaneController {
 	private CompteCourant compteEdite;
 	private Operation operationResultat;
 
-	// Manipulation de la fenêtre
 
 	/**
+	 * @author Julien Couderc
 	 * Initialise le contexte du contrôleur.
 	 *
 	 * @param _containingStage La fenêtre physique contenant la scène
@@ -56,6 +56,7 @@ public class OperationEditorPaneController {
 	}
 
 	/**
+	 * @author Julien Couderc
 	 * Configure la gestion de l'événement de fermeture de la fenêtre primaryStage.
 	 */
 	private void configure() {
@@ -63,6 +64,8 @@ public class OperationEditorPaneController {
 	}
 
 	/**
+	 * @author Julien Couderc
+	 * 
 	 * Affiche la boîte de dialogue de l'éditeur d'opérations.
 	 *
 	 * @param cpte Le compte courant concerné
@@ -146,9 +149,10 @@ public class OperationEditorPaneController {
 		return this.operationResultat;
 	}
 
-	// Gestion du stage
 
 	/**
+	 * 
+	 * @author Julien Couderc
 	 * Gère l'événement de fermeture de la fenêtre.
 	 *
 	 * @param e L'événement de fermeture de la fenêtre
@@ -184,6 +188,8 @@ public class OperationEditorPaneController {
 	private Button btnCancel;
 
 	/**
+	 * 
+	 * @author Julien Couderc
 	 * Annule l'opération en cours et ferme la fenêtre.
 	 */
 	@FXML
@@ -193,8 +199,31 @@ public class OperationEditorPaneController {
 	}
 
 	/**
+	 * 
+	 * @author Julien Couderc
+	 * 
 	 * Ajoute l'opération en cours et ferme la fenêtre.
-	 *
+	 * 
+	 * Cette méthode est appelée lorsque l'utilisateur souhaite ajouter une opération.
+	 * Elle effectue les vérifications nécessaires en fonction de la catégorie de l'opération (débit, crédit, virement)
+	 * et des règles spécifiques à chaque catégorie.
+	 * 
+	 * Pour la catégorie "Débit" :
+	 *   - Le montant doit être un nombre valide et supérieur à zéro.
+	 *   - Si l'utilisateur n'est pas chef d'agence, le débit ne doit pas amener le compte en dessous de son découvert autorisé.
+	 * 
+	 * Pour la catégorie "Crédit" :
+	 *   - Le montant doit être un nombre valide et supérieur à zéro.
+	 *   - Le montant du crédit ne doit pas dépasser 1 million.
+	 * 
+	 * Pour la catégorie "Virement" :
+	 *   - Le montant doit être un nombre valide et supérieur à zéro.
+	 *   - Le montant du virement ne doit pas dépasser 1 million.
+	 *   - Le compte cible du virement doit exister parmi les comptes courants non clôturés des clients de la même agence.
+	 *   - Il est impossible de s'auto-virer (virement vers le même compte).
+	 *   - Si toutes les vérifications sont réussies, l'opération de virement est créée avec les informations nécessaires.
+	 * 
+	 * Une fois l'opération ajoutée, la fenêtre est fermée.
 	 */
 	@FXML
 	private void doAjouter() {

@@ -17,12 +17,16 @@ public class EmpruntSimulation {
 	private EmpruntSimulationController esViewController;
 
 	/**
+	 * @author Julien Couderc
+	 * 
 	 * Constructeur de la classe de SimulerAssuranceEditorPane. Cette classe permet
 	 * de gérer l'affichage d'un dialogue de gestion des comptes.
 	 *
 	 * @param _parentStage Fenêtre parente de LoginDialog (sur laquelle se centrer
 	 *                     et être modale)
 	 * @param _dbstate     Etat courant de l'application
+	 * 
+	 * @param client	   Client courant
 	 *
 	 * @author Julien Couderc
 	 */
@@ -52,6 +56,8 @@ public class EmpruntSimulation {
 	}
 
 	/**
+	 * @author Julien Couderc
+	 * 
 	 * Cette méthode permet d'afficher le dialogue de la simulation d'un emprunt
 	 *
 	 * @return le compte courant edité
