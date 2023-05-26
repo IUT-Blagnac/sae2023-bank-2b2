@@ -321,7 +321,7 @@ image::RessourcesAdoc/img/OperationVirementEmetteur.png[Alt Liste Opération Eme
 
 image::RessourcesAdoc/img/OperationVirementDestinataire.png[Alt Liste Opération Destinataire, 50%]
 
-=== Simuler un emprunt avec/sans assurance
+=== Simuler un emprunt avec/sans assurance :
 ``Réalisé par Julien Couderc``
  
 *Prérequis : Être connecté en tant que chef d'agence et s'être rendu dans la gestion des clients*
@@ -330,7 +330,7 @@ Lorsque vous êtes dans la gestion des clients, un bouton en bas à droite "Simu
 
 image::RessourcesAdoc/img/SimulerEmprunt.png[Alt Simuler emprunt, 50%]
 
-*Cas de la simulation sans asurance* 
+*Cas de la simulation de l'emprunt sans asurance* 
 
 Une fois fait, vous devez entrer les composantes de l'emprunt, il vous faut saisir un montant, une durée en années, un taux d'intérêts en pourcentage et les frais de dossier. Puis il vous faut choisir la façon dont l'emprunt va être payer puis si il faut une assurance d'emprunt ou non.
 
@@ -353,6 +353,7 @@ Sur la deuxième page du document, il y a le récapitulatif des coûts de l'empr
 
 image::RessourcesAdoc/img/pdfEmpruntSansAssu2.png[Alt pdf Emprunt, 50%]
 
+*Cas de la simulation de l'emprunt sans asurance* 
 
 
 
