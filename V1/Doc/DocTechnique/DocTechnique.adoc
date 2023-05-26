@@ -756,7 +756,6 @@ ____
 
 *Côté ``application.control`` :* +
 ____
-• _ComptesManagement.java_
 • _EmpruntSimulation.java_
 ____
 
