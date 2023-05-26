@@ -350,6 +350,8 @@ public class EmployeEditorPaneController {
 	/**
 	 * Vérifie que la chaîne de caractères passée en paramètre ne contient que des caractères alphanumériques <br/>
 	 * et les caractères spéciaux autorisés <br/>
+	 * 
+	 * @author Enzo Fournet
 	 * @param s
 	 * @return
 	 */
@@ -360,6 +362,8 @@ public class EmployeEditorPaneController {
 	/**
 	 * Est appelée lorsque l'utilisateur sélectionne un droit d'accès en l'occuernce un chef d'agence <br/>
 	 * Elle permet de mettre à jour le menu déroulant des droits d'accès pour afficher le droit d'accès sélectionné <br/>
+	 * 
+	 * @author Enzo Fournet
 	 */
 	@FXML
 	private void radioBtnChefAgence() {
@@ -369,6 +373,8 @@ public class EmployeEditorPaneController {
 	/**
 	 * Est appelée lorsque l'utilisateur sélectionne un droit d'accès en l'occuernce un guichetier <br/>
 	 * Elle permet de mettre à jour le menu déroulant des droits d'accès pour afficher le droit d'accès sélectionné <br/>
+	 * 
+	 * @author Enzo Fournet
 	 */
 	@FXML
 	private void radioBtnGuichetier() {

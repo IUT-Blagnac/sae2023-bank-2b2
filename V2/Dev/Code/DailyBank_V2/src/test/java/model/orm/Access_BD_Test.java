@@ -28,6 +28,13 @@ import model.orm.exception.Table;
  */
 public class Access_BD_Test {
 
+    /**
+     * Cette méthode permet de récupérer l'id actuel de la séquence de la table Employe.
+     * @author Enzo Fournet
+     * @return int id actuel de la séquence de la table Employe
+     * @throws DataAccessException
+     * @throws DatabaseConnexionException
+     */
     public int getSeqEmplCurrVal() throws DataAccessException, DatabaseConnexionException {
         int seqEmplGetCurrVal = 0;
         try {
@@ -50,6 +57,13 @@ public class Access_BD_Test {
         }
     }
 
+    /**
+     * Cette méthode permet de récupérer le nombre d'employé en BD.
+     * @author Enzo Fournet
+     * @return int nombre d'employé en BD
+     * @throws DataAccessException
+     * @throws DatabaseConnexionException
+     */
     public int getNumberEmploye() throws DataAccessException, DatabaseConnexionException {
         int nbEmploye = 0;
         try {
@@ -72,6 +86,13 @@ public class Access_BD_Test {
 		}
     }
 
+    /**
+     * Cette méthode permet de récupérer le nombre d'employé en BD.
+     * @author Enzo Fournet
+     * @return
+     * @throws DataAccessException
+     * @throws DatabaseConnexionException
+     */
     public ArrayList<Employe> getAllEmploye() throws DataAccessException, DatabaseConnexionException{
         ArrayList<Employe> alResult = new ArrayList<>();
         try {
@@ -101,6 +122,13 @@ public class Access_BD_Test {
         }
     }
 
+    /**
+     * Cette méthode permet de récupérer les employés en BD ayant le droit d'accès guichetier.
+     * @author Enzo Fournet
+     * @return ArrayList<Employe> liste des employés ayant le droit d'accès guichetier
+     * @throws DataAccessException
+     * @throws DatabaseConnexionException
+     */
     public ArrayList<Employe> getAllGuichetier() throws DataAccessException, DatabaseConnexionException{
         ArrayList<Employe> alResult = new ArrayList<>();
         try {
@@ -130,6 +158,15 @@ public class Access_BD_Test {
         }
     }
 
+    /**
+     * Cette méthode permet de récupérer les employés en fonction de son identifiant et de sont mot de passe de connexion.
+     * @param login
+     * @param password
+     * @return Employe employé trouvé ou null s'il n'est pas trouvé
+     * @throws RowNotFoundOrTooManyRowsException
+     * @throws DataAccessException
+     * @throws DatabaseConnexionException
+     */
     public Employe getEmploye(String login, String password)
 			throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException {
 
@@ -180,6 +217,11 @@ public class Access_BD_Test {
 		}
 	}
 
+    /**
+     * cette méthode permet à partir du fichier de création de la BD modfié de réinitialiser la BD (ressources/model/orm/sql/scriptResetBase.sql).
+     * @throws DataAccessException
+     * @throws DatabaseConnexionException
+     */
     public void resestBD() throws DataAccessException, DatabaseConnexionException{
         InputStream inputStream = Access_BD_Test.class.getResourceAsStream("sql/scriptResetBase.sql");
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
@@ -255,7 +297,15 @@ public class Access_BD_Test {
             e.printStackTrace();
         }
     }
-
+    /**
+     * cette méthode permet d'executer certaine partie du script qui ne sont pas des requetes SQL. <br/>
+     * Mais des requetes PL/SQL. <br/>
+     * @param requeteSQL
+     * @return
+     * @throws SQLException
+     * @throws DataAccessException
+     * @throws DatabaseConnexionException
+     */
     private int virer(String requeteSQL) throws SQLException, DataAccessException, DatabaseConnexionException {
         //EXECUTE Virer(2, 1, TO_NUMBER('97,23'), :ret)
         requeteSQL = requeteSQL.replace("VARIABLE ret NUMBER; EXECUTE Virer(", "");
@@ -301,6 +351,15 @@ public class Access_BD_Test {
         return returnn;
     }
 
+    /**
+     * cette méthode permet d'executer certaine partie du script qui ne sont pas des requetes SQL. <br/>
+     * Mais des requetes PL/SQL. <br/>
+     * @param requeteSQL
+     * @return
+     * @throws SQLException
+     * @throws DataAccessException
+     * @throws DatabaseConnexionException
+     */
     private int creerCompte(String requeteSQL) throws SQLException, DataAccessException, DatabaseConnexionException {
         //EXECUTE CreerCompte(TO_NUMBER('-300'), TO_NUMBER('120'), 2, :ret)
         requeteSQL = requeteSQL.replace("VARIABLE ret NUMBER; EXECUTE CreerCompte(", "");
@@ -349,6 +408,15 @@ public class Access_BD_Test {
         return returnn;
     }
 
+    /**
+     * Cette méthode permet d'executer certaine partie du script qui ne sont pas des requetes SQL. <br/>
+     * Mais des requetes PL/SQL. <br/>
+     * @param requeteSQL
+     * @return
+     * @throws SQLException
+     * @throws DataAccessException
+     * @throws DatabaseConnexionException
+     */
     private int creerOperation(String requeteSQL) throws SQLException, DataAccessException, DatabaseConnexionException {
         //EXECUTE CreerOperation(1, TO_NUMBER('-25'), 'Retrait Espèces', :ret)
         requeteSQL = requeteSQL.replace("VARIABLE ret NUMBER; EXECUTE CreerOperation(", "");
@@ -393,6 +461,15 @@ public class Access_BD_Test {
         return returnn;
     }
 
+    /**
+     * Cette méthode permet d'executer certaine partie du script qui ne sont pas des requetes SQL. <br/>
+     * Mais des requetes PL/SQL. <br/> 
+     * @param requeteSQL
+     * @return
+     * @throws SQLException
+     * @throws DataAccessException
+     * @throws DatabaseConnexionException
+     */
     private int crediter(String requeteSQL) throws SQLException, DataAccessException, DatabaseConnexionException {
         //EXECUTE Crediter(1, TO_NUMBER('15,2'), 'Retrait Espèces', :ret);
         requeteSQL = requeteSQL.replace("VARIABLE ret NUMBER; EXECUTE Crediter(", "");
@@ -431,6 +508,15 @@ public class Access_BD_Test {
         return nb;
     }
 
+    /**
+     * Cette méthode permet d'executer certaine partie du script qui ne sont pas des requetes SQL. <br/>
+     * Mais des requetes PL/SQL. <br/>
+     * @param requeteSQL
+     * @return
+     * @throws SQLException
+     * @throws DataAccessException
+     * @throws DatabaseConnexionException
+     */
     public int debiter(String requeteSQL) throws SQLException, DataAccessException, DatabaseConnexionException {
         //EXECUTE Debiter(1, TO_NUMBER('15,2'), 'Retrait Espèces', :ret);
         requeteSQL = requeteSQL.replace("VARIABLE ret NUMBER; EXECUTE Debiter(", "");

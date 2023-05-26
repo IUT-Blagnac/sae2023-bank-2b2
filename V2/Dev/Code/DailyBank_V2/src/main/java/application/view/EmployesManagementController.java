@@ -21,6 +21,9 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.data.Employe;
 
+/**
+ * @author Enzo Fournet
+ */
 public class EmployesManagementController {
 	// Etat courant de l'application
 	private DailyBankState dailyBankState;

@@ -49,6 +49,10 @@ public class Batch {
     private CompteCourant compteActu;
     private AgenceBancaire agenceActuelle;
 
+	/**
+	 * Méthode principale de la classe Batch qui permet de lancer chauque tache du batch.
+	 * @author Enzo Fournet
+	 */
     public void start() {
         System.out.println("COUCOU");
 		int nbClients = 0;
@@ -129,6 +133,10 @@ public class Batch {
 		}
     }
 
+	/**
+	 * Méthode qui permet de générer un relevé de compte mensuel pour chaque client de la banque.
+	 * @author Enzo Fournet
+	 */
     private void doRel() {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		DecimalFormat df = new DecimalFormat("0.000");
@@ -307,6 +315,12 @@ public class Batch {
 		}
 	}
 
+	/**
+	 * Cette méthode permet de récupérer toutes les opérations d'un compte donné en paramètre.
+	 * @author Enzo Fournet
+	 * @param selectedItem
+	 * @return ArrayList<Operation> listeOp la liste des opérations du compte
+	 */
     public ArrayList<Operation> getOperationsDunCompte(CompteCourant selectedItem) {
 		ArrayList<Operation> listeOp = new ArrayList<>();
 
