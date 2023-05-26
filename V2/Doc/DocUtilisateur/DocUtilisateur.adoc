@@ -2,6 +2,7 @@
 :doctype: book
 :toc: left
 :toc-title: Table des matières
+:toclevels: 4
 :sectnums:
 Auteurs: Yannis Gibert, Julien Couderc, Enzo Fournet
 
@@ -55,10 +56,11 @@ Comme vous pouvez le contaster sur l'image ci-dessous, une fois connecté en tan
 image::RessourcesAdoc/img/co-guich.png[Alt Page de connexion d'un guichetier, 50%]
 
 == Utilisation de l'application
+
 === Gestion des Employés :
 ``Réalisée par Enzo Fournet``
 
-==== Accéder à la gestion des employés :
+=== Accéder à la gestion des employés :
 *Prérequis : Être connecté en tant que chef d'agence.*
 
 Une fois connecter en tant que chef s'agence vous pouvez 
@@ -127,7 +129,7 @@ Pour Valider les modifications il vous suffit de cliquer sur le bouton "Modifier
 image::RessourcesAdoc/img/ModifEmpl-btn.png[Alt Page de modification d'un employé, 70%]
 
 ==== Suppression d'un employé :
-*Prérequis : Être connecté en tant que chef d'agence et s'être rendu dans la gestion des emplyés*
+*Prérequis : Être connecté en tant que chef d'agence et s'être rendu dans la gestion des employés*
 
 Une fois que vous avez accédé à la gestion des employés.
 Vous avez seulement le droit de supprimer des guichetier de votre agence en faisant un clique droit puis en cliquant sur "Supprimer" ou encore en utilisant le boutons latéral lorsque vous avez les droits nécessaire.
@@ -321,12 +323,44 @@ image::RessourcesAdoc/img/OperationVirementEmetteur.png[Alt Liste Opération Eme
 
 image::RessourcesAdoc/img/OperationVirementDestinataire.png[Alt Liste Opération Destinataire, 50%]
 
-=== Simuler un emprunt avec/sans assurance
+=== Simuler un emprunt avec/sans assurance :
 ``Réalisé par Julien Couderc``
  
 *Prérequis : Être connecté en tant que chef d'agence et s'être rendu dans la gestion des clients*
 
 Lorsque vous êtes dans la gestion des clients, un bouton en bas à droite "Simuler un emprunt" est activé, il vous suffit de cliquer dessus.
+
+image::RessourcesAdoc/img/SimulerEmprunt.png[Alt Simuler emprunt, 50%]
+
+*Cas de la simulation de l'emprunt sans asurance* 
+
+Une fois fait, vous devez entrer les composantes de l'emprunt, il vous faut saisir un montant, une durée en années, un taux d'intérêts en pourcentage et les frais de dossier. Puis il vous faut choisir la façon dont l'emprunt va être payer puis si il faut une assurance d'emprunt ou non.
+
+image::RessourcesAdoc/img/gestionSimulationEmprunt.png[Alt Simuler emprunt, 50%]
+
+Une fois les données saisies, faîtes simuler pour lancer la génération du fichier pdf.
+
+image::RessourcesAdoc/img/empruntAnneeSansAssu.png[Alt Simuler, 50%]
+
+Veuillez choisir un emplacement où télécharger le fichier de la simulation du client.
+
+image::RessourcesAdoc/img/telechargerEmprunt.png[Alt Télécharger, 50%]
+
+Une fois le document pdf téléchargé ou ouvert, vous obtiendrez sur la première page les informations du client, le récapitulatif des données de l'emprunt, la date de l'emprunt et enfin le tableau d'amortissement de l'emprunt.
+
+
+image::RessourcesAdoc/img/pdfEmpruntSansAssu1.png[Alt pdf Emprunt, 50%]
+
+Sur la deuxième page du document, il y a le récapitulatif des coûts de l'emprunt. La première ligne rappelle le coût de l'emprunt qui va vous être demander en plus du remboursement. La deuxième ligne rapelle le prix à payer chaque année.
+
+image::RessourcesAdoc/img/pdfEmpruntSansAssu2.png[Alt pdf Emprunt, 50%]
+
+*Cas de la simulation de l'emprunt sans asurance* 
+
+
+
+
+
 
 
 === Créer un compte :
