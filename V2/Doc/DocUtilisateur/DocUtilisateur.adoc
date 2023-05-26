@@ -127,7 +127,7 @@ Pour Valider les modifications il vous suffit de cliquer sur le bouton "Modifier
 image::RessourcesAdoc/img/ModifEmpl-btn.png[Alt Page de modification d'un employé, 70%]
 
 ==== Suppression d'un employé :
-*Prérequis : Être connecté en tant que chef d'agence et s'être rendu dans la gestion des emplyés*
+*Prérequis : Être connecté en tant que chef d'agence et s'être rendu dans la gestion des employés*
 
 Une fois que vous avez accédé à la gestion des employés.
 Vous avez seulement le droit de supprimer des guichetier de votre agence en faisant un clique droit puis en cliquant sur "Supprimer" ou encore en utilisant le boutons latéral lorsque vous avez les droits nécessaire.
