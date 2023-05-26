@@ -185,6 +185,7 @@ public class Access_BD_Operation {
 	}
 
 	/**
+	 * 
 	 * Enregistrement d'un débit.
 	 *
 	 * Se fait par procédure stockée : - Vérifie que le débitAutorisé n'est pas
@@ -276,6 +277,22 @@ public class Access_BD_Operation {
 		}
 	}
 
+	/**
+	 * @author Julien Couderc
+	 * Enregistrement d'un crédit.
+	 *
+	 * Se fait par procédure stockée :
+	 * - Enregistre l'opération <BR />
+	 * - Met à jour le solde du compte. <BR />
+	 *
+	 * @param idNumCompte compte débité
+	 * @param montant     montant débité
+	 * @param typeOp      libellé de l'opération effectuée (cf TypeOperation)
+	 * @throws DataAccessException        Erreur d'accès aux données (requête mal
+	 *                                    formée ou autre)
+	 * @throws DatabaseConnexionException Erreur de connexion
+	 * @throws ManagementRuleViolation    Si dépassement découvert autorisé
+	 */
 	public void insertCredit(int idNumCompte, double montant, String typeOp)
 			throws DatabaseConnexionException, ManagementRuleViolation, DataAccessException {
 		try {
@@ -357,7 +374,23 @@ public class Access_BD_Operation {
 			e.printStackTrace();
 		}
 	}
-
+	
+	
+	/**
+	 * @author Julien Couderc
+	 * 
+	 * Enregistrement d'un virement.
+	 *
+	 * Utilise les méthodes insertDebit et insertCredit
+	 *
+	 * @param idNumCompte compte débité
+	 * @param montant     montant débité
+	 * @param typeOp      libellé de l'opération effectuée (cf TypeOperation)
+	 * @throws DataAccessException        Erreur d'accès aux données (requête mal
+	 *                                    formée ou autre)
+	 * @throws DatabaseConnexionException Erreur de connexion
+	 * @throws ManagementRuleViolation    Si dépassement découvert autorisé
+	 */
 	public void insertVirement(CompteCourant compte, int idNumCompteDest, double montant, String typeOp, DailyBankState dailyBankState)
 	        throws DatabaseConnexionException, ManagementRuleViolation, DataAccessException {
 	    try {
