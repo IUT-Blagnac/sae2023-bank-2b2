@@ -145,7 +145,7 @@ Pour Valider la suppression il vous suffit de cliquer sur le bouton "Supprimer" 
 === Gestion des clients :
 
 ==== Création d'un client
-``Réalisée par Julien Couderc``
+
 
 *Prérequis : Être connecté en tant que guichetier ou chef d'agence et s'être rendu dans la gestion des clients*
 
@@ -163,7 +163,7 @@ En arrivant sur cette page, il est possible de changer toutes les informations c
 image::RessourcesAdoc/img/InformationClient.png[Alt Information Client, 50%]
 
 ==== Recherche d'un client
-``Réalisée par Julien Couderc``
+
 
 Pour pouvoir rechercher un client, il faut suivre les étapes précédentes jusqu'à être dans la page des clients. Puis, vous pouvez faire une recherche d'un client en tapant son numéro, son nom ou alors son nom et prénom.
 
