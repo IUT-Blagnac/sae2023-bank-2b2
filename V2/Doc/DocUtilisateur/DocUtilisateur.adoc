@@ -416,6 +416,107 @@ Exemple de relevé de compte :
 
 image::RessourcesAdoc/img/Relevé-de-compte.jpeg[Alt Page de connexion, 50%]
 
+=== Faire un débit exceptionnel :
+``Réalisé par Yannis Gibert``
+
+*Prérequis : Être connecté en tant que chef d'agence et s'être rendu dans la gestion des opérations d'un compte*
+
+Lorsque vous arrivé dans la page de gestion des opérations du compte il vous suffit de selectionner "Enregistrer débit", ce qui ouvrira la page de débit d'un compte.
+
+image::RessourcesAdoc/img/DebitExce.png[Alt Page des opérations, 50%]
+
+Une fois sur la page d'enregistrement des débits vous devez rentrer un montant du débit, selectionner le type d'opération et alors si vous le souhaitez vous pouvez cliquer sur le bouton "Debit Exceptionnel" qui n'est visible que si vous êtes connecté en tant que chef d'agence. En selectionnant ce dernier vous autoriser alors l'opération à dépasser le Découvert Autorisé.
+
+image::RessourcesAdoc/img/DebitExcePage.png[Alt Page de débit, 50%]
+
+En cliquant sur "Debiter" le debit s'effectuera et débitera le compte du montant choisit même si après l'opération le compte aura dépassé son Découvert autorisé.
+
+Et vous verrez alors le débit sur la page des opérations.
+
+image::RessourcesAdoc/img/DebitExceResultat.png[Alt Page de débit, 50%]
+
+=== Gestion des Prélèvements automatique :
+``Réalisée par Yannis Gibert``
+
+==== Accéder à la gestion des prélèvements automatique :
+*Prérequis : Être connecté en tant que chef d'agence ou guichetier et être sur la page de gestion des comptes.*
+
+Une fois sur la page de gestion des comptes en cliquant sur un compte non cloturé le bouton "Prélèvement" se dégrisera vous laissant alors la possibilité de cliquer dessus.
+
+image::RessourcesAdoc/img/ComptePrelev.png[Alt acces prelevement du compte, 50%]
+
+Après avoir cliqué dessus vous accédez à la page de gestion des prélèvements automatique du compte sélectionné
+
+image::RessourcesAdoc/img/MenuPrelev.png[Alt page de gestion des prélèvements, 70%]
+
+Vous pouvez voir la liste des prélèvements automatique du compte, vous avez alors la possibilité de consulter, créer, modifier ou supprimer un prélèvement automatique.
+
+
+==== Consultation des prélèvement automatique :
+*Prérequis : Être connecté en tant que chef d'agence ou guichetier et s'être rendu sur la page de gestion des prélèvements automatique*
+
+Une fois que vous avez accédé à la gestion des prélèvements automatique vous avez la possibilité de consulter tout les prélèvements automatique du compte. Vous pouvez alors voir toute les informations sur ces derniers comme le montant du prélèvement, la date d'occurence du prélèvement, le bénéficiaire l'id du compte à qui appartient le prélèvement et l'id du prélèvement.
+
+image::RessourcesAdoc/img/MenuPrelevConsultation.png[Alt liste des prélèvements, 70%]
+
+
+==== Création d'un nouveau prélèvement:
+
+*Prérequis : Être connecté en tant que chef d'agence ou guichetier et s'être rendu sur la page de gestion des prélèvements automatique*
+
+Une fois que vous avez accédé à la gestion des prélèvements.
+Vous avez le droit de créer un nouveau prélèvent automatique en cliquant sur le bouton "Nouveau prélèvement" en bas à droite de la page ce qui vous ouvrira la page de création du prélèvement.
+
+image::RessourcesAdoc/img/MenuPrelevCrea.png[Alt liste des prélèvement avant création, 70%]
+
+Une fois dans cette page vous devez alors remplir tout les gens obligatoire qui sont le Montant du prélèvement, la date de prélèvement et le bénéficiaire.
+
+Une fois que tout est rempli vous n'avez plus qu'à cliquer sur le bouton "Ajouter" ce qui ajoutera le prélèvement automatique à la base de donnée. 
+
+image::RessourcesAdoc/img/MenuCreaPrelev.png[Alt Page de création d'un prélèvement, 70%]
+
+Vous le verrez alors afficher dans la liste des prélèvements automatique du compte.
+
+image::RessourcesAdoc/img/CreerPrelevResultat.png[Alt resulstat de la création du prélèvement, 70%]
+
+==== Modification d'un prélèvement automatique :
+
+*Prérequis : Être connecté en tant que chef d'agence ou guichetier et s'être rendu sur la page de gestion des prélèvements automatique*
+
+Une fois que vous avez accédé à la gestion des prélèvements.
+Vous avez la possibilité de modifier un prélèvement automatique, Néanmoins il faut dans un premier temps avoir sélectionné un prélèvement automatique ce qui rendra disponible le bouton "Modifier un prélèvement".
+
+image::RessourcesAdoc/img/MenuprelevModif.png[Alt Bouton lattéral de modification, 70%]
+
+En cliquant dessus vous ouvrirez alors la page de modification du prélèvement automatique. Dans cette dernière vous aurez la possibilité de Montant du prélèvement, la date du prélèvement et le bénéficiare.
+
+Une fois vos modifications terminées il vous suffit de cliquer sur le bouton "Modifier" afin de valider les modifications du prélèvement ce qui mettra à jour la base de données avec vos modifications. 
+
+image::RessourcesAdoc/img/ModifPrelev.png[Alt Page de modification d'un prélèvement, 70%]
+
+Vous verrez alors dans la liste des prélèvements le prélèvement avec les modifications apportés.
+
+image::RessourcesAdoc/img/ModifPrelevResultat.png[Alt resultat de la modification du prélèvement, 70%]
+
+==== Suppression d'un prélèvement automatique :
+*Prérequis : Être connecté en tant que chef d'agence ou guichetier et s'être rendu sur la page de gestion des prélèvements automatique*
+
+Une fois que vous avez accédé à la gestion des prélèvements.
+Vous avez la possibilité de supprimer un prélèvement automatique, Néanmoins il faut dans un premier temps avoir sélectionné un prélèvement automatique ce qui rendra disponible le bouton "Supprimer prélèvement".
+
+image::RessourcesAdoc/img/MenuPrelevSupp.png[Alt Bouton lattéral de suppression, 70%]
+
+
+En cliquant dessus vous ouvrirez alors la page de suppression du prélèvement automatique. 
+
+Une fois dans cette page pour valider la suppression il vous suffit de cliquer sur le bouton "Supprimer", ce qui supprimera le prélèvement automatique de la base de données.
+
+image::RessourcesAdoc/img/SupprimerPrelev.png[Alt Page de suppression d'un prélèvement automatique, 70%]
+
+Vous verrez alors dans la liste des prélèvements que le prélèvement supprimé n'y apparait plus.
+
+image::RessourcesAdoc/img/MenuPrelev.png[Alt menu des prélèvements, 70%]
+
 == Nous contacter
 
 Si vous avez des questions ou si vous avez besoin d'aide, n'hésitez pas à nous contacter à l'adresse suivante: support@DailyBank.com
