@@ -1002,12 +1002,39 @@ image::RessourceAdoc/img/DiagrammeClassPrelev.png[Alt dc crudPrelevement, 50%]
 
 ==== Principales fonctionnalités
 
+Une brève introduction des principales fonctionnalités de cette opération a été présentée précédemment. Pour obtenir des informations plus détaillées, veuillez consulter la documentation utilisateur. Elle fournira des explications approfondies sur les différentes fonctionnalités et leur utilisation dans le cadre de ces opérations spécifique.
 
 ==== Classes associées à l'implémentation de la fonctionnalité
 
+Pour l’implémentation de cette action, plusieurs classes ont été impliquées :
 
 
-==== Extrait de code
+*Côté ``application.control`` :* +
+____
+• _PrelevementEditorPane.java_
+
+• _PrelevManagement.java_
+____
+
+*Côté ``application.view`` :* +
+
+____
+• _PrelevEditorPaneController.java_
+
+• _PrelevManagementController.java_
+____
+
+*Côté ``model.data`` :* +
+____
+• _Prelevement.java_
+____
+
+*Côté ``model.orm / model.orm.exception`` :* +
+____
+• _Access_BD_Prelevement.java_
+____
+
+
 
 
 
@@ -1426,6 +1453,43 @@ Le batch permet de réaliser des opérations de façon automatique et répétiti
 Le batch est docn executer tout les jours à 00h00 et permet de réaliser les opérations suivantes :
 
 ==== Prélevement mensuel - Yannis Gibert
+
+Lorsque le Batch est executer il récupère la totalité des comptes de la base de données ainsi que tout les prélèvements. Pour chaque prélèvement automatique si la date d'occurence correspond à la date actuelle alors le prélèvement automatique s'exécute automatiquement et debite le compte du montant du prélèvement.
+
+Puisque la seule interaction que les utilisateur peuvent avoir est de voir l'opération dans la liste des opérations. Il n'y a donc pas de diagramme de classe pour le batch.
+
+
+
+Cependant ci dessous la partie du diagramme de classe du projet principal qui concerne les relevés de compte mensuel.
+
+.extrait digram de la BD - classe client et CompteCourant
+image::RessourceAdoc/img/dcPrelevementBatch.png[Alt dc prelevement, 50%]
+
+Classe associé à l'exécution des prélèvements automatique(Dans le Batch):
+
+*Côté ``application`` :* +
+____
+• _BatchApp.java_
+____
+
+*Côté ``application.control`` :* +
+____
+• _Batch.java_
+____
+
+*Côté ``model.data`` :* + 
+____
+• _CompteCourant.java_
+• _Operation.java_
+• _Prelevement.java_
+____
+
+*Côté ``model.orm / model.orm.exception`` :* +
+____
+• _Access_BD_Prelevement.java_
+• _Access_BD_CompteCourant.java_
+• _Access_BD_Operation.java_
+____
 
 
 
