@@ -56,6 +56,7 @@ Comme vous pouvez le contaster sur l'image ci-dessous, une fois connecté en tan
 image::RessourcesAdoc/img/co-guich.png[Alt Page de connexion d'un guichetier, 50%]
 
 == Utilisation de l'application
+``Note : les focntionnalitées sont ici décrite en fonction des droits de l'utilisateur connecté, sachant qu'un chef d'agence possède les droits qu'un guichetier.``
 
 === Chef d'agence
 
