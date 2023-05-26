@@ -770,13 +770,13 @@ ____
 
 image::/V2/images/mensualite.PNG[Simulation]
 
-Il est toujours intéressant de savoir sur quels éléments se base le calcul de la mensualité d'un client. Ci-joint, la relation permettant de calculer une mensualité dans le cas où le taux d'intérêt renseigné par celui-ci est différent de zéro. 
+Il est toujours intéressant de savoir quels facteurs sont pris en compte lors du calcul de la mensualité d'un client, en particulier lorsque le taux d'intérêt est différent de zéro. Ci-dessous, vous trouverez une formule permettant de calculer la mensualité dans ce cas précis.
 
 ===== Extraits de code commentés pour des points importants
 
 image::/V2/images/dosimulation.PNG[Simulation]
 
-Un des éléments de l'implémentation de cette tâche, assez essentielle de mentionner est la fonction FXML *doSimulation()* qui, associée au bouton "Simulation" présent dans la classe _ComptesManagementController.java_, permet d'ouvrir l'interface dédiée à cette réalisation de simulation *uniquement* si l'utilisateur de cette application est un chef de l'agence bancaire.
+Voici un morceau de code plutôt important pour effectuer une simulation d'emprunt/assurance, c'est ici qu'est géré la visibilité de la simulation d'emprunt, en effet, si l'employé n'est pas chef d'agence alors il ne verra pas ce bouton et ne pourra pas faire la simulation.
 
 ===  CRUD employés - Enzo Fournet
 
