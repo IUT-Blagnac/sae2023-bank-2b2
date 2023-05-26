@@ -112,7 +112,7 @@ image::RessourcesAdoc/img/CreaEmpl.png[Alt Page de création d'un compte, 70%]
 Une fois que vous avez accédé à la gestion des employés.
 Vous avez le droit de modifier tout les guichetier de votre agence et vous même en double cliquant sur un employé que vous pouvez modifir ou en faisant un clique droit puis en cliquant sur "Modifier" ou encore en utilisant le boutons latéral lorsque vous avez les droits nécessaire.
 
-*ATTENTION* : Si vous double cliquer sur un emploté pour lequel vous n'avez les droit de modification vous serez redirigé vers la page de consulation de l'employé et non de modification.
+*ATTENTION* : Si vous double cliquer sur un employé pour lequel vous n'avez les droit de modification vous serez redirigé vers la page de consulation de l'employé et non de modification.
 
 image::RessourcesAdoc/img/BoutonLat-Modif.png[Alt Bouton lattéral de modification, 70%]
 
@@ -307,7 +307,7 @@ Pour réalisé un virement, il suffit de répéter les étapes précédentes jus
 
 image::RessourcesAdoc/img/OperationVirement.png[Alt Choix virement, 50%]
 
-Une fois la page ouverte, vous pouvez sélectionner le compte sur lequel vous voulez que le virement s'effectue.
+Une fois la page ouverte, vous devez entrer un numéro de compte présent dans l'agence.
 
 image::RessourcesAdoc/img/OperationTypeVirement.png[Alt Choix compte virement, 50%]
 
@@ -344,14 +344,14 @@ Suite à la modification du compte vous pouvez voir comme ci-dessous que le comp
 
 image::RessourcesAdoc/img/ResultatModifierCompte.png[Alt Page de connexion, 50%]
 
-=== Cloturer un compte :
+=== Clôturer un compte :
 ``Réalisé par Yannis Gibert``
 
 Voici la page des comptes avant la cloturation d'un compte, nous allons cloturer le dernier compte de la liste en guise d'exemple.
 
 image::RessourcesAdoc/img/MenuCompte5.png[Alt Page de connexion, 50%]
 
-Suite à la cloturation du compte vous pouvez voir comme ci-dessous que le compte apparait toujours dans la liste mais que désormais il n'est plus écrit "Ouvert" mais "Cloture" ce qui indique que le compte est bel et bien cloturé.
+Suite à la clôturation du compte vous pouvez voir comme ci-dessous que le compte apparait toujours dans la liste mais que désormais il n'est plus écrit "Ouvert" mais "Clôture" ce qui indique que le compte est bel et bien clôturé.
 
 image::RessourcesAdoc/img/ResultatCloturerCompte.png[Alt Page de connexion, 50%]
 
