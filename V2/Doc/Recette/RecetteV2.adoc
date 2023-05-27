@@ -431,7 +431,8 @@ Un CRUD employés permet de créer, lire, mettre à jour et supprimer des inform
 5+|
 ^|ID ^|Action ^|Comportement attendu ^|Pré-conditions ^|Résultat
 ^|All_G_C.1 ^|Saisir les données de l'emprunt ^|Un fichier pdf se télécharge ^|le montant ne doit pas être < = 0, la durée doit être un entier compris entre 0 et 75, le taux de l'emprunt doit être entre 0 et 100 (exclu), les frais de dossier doivent être > = 0, si l'assurance est choisie, alors le taux de l'assurance est compris entre 0 et 100 (exclu)  ^|OK
-^|All_G_C.2 ^|Ouvrir le fichier pdf généré ^|Le fichier pdf doit s'ouvrir avec toutes les informations de l'emprunt et les tableaux d'amortissement ^|  ^|OK
+^|All_G_C.2 ^|Une pop-up s'est ouverte confirmant le téléchargement, cliquer sur ok ^|La page de la simulation d'emprunt se ferme ^|  ^|OK
+^|All_G_C.3 ^|Ouvrir le fichier pdf généré ^|Le fichier pdf doit s'ouvrir avec toutes les informations de l'emprunt et les tableaux d'amortissement ^|  ^|OK
 
 5+|
 
