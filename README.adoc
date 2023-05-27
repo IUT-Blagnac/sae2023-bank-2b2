@@ -35,7 +35,7 @@
 |2    |Guichetier     | Compte | Effectuer un virement d'un compte vers un autre compte|F|| 
 |2    |Guichetier     | Compte | Relevé PDF||F| 
 |2    |Guichetier     | CRUD Prélèvement | C|||F  
-|2    |Guichetier     | CRUD Prélèvement | R|||  
+|2    |Guichetier     | CRUD Prélèvement | R|||F  
 |2    |Guichetier     | CRUD Prélèvement | U|||  
 |2    |Guichetier     | CRUD Prélèvement | D|||  
 |2    |Batch     | Prélèvements automatiques | || | 
