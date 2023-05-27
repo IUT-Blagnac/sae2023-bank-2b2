@@ -621,7 +621,7 @@ public class EmpruntSimulationController {
 				} else {
 					Paragraph coutTotal = new Paragraph(
 							"Le coût total de l'emprunt s'élève à " + decimalFormat.format(coutTotalCredit)
-									+ " euros, dont " + decimalFormat.format(fraisDossier) + " euros de de dossier. ")
+									+ " euros, dont " + decimalFormat.format(fraisDossier) + " euros de dossier. ")
 							.setFont(contentFont).setFontSize(12);
 					document.add(coutTotal);
 

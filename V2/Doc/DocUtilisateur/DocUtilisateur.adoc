@@ -3,7 +3,7 @@
 :toc: left
 :toc-title: Table des matières
 :toclevels: 5
-:sectnums: 5
+:sectnums:
 Auteurs: Yannis Gibert, Julien Couderc, Enzo Fournet
 
 Date: {docdate} +
@@ -56,155 +56,11 @@ Comme vous pouvez le contaster sur l'image ci-dessous, une fois connecté en tan
 image::RessourcesAdoc/img/co-guich.png[Alt Page de connexion d'un guichetier, 50%]
 
 == Utilisation de l'application
-``Note : les focntionnalitées sont ici décrite en fonction des droits de l'utilisateur connecté, sachant qu'un chef d'agence possède les droits qu'un guichetier.``
 
-=== Chef d'agence
+=== Guichetiers
 
-==== Gestion des Employés :
-``Réalisée par Enzo Fournet``
-
-===== Accéder à la gestion des employés :
-*Prérequis : Être connecté en tant que chef d'agence.*
-
-Une fois connecter en tant que chef s'agence vous pouvez 
-accéder à la gestion des employés en cliquant sur le bouton "Gestion" puis en cliquant sur "Employés".
-
-image::RessourcesAdoc/img/chefGestEmpl.png[Alt Page de connexion clique pour accéder à la gestion des employés, 50%]
-
-Une fois que vous avez accédé à la gestion des emplyés.
-
-image::RessourcesAdoc/img/GestEmpl.png[Alt page de gestion des emplyés, 70%]
-
-Vous pouvez voir la liste des employés de votre agence,vous avez alors la possibilité de double cliqué sur un employé pour le modifier ou le consulter en fcontion de vos droits.
-Vous avez aussi la possibilité de fare un clique droit sur un employé pour faire apparaitre un menu contextuel qui vous permettra de modifier, de consulter ou de supprimer un employé en fonction de vos droits.
-
-Les boutons lattéraux sont aussi utilisable pour modifier ou consulter un employé et seront dégrissé si vousavez pas les droits pour faire l'action demandé.
-
-===== Consultation d'un employé :
-*Prérequis : Être connecté en tant que chef d'agence et s'être rendu dans la gestion des emplyés*
-
-Une fois que vous avez accédé à la gestion des employés.
-Vous avez le droit de consulter n'importe quel employé de votre agence en double cliquant sur un employé ou en faisant un clique droit puis en cliquant sur "Consulter" ou encore en utilisant le boutons latéral.
-
-*ATTENTION* : Si vous double cliquer sur un emploté pour lequel vous avez les droit de modification vous serez redirigé vers la page de modification de l'employé et non de consultation.
-
-image::RessourcesAdoc/img/BoutonLat-Consult.png[Alt Bouton lattéral de consultation, 70%]
-
-image::RessourcesAdoc/img/Bouton2Click-Consult.png[Alt Page de consultation d'un employé, 70%]
-
-Lorsque vous aurez accédé à la page de consultation d'un employé vous aurez accès à toutes les informations de l'employé.
-
-image::RessourcesAdoc/img/ConsultEmpl.png[Alt Page de consultation d'un employé, 70%]
-
-Pour revenir à la page de gestion des employés il vous suffit de cliquer sur le bouton "Ok" en bas à droite de la page.
-
-image::RessourcesAdoc/img/ConsultEmpl-btn.png[Alt Bouton de retour à la page de gestion des employés, 70%]
-
-===== Création d'un nouvel employé :
-
-*Prérequis : Être connecté en tant que chef d'agence et s'être rendu dans la gestion des emplyés*
-
-Une fois que vous avez accédé à la gestion des employés.
-Vous avez le droit de créer un nouvel employé en cliquant sur le bouton "Nouvel employé" en bas à gauche de la page.
-Vous devrez alors remplir tout les champs disponnible du formulaire de création d'un employé .
-
-image::RessourcesAdoc/img/CreaEmpl.png[Alt Page de création d'un compte, 70%]
-
-===== Modification d'un employé :
-
-*Prérequis : Être connecté en tant que chef d'agence et s'être rendu dans la gestion des emplyés*
-
-Une fois que vous avez accédé à la gestion des employés.
-Vous avez le droit de modifier tout les guichetier de votre agence et vous même en double cliquant sur un employé que vous pouvez modifir ou en faisant un clique droit puis en cliquant sur "Modifier" ou encore en utilisant le boutons latéral lorsque vous avez les droits nécessaire.
-
-*ATTENTION* : Si vous double cliquer sur un employé pour lequel vous n'avez les droit de modification vous serez redirigé vers la page de consulation de l'employé et non de modification.
-
-image::RessourcesAdoc/img/BoutonLat-Modif.png[Alt Bouton lattéral de modification, 70%]
-
-image::RessourcesAdoc/img/Bouton2Click-Modif.png[Alt Page de modification d'un employé, 70%]
-
-Loresque vous aurez accédé à la page de modification d'un employé vous aurez accès à toutes les informations de l'employé et vous pourrez modifier celle qui seront accéssible.
-
-image::RessourcesAdoc/img/ModifEmpl.png[Alt Page de modification d'un employé, 70%]
-
-Pour Valider les modifications il vous suffit de cliquer sur le bouton "Modifier" en bas à droite de la page et pour annuler les modifications il vous suffit de cliquer sur le bouton "Annuler" en bas à droite de la page.
-
-image::RessourcesAdoc/img/ModifEmpl-btn.png[Alt Page de modification d'un employé, 70%]
-
-===== Suppression d'un employé :
-*Prérequis : Être connecté en tant que chef d'agence et s'être rendu dans la gestion des employés*
-
-Une fois que vous avez accédé à la gestion des employés.
-Vous avez seulement le droit de supprimer des guichetier de votre agence en faisant un clique droit puis en cliquant sur "Supprimer" ou encore en utilisant le boutons latéral lorsque vous avez les droits nécessaire.
-
-image::RessourcesAdoc/img/BoutonLat-Suppr.png[Alt Bouton lattéral de suppression, 70%]
-
-image::RessourcesAdoc/img/Bouton2Click-Suppr.png[Alt Page de suppression d'un employé, 70%]
-
-Loresque vous aurez accédé à la page de suppression d'un employé vous aurez accès à toutes les informations de l'employé et vous pourrez supprimer l'employé.
-
-image::RessourcesAdoc/img/SupprEmpl.png[Alt Page de suppression d'un employé, 70%]
-
-Pour Valider la suppression il vous suffit de cliquer sur le bouton "Supprimer" en bas à droite de la page et pour annuler la suppression il vous suffit de cliquer sur le bouton "Annuler" en bas à droite de la page.
-
-==== Réalisé un débit exceptionnel :
-``Réalisé par Yannis Gibert``
-
-*Prérequis : Être connecté en tant que chef d'agence et s'être rendu dans la gestion des opérations d'un compte*
-
-Lorsque vous arrivé dans la page de gestion des opérations du compte il vous suffit de selectionner "Enregistrer débit", ce qui ouvrira la page de débit d'un compte.
-
-image::RessourcesAdoc/img/DebitExce.png[Alt Page des opérations, 50%]
-
-Une fois sur la page d'enregistrement des débits vous devez rentrer un montant du débit, selectionner le type d'opération et alors si vous le souhaitez vous pouvez cliquer sur le bouton "Debit Exceptionnel" qui n'est visible que si vous êtes connecté en tant que chef d'agence. En selectionnant ce dernier vous autoriser alors l'opération à dépasser le Découvert Autorisé.
-
-image::RessourcesAdoc/img/DebitExcePage.png[Alt Page de débit, 50%]
-
-En cliquant sur "Debiter" le debit s'effectuera et débitera le compte du montant choisit même si après l'opération le compte aura dépassé son Découvert autorisé.
-
-Et vous verrez alors le débit sur la page des opérations.
-
-image::RessourcesAdoc/img/DebitExceResultat.png[Alt Page de débit, 50%]
-
-==== Simuler un emprunt avec/sans assurance :
-``Réalisé par Julien Couderc``
- 
-*Prérequis : Être connecté en tant que chef d'agence et s'être rendu dans la gestion des clients*
-
-Lorsque vous êtes dans la gestion des clients, un bouton en bas à droite "Simuler un emprunt" est activé, il vous suffit de cliquer dessus.
-
-image::RessourcesAdoc/img/SimulerEmprunt.png[Alt Simuler emprunt, 50%]
-
-*Cas de la simulation de l'emprunt sans asurance* 
-
-Une fois fait, vous devez entrer les composantes de l'emprunt, il vous faut saisir un montant, une durée en années, un taux d'intérêts en pourcentage et les frais de dossier. Puis il vous faut choisir la façon dont l'emprunt va être payer puis si il faut une assurance d'emprunt ou non.
-
-image::RessourcesAdoc/img/gestionSimulationEmprunt.png[Alt Simuler emprunt, 50%]
-
-Une fois les données saisies, faîtes simuler pour lancer la génération du fichier pdf.
-
-image::RessourcesAdoc/img/empruntAnneeSansAssu.png[Alt Simuler, 50%]
-
-Veuillez choisir un emplacement où télécharger le fichier de la simulation du client.
-
-image::RessourcesAdoc/img/telechargerEmprunt.png[Alt Télécharger, 50%]
-
-Une fois le document pdf téléchargé ou ouvert, vous obtiendrez sur la première page les informations du client, le récapitulatif des données de l'emprunt, la date de l'emprunt et enfin le tableau d'amortissement de l'emprunt.
-
-
-image::RessourcesAdoc/img/pdfEmpruntSansAssu1.png[Alt pdf Emprunt, 50%]
-
-Sur la deuxième page du document, il y a le récapitulatif des coûts de l'emprunt. La première ligne rappelle le coût de l'emprunt qui va vous être demander en plus du remboursement. La deuxième ligne rapelle le prix à payer chaque année.
-
-image::RessourcesAdoc/img/pdfEmpruntSansAssu2.png[Alt pdf Emprunt, 50%]
-
-*Cas de la simulation de l'emprunt sans asurance* 
-
-=== Client
-==== Gestion des clients :
-
-===== Création d'un client
-
+==== Création d'un client
+``Réalisée par Julien Couderc``
 
 *Prérequis : Être connecté en tant que guichetier ou chef d'agence et s'être rendu dans la gestion des clients*
 
@@ -221,8 +77,8 @@ En arrivant sur cette page, il est possible de changer toutes les informations c
 
 image::RessourcesAdoc/img/InformationClient.png[Alt Information Client, 50%]
 
-===== Recherche d'un client
-
+==== Recherche d'un client
+``Réalisée par Julien Couderc``
 
 Pour pouvoir rechercher un client, il faut suivre les étapes précédentes jusqu'à être dans la page des clients. Puis, vous pouvez faire une recherche d'un client en tapant son numéro, son nom ou alors son nom et prénom.
 
@@ -237,9 +93,7 @@ Voici la recherche par son nom :
 image::RessourcesAdoc/img/ClientRechercheNom.png[Alt Recherche Client nom, 50%]
 
 
-==== Gestion des comptes :
-
-===== Création d'un compte :
+==== Création d'un compte :
 ``Réalisée par Yannis Gibert``
 
 *Prérequis : Être connecté en tant que guichetier ou chef d'agence et s'être rendu dans la gestion des clients*
@@ -265,7 +119,7 @@ Vous voici sur la page de création du compte, les informations "Id client", "Id
 
 image::RessourcesAdoc/img/CréationCompte.png[Alt Page de connexion, 50%]
 
-===== Cloturation d'un compte :
+==== Cloturation d'un compte :
 ``Réalisée par Yannis Gibert``
 
 Une fois sur la page d'acceuil il vous suffit de passer la souris sur le bouton "Gestion" ce qui ouvre un menu déroulant permettant de sélectionner entre Clients et Employés. Ici ce que nous intéressera est la partie Clients, il suffit donc de cliquer dessus afin d'accéder au menu des clients.
@@ -288,7 +142,7 @@ Néanmoins si le solde du compte n'est pas égal à 0 alors un message d'erreur 
 
 image::RessourcesAdoc/img/ErreurCloturation.png[Alt Page de connexion, 50%]
 
-===== Modification d'un compte :
+==== Modification d'un compte :
 ``Réalisée par Yannis Gibert``
 
 Une fois sur la page d'accueil, il vous suffit de passer la souris sur le bouton "Gestion" ce qui ouvre un menu déroulant permettant de sélectionner entre Clients et Employés. Ici ce que nous intéressera est la partie Clients, il suffit donc de cliquer dessus afin d'accéder au menu des clients.
@@ -307,7 +161,7 @@ Vous voici sur la page de modification du compte, vous ne pouvez y modifier qu'u
 
 image::RessourcesAdoc/img/ModifierCompte.png[Alt Page de connexion, 50%]
 
-===== Débit d'un compte :
+==== Débit d'un compte :
 ``Réalisé par Julien Couderc ``
 
 Pour effectuer un débit, il vous suffit de vous connecter, puis passer la souris sur le bouton "Gestion" ce qui ouvre un menu déroulant permettant de sélectionner entre Clients et Employés. Ici ce que nous intéressera est la partie Clients, il suffit donc de cliquer dessus afin d'accéder au menu des clients.
@@ -436,10 +290,183 @@ Exemple de relevé de compte :
 
 image::RessourcesAdoc/img/Relevé-de-compte.jpeg[Alt Page de connexion, 50%]
 
+=== Chef d'agence
+
+==== Gestion des Employés :
+``Réalisée par Enzo Fournet``
+
+==== Accéder à la gestion des employés :
+*Prérequis : Être connecté en tant que chef d'agence.*
+
+Une fois connecter en tant que chef s'agence vous pouvez 
+accéder à la gestion des employés en cliquant sur le bouton "Gestion" puis en cliquant sur "Employés".
+
+image::RessourcesAdoc/img/chefGestEmpl.png[Alt Page de connexion clique pour accéder à la gestion des employés, 50%]
+
+Une fois que vous avez accédé à la gestion des employés.
+
+image::RessourcesAdoc/img/GestEmpl.png[Alt page de gestion des emplyés, 70%]
+
+Vous pouvez voir la liste des employés de votre agence, vous avez alors la possibilité de double cliquer sur un employé pour le modifier ou le consulter en fonction de vos droits.
+Vous avez aussi la possibilité de fare un clique droit sur un employé pour faire apparaitre un menu contextuel qui vous permettra de modifier, de consulter ou de supprimer un employé en fonction de vos droits.
+
+Les boutons latéraux sont aussi utilisables pour modifier ou consulter un employé et seront dégrisés si vous avez pas les droits pour faire l'action demandée.
+
+==== Consultation d'un employé :
+*Prérequis : Être connecté en tant que chef d'agence et s'être rendu dans la gestion des employés*
+
+Une fois que vous avez accédé à la gestion des employés.
+Vous avez le droit de consulter n'importe quel employé de votre agence en double cliquant sur un employé ou en faisant un clique droit puis en cliquant sur "Consulter" ou encore en utilisant le boutons latéral.
+
+*ATTENTION* : Si vous double cliquer sur un emploté pour lequel vous avez les droit de modification vous serez redirigé vers la page de modification de l'employé et non de consultation.
+
+image::RessourcesAdoc/img/BoutonLat-Consult.png[Alt Bouton lattéral de consultation, 70%]
+
+image::RessourcesAdoc/img/Bouton2Click-Consult.png[Alt Page de consultation d'un employé, 70%]
+
+Lorsque vous aurez accédé à la page de consultation d'un employé vous aurez accès à toutes les informations de l'employé.
+
+image::RessourcesAdoc/img/ConsultEmpl.png[Alt Page de consultation d'un employé, 70%]
+
+Pour revenir à la page de gestion des employés il vous suffit de cliquer sur le bouton "Ok" en bas à droite de la page.
+
+image::RessourcesAdoc/img/ConsultEmpl-btn.png[Alt Bouton de retour à la page de gestion des employés, 70%]
+
+==== Création d'un nouvel employé :
+
+*Prérequis : Être connecté en tant que chef d'agence et s'être rendu dans la gestion des employés*
+
+Une fois que vous avez accédé à la gestion des employés.
+Vous avez le droit de créer un nouvel employé en cliquant sur le bouton "Nouvel employé" en bas à gauche de la page.
+Vous devrez alors remplir tout les champs disponnible du formulaire de création d'un employé .
+
+image::RessourcesAdoc/img/CreaEmpl.png[Alt Page de création d'un compte, 70%]
+
+==== Modification d'un employé :
+
+*Prérequis : Être connecté en tant que chef d'agence et s'être rendu dans la gestion des employés*
+
+Une fois que vous avez accédé à la gestion des employés.
+Vous avez le droit de modifier tout les guichetier de votre agence et vous même en double cliquant sur un employé que vous pouvez modifir ou en faisant un clique droit puis en cliquant sur "Modifier" ou encore en utilisant le boutons latéral lorsque vous avez les droits nécessaire.
+
+*ATTENTION* : Si vous double cliquer sur un employé pour lequel vous n'avez les droit de modification vous serez redirigé vers la page de consulation de l'employé et non de modification.
+
+image::RessourcesAdoc/img/BoutonLat-Modif.png[Alt Bouton lattéral de modification, 70%]
+
+image::RessourcesAdoc/img/Bouton2Click-Modif.png[Alt Page de modification d'un employé, 70%]
+
+Loresque vous aurez accédé à la page de modification d'un employé vous aurez accès à toutes les informations de l'employé et vous pourrez modifier celle qui seront accéssible.
+
+image::RessourcesAdoc/img/ModifEmpl.png[Alt Page de modification d'un employé, 70%]
+
+Pour Valider les modifications il vous suffit de cliquer sur le bouton "Modifier" en bas à droite de la page et pour annuler les modifications il vous suffit de cliquer sur le bouton "Annuler" en bas à droite de la page.
+
+image::RessourcesAdoc/img/ModifEmpl-btn.png[Alt Page de modification d'un employé, 70%]
+
+==== Suppression d'un employé :
+*Prérequis : Être connecté en tant que chef d'agence et s'être rendu dans la gestion des employés*
+
+Une fois que vous avez accédé à la gestion des employés.
+Vous avez seulement le droit de supprimer des guichetier de votre agence en faisant un clique droit puis en cliquant sur "Supprimer" ou encore en utilisant le boutons latéral lorsque vous avez les droits nécessaire.
+
+image::RessourcesAdoc/img/BoutonLat-Suppr.png[Alt Bouton lattéral de suppression, 70%]
+
+image::RessourcesAdoc/img/Bouton2Click-Suppr.png[Alt Page de suppression d'un employé, 70%]
+
+Loresque vous aurez accédé à la page de suppression d'un employé vous aurez accès à toutes les informations de l'employé et vous pourrez supprimer l'employé.
+
+image::RessourcesAdoc/img/SupprEmpl.png[Alt Page de suppression d'un employé, 70%]
+
+Pour Valider la suppression il vous suffit de cliquer sur le bouton "Supprimer" en bas à droite de la page et pour annuler la suppression il vous suffit de cliquer sur le bouton "Annuler" en bas à droite de la page.
+
+
+==== Simuler un emprunt avec/sans assurance :
+``Réalisé par Julien Couderc``
+ 
+*Prérequis : Être connecté en tant que chef d'agence et s'être rendu dans la gestion des clients*
+
+Lorsque vous êtes dans la gestion des clients, un bouton en bas à droite "Simuler un emprunt" est activé, il vous suffit de cliquer dessus.
+
+image::RessourcesAdoc/img/SimulerEmprunt.png[Alt Simuler emprunt, 50%]
+
+*Cas de la simulation de l'emprunt sans asurance* 
+
+Une fois fait, vous devez entrer les composantes de l'emprunt, il vous faut saisir un montant, une durée en années, un taux d'intérêts en pourcentage et les frais de dossier. Puis il vous faut choisir la façon dont l'emprunt va être payer puis si il faut une assurance d'emprunt ou non.
+
+image::RessourcesAdoc/img/gestionSimulationEmprunt.png[Alt Simuler emprunt, 50%]
+
+Une fois les données saisies, faîtes simuler pour lancer la génération du fichier pdf.
+
+image::RessourcesAdoc/img/empruntAnneeSansAssu.png[Alt Simuler, 50%]
+
+Veuillez choisir un emplacement où télécharger le fichier de la simulation du client.
+
+image::RessourcesAdoc/img/telechargerEmprunt.png[Alt Télécharger, 50%]
+
+Une fois le document pdf téléchargé ou ouvert, vous obtiendrez sur la première page les informations du client, le récapitulatif des données de l'emprunt, la date de l'emprunt et enfin le tableau d'amortissement de l'emprunt.
+
+
+image::RessourcesAdoc/img/pdfEmpruntSansAssu1.png[Alt pdf Emprunt, 50%]
+
+Sur la deuxième page du document, il y a le récapitulatif des coûts de l'emprunt. La première ligne rappelle le coût de l'emprunt qui va vous être demander comprenant les frais de dossier. La deuxième ligne rapelle le prix à payer chaque année.
+
+image::RessourcesAdoc/img/pdfEmpruntSansAssu2.png[Alt pdf Emprunt, 50%]
+
+*Cas de la simulation de l'emprunt sans asurance* 
+
+Une fois fait, vous devez entrer les composantes de l'emprunt, il vous faut saisir un montant, une durée en années, un taux d'intérêts en pourcentage et les frais de dossier. Puis il vous faut choisir la façon dont l'emprunt va être payer puis cocher avec assurance et ensuite entrer le pourcentage de l'assurance.
+
+image::RessourcesAdoc/img/gestionSimulationEmpruntAssu.png[Alt gestion Emprunt, 50%]
+
+Une fois les montants saisis et valides, il vous suffit de lancer la simulation de l'emprunt avec assurance.
+
+image::RessourcesAdoc/img/simulationEmpruntAssu.png[Alt simuler Emprunt, 50%]
+
+Veuillez choisir un emplacement où télécharger le fichier de la simulation du client.
+
+image::RessourcesAdoc/img/telechargerEmpruntAssu.png[Alt Télécharger, 50%]
+
+Une fois le document pdf téléchargé ou ouvert, vous obtiendrez sur la première page les informations du client, le récapitulatif des données de l'emprunt, la date de l'emprunt et enfin le tableau d'amortissement de l'emprunt.
+
+
+image::RessourcesAdoc/img/pdfEmpruntAssu1.png[Alt pdf Emprunt1, 50%]
+
+Sur la page suivante, vous avez le récapitulatif de la simulation de l'assurance avec l'échéance de l'assurance, l'échéance à rembourser sans assurance et avec assurance.
+
+
+image::RessourcesAdoc/img/pdfEmpruntAssu2.png[Alt pdf Emprunt2, 50%]
+
+Puis, sur la page suivante vous avez la simulation de l'emprunt mais cette fois ci avec l'assurance rajoutée.
+
+image::RessourcesAdoc/img/pdfEmpruntAssu3.png[Alt pdf Emprunt3, 50%]
+
+Et pour finir, il y a le récapitulatif des coûts de l'emprunt. La première ligne rappelle le coût de l'emprunt qui va vous être demander comprenant les frais de dossier et des frais d'assurance. La deuxième ligne rappelle le prix à payer chaque mois avec le détail de l'échéance de l'assurance.
+
+image::RessourcesAdoc/img/pdfEmpruntAssu4.png[Alt pdf Emprunt4, 50%]
+
+==== Faire un débit exceptionnel :
+``Réalisé par Yannis Gibert``
+
+*Prérequis : Être connecté en tant que chef d'agence et s'être rendu dans la gestion des opérations d'un compte*
+
+Lorsque vous arrivé dans la page de gestion des opérations du compte il vous suffit de selectionner "Enregistrer débit", ce qui ouvrira la page de débit d'un compte.
+
+image::RessourcesAdoc/img/DebitExce.png[Alt Page des opérations, 50%]
+
+Une fois sur la page d'enregistrement des débits vous devez rentrer un montant du débit, selectionner le type d'opération et alors si vous le souhaitez vous pouvez cliquer sur le bouton "Debit Exceptionnel" qui n'est visible que si vous êtes connecté en tant que chef d'agence. En selectionnant ce dernier vous autoriser alors l'opération à dépasser le Découvert Autorisé.
+
+image::RessourcesAdoc/img/DebitExcePage.png[Alt Page de débit, 50%]
+
+En cliquant sur "Debiter" le debit s'effectuera et débitera le compte du montant choisit même si après l'opération le compte aura dépassé son Découvert autorisé.
+
+Et vous verrez alors le débit sur la page des opérations.
+
+image::RessourcesAdoc/img/DebitExceResultat.png[Alt Page de débit, 50%]
+
 ==== Gestion des Prélèvements automatique :
 ``Réalisée par Yannis Gibert``
 
-===== Accéder à la gestion des prélèvements automatique :
+==== Accéder à la gestion des prélèvements automatique :
 *Prérequis : Être connecté en tant que chef d'agence ou guichetier et être sur la page de gestion des comptes.*
 
 Une fois sur la page de gestion des comptes en cliquant sur un compte non cloturé le bouton "Prélèvement" se dégrisera vous laissant alors la possibilité de cliquer dessus.
@@ -453,7 +480,7 @@ image::RessourcesAdoc/img/MenuPrelev.png[Alt page de gestion des prélèvements,
 Vous pouvez voir la liste des prélèvements automatique du compte, vous avez alors la possibilité de consulter, créer, modifier ou supprimer un prélèvement automatique.
 
 
-===== Consultation des prélèvement automatique :
+==== Consultation des prélèvement automatique :
 *Prérequis : Être connecté en tant que chef d'agence ou guichetier et s'être rendu sur la page de gestion des prélèvements automatique*
 
 Une fois que vous avez accédé à la gestion des prélèvements automatique vous avez la possibilité de consulter tout les prélèvements automatique du compte. Vous pouvez alors voir toute les informations sur ces derniers comme le montant du prélèvement, la date d'occurence du prélèvement, le bénéficiaire l'id du compte à qui appartient le prélèvement et l'id du prélèvement.
@@ -461,7 +488,7 @@ Une fois que vous avez accédé à la gestion des prélèvements automatique vou
 image::RessourcesAdoc/img/MenuPrelevConsultation.png[Alt liste des prélèvements, 70%]
 
 
-===== Création d'un nouveau prélèvement:
+==== Création d'un nouveau prélèvement:
 
 *Prérequis : Être connecté en tant que chef d'agence ou guichetier et s'être rendu sur la page de gestion des prélèvements automatique*
 
@@ -499,7 +526,7 @@ Vous verrez alors dans la liste des prélèvements le prélèvement avec les mod
 
 image::RessourcesAdoc/img/ModifPrelevResultat.png[Alt resultat de la modification du prélèvement, 70%]
 
-===== Suppression d'un prélèvement automatique :
+==== Suppression d'un prélèvement automatique :
 *Prérequis : Être connecté en tant que chef d'agence ou guichetier et s'être rendu sur la page de gestion des prélèvements automatique*
 
 Une fois que vous avez accédé à la gestion des prélèvements.
