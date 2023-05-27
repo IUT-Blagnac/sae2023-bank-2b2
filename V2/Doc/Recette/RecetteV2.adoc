@@ -186,7 +186,7 @@ autorisé est de -100 euros.
 
 >|Cas de test 4+|Test-01-03-03
 >|Titre 4+|Virement d'un compte à l'autre
->|Objectif 4+| Vérifier qu'il est possible de faire un virement entre deux comptes d'un même client
+>|Objectif 4+| Vérifier qu'il est possible de faire un virement entre deux comptes de la même agence
 
 5+|
 
@@ -402,6 +402,43 @@ Un CRUD employés permet de créer, lire, mettre à jour et supprimer des inform
 5+|Commentaire :
 
 |====
+
+
+==== 4.2 Simulation d'emprunt avec ou sans assurance :
+
+|====
+
+>|Cas de test 4+|Test-04-02-01
+>|Titre 4+|Ouverture de la page de simulation d'emprunt
+>|Objectif 4+| Vérifier qu'il est possible d'ouvrir la page de la simulation d'emprunt
+
+5+|
+^|ID ^|Action ^|Comportement attendu ^|Pré-conditions ^|Résultat
+^|All_G_C.1 ^|Cliquer sur le bouton "Simuler emprunt". ^|La fenêtre de la simlation s'ouvre. ^|  ^|OK
+
+5+|
+
+5+|Commentaire :
+
+|====
+
+|====
+
+>|Cas de test 4+|Test-04-0-02
+>|Titre 4+|Simuler l'emprunt
+>|Objectif 4+| Vérifier qu'il est possible de simuler un emprunt
+
+5+|
+^|ID ^|Action ^|Comportement attendu ^|Pré-conditions ^|Résultat
+^|All_G_C.1 ^|Saisir les données de l'emprunt ^|Un fichier pdf se télécharge ^|le montant ne doit pas être < = 0, la durée doit être un entier compris entre 0 et 75, le taux de l'emprunt doit être entre 0 et 100 (exclu), les frais de dossier doivent être > = 0, si l'assurance est choisie, alors le taux de l'assurance est compris entre 0 et 100 (exclu)  ^|OK
+^|All_G_C.2 ^|Ouvrir le fichier pdf généré ^|Le fichier pdf doit s'ouvrir avec toutes les informations de l'emprunt et les tableaux d'amortissement ^|  ^|OK
+
+5+|
+
+5+|Commentaire :
+
+|====
+
 
 
 
