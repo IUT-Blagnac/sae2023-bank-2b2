@@ -27,7 +27,6 @@ public class PrelevManagement {
 	private CompteCourant prelevDesComptes;
 
 	/**
-	 * @author yannis gibert
 	 *
 	 * Création d'un page de gestion des prelevements.<BR />
 	 *
@@ -35,6 +34,7 @@ public class PrelevManagement {
 	 *                     et être modale)
 	 * @param _dbstate     Etat courant de l'application
 	 * @param compte le compte dont on souhaite voir les prelevements
+	 * @author yannis gibert
 	 */
 	public PrelevManagement(Stage _parentStage, DailyBankState _dbstate, CompteCourant compte) {
 
@@ -64,18 +64,18 @@ public class PrelevManagement {
 	}
 
 	/**
-	 * @author yannis gibert
 	 * Affiche la page des prelevements d'un compte
+	 * @author yannis gibert
 	 */
 	public void doPrelevManagementDialog() {
 		this.pmcViewController.displayDialog();
 	}
 
 	/**
-	 * @author yannis gibert
 	 * Permet de récupérer tout les prelevements d'un compte
 	 *
 	 * @return une liste de prelevement
+	 * @author yannis gibert
 	 */
 	public ArrayList<Prelevement> getPrelevementDunCompte() {
 		ArrayList<Prelevement> listePrelev = new ArrayList<>();
@@ -97,10 +97,10 @@ public class PrelevManagement {
 	}
 
 	/**
-	 * @author yannis gibert
 	 * Permet de créer un nouveau prelevement
 	 *
 	 * @return le nouveau prelevement
+	 * @author yannis gibert
 	 */
 	public Prelevement creerNouveauPrelev() {
 		Prelevement prelev;
@@ -127,11 +127,11 @@ public class PrelevManagement {
 	}
 
 	/**
-	 * @author yannis gibert
 	 * Permet de modifier les informations d'un prelevement
 	 *
 	 * @param prelev le prelevement qu'on souhaite modifier
 	 * @return le prelevement modifié
+	 * @author yannis gibert
 	 */
 	public Prelevement modifierPrelevement(Prelevement prelev) {
 		PrelevementEditorPane cep = new PrelevementEditorPane(this.primaryStage, this.dailyBankState);
@@ -155,11 +155,11 @@ public class PrelevManagement {
 	}
 
 	/**
-	 * @author yannis gibert
 	 * Permet de supprimer un prelevement
 	 *
 	 * @param prelev le prelevement que l'on souhaite supprimer
 	 * @return le prelevement
+	 * @author yannis gibert
 	 */
 	public Prelevement supprimerPrelevement(Prelevement prelev) {
 		PrelevementEditorPane pep = new PrelevementEditorPane(this.primaryStage, this.dailyBankState);

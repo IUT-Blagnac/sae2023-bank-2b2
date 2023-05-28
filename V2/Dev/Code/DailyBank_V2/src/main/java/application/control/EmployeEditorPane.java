@@ -24,9 +24,9 @@ public class EmployeEditorPane {
 	 * Cette classe permet de gérer l'affichage d'un dialogue de gestion d'un employé.
 	 *
 	 *
-	 * @author Enzo Fournet
 	 * @param _parentStage
 	 * @param _dbstate
+	 * @author Enzo Fournet
 	 */
 	public EmployeEditorPane(Stage _parentStage, DailyBankState _dbstate) {
 		this.dailyBankState = _dbstate;
@@ -59,10 +59,10 @@ public class EmployeEditorPane {
 	 * Que ce soit pour une création, une modification, une suppression ou une consultation <br/>
 	 * il donc faut passer en paramètre l'employé concerné et le mode d'édition qui sera utilisé. <br/>
 	 *
-	 * @author Enzo Fournet
 	 * @param employe
 	 * @param em
 	 * @return Employe
+	 * @author Enzo Fournet
 	 */
 	public Employe doEmployeEditorDialog(Employe employe, EditionMode em) {
 		return this.eepcViewController.displayDialog(employe, em);

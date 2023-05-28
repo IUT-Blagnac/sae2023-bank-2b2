@@ -1,6 +1,4 @@
-/*
- * @author Julien Couderc
- */
+
 
 package application.control;
 
@@ -21,7 +19,6 @@ public class EmpruntSimulation {
 	private EmpruntSimulationController esViewController;
 
 	/**
-	 * @author Julien Couderc
 	 * 
 	 * Constructeur de la classe de SimulerAssuranceEditorPane. Cette classe permet
 	 * de gérer l'affichage d'un dialogue de gestion des comptes.
@@ -60,11 +57,11 @@ public class EmpruntSimulation {
 	}
 
 	/**
-	 * @author Julien Couderc
 	 * 
 	 * Cette méthode permet d'afficher le dialogue de la simulation d'un emprunt
 	 *
 	 * @return le compte courant edité
+	 * @author Julien Couderc
 	 */
 	public void doEmpruntSimulationDialog() {
 		 this.esViewController.displayDialog();

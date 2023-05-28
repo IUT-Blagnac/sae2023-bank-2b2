@@ -28,9 +28,9 @@ public class EmployesManagement {
 	 * Constructeur de la classe de EmployesManagement.
 	 * Cette classe permet de gérer l'affichage d'un dialogue de gestion des employes.
 	 *
-	 * @author Enzo Fournet
      * @param _parentStage
      * @param _dbstate
+     * @author Enzo Fournet
      */
     public EmployesManagement(Stage _parentStage, DailyBankState _dbstate) {
         this.dailyBankState = _dbstate;
