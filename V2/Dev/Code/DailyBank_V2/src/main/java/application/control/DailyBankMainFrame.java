@@ -69,22 +69,22 @@ public class DailyBankMainFrame extends Application {
 			 // En mise au point : Forcer une connexion existante pour rentrer dansl'appli en mode connecté
 
 			//CONNEXION AUTO
-			try { Employe e; Access_BD_Employe ae = new Access_BD_Employe();
+			// try { Employe e; Access_BD_Employe ae = new Access_BD_Employe();
 
-			e = ae.getEmploye("Tuff", "Lejeune");
+			// e = ae.getEmploye("Tuff", "Lejeune");
 
-			if (e == null) { System.out.println("\n\nPB DE CONNEXION\n\n"); } else {
-			DailyBankMainFrame.dailyBankState.setEmployeActuel(e); } } catch
-			(DatabaseConnexionException e) { ExceptionDialog ed = new
-			ExceptionDialog(primaryStage, DailyBankMainFrame.dailyBankState, e);
-			ed.doExceptionDialog(); DailyBankMainFrame.dailyBankState.setEmployeActuel(null); } catch
-			(ApplicationException ae) { ExceptionDialog ed = new
-			ExceptionDialog(primaryStage, DailyBankMainFrame.dailyBankState, ae);
-			ed.doExceptionDialog(); DailyBankMainFrame.dailyBankState.setEmployeActuel(null); }
+			// if (e == null) { System.out.println("\n\nPB DE CONNEXION\n\n"); } else {
+			// DailyBankMainFrame.dailyBankState.setEmployeActuel(e); } } catch
+			// (DatabaseConnexionException e) { ExceptionDialog ed = new
+			// ExceptionDialog(primaryStage, DailyBankMainFrame.dailyBankState, e);
+			// ed.doExceptionDialog(); DailyBankMainFrame.dailyBankState.setEmployeActuel(null); } catch
+			// (ApplicationException ae) { ExceptionDialog ed = new
+			// ExceptionDialog(primaryStage, DailyBankMainFrame.dailyBankState, ae);
+			// ed.doExceptionDialog(); DailyBankMainFrame.dailyBankState.setEmployeActuel(null); }
 
-			if (DailyBankMainFrame.dailyBankState.getEmployeActuel() != null) {
-			DailyBankMainFrame.dailyBankState.setEmployeActuel(DailyBankMainFrame.dailyBankState.getEmployeActuel());
-			}
+			// if (DailyBankMainFrame.dailyBankState.getEmployeActuel() != null) {
+			// DailyBankMainFrame.dailyBankState.setEmployeActuel(DailyBankMainFrame.dailyBankState.getEmployeActuel());
+			// }
 			// fin connexion auto
 
 

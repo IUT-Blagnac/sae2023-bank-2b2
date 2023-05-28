@@ -198,12 +198,8 @@ public class GenPDF {
 						.setFont(boldFont);
 
 				Double oldSolde = this.compteActuel.solde;
-				System.out.println("oldSolde : " + oldSolde);
-
 				for (Operation currOp : listeOpes) {
-					System.out.println("id : " + currOp.idOperation + "| Montant :" + currOp.montant);
 					oldSolde -= currOp.montant;
-					System.out.println("oldSolde : " + oldSolde);
 				}
 
 				Cell rightCell = new Cell().add(new Paragraph(df.format(oldSolde))

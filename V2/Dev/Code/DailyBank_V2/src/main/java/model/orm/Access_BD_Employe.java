@@ -139,8 +139,6 @@ public class Access_BD_Employe {
 			}
 			query += " order by idEmploye";
 
-			System.out.println(query);
-
 
 			String un = "";
 			String deux = "";

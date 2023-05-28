@@ -49,7 +49,6 @@ public class EmployesManagement {
 			this.primaryStage.setTitle("Gestion des employes");
 			this.primaryStage.setResizable(false);
 
-            System.out.println(this.emcViewController);
             this.emcViewController = loader.getController();
             this.emcViewController.initContext(this.primaryStage, this, _dbstate);
         } catch (Exception e) {
@@ -163,9 +162,7 @@ public class EmployesManagement {
 	public boolean supprimerEmploye(Employe employe) {
 		EmployeEditorPane eep = new EmployeEditorPane(this.primaryStage, this.dailyBankState);
 		Employe result = eep.doEmployeEditorDialog(employe, EditionMode.SUPPRESSION);
-		System.out.println(result);
 		if (result != null) {
-			System.out.println("Suppression de l'employé");
 			try {
 				Access_BD_Employe ec = new Access_BD_Employe();
 				ec.deleteEmploye(result);

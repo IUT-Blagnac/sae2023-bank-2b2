@@ -193,7 +193,6 @@ public class OperationsManagement {
 			ed.doExceptionDialog();
 			listeOP = new ArrayList<>();
 		}
-		System.out.println(this.compteConcerne.solde);
 		return new PairsOfValue<>(this.compteConcerne, listeOP);
 	}
 }

@@ -266,7 +266,6 @@ public class OperationEditorPaneController {
 				this.txtMontant.requestFocus();
 				return;
 			}
-			System.out.println(""+montant);
 			String typeOp = this.cbTypeOpe.getValue();
 			this.operationResultat = new Operation(-1, montant, null, null, this.compteEdite.idNumCli, typeOp);
 			this.primaryStage.close();
@@ -282,14 +281,12 @@ public class OperationEditorPaneController {
 					throw new NumberFormatException();
 				}
 			} catch (NumberFormatException nfe) {
-				System.out.println("montant : "+this.txtMontant.getText().trim());
 				this.txtMontant.getStyleClass().add("borderred");
 				this.lblMontant.getStyleClass().add("borderred");
 				this.txtMontant.requestFocus();
 				return;
 			}
 			if (montant > 999999) {
-				System.out.println("ccccc");
 				info = "Dépassement du montant du crédit dépassé (>1M) ";
 				this.lblMessage.setText(info);
 				this.txtMontant.getStyleClass().add("borderred");
