@@ -164,6 +164,7 @@ public class ComptesManagementController {
 	//Modification d'un compte
 
 	/**
+	 * @author yannis gibert
 	 * Modifie un compte sélectionné.
 	 * Charge ensuite la liste des comptes et met à jour l'état des composants.
 	 */
@@ -184,6 +185,7 @@ public class ComptesManagementController {
 	//Suppression d'un compte courant
 
 	/**
+	 * @author yannis gibert
 	 * Supprime un compte courant sélectionné.
 	 * Charge ensuite la liste des comptes et met à jour l'état des composants.
 	 */
@@ -201,6 +203,7 @@ public class ComptesManagementController {
 	//Ajout d'un nouveau compte courant
 
 	/**
+	 * @author yannis gibert
 	 * Ajoute un nouveau compte courant.
 	 * Charge ensuite la liste des comptes.
 	 */
@@ -314,7 +317,11 @@ public class ComptesManagementController {
 
 
 	}
-
+	/**
+	 * @author yannis gibert
+	 * Permet de charger la liste des prélèvements du compte sélectionné
+	 */
+	
 	@FXML
 	public void gererPrelevCompte() {
 		int selectedIndice = this.lvComptes.getSelectionModel().getSelectedIndex();

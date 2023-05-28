@@ -87,10 +87,10 @@ public class Access_BD_CompteCourant {
 	}
 	
 	/**
-	 * Recherche des CompteCourant d'un client à partir de son id.
+	 * Recherche tout les comptes courants de la base de données
 	 *
-	 * @param idNumCli id du client dont on cherche les comptes
-	 * @return Tous les CompteCourant de idNumCli (ou liste vide)
+	 * 
+	 * @return Tous les CompteCourant de la base de données (ou liste vide)
 	 * @throws DataAccessException        Erreur d'accès aux données (requête mal
 	 *                                    formée ou autre)
 	 * @throws DatabaseConnexionException Erreur de connexion

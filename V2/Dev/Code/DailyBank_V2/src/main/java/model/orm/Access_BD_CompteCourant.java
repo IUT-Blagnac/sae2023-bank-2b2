@@ -119,6 +119,7 @@ public class Access_BD_CompteCourant {
 	}
 
 	/**
+	 * @author yannis gibert
 	 * Insertion d'un compte.
 	 *
 	 * @param compte IN/OUT Tous les attributs IN sauf idNumCompte en OUT
@@ -173,7 +174,8 @@ public class Access_BD_CompteCourant {
 	}
 
 	/**
-	 * Suppression d'un CompteCourant.
+	 * @author yannis gibert
+	 * Cloturation d'un CompteCourant.
 	 *
 	 * cc.idNumCompte (clé primaire) doit exister seul, le compte n'est pas supprimé mais seulement désactivé
 	 * empêchant alors les opérations
@@ -216,6 +218,7 @@ public class Access_BD_CompteCourant {
 	}
 
 	/**
+	 * @author yannis gibert
 	 * Mise à jour d'un CompteCourant.
 	 *
 	 * cc.idNumCompte (clé primaire) doit exister seul cc.debitAutorise est mis à

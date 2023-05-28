@@ -25,6 +25,7 @@ public class Access_BD_Prelevement {
 	}
 
 	/**
+	 * @author yannis gibert
 	 * Recherche des prelevements d'un compte à partir de son id.
 	 *
 	 * @param idNumCompte id du compte dont on cherche les prelevements
@@ -66,6 +67,7 @@ public class Access_BD_Prelevement {
 	}
 
 	/**
+	 * @author yannis gibert
 	 * Recherche d'un Prelevement à partir de son id (idNumPrelev).
 	 *
 	 * @param idNumPrelev id du prelevement (clé primaire)
@@ -118,6 +120,7 @@ public class Access_BD_Prelevement {
 	}
 
 	/**
+	 * @author yannis gibert
 	 * Insertion d'un prelevement.
 	 *
 	 * @param compte IN/OUT Tous les attributs IN sauf idPrelev en OUT
@@ -172,6 +175,7 @@ public class Access_BD_Prelevement {
 
 
 	/**
+	 * @author yannis gibert
 	 * Suppression d'un Prelevement.
 	 *
 	 * prelev.idPrelev (clé primaire) doit exister seul
@@ -210,6 +214,7 @@ public class Access_BD_Prelevement {
 	}
 
 	/**
+	 * @author yannis gibert
 	 * modification d'un Prelevement.
 	 *
 	 * prelev.idPrelev (clé primaire) doit exister seul

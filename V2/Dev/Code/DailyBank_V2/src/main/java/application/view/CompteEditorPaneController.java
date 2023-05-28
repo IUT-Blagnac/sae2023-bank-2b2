@@ -63,7 +63,7 @@ public class CompteEditorPaneController {
 	}
 
 	/**
-
+	@author yannis gibert
 	Affiche la boîte de dialogue pour la création, la modification ou la suppression d'un compte courant.
 
 	@param client Le client associé au compte

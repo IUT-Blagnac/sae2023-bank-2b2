@@ -54,7 +54,6 @@ public class Batch {
 	 * @author Enzo Fournet
 	 */
     public void start() {
-        System.out.println("COUCOU");
 		int nbClients = 0;
 		Access_BD_CompteCourant acCourant = new Access_BD_CompteCourant();
 		try {
@@ -86,7 +85,11 @@ public class Batch {
         	doRel();
 		}
     }
-    
+    /**
+     * @author yannis gibert
+     * Permet d'effectuer le prélèvement automatique pour tout les prélèvements du compte possède dans l'id correspondant
+     * @param idNumCompte l'id du compte des prélèvements
+     */
 	private void doPrelev(int idNumCompte) {
     	Access_BD_Operation aop = new Access_BD_Operation();
     	Access_BD_Prelevement apa = new Access_BD_Prelevement();
@@ -97,7 +100,6 @@ public class Batch {
     	int joursDansLeMois = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
     	
     	int jour = calendar.get(Calendar.DAY_OF_MONTH);
-    	System.out.println(""+joursDansLeMois);
     	try {
 			for(Prelevement prelevements : apa.getPrelevements(idNumCompte)) {
 				if(prelevements.datePrelev == jour) {
@@ -112,7 +114,6 @@ public class Batch {
 					}
 				}
 				else if(prelevements.datePrelev > joursDansLeMois && jour == joursDansLeMois) {
-					System.out.println("tkt");
 					try {
 						aop.insertDebit(acc.getCompteCourant(idNumCompte), prelevements.debitPrelev, "Prélèvement automatique");
 					} catch (ManagementRuleViolation e) {

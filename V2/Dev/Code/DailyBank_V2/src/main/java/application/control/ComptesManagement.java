@@ -87,6 +87,7 @@ public class ComptesManagement {
 	}
 
 	/**
+	 * @author yannis gibert
 	 * Permet de cloturer un compte
 	 *
 	 * @param compte le compte que l'on souhaite supprimer
@@ -119,6 +120,7 @@ public class ComptesManagement {
 	}
 
 	/**
+	 * @author yannis gibert
 	 * Permet de modifier les informations d'un compte
 	 *
 	 * @param c le compte qu'on souhaite modifier
@@ -146,6 +148,7 @@ public class ComptesManagement {
 	}
 
 	/**
+	 * @author yannis gibert
 	 * Permet de créer un nouveau compte courant
 	 *
 	 * @return le nouveau compte courant

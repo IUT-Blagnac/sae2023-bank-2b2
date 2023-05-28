@@ -10,6 +10,15 @@ public class Prelevement {
 	public int datePrelev;
 	public String beneficiaire;
 
+	/**
+	 * @author yannis gibert
+	 * Constructeur d'un prelevement
+	 * @param idNumPrelev numéro d'id du prelevement
+	 * @param debitPrelev montant du prelevement
+	 * @param idNumCompte numero du compte du prelevement
+	 * @param datePrelev date de prelevement
+	 * @param beneficiaire beneficiaire du prelevement
+	 */
 	public Prelevement(int idNumPrelev, double debitPrelev, int idNumCompte, int datePrelev,String beneficiaire) {
 		super();
 		this.idNumPrelev = idNumPrelev;
