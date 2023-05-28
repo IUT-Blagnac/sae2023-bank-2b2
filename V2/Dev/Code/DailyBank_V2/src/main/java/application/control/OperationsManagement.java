@@ -77,10 +77,10 @@ public class OperationsManagement {
 
 
 	/**
-	 * @author Julien Couderc
 	 * Cette méthode permet d'enregistrer une opération de débit.
 	 *
 	 * @return Operation
+	 * @author Julien Couderc
 	 */
 	public Operation enregistrerDebit() {
 
@@ -107,10 +107,10 @@ public class OperationsManagement {
 	}
 
 	/**
-	 * @author Julien Couderc
 	 * Cette méthode permet d'enregistrer une opération de crédit.
 	 *
 	 * @return Operation
+	 * @author Julien Couderc
 	 */
 	public Operation enregistrerCredit() {
 
@@ -137,11 +137,11 @@ public class OperationsManagement {
 	}
 
 	/**
-	 * @author Julien Couderc
 	 *  
 	 * Cette méthode permet d'enregistrer un virement.
 	 *
 	 * @return Operation
+	 * @author Julien Couderc
 	 */
 	public Operation enregistrerVirement() {
 	    OperationEditorPane oep = new OperationEditorPane(this.primaryStage, this.dailyBankState);

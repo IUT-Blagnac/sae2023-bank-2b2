@@ -87,11 +87,11 @@ public class ComptesManagement {
 	}
 
 	/**
-	 * @author yannis gibert
 	 * Permet de cloturer un compte
 	 *
 	 * @param compte le compte que l'on souhaite supprimer
 	 * @return le compte courant
+	 * @author yannis gibert
 	 */
 	public CompteCourant supprimerCompte(CompteCourant compte) {
 		CompteEditorPane cep = new CompteEditorPane(this.primaryStage, this.dailyBankState);
@@ -120,11 +120,11 @@ public class ComptesManagement {
 	}
 
 	/**
-	 * @author yannis gibert
 	 * Permet de modifier les informations d'un compte
 	 *
 	 * @param c le compte qu'on souhaite modifier
 	 * @return le compte modifié
+	 * @author yannis gibert
 	 */
 	public CompteCourant modifierCompte(CompteCourant c) {
 		CompteEditorPane cep = new CompteEditorPane(this.primaryStage, this.dailyBankState);
@@ -148,10 +148,10 @@ public class ComptesManagement {
 	}
 
 	/**
-	 * @author yannis gibert
 	 * Permet de créer un nouveau compte courant
 	 *
 	 * @return le nouveau compte courant
+	 * @author yannis gibert
 	 */
 	public CompteCourant creerNouveauCompte() {
 		CompteCourant compte;
@@ -203,6 +203,11 @@ public class ComptesManagement {
 		return listeCpt;
 	}
 
+	/**
+	 * Permet de récupérer toutes les opérations d'un compte 
+	 *
+	 * @return une array liste d'opération
+	 */
 	public ArrayList<Operation> getOperationsDunCompte(CompteCourant selectedItem, String month, String year) {
 		ArrayList<Operation> listeOp = new ArrayList<>();
 
