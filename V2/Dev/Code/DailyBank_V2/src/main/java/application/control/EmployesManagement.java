@@ -71,7 +71,7 @@ public class EmployesManagement {
 	 * @param _debutNom
 	 * @param _debutPrenom
 	 * @param _droit
-	 * @return ArrayList<Employe>
+	 * @return  une ArrayList d'employes
 	 */
 	public ArrayList<Employe> getlisteEmployes(int _numEmploye, String _debutNom, String _debutPrenom, String _droit){
         ArrayList<Employe> listeEmpl = new ArrayList<>();

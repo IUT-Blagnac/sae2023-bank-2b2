@@ -205,6 +205,10 @@ public class ComptesManagement {
 
 	/**
 	 * Permet de récupérer toutes les opérations d'un compte 
+	 * 
+	 * @param selectedItem le compte courant sélectionné
+	 * @param month le mois de l'operation
+	 * @param year l'annee de l'operation
 	 *
 	 * @return une array liste d'opération
 	 */
