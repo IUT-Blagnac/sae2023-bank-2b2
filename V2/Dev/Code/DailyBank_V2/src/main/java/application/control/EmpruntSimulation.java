@@ -60,7 +60,6 @@ public class EmpruntSimulation {
 	 * 
 	 * Cette méthode permet d'afficher le dialogue de la simulation d'un emprunt
 	 *
-	 * @return le compte courant edité
 	 * @author Julien Couderc
 	 */
 	public void doEmpruntSimulationDialog() {
