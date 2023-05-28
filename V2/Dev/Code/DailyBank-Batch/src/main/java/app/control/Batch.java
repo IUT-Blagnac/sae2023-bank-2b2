@@ -85,9 +85,9 @@ public class Batch {
 		}
     }
     /**
-     * @author yannis gibert
      * Permet d'effectuer le prélèvement automatique pour tout les prélèvements du compte possède dans l'id correspondant
      * @param idNumCompte l'id du compte des prélèvements
+     * @author yannis gibert
      */
 	private void doPrelev(int idNumCompte) {
     	Access_BD_Operation aop = new Access_BD_Operation();
@@ -317,9 +317,9 @@ public class Batch {
 
 	/**
 	 * Cette méthode permet de récupérer toutes les opérations d'un compte donné en paramètre.
-	 * @author Enzo Fournet
 	 * @param selectedItem
-	 * @return ArrayList<Operation> listeOp la liste des opérations du compte
+	 * @return une ArrayList d'opérations listeOp la liste des opérations du compte
+	 * @author Enzo Fournet
 	 */
     public ArrayList<Operation> getOperationsDunCompte(CompteCourant selectedItem) {
 		ArrayList<Operation> listeOp = new ArrayList<>();
