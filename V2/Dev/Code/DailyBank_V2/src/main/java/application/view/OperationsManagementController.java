@@ -114,8 +114,9 @@ public class OperationsManagementController {
 
 
 	/**
-	 * @author Julien Couderc
+	 * 
      * Annule l'action en cours et ferme la fenêtre.
+	 * @author Julien Couderc
      */
 	@FXML
 	private void doCancel() {
@@ -123,8 +124,9 @@ public class OperationsManagementController {
 	}
 
 	/**
-	 * @author Julien Couderc
+	 * 
      * Effectue l'opération de débit.
+	 * @author Julien Couderc
      */
 	@FXML
 	private void doDebit() {
@@ -138,8 +140,9 @@ public class OperationsManagementController {
 
 
 	 /**
-	  * @author Julien Couderc
+	* 
      * Effectue l'opération de crédit.
+	 * @author Julien Couderc
      */
 	@FXML
 	private void doCredit() {
@@ -152,8 +155,9 @@ public class OperationsManagementController {
 
 
 	 /**
-	  * @author Julien Couderc
+	 * 
      * Effectue l'opération de virement.
+	 * @author Julien Couderc
      */
 	@FXML
 	private void doAutre() {

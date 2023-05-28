@@ -35,9 +35,10 @@ public class EmployeEditorPaneController {
 	/**
 	 * Cette méthode est appelée par le contrôleur de dialogue EmployesManagement <br/>
 	 * pour initialiser le contexte de la fenêtre de dialogue de création ou de modification d'un employé <br/>
-	 * @author Enzo Fournet
+	 * 
 	 * @param _containingStage
 	 * @param _dbstate
+	 * @author Enzo Fournet
 	 */
 	public void initContext(Stage _containingStage, DailyBankState _dbstate) {
 		this.primaryStage = _containingStage;
@@ -62,11 +63,13 @@ public class EmployeEditorPaneController {
 	 * Cette méthode est appelée par le contrôleur de dialogue EmployesManagement <br/>
 	 * pour afficher la fenêtre de dialogue de création ou de modification d'un employé <br/>
 	 *
-	 * @author Enzo Fournet
+	 * 
 	 * @param employe
 	 * @param mode
 	 *
 	 * @return Employe
+	 * 
+	 * @author Enzo Fournet
 	 */
 	public Employe displayDialog(Employe employe, EditionMode mode) {
 
@@ -268,8 +271,8 @@ public class EmployeEditorPaneController {
 	/**
 	 * Vérifie que les données saisies sont valides <br/>
 	 *
-	 * @author Enzo Fournet
 	 * @return	true si les données sont valides, false si non
+	 * @author Enzo Fournet
 	 */
 	private boolean isSaisieValide() {
 		this.employeEdite.nom = this.txtNom.getText().trim();
@@ -351,9 +354,10 @@ public class EmployeEditorPaneController {
 	 * Vérifie que la chaîne de caractères passée en paramètre ne contient que des caractères alphanumériques <br/>
 	 * et les caractères spéciaux autorisés <br/>
 	 * 
-	 * @author Enzo Fournet
+	 * 
 	 * @param s
-	 * @return
+	 * @return true si la chaîne de caractères est valide, false si non
+	 * @author Enzo Fournet
 	 */
 	public boolean isValid(String s) {
 		return s.matches("[a-zA-Z0-9/.?,;:+=%$*()\\[\\]&#@!çèàé]*");

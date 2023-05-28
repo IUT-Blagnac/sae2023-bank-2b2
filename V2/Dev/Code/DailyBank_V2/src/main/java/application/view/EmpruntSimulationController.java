@@ -182,13 +182,14 @@ public class EmpruntSimulationController {
 
 	/**
 	 * 
-	 * @author Julien Couderc 
+	 * 
 	 * Effectue la simulation d'emprunt en récupérant les
 	 * valeurs des champs de saisie et en effectuant les calculs nécessaires
 	 * pour générer les tableaux d'amortissement. Si une valeur saisie est
 	 * invalide, elle est mise en surbrillance en rouge et la méthode se
 	 * termine prématurément. Une fois les calculs effectués, un fichier PDF
 	 * contenant les tableaux est généré.
+	 * @author Julien Couderc 
 	 */
 	@FXML
 	private void doSimulerEmprunt() {
@@ -361,7 +362,7 @@ public class EmpruntSimulationController {
 	 * Génère et permet de télécharger un fichier PDF contenant le tableau
 	 * d'amortissement du prêt.
 	 * 
-	 * @author Julien Couderc
+	 * 
 	 *
 	 * @param tableauRemboursement          Le tableau d'amortissement au format
 	 *                                      String
@@ -376,6 +377,7 @@ public class EmpruntSimulationController {
 	 *                                      l'assurance au format String
 	 * @param tableauAssurance              Le tableau des frais d'assurance au
 	 *                                      format String
+	 * @author Julien Couderc
 	 */
 	private void generatePDF(String tableauRemboursement, String fileName, Boolean assuranceActive,
 			Boolean remboursementAnnee, Double totalPaiement, Double totalAssurance, double echance,
@@ -656,12 +658,13 @@ public class EmpruntSimulationController {
 	}
 
 	/**
-	 * @author Julien Couderc
+	 * 
 	 *  
 	 * Calcule la mensualité d'un emprunt en fonction du montant, du taux d'intérêt
 	 * et de la durée spécifiés.
 	 * 
 	 * @return La mensualité de l'emprunt.
+	 * @author Julien Couderc
 	 */
 	private double calculerMensualite() {
 		double tauxMensuel = tauxEmprunt / 100 / 12;
@@ -671,12 +674,13 @@ public class EmpruntSimulationController {
 	}
 
 	/**
-	 * @author Julien Couderc
+	 * 
 	 * 
 	 * Calcule l'annuité d'un emprunt en fonction du montant, du taux d'intérêt et
 	 * de la durée spécifiés.
 	 * 
 	 * @return L'annuité de l'emprunt.
+	 * @author Julien Couderc
 	 */
 
 	private double calculerAnnuité() {

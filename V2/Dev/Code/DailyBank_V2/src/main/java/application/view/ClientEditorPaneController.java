@@ -21,7 +21,7 @@ import model.orm.exception.ApplicationException;
 import model.orm.exception.Order;
 import model.orm.exception.Table;
 
-/**
+/*
  * Le contrôleur pour la fenêtre d'édition du client.
  */
 public class ClientEditorPaneController {
