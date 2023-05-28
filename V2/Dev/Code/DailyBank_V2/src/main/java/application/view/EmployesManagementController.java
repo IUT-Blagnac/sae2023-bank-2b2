@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.data.Employe;
 
-/**
+/*
  * @author Enzo Fournet
  */
 public class EmployesManagementController {
@@ -45,10 +45,11 @@ public class EmployesManagementController {
 	 * ELle permet de passer les références nécessaires à la gestion des employés
 	 * <br/>
 	 *
-	 * @author Enzo Fournet
+	 * 
 	 * @param _containingStage
 	 * @param _em
 	 * @param _dbstate
+	 * @author Enzo Fournet
 	 *
 	 */
 	public void initContext(Stage _containingStage, EmployesManagement _em, DailyBankState _dbstate) {
@@ -93,9 +94,10 @@ public class EmployesManagementController {
 	 * Cette méthode est appelée lorsque l'événement de fermeture de la fenêtre se produit.
 	 * Elle exécute l'action d'annulation et consomme l'événement pour éviter toute autre action par défaut.
 	 *
-	 * @author Enzo Fournet
+	 * 
 	 * @param e L'événement de fermeture de la fenêtre.
 	 * @return null car aucun objet n'est renvoyé.
+	 * @author Enzo Fournet
 	 */
 	private Object closeWindow(WindowEvent e) {
 		this.doCancel();
@@ -334,9 +336,10 @@ public class EmployesManagementController {
 	 * Elle permet au double clique de lancer la consulation ou la modification d'un employé<br/>
 	 * En fonction des droits de l'employé actuel sur l'employé selectionné<br/>
 	 *
-	 * @author Enzo Fournet
+	 * 
 	 * @param event L'événement de la souris associé au clic sur la liste des
 	 *              employés.
+	 * @author Enzo Fournet
 	 */
 	@FXML
 	private void onClicList(MouseEvent event) {

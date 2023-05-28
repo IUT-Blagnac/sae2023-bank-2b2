@@ -63,7 +63,7 @@ public class CompteEditorPaneController {
 	}
 
 	/**
-	@author yannis gibert
+	
 	Affiche la boîte de dialogue pour la création, la modification ou la suppression d'un compte courant.
 
 	@param client Le client associé au compte
@@ -73,6 +73,7 @@ public class CompteEditorPaneController {
 	@param mode Le mode d'édition (CREATION, MODIFICATION, SUPPRESSION)
 
 	@return Le compte courant résultant après l'opération ou null si l'opération a été annulée
+	@author yannis gibert
 	*/
 
 	public CompteCourant displayDialog(Client client, CompteCourant cpte, EditionMode mode) {

@@ -19,7 +19,7 @@ import model.data.CompteCourant;
 import model.data.Prelevement;
 
 
-/**
+/*
  * @author yannis gibert
  * Cette classe est le contrôleur de la gestion des prelevements.
  * Elle gère les interactions avec l'interface graphique et effectue les opérations correspondantes.
@@ -45,12 +45,13 @@ public class PrelevManagementController {
 	// Manipulation de la fenêtre
 
 	/**
-	 * @author yannis gibert
+	 * 
 	 * Initialise le contexte du contrôleur avec les paramètres fournis.
 	 * @param _containingStage La fenêtre physique contenant la scène
 	 * @param _cm Le contrôleur de dialogue associé
 	 * @param _dbstate L'état courant de l'application
 	 * @param compte le compte associé aux prelevements
+	 * @author yannis gibert
 	 */
 	public void initContext(Stage _containingStage, PrelevManagement _cm, DailyBankState _dbstate, CompteCourant compte) {
 		this.cmDialogController = _cm;
@@ -62,8 +63,9 @@ public class PrelevManagementController {
 
 
 	/**
-	 * @author yannis gibert
+	 * 
 	 * Configure les éléments de l'interface graphique.
+	 * @author yannis gibert
 	 */
 	private void configure() {
 		String info;
@@ -85,8 +87,9 @@ public class PrelevManagementController {
 	}
 
 	/**
-	 * @author yannis gibert
+	 * 
 	 * Affiche la fenêtre de gestion des comptes.
+	 * @author yannis gibert
 	 */
 	public void displayDialog() {
 		this.primaryStage.showAndWait();
@@ -94,11 +97,12 @@ public class PrelevManagementController {
 
 
 	/**
-	 * @author yannis gibert
+	 * 
 	 * Gère l'événement de fermeture de la fenêtre en annulant ce qui était en cours.
 	 *
 	 * @param e L'événement de fermeture de la fenêtre
 	 * @return null
+	 * @author yannis gibert
 	 */
 	private Object closeWindow(WindowEvent e) {
 		this.doCancel();
@@ -121,8 +125,9 @@ public class PrelevManagementController {
 	private ContextMenu contextMenu = new ContextMenu();
 
 	/**
-	 * @author yannis gibert
+	 * 
 	 * Annule et ferme la fenêtre de gestion des prelevements.
+	 * @author yannis gibert
 	 */
 	@FXML
 	private void doCancel() {
@@ -132,9 +137,10 @@ public class PrelevManagementController {
 	//Modification d'un prelevement
 
 	/**
-	 * @author yannis gibert
+	 * 
 	 * Modifie un prelevement sélectionné.
 	 * Charge ensuite la liste des prelevements et met à jour l'état des composants.
+	 * @author yannis gibert
 	 */
 	@FXML
 	private void doModifierPrelev() {
@@ -153,9 +159,10 @@ public class PrelevManagementController {
 	//Suppression d'un prelevement
 
 	/**
-	 * @author yannis gibert
+	 * 
 	 * Supprime un prelevement sélectionné.
 	 * Charge ensuite la liste des prelevements et met à jour l'état des composants.
+	 * @author yannis gibert
 	 */
 	@FXML
 	private void doSupprimerPrelev() {
@@ -171,9 +178,10 @@ public class PrelevManagementController {
 	//Ajout d'un nouveau prelevement
 
 	/**
-	 * @author yannis gibert
+	 * 
 	 * Ajoute un nouveau prelevement
 	 * Charge ensuite la liste des prelevements.
+	 * @author yannis gibert
 	 */
 	@FXML
 	private void doNouveauPrelev() {
@@ -186,8 +194,9 @@ public class PrelevManagementController {
 
 
 	/**
-	 * @author yannis gibert
+	 * 
 	 * Charge la liste des prelevements du cmopte et l'affiche dans la vue.
+	 * @author yannis gibert
 	 */
 	private void loadList() {
 		ArrayList<Prelevement> listePrelev;

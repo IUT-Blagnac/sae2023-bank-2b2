@@ -20,7 +20,7 @@ import model.orm.exception.Order;
 import model.orm.exception.RowNotFoundOrTooManyRowsException;
 import model.orm.exception.Table;
 
-/**
+/*
  * Classe d'accès aux Employe en BD Oracle pour les tests.
  *
  * @author Enzo Fournet
@@ -30,10 +30,11 @@ public class Access_BD_Test {
 
     /**
      * Cette méthode permet de récupérer l'id actuel de la séquence de la table Employe.
-     * @author Enzo Fournet
+     * 
      * @return int id actuel de la séquence de la table Employe
      * @throws DataAccessException
      * @throws DatabaseConnexionException
+     * @author Enzo Fournet
      */
     public int getSeqEmplCurrVal() throws DataAccessException, DatabaseConnexionException {
         int seqEmplGetCurrVal = 0;
@@ -59,10 +60,11 @@ public class Access_BD_Test {
 
     /**
      * Cette méthode permet de récupérer le nombre d'employé en BD.
-     * @author Enzo Fournet
+     * 
      * @return int nombre d'employé en BD
      * @throws DataAccessException
      * @throws DatabaseConnexionException
+     * @author Enzo Fournet
      */
     public int getNumberEmploye() throws DataAccessException, DatabaseConnexionException {
         int nbEmploye = 0;
@@ -88,10 +90,11 @@ public class Access_BD_Test {
 
     /**
      * Cette méthode permet de récupérer le nombre d'employé en BD.
-     * @author Enzo Fournet
+     * 
      * @return
      * @throws DataAccessException
      * @throws DatabaseConnexionException
+     * @author Enzo Fournet
      */
     public ArrayList<Employe> getAllEmploye() throws DataAccessException, DatabaseConnexionException{
         ArrayList<Employe> alResult = new ArrayList<>();
@@ -124,10 +127,11 @@ public class Access_BD_Test {
 
     /**
      * Cette méthode permet de récupérer les employés en BD ayant le droit d'accès guichetier.
-     * @author Enzo Fournet
+     * 
      * @return ArrayList<Employe> liste des employés ayant le droit d'accès guichetier
      * @throws DataAccessException
      * @throws DatabaseConnexionException
+     * @author Enzo Fournet
      */
     public ArrayList<Employe> getAllGuichetier() throws DataAccessException, DatabaseConnexionException{
         ArrayList<Employe> alResult = new ArrayList<>();

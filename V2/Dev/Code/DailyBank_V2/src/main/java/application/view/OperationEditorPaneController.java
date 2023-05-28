@@ -43,11 +43,12 @@ public class OperationEditorPaneController {
 
 
 	/**
-	 * @author Julien Couderc
+	 * 
 	 * Initialise le contexte du contrôleur.
 	 *
 	 * @param _containingStage La fenêtre physique contenant la scène
 	 * @param _dbstate         L'état courant de l'application
+	 * @author Julien Couderc
 	 */
 	public void initContext(Stage _containingStage, DailyBankState _dbstate) {
 		this.primaryStage = _containingStage;
@@ -56,21 +57,23 @@ public class OperationEditorPaneController {
 	}
 
 	/**
-	 * @author Julien Couderc
+	 * 
 	 * Configure la gestion de l'événement de fermeture de la fenêtre primaryStage.
+	 * @author Julien Couderc
 	 */
 	private void configure() {
 		this.primaryStage.setOnCloseRequest(e -> this.closeWindow(e));
 	}
 
 	/**
-	 * @author Julien Couderc
+	 * 
 	 * 
 	 * Affiche la boîte de dialogue de l'éditeur d'opérations.
 	 *
 	 * @param cpte Le compte courant concerné
 	 * @param mode Le mode de l'opération (DEBIT, CREDIT, VIREMENT)
 	 * @return L'opération résultat ou null si annulé
+	 * @author Julien Couderc
 	 */
 	public Operation displayDialog(CompteCourant cpte, CategorieOperation mode) {
 		this.categorieOperation = mode;
@@ -152,11 +155,12 @@ public class OperationEditorPaneController {
 
 	/**
 	 * 
-	 * @author Julien Couderc
+	 * 
 	 * Gère l'événement de fermeture de la fenêtre.
 	 *
 	 * @param e L'événement de fermeture de la fenêtre
 	 * @return null
+	 * @author Julien Couderc
 	 */
 	private Object closeWindow(WindowEvent e) {
 		this.doCancel();
@@ -189,8 +193,9 @@ public class OperationEditorPaneController {
 
 	/**
 	 * 
-	 * @author Julien Couderc
+	 * 
 	 * Annule l'opération en cours et ferme la fenêtre.
+	 * @author Julien Couderc
 	 */
 	@FXML
 	private void doCancel() {
@@ -200,7 +205,7 @@ public class OperationEditorPaneController {
 
 	/**
 	 * 
-	 * @author Julien Couderc
+	 * 
 	 * 
 	 * Ajoute l'opération en cours et ferme la fenêtre.
 	 * 
@@ -224,6 +229,7 @@ public class OperationEditorPaneController {
 	 *   - Si toutes les vérifications sont réussies, l'opération de virement est créée avec les informations nécessaires.
 	 * 
 	 * Une fois l'opération ajoutée, la fenêtre est fermée.
+	 * @author Julien Couderc
 	 */
 	@FXML
 	private void doAjouter() {

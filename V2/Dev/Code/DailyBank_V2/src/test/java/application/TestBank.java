@@ -38,7 +38,7 @@ import model.orm.Access_BD_Test;
 import model.orm.exception.DataAccessException;
 import model.orm.exception.DatabaseConnexionException;
 
-/**
+/*
  *
  * Quelque test sur l'interface graphique de l'application.
  *
@@ -474,10 +474,11 @@ public class TestBank extends ApplicationTest {
 
     /**
      * Méthode pour trouver un élément dans la fenêtre de test à partir de son id
-     * @author Enzo Fournet
+     * 
      * @param <T>
      * @param query
-     * @return
+     * @return T extends Node : le noeud trouvé ou null si aucun noeud n'a été trouvé
+     * @author Enzo Fournet
      */
     public <T extends Node> T find(final String query) {
         Set<Node> nodes = this.lookup(query).queryAll();
@@ -507,9 +508,10 @@ public class TestBank extends ApplicationTest {
     /**
      * Méthode qui permet de récupérer le stage à partir d'un noeud 
      * 
-     * @author Enzo Fournet
+     * 
      * @param node
-     * @return
+     * @return Stage du noeud passé en paramètre
+     * @author Enzo Fournet
      */
     public Stage getStageFromNode(Node node) {
         Scene scene = node.getScene();
