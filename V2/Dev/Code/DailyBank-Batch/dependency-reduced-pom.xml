@@ -19,7 +19,7 @@
               <shadedArtifactAttached>true</shadedArtifactAttached>
               <transformers>
                 <transformer>
-                  <mainClass>application.BatchApp</mainClass>
+                  <mainClass>app.BatchApp</mainClass>
                 </transformer>
               </transformers>
             </configuration>
@@ -43,7 +43,7 @@
         <artifactId>exec-maven-plugin</artifactId>
         <version>3.1.0</version>
         <configuration>
-          <mainClass>application.BatchApp</mainClass>
+          <mainClass>app.BatchApp</mainClass>
         </configuration>
       </plugin>
     </plugins>

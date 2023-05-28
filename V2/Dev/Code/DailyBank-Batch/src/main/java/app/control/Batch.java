@@ -58,7 +58,6 @@ public class Batch {
 		Access_BD_CompteCourant acCourant = new Access_BD_CompteCourant();
 		try {
 			for(CompteCourant compte : acCourant.getAllCompteCourants() ) {
-				System.out.println(compte.toString());
 				doPrelev(compte.idNumCompte);
 			}
 		} catch (DataAccessException e1) {
