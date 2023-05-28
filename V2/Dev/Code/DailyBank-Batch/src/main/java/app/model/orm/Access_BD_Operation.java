@@ -74,7 +74,7 @@ public class Access_BD_Operation {
 	 * - Enregistre l'opération <BR />
 	 * - Met à jour le solde du compte. <BR />
 	 *
-	 * @param idNumCompte compte débité
+	 * @param compte compte débité
 	 * @param montant     montant débité
 	 * @param typeOp      libellé de l'opération effectuée (cf TypeOperation)
 	 * @throws DataAccessException        Erreur d'accès aux données (requête mal

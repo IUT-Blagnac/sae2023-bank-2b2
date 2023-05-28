@@ -248,7 +248,7 @@ public class Access_BD_CompteCourant {
 	 *                                           mal formée ou autre)
 	 * @throws DatabaseConnexionException        Erreur de connexion
 	 * @throws ManagementRuleViolation           Erreur sur le solde courant par
-	 *                                           rapport au débitAutorisé (solde <
+	 *                                           rapport au débitAutorisé (solde &lt;
 	 *                                           débitAutorisé)
 	 */
 	public void deleteCompteCourant(CompteCourant cc) throws RowNotFoundOrTooManyRowsException, DataAccessException,
@@ -291,7 +291,7 @@ public class Access_BD_CompteCourant {
 	 *                                           mal formée ou autre)
 	 * @throws DatabaseConnexionException        Erreur de connexion
 	 * @throws ManagementRuleViolation           Erreur sur le solde courant par
-	 *                                           rapport au débitAutorisé (solde <
+	 *                                           rapport au débitAutorisé (solde &lt;
 	 *                                           débitAutorisé)
 	 */
 	public void updateCompteCourant(CompteCourant cc) throws RowNotFoundOrTooManyRowsException, DataAccessException,
