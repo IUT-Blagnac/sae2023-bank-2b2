@@ -149,7 +149,7 @@ public class TestBank extends ApplicationTest {
      */
     public void verifCoDECO() {
         Button btnDeconn = this.find("#btnDeconn");
-        if (btnDeconn != null) {
+        if (btnDeconn.isVisible()) {
             this.clickOn("#btnDeconn");
         }
     }
