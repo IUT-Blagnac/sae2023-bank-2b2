@@ -25,7 +25,6 @@ public class Access_BD_Prelevement {
 	}
 
 	/**
-	 * @author yannis gibert
 	 * Recherche des prelevements d'un compte à partir de son id.
 	 *
 	 * @param idNumCompte id du compte dont on cherche les prelevements
@@ -33,6 +32,7 @@ public class Access_BD_Prelevement {
 	 * @throws DataAccessException        Erreur d'accès aux données (requête mal
 	 *                                    formée ou autre)
 	 * @throws DatabaseConnexionException Erreur de connexion
+	 * @author yannis gibert
 	 */
 	public ArrayList<Prelevement> getPrelevements(int idNumCompte)
 			throws DataAccessException, DatabaseConnexionException {
@@ -67,7 +67,6 @@ public class Access_BD_Prelevement {
 	}
 
 	/**
-	 * @author yannis gibert
 	 * Recherche d'un Prelevement à partir de son id (idNumPrelev).
 	 *
 	 * @param idNumPrelev id du prelevement (clé primaire)
@@ -76,6 +75,7 @@ public class Access_BD_Prelevement {
 	 * @throws DataAccessException               Erreur d'accès aux données (requête
 	 *                                           mal formée ou autre)
 	 * @throws DatabaseConnexionException        Erreur de connexion
+	 * @author yannis gibert
 	 */
 	public Prelevement getPrelevement(int idNumPrelev)
 			throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException {
@@ -120,7 +120,6 @@ public class Access_BD_Prelevement {
 	}
 
 	/**
-	 * @author yannis gibert
 	 * Insertion d'un prelevement.
 	 *
 	 * @param compte IN/OUT Tous les attributs IN sauf idPrelev en OUT
@@ -129,6 +128,7 @@ public class Access_BD_Prelevement {
 	 * @throws DataAccessException               Erreur d'accès aux données (requête
 	 *                                           mal formée ou autre)
 	 * @throws DatabaseConnexionException        Erreur de connexion
+	 * @author yannis gibert
 	 */
 	public void insertPrelevement(Prelevement prelev)
 			throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException {
@@ -175,7 +175,6 @@ public class Access_BD_Prelevement {
 
 
 	/**
-	 * @author yannis gibert
 	 * Suppression d'un Prelevement.
 	 *
 	 * prelev.idPrelev (clé primaire) doit exister seul
@@ -187,6 +186,7 @@ public class Access_BD_Prelevement {
 	 * @throws DataAccessException               Erreur d'accès aux données (requête
 	 *                                           mal formée ou autre)
 	 * @throws DatabaseConnexionException        Erreur de connexion
+	 * @author yannis gibert
 	 */
 	public void deletePrelevement(Prelevement prelev) throws RowNotFoundOrTooManyRowsException, DataAccessException,
 			DatabaseConnexionException{
@@ -214,7 +214,6 @@ public class Access_BD_Prelevement {
 	}
 
 	/**
-	 * @author yannis gibert
 	 * modification d'un Prelevement.
 	 *
 	 * prelev.idPrelev (clé primaire) doit exister seul
@@ -225,6 +224,7 @@ public class Access_BD_Prelevement {
 	 * @throws DataAccessException               Erreur d'accès aux données (requête
 	 *                                           mal formée ou autre)
 	 * @throws DatabaseConnexionException        Erreur de connexion
+	 * @author yannis gibert
 	 */
 	public void updatePrelevement(Prelevement prelev) throws RowNotFoundOrTooManyRowsException, DataAccessException,
 			DatabaseConnexionException, ManagementRuleViolation {

@@ -119,7 +119,6 @@ public class Access_BD_CompteCourant {
 	}
 
 	/**
-	 * @author yannis gibert
 	 * Insertion d'un compte.
 	 *
 	 * @param compte IN/OUT Tous les attributs IN sauf idNumCompte en OUT
@@ -128,6 +127,7 @@ public class Access_BD_CompteCourant {
 	 * @throws DataAccessException               Erreur d'accès aux données (requête
 	 *                                           mal formée ou autre)
 	 * @throws DatabaseConnexionException        Erreur de connexion
+	 * @author yannis gibert
 	 */
 	public void insertCompte(CompteCourant compte)
 			throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException {
@@ -174,7 +174,6 @@ public class Access_BD_CompteCourant {
 	}
 
 	/**
-	 * @author yannis gibert
 	 * Cloturation d'un CompteCourant.
 	 *
 	 * cc.idNumCompte (clé primaire) doit exister seul, le compte n'est pas supprimé mais seulement désactivé
@@ -190,6 +189,7 @@ public class Access_BD_CompteCourant {
 	 * @throws ManagementRuleViolation           Erreur sur le solde courant par
 	 *                                           rapport au débitAutorisé (solde <
 	 *                                           débitAutorisé)
+	 * @author yannis gibert
 	 */
 	public void deleteCompteCourant(CompteCourant cc) throws RowNotFoundOrTooManyRowsException, DataAccessException,
 			DatabaseConnexionException, ManagementRuleViolation {
@@ -218,7 +218,6 @@ public class Access_BD_CompteCourant {
 	}
 
 	/**
-	 * @author yannis gibert
 	 * Mise à jour d'un CompteCourant.
 	 *
 	 * cc.idNumCompte (clé primaire) doit exister seul cc.debitAutorise est mis à
@@ -234,6 +233,8 @@ public class Access_BD_CompteCourant {
 	 * @throws ManagementRuleViolation           Erreur sur le solde courant par
 	 *                                           rapport au débitAutorisé (solde <
 	 *                                           débitAutorisé)
+	 *                                           
+	 * @author yannis gibert
 	 */
 	public void updateCompteCourant(CompteCourant cc) throws RowNotFoundOrTooManyRowsException, DataAccessException,
 			DatabaseConnexionException, ManagementRuleViolation {

@@ -13,11 +13,7 @@ import model.orm.exception.Order;
 import model.orm.exception.RowNotFoundOrTooManyRowsException;
 import model.orm.exception.Table;
 
-/**
- * Classe d'accès aux Employe en BD Oracle.
- *
- * @author Enzo Fournet
- */
+
 public class Access_BD_Employe {
 
 	public Access_BD_Employe() {
@@ -26,7 +22,6 @@ public class Access_BD_Employe {
 	/**
 	 * Recherche d'un employé par son login / mot de passe.
 	 *
-	 * @author Enzo Fournet
 	 * @param login    login de l'employé recherché
 	 * @param password mot de passe donné
 	 * @return un Employe ou null si non trouvé
@@ -34,6 +29,7 @@ public class Access_BD_Employe {
 	 * @throws DataAccessException               Erreur d'accès aux données (requête
 	 *                                           mal formée ou autre)
 	 * @throws DatabaseConnexionException        Erreur de connexion
+	 * @author Enzo Fournet
 	 */
 	public Employe getEmploye(String login, String password)
 			throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException {
@@ -89,7 +85,6 @@ public class Access_BD_Employe {
 	 *
 	 * Cette méthode permet de récupérer un employé en fonction de son id.
 	 *
-	 * @author Enzo Fournet
 	 * @param _idEmploye
 	 * @param _debutNom
 	 * @param _debutPrenom
@@ -97,6 +92,7 @@ public class Access_BD_Employe {
 	 * @return
 	 * @throws DataAccessException
 	 * @throws DatabaseConnexionException
+	 * @author Enzo Fournet
 	 */
 	public ArrayList<Employe> getEmployes(int _idEmploye, String _debutNom, String _debutPrenom, String _droit) throws DataAccessException, DatabaseConnexionException {
 		ArrayList<Employe> alResult = new ArrayList<>();
@@ -199,11 +195,11 @@ public class Access_BD_Employe {
 	 *
 	 * Cette méthode permet d'insérer un employé en base de données.
 	 *
-	 * @author Enzo Fournet
 	 * @param employe
 	 * @throws RowNotFoundOrTooManyRowsException
 	 * @throws DataAccessException
 	 * @throws DatabaseConnexionException
+	 * @author Enzo Fournet
 	 */
 	public void insertEmploye(Employe employe)
 			throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException {
@@ -255,11 +251,11 @@ public class Access_BD_Employe {
 	 *
 	 * Cette méthode permet de mettre à jour un employé en base de données.
 	 *
-	 * @author Enzo Fournet
 	 * @param employe
 	 * @throws RowNotFoundOrTooManyRowsException
 	 * @throws DataAccessException
 	 * @throws DatabaseConnexionException
+	 * @author Enzo Fournet
 	 */
 	public void updateEmploye(Employe employe) throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException {
 		try {
@@ -295,11 +291,11 @@ public class Access_BD_Employe {
 	 *
 	 * Cette méthode permet de supprimer un employé en base de données.
 	 *
-	 * @author Enzo Fournet
 	 * @param employe
 	 * @throws RowNotFoundOrTooManyRowsException
 	 * @throws DataAccessException
 	 * @throws DatabaseConnexionException
+	 * @author Enzo Fournet
 	 */
 	public void deleteEmploye(Employe employe) throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException {
 		try {

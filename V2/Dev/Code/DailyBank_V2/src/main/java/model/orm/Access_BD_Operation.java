@@ -35,7 +35,6 @@ public class Access_BD_Operation {
 	/**
 	 * Recherche de toutes les opérations d'un compte.
 	 *
-	 * @author Enzo Fournet
 	 *
 	 * @param idNumCompte id du compte dont on cherche toutes les opérations
 	 * @param month       mois de l'opération
@@ -45,6 +44,7 @@ public class Access_BD_Operation {
 	 * @throws DataAccessException        Erreur d'accès aux données (requête mal
 	 *                                    formée ou autre)
 	 * @throws DatabaseConnexionException Erreur de connexion
+	 * @author Enzo Fournet
 	 */
 	public ArrayList<Operation> getOperations(int idNumCompte, String month, String year) throws DataAccessException, DatabaseConnexionException {
 		DateTimeFormatter parser = new DateTimeFormatterBuilder()
@@ -91,7 +91,6 @@ public class Access_BD_Operation {
 	/**
 	 * Recherche de toutes les opérations d'un compte.
 	 *
-	 * @author Enzo Fournet
 	 *
 	 * @param idNumCompte id du compte dont on cherche toutes les opérations
 	 *
@@ -99,6 +98,7 @@ public class Access_BD_Operation {
 	 * @throws DataAccessException        Erreur d'accès aux données (requête mal
 	 *                                    formée ou autre)
 	 * @throws DatabaseConnexionException Erreur de connexion
+	 * @author Enzo Fournet
 	 */
 	public ArrayList<Operation> getOperations(int idNumCompte) throws DataAccessException, DatabaseConnexionException {
 
@@ -278,7 +278,6 @@ public class Access_BD_Operation {
 	}
 
 	/**
-	 * @author Julien Couderc
 	 * Enregistrement d'un crédit.
 	 *
 	 * Se fait par procédure stockée :
@@ -292,6 +291,7 @@ public class Access_BD_Operation {
 	 *                                    formée ou autre)
 	 * @throws DatabaseConnexionException Erreur de connexion
 	 * @throws ManagementRuleViolation    Si dépassement découvert autorisé
+	 * @author Julien Couderc
 	 */
 	public void insertCredit(int idNumCompte, double montant, String typeOp)
 			throws DatabaseConnexionException, ManagementRuleViolation, DataAccessException {
@@ -323,7 +323,6 @@ public class Access_BD_Operation {
 	}
 
 	/**
-	 * @author yannis gibert
 	 * Enregistrement d'un premier depot lors de la création d'un compte courant.
 	 *
 	 * - insère l'opèration du premier dépot dans la base de données. <BR />
@@ -335,6 +334,7 @@ public class Access_BD_Operation {
 	 *                                    formée ou autre)
 	 * @throws DatabaseConnexionException Erreur de connexion
 	 * @throws ManagementRuleViolation    Si dépassement découvert autorisé
+	 * @author yannis gibert
 	 */
 	public void insertPremierDepot(int idNumCompte,double montant,String typeOp) throws DatabaseConnexionException, ManagementRuleViolation, DataAccessException{
 		try {
@@ -377,7 +377,6 @@ public class Access_BD_Operation {
 	
 	
 	/**
-	 * @author Julien Couderc
 	 * 
 	 * Enregistrement d'un virement.
 	 *
@@ -390,6 +389,7 @@ public class Access_BD_Operation {
 	 *                                    formée ou autre)
 	 * @throws DatabaseConnexionException Erreur de connexion
 	 * @throws ManagementRuleViolation    Si dépassement découvert autorisé
+	 * @author Julien Couderc
 	 */
 	public void insertVirement(CompteCourant compte, int idNumCompteDest, double montant, String typeOp, DailyBankState dailyBankState)
 	        throws DatabaseConnexionException, ManagementRuleViolation, DataAccessException {
