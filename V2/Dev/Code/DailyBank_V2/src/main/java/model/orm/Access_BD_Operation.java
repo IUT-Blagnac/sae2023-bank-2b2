@@ -193,9 +193,10 @@ public class Access_BD_Operation {
 	 * - Enregistre l'opération <BR />
 	 * - Met à jour le solde du compte. <BR />
 	 *
-	 * @param idNumCompte compte débité
+	 * @param compte      compte débité
 	 * @param montant     montant débité
 	 * @param typeOp      libellé de l'opération effectuée (cf TypeOperation)
+	 * @param dailyBankState état de la banque
 	 * @throws DataAccessException        Erreur d'accès aux données (requête mal
 	 *                                    formée ou autre)
 	 * @throws DatabaseConnexionException Erreur de connexion
@@ -382,7 +383,7 @@ public class Access_BD_Operation {
 	 *
 	 * Utilise les méthodes insertDebit et insertCredit
 	 *
-	 * @param idNumCompte compte débité
+	 * @param idNumCompteDest compte débité
 	 * @param montant     montant débité
 	 * @param typeOp      libellé de l'opération effectuée (cf TypeOperation)
 	 * @throws DataAccessException        Erreur d'accès aux données (requête mal

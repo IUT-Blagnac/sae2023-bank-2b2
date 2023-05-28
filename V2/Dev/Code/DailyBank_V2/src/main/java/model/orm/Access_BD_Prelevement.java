@@ -122,7 +122,7 @@ public class Access_BD_Prelevement {
 	/**
 	 * Insertion d'un prelevement.
 	 *
-	 * @param compte IN/OUT Tous les attributs IN sauf idPrelev en OUT
+	 * @param prelev IN prelev.idNumCompte doit exister
 	 * @throws RowNotFoundOrTooManyRowsException La requête insère 0 ou plus de 1
 	 *                                           ligne
 	 * @throws DataAccessException               Erreur d'accès aux données (requête
