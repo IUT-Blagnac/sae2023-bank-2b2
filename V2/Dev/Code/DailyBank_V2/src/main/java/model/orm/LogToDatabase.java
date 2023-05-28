@@ -11,9 +11,6 @@ import model.orm.exception.DatabaseConnexionException;
  * ---------------------------------------------------------------------
  * Code source à modifier pour user/mdp/hote/port/SID (attributs privés)
  * ---------------------------------------------------------------------
- */
-
-/**
  * Classe qui gère la connexion à la BD
  *
  */

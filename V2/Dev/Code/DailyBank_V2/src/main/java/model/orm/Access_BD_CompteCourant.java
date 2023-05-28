@@ -14,7 +14,7 @@ import model.orm.exception.Order;
 import model.orm.exception.RowNotFoundOrTooManyRowsException;
 import model.orm.exception.Table;
 
-/**
+/*
  *
  * Classe d'accès aux CompteCourant en BD Oracle.
  *
@@ -187,7 +187,7 @@ public class Access_BD_CompteCourant {
 	 *                                           mal formée ou autre)
 	 * @throws DatabaseConnexionException        Erreur de connexion
 	 * @throws ManagementRuleViolation           Erreur sur le solde courant par
-	 *                                           rapport au débitAutorisé (solde <
+	 *                                           rapport au débitAutorisé (solde &lt;
 	 *                                           débitAutorisé)
 	 * @author yannis gibert
 	 */
@@ -231,7 +231,7 @@ public class Access_BD_CompteCourant {
 	 *                                           mal formée ou autre)
 	 * @throws DatabaseConnexionException        Erreur de connexion
 	 * @throws ManagementRuleViolation           Erreur sur le solde courant par
-	 *                                           rapport au débitAutorisé (solde <
+	 *                                           rapport au débitAutorisé (solde &lt;
 	 *                                           débitAutorisé)
 	 *                                           
 	 * @author yannis gibert
