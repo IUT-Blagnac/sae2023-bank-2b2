@@ -70,7 +70,7 @@ Dans sa colonne il doit remplir la ligne correspondant à chaque partie qu'il a 
 | 26/05   | Gantt V2  réalisé    |    https://github.com/IUT-Blagnac/sae2023-bank-2b2/blob/main/V2/Doc/Gantt/GanttV2Finalis%C3%A9.gan[GanttV2 finalisé]   | 
 |         | Doc. Util. V2 |   https://github.com/IUT-Blagnac/sae2023-bank-2b2/blob/main/V2/Doc/DocUtilisateur/DocUtilisateur.adoc[DocUtilisateur V2]      |         
 |         | Doc. Tec. V2 |     https://github.com/IUT-Blagnac/sae2023-bank-2b2/tree/main/V2/Doc/DocTechnique[DocTechnique V2]           |     
-|         | Code V2    |                     | 
+|         | Code V2    |           https://github.com/IUT-Blagnac/sae2023-bank-2b2/tree/main/V2/Dev/Code[code V2]          | 
 |         | Javadoc V2    |                     | 
 |         | Recette V2 |                      | 
 |         | `jar` projet |    | 
