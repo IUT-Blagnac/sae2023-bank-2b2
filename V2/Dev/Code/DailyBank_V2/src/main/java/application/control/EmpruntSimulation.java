@@ -1,4 +1,8 @@
-	package application.control;
+/*
+ * @author Julien Couderc
+ */
+
+package application.control;
 
 import application.DailyBankApp;
 import application.DailyBankState;

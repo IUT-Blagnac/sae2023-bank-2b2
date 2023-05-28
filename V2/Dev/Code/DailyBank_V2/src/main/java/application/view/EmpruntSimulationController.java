@@ -1,3 +1,7 @@
+/*
+ * @author Julien Couderc
+ */
+
 package application.view;
 
 import java.io.File;

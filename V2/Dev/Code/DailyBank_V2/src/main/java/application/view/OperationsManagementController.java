@@ -114,6 +114,7 @@ public class OperationsManagementController {
 
 
 	/**
+	 * @author Julien Couderc
      * Annule l'action en cours et ferme la fenêtre.
      */
 	@FXML
@@ -122,6 +123,7 @@ public class OperationsManagementController {
 	}
 
 	/**
+	 * @author Julien Couderc
      * Effectue l'opération de débit.
      */
 	@FXML
@@ -136,6 +138,7 @@ public class OperationsManagementController {
 
 
 	 /**
+	  * @author Julien Couderc
      * Effectue l'opération de crédit.
      */
 	@FXML
@@ -149,6 +152,7 @@ public class OperationsManagementController {
 
 
 	 /**
+	  * @author Julien Couderc
      * Effectue l'opération de virement.
      */
 	@FXML
