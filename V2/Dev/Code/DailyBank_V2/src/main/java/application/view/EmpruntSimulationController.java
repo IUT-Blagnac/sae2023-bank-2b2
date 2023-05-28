@@ -268,7 +268,7 @@ public class EmpruntSimulationController {
 		double totalPaiement = 0;
 
 		if (remboursementAnnee) {
-			rembourser = this.calculerAnnuité();
+			rembourser = this.calculerAnnuite();
 			totalPaiement = rembourser * this.duree - this.montantEmprunt;
 		} else {
 			rembourser = this.calculerMensualite();
@@ -682,7 +682,7 @@ public class EmpruntSimulationController {
 	 * @author Julien Couderc
 	 */
 
-	private double calculerAnnuité() {
+	private double calculerAnnuite() {
 		double taux = tauxEmprunt / 100;
 		double mensualite = (montantEmprunt * taux) / (1 - Math.pow(1 + taux, -duree));
 		return mensualite;
