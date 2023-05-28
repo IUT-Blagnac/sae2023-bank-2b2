@@ -15,7 +15,7 @@ import javafx.stage.WindowEvent;
 import model.data.CompteCourant;
 import model.data.Prelevement;
 
-	/**
+	/*
 	@author yannis gibert
 	La classe PrelevementEditorPaneController est un contrôleur qui gère l'affichage et la modification des informations de prelevement automatique pour un compte.
 
