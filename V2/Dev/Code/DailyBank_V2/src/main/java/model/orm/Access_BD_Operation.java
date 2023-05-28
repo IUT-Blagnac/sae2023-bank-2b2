@@ -24,7 +24,7 @@ import model.orm.exception.Order;
 import model.orm.exception.RowNotFoundOrTooManyRowsException;
 import model.orm.exception.Table;
 
-/**
+/*
  * Classe d'accès aux Operation en BD Oracle.
  */
 public class Access_BD_Operation {

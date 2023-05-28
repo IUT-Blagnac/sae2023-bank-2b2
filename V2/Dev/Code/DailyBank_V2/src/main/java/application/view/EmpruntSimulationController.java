@@ -101,7 +101,6 @@ public class EmpruntSimulationController {
 	 * Initialise le contexte du contrôleur avec les paramètres fournis.
 	 *
 	 * @param _containingStage La fenêtre physique contenant la scène
-	 * @param _cm              Le contrôleur de dialogue associé
 	 * @param _dbstate         L'état courant de l'application
 	 * @param client           Le client associé aux comptes
 	 */

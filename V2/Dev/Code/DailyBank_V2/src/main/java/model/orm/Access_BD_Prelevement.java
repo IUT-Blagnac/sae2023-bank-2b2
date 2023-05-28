@@ -14,7 +14,7 @@ import model.orm.exception.Order;
 import model.orm.exception.RowNotFoundOrTooManyRowsException;
 import model.orm.exception.Table;
 
-/**
+/*
  *
  * Classe d'accès aux Prelevement en BD Oracle.
  *

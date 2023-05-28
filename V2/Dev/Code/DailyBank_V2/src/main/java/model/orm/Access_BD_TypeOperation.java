@@ -12,7 +12,7 @@ import model.orm.exception.DatabaseConnexionException;
 import model.orm.exception.Order;
 import model.orm.exception.Table;
 
-/**
+/*
  * Classe d'accès aux TypeOperation en BD Oracle.
  */
 public class Access_BD_TypeOperation {

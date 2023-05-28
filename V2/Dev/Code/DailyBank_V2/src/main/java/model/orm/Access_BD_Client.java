@@ -13,7 +13,7 @@ import model.orm.exception.Order;
 import model.orm.exception.RowNotFoundOrTooManyRowsException;
 import model.orm.exception.Table;
 
-/**
+/*
  * Classe d'accès aux Client en BD Oracle.
  */
 public class Access_BD_Client {
@@ -25,7 +25,7 @@ public class Access_BD_Client {
 	 * Recherche des clients paramétrée (tous/un seul par id/par nom-prénom).
 	 *
 	 * On recherche : <BR/>
-	 * - un client précis si idNumCli <> -1 <BR />
+	 * - un client précis si idNumCli &lt;&gt; -1 <br/>
 	 * - des clients par début nom/prénom si debutNom donné <BR />
 	 * - tous les clients de idAg sinon <BR/>
 	 *

@@ -20,9 +20,6 @@ import model.orm.exception.Table;
  * Fait ici uniquement pour montrer que le texte d'une instruction SQL tappée en intéractif dans sqlDeveloper (ou tout terminal SQL)
  * peut servir pour réaliser une interrogation de base de données depuis un langage de programmation.
  * On préfèrera les PreparedStatement (cf. autres classes).
- */
-
-/**
  * Classe d'accès aux AgenceBancaire en BD Oracle.
  *
  */
