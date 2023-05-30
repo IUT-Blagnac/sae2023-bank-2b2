@@ -51,7 +51,7 @@ mvn clean install -Dmaven.install=true -DskipTests
 
 === Use Case Version 1
 
-image::RessourceAdoc/img/uc-initialv1.svg[Alt UC V1, 50%]
+image::RessourceAdoc/svg/uc-initialv2.svg[Alt UC V1, 50%]
 
 
 ==== Présentation des utilisateurs et leurs actions
@@ -85,7 +85,7 @@ CompteCourant: Cette classe représente un compte courant d'un client dans la ba
 Chaque classe représente une table dans la base de données, et chaque instance (ou objet) de la classe représente une ligne dans cette table. Les attributs de la classe sont les colonnes de la table. Les relations entre les classes (indiquées par les lignes dans le diagramme) représentent les relations entre les tables dans la base de données, qui sont généralement mises en œuvre par des clés étrangères.
 
 .Diagramme de classe de la base de données
-image::RessourceAdoc/img/dc-initialv1.svg[Alt DC V1, 75%]
+image::RessourceAdoc/svg/dc-initialv2.svg[Alt DC V1, 75%]
 
 
 == Architecture
