@@ -51,7 +51,7 @@ mvn clean install -Dmaven.install=true -DskipTests
 
 === Use Case Version 1
 
-image::RessourceAdoc/img/uc-initialv1.svg[Alt UC V1, 50%]
+image::RessourceAdoc/svg/uc-initialv1.svg[Alt UC V1, 50%]
 
 
 ==== Présentation des utilisateurs et leurs actions
