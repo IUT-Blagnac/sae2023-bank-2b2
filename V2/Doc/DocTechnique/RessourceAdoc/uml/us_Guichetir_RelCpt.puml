@@ -1,0 +1,6 @@
+
+skinparam actorStyle awesome
+actor Guichetier
+
+Guichetier --> ("Generer un relevé de compte mensuel")
+

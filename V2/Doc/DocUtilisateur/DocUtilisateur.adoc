@@ -1,0 +1,637 @@
+= Documentation utilisateur de l'application DailyBank V2
+:doctype: book
+:toc: left
+:toc-title: Table des matières
+:toclevels: 5
+:sectnums:
+Auteurs: Yannis Gibert, Julien Couderc, Enzo Fournet
+
+Date: {docdate} +
+Équipe : 2B2 +
+Membres de l'équipe : Enzo Fournet, Julien Couderc, Yannis Gibert +
+Projet: DailyBank
+
+== Introduction
+
+Cette documentation est destinée à guider les utilisateurs de l'application DailyBank dans son utilisation seulement.
+
+== Présentation de l'application
+
+L'application JAVA-Oracle de gestion des comptes clients pour DailyBank est une solution numérique complète conçue pour révolutionner la gestion bancaire en proposant un ensemble complet de fonctionnalités pour les guichetiers et les responsables d’agence. Le principal objectif de cette application est de faciliter les opérations bancaires, de renforcer la sécurité des transactions et d'améliorer la gestion des employés, le tout dans une interface utilisateur intuitive et conviviale.
+
+En ce qui concerne les opérations bancaires, l'application offre des fonctionnalités de gestion des comptes clients, y compris la création, la modification et la clôture de comptes. Elle facilite également la réalisation de transactions financières et dispose d'une fonctionnalité de crédit client, avec une limite de crédit fixée à 999 999€.
+
+En matière de sécurité, l'application est dotée de protocoles de sécurité robustes pour garantir l'authentification des utilisateurs et protéger les transactions et les données sensibles. Elle assure également une traçabilité complète des opérations pour prévenir et détecter rapidement toute activité suspecte.
+
+En ce qui concerne le suivi des comptes clients, l'application intègre une base de données centralisée permettant un accès rapide et facile aux informations clients et aux transactions. Des outils de recherche et de filtrage efficaces, ainsi que des fonctionnalités de reporting et de suivi des transactions, sont disponibles pour faciliter la gestion des comptes et la prise de décision éclairée.
+
+L'application sert également de plateforme de gestion des employés pour les responsables d’agence. Elle automatisera certaines tâches administratives et répétitives, favorisera la communication et la collaboration entre les guichetiers et les responsables d’agence, et fournira des indicateurs de performance pour évaluer et améliorer la qualité du service et l'efficacité des employés.
+
+En résumé, l'application JAVA-Oracle de gestion des comptes clients pour DailyBank est une solution innovante qui vise à simplifier et à optimiser la gestion bancaire tout en garantissant un haut niveau de sécurité pour les transactions et les données.
+
+== Prérequis
+
+Vos identifiants de connexion à l'application.
+
+Un ordinateur capable d'executer un fichier .jar, compiler sous java 17.
+
+== Connexion à l'application
+
+Pour lancer l'application il vous suffit donc de vous munir d'un ordinateur capable d'executer un fichier .jar et de lancer le fichier DailyBank.jar. Puis de vous connecter avec vos identifiants.
+
+Page de connexion :
+
+[horizontal]
+.Page d'acceuil de l'application
+image::RessourcesAdoc/img/PageConnexion.png[Alt Page de connexion, 50%]
+.Page de connexion de l'application
+image::RessourcesAdoc/img/Connexion.png[Alt Page de connexion, 50%]
+
+=== Connecté en tant que chef d'agence
+Comme vous pouvez le contaster sur l'image ci-dessous, une fois connecté en tant que chef d'agence vous avez accès à un menu déroulant "Gestion" tout comme le guichetier qui vous permet d'accéder à la gestion des clients et des employés de votre agence.
+
+.Connecté en tant que chef d'agence
+image::RessourcesAdoc/img/co-chef.png[Alt Page de connexion d'un chef d'agence, 50%]
+
+=== Connecté en tant que guichetier
+Comme vous pouvez le contaster sur l'image ci-dessous, une fois connecté en tant que guichetier vous avez accès à un menu déroulant "Gestion" tout comme le chef d'agence qui vous permet d'accéder à la gestion des clients seulement.
+
+.Connecté en tant que guichetier
+image::RessourcesAdoc/img/co-guich.png[Alt Page de connexion d'un guichetier, 50%]
+
+== Utilisation de l'application
+
+=== Guichetiers
+
+==== Création d'un client
+``Réalisée par Julien Couderc``
+
+*Prérequis : Être connecté en tant que guichetier ou chef d'agence et s'être rendu dans la gestion des clients*
+
+Une fois que vous avez accédé à la gestion des clients.
+Vous pouvez créer un nouveau compte en cliquant sur le bouton "Ajouter" en bas à droite de la page. Ou annuler en cliquant sur le bouton "Annuler" en bas à droite de la page.
+
+.Menu de gestion de la page d'accueil
+image::RessourcesAdoc/img/MenuGestion.png[Alt Gestion, 50%]
+
+Une fois sur la page des clients vous pouvez voir la liste de tout les clients étant dans la même agence que le guichetier. Vous pouvez en cliquant sur un client activer le bouton "Modifier client", en cliquant sur ce dernier vous serez redirigé vers la page de gestion des comptes du client sélectionné.
+
+.Menu de gestion des clients
+image::RessourcesAdoc/img/GestionClient.png[Alt Gestion Client, 50%]
+
+En arrivant sur cette page, il est possible de changer toutes les informations ci-dessous, ainsi, vous pouvez changer le nom, le prénom, l'adresse, le numéro de téléphone, l'e-mail et si le client est actif ou non. Puis, lorsque vous voulez confirmer ces changements, il vous suffit de cliquer sur le bouton "Modifier" et les informations seront mises à jour.
+
+.Menu informations client
+image::RessourcesAdoc/img/InformationClient.png[Alt Information Client, 50%]
+
+==== Recherche d'un client
+``Réalisée par Julien Couderc``
+
+Pour pouvoir rechercher un client, il faut suivre les étapes précédentes jusqu'à être dans la page des clients. Puis, vous pouvez faire une recherche d'un client en tapant son numéro, son nom ou alors son nom et prénom.
+
+.Recherche client
+image::RessourcesAdoc/img/RechercheClient.png[Alt Recherche Client, 50%]
+
+Voici la recherche par son numéro :
+
+.Recherche client par numéro
+image::RessourcesAdoc/img/ClientRechercheNum.png[Alt Recherche Client num, 50%]
+
+Voici la recherche par son nom :
+
+.Recherche client par nom
+image::RessourcesAdoc/img/ClientRechercheNom.png[Alt Recherche Client nom, 50%]
+
+
+==== Création d'un compte :
+``Réalisée par Yannis Gibert``
+
+*Prérequis : Être connecté en tant que guichetier ou chef d'agence et s'être rendu dans la gestion des clients*
+
+Une fois que vous avez accédé à la gestion des clients.
+Vous pouvez créer un nouveau compte en cliquant sur le bouton "Ajouter" en bas à droite de la page. Ou annuler en cliquant sur le bouton "Annuler" en bas à droite de la page.
+
+[horizontal]
+
+Une fois sur la page d'accueil, il vous suffit de survoler le bouton "Gestion" avec votre souris, ce qui ouvrira un menu déroulant permettant de choisir entre Clients et Employés. Ici, ce qui nous intéresse est la section Clients, il vous suffit donc de cliquer dessus pour accéder au menu des clients.
+
+.Gestion des clients
+image::RessourcesAdoc/img/MenuGestion.png[Alt Page de connexion, 50%]
+
+Une fois sur la page des clients vous pouvez voir la liste de tout les clients étant dans la même agence que le guichetier. Vous pouvez en cliquant sur un client activer le bouton "Comptes client", en cliquant sur ce dernier vous serez redirigé vers la page de gestion des comptes du client sélectionné.
+
+.Gestion des comptes
+image::RessourcesAdoc/img/MenuClient.png[Alt Page de connexion, 50%]
+
+Une fois sur la page des comptes du client il vous suffit de cliquer sur "Nouveau Compte" ce qui lancera la page de création d'un nouveau compte.
+
+.Gestion des comptes
+image::RessourcesAdoc/img/MenuCompte.png[Alt Page de connexion, 50%]
+
+Vous voici sur la page de création du compte, les informations "Id client", "Id agence" et "Numéro compte" sont remplis automatiquement et non modifiable, en dessous vous trouverez la case "Découvert autorisé" que vous pouvez modifiez afin de saisir le découvert que vous souhaitez accorder à ce compte. Dernièrement vous trouverez la case "Solde (premier dépot)" que vous pouvez également modifier afin d'effectuer un premier dépot sur le compte du montant saisie. Une fois toutes les informations saisie vous pouvez alors cliquez sur le bouton "Ajouter" afin de valider la création du compte ou alors cliquer sur "Annuler" afin d'annuler la création du compte.
+
+.Création d'un compte
+image::RessourcesAdoc/img/CréationCompte.png[Alt Page de connexion, 50%]
+
+==== Cloturation d'un compte :
+``Réalisée par Yannis Gibert``
+
+Une fois sur la page d'acceuil il vous suffit de passer la souris sur le bouton "Gestion" ce qui ouvre un menu déroulant permettant de sélectionner entre Clients et Employés. Ici ce que nous intéressera est la partie Clients, il suffit donc de cliquer dessus afin d'accéder au menu des clients.
+
+.Menu de gestion de compte
+image::RessourcesAdoc/img/MenuGestion.png[Alt Page de connexion, 50%]
+
+Une fois sur la page des clients vous pouvez voir la liste de tout les clients étant dans la même agence que le guichetier. Vous pouvez en cliquant sur un client activer le bouton "Comptes client", en cliquant sur ce dernier vous serez redirigé vers la page de gestion des comptes du client sélectionné.
+
+.Gestion des clients - Accès aux comptes
+image::RessourcesAdoc/img/MenuClient.png[Alt Page de connexion, 50%]
+
+Une fois sur la page des comptes du client il vous suffit de cliquer sur un compte afin de le sélectionner. Si le compte n'est pas cloturé alors le bouton "Cloturer" sera disponible, vous pouvez savoir si un compte est cloturé ou non en regardant la liste, si il est indiqué "Ouvert" cela signifie que le compte n'est pas cloturé et sinon si il est indiqué "Cloture" alors cela signifie que le compte est cloturé. En cliquant dessus la fenêtre de cloturation du compte s'ouvre.
+
+.Gestion des comptes - Accès à la cloturation d'un compte
+image::RessourcesAdoc/img/MenuCompte2.png[Alt Page de connexion, 50%]
+
+Vous voici sur la page de cloturation du compte, vous ne pouvez modifier aucune information sur cette page mais seulement les consulter afin de s'assurer qu'il s'agit bien du bon compte. Vous trouverez en bas un bouton "Supprimer", en cliquant dessus si le solde du compte est inférieur ou égal à 0 alors la page se ferme et le compte sera alors cloturé.
+
+.Cloturation d'un compte
+image::RessourcesAdoc/img/CloturerCompte.png[Alt Page de connexion, 50%]
+
+Néanmoins si le solde du compte n'est pas égal à 0 alors un message d'erreur s'affichera et empêchera la cloturation du compte, en cliquant sur "OK" vous retournez sur la page de gestion des comptes du client.
+
+.Erreur de cloturation
+image::RessourcesAdoc/img/ErreurCloturation.png[Alt Page de connexion, 50%]
+
+==== Modification d'un compte :
+``Réalisée par Yannis Gibert``
+
+Une fois sur la page d'accueil, il vous suffit de passer la souris sur le bouton "Gestion" ce qui ouvre un menu déroulant permettant de sélectionner entre Clients et Employés. Ici ce que nous intéressera est la partie Clients, il suffit donc de cliquer dessus afin d'accéder au menu des clients.
+
+.Menu de gestion
+image::RessourcesAdoc/img/MenuGestion.png[Alt Page de connexion, 50%]
+
+Une fois sur la page des clients vous pouvez voir la liste de tout les clients étant dans la même agence que le guichetier. Vous pouvez en cliquant sur un client activer le bouton "Comptes client", en cliquant sur ce dernier vous serez redirigé vers la page de gestion des comptes du client sélectionné.
+
+.Menu de gestion des comptes
+image::RessourcesAdoc/img/MenuClient.png[Alt Page de connexion, 50%]
+
+Une fois sur la page des comptes du client il vous suffit de cliquer sur un compte afin de le sélectionner. Si le compte n'est pas cloturé alors le bouton "Modifier" sera disponible, vous pouvez savoir si un compte est cloturé ou non en regardant la liste, si il est indiqué "Ouvert" cela signifie que le compte n'est pas cloturé et sinon si il est indiqué "Cloture" alors cela signifie que le compte est cloturé. En cliquant dessus la fenêtre de modification du compte s'ouvre.
+
+.Menu de gestion des comptes
+image::RessourcesAdoc/img/MenuCompte3.png[Alt Page de connexion, 50%]
+
+Vous voici sur la page de modification du compte, vous ne pouvez y modifier qu'une seule information qui est le Découvert Autorisé. Une fois les modifications effectuées il vous suffit de cliquer sur "Modifier" afin de valider la modification du compte
+
+.Menu modification compte
+image::RessourcesAdoc/img/ModifierCompte.png[Alt Page de connexion, 50%]
+
+==== Débit d'un compte :
+``Réalisé par Julien Couderc ``
+
+Pour effectuer un débit, il vous suffit de vous connecter, puis passer la souris sur le bouton "Gestion" ce qui ouvre un menu déroulant permettant de sélectionner entre Clients et Employés. Ici ce que nous intéressera est la partie Clients, il suffit donc de cliquer dessus afin d'accéder au menu des clients.
+
+.Menu de gestion
+image::RessourcesAdoc/img/MenuGestion.png[Alt Gestion Client, 50%]
+
+Une fois sur la page des clients vous pouvez voir la liste de tout les clients étant dans la même agence que le guichetier. Vous pouvez en cliquant sur un client activer le bouton "Comptes client", en cliquant sur ce dernier vous serez redirigé vers la page de gestion des comptes du client sélectionné.
+
+.Menu de client - compte client
+image::RessourcesAdoc/img/MenuClient.png[Alt Comptes Clients, 50%]
+
+Sur cette nouvelle page, vous devez cliquer sur un compte ouvert, puis cliquer sur voir opérations de ce compte.
+
+.Menu opération - choix du compte
+image::RessourcesAdoc/img/voirOperations.png[Alt Voir Opérations, 50%]
+
+A partir de là, vous pouvez choisir l'opération que vous voulez, en ce qui nous concerne actuellement, nous allons faire un débit.
+
+.Menu opération - choix de l'opération
+image::RessourcesAdoc/img/OperationDebit.png[Alt Choix Débit, 50%]
+
+Une fois la page ouverte, vous pouvez sélectionner le type de débit que vous voulez effectuer, vous avez le choix entre "Retrait Espèces" et "Retrait Carte Bleue".
+
+.choix du type de débit
+image::RessourcesAdoc/img/OperationTypeDebit.png[Alt Choix Type Débit, 50%]
+
+Ensuite, il vous faut entrer un montant valide, c'est à dire, que le solde du compte ne dépasse pas le dévouvert maximum autorisé et puis cliquer sur effectuer le débit.
+
+.choix du montant
+image::RessourcesAdoc/img/OperationDebitEffectue.png[Alt Effectue Débit, 50%]
+
+Une fois le débit effectué, l'opération est ajoutée à la liste des opérations avec le type de l'opération ainsi que le montant.
+
+.Liste des opérations après un débit
+image::RessourcesAdoc/img/OperationDebitResultat.png[Alt Liste Opération, 50%]
+
+
+==== Crédit d'un compte :
+``Réalisé par Julien Couderc ``
+
+Pour réalisé un crédit, il suffit de répéter les étapes précédentes jusqu'à arriver à la sélection de l'opération, il vous faut cliquer sur "Enregistrer crédit".
+
+.Menu opération - choix de l'opération
+image::RessourcesAdoc/img/OperationCredit.png[Alt Choix crédit, 50%]
+
+Une fois la page ouverte, vous pouvez sélectionner le type de débit que vous voulez effectuer, vous avez le choix entre "Dépôt Espèces" et "Dépôt Chèque".
+
+.choix du type de crédit
+image::RessourcesAdoc/img/OperationTypeCredit.png[Alt Choix type crédit, 50%]
+
+Ensuite, il vous faut entrer un montant valide, c'est à dire, que le montant ne doit pas dépasser 1 million d'euros et puis cliquer sur effectuer le crédit.
+
+.choix du montant
+image::RessourcesAdoc/img/OperationCreditEffectue.png[Alt Effectuer crédit, 50%]
+
+Une fois le crédit effectué, l'opération est ajoutée à la liste des opérations avec le type de l'opération ainsi que le montant.
+
+.Liste des opérations après un crédit
+image::RessourcesAdoc/img/OperationCreditEffectues.png[Alt Liste Opération, 50%]
+
+
+==== Virement d'un compte à un autre :
+``Réalisé par Julien Couderc ``
+
+Pour réalisé un virement, il suffit de répéter les étapes précédentes jusqu'à arriver à la sélection de l'opération, il vous faut cliquer sur "Enregistrer virement".
+
+.Menu opération - choix de l'opération
+image::RessourcesAdoc/img/OperationVirement.png[Alt Choix virement, 50%]
+
+Une fois la page ouverte, vous devez entrer un numéro de compte présent dans l'agence.
+
+.choix du compte à créditer
+image::RessourcesAdoc/img/OperationTypeVirement.png[Alt Choix compte virement, 50%]
+
+Ensuite, il vous faut entrer un montant valide, c'est à dire, que le montant ne doit pas dépasser 1 million d'euros mais aussi vous ne devez pas dépasser votre découvert maximal autorisé et puis cliquer sur effectuer le virement.
+
+.choix du montant
+image::RessourcesAdoc/img/OperationVirementEffectue.png[Alt Effectuer virement, 50%]
+
+Une fois le virement effectué, l'opération est ajoutée à la liste des opérations avec le type de l'opération ainsi que le montant. Cette opération est ajoutée aux deux comptes concernés.
+
+.Liste des opérations après un virement
+image::RessourcesAdoc/img/OperationVirementEmetteur.png[Alt Liste Opération Emetteur, 50%]
+
+.Liste des opérations après un virement
+image::RessourcesAdoc/img/OperationVirementDestinataire.png[Alt Liste Opération Destinataire, 50%]
+
+==== Créer un compte :
+``Réalisé par Yannis Gibert``
+
+Voici la page des comptes avant la création d'un nouveau compte : 
+
+.Gestion des comptes - Avant création
+image::RessourcesAdoc/img/MenuCompte4.png[Alt Page de connexion, 50%]
+
+Suite à la création du compte vous pouvez voir comme ci-dessous que le nouveau compte apparait désormais dans la liste des comptes du client. 
+
+.Gestion des comptes - Après création@
+image::RessourcesAdoc/img/ResultatCreerCompte.png[Alt Page de connexion, 50%]
+
+==== Modifier un compte :
+``Réalisé par Yannis Gibert``
+
+Voici la page des comptes avant la modification, on prendra comme exemple le dernier compte de la liste dont on va modifier le découvert autorisé pour le passé de -200 à -6000 : 
+
+.Gestion des comptes
+image::RessourcesAdoc/img/MenuCompte5.png[Alt Page de connexion, 50%]
+
+Suite à la modification du compte vous pouvez voir comme ci-dessous que le compte apparait toujours dans la liste des comptes du client et que son découvert autorisé est passé de -200 à -6000. 
+
+.Gestion des comptes - Après modification
+image::RessourcesAdoc/img/ResultatModifierCompte.png[Alt Page de connexion, 50%]
+
+==== Clôturer un compte :
+``Réalisé par Yannis Gibert``
+
+Voici la page des comptes avant la cloturation d'un compte, nous allons cloturer le dernier compte de la liste en guise d'exemple.
+
+.Gestion des comptes
+image::RessourcesAdoc/img/MenuCompte5.png[Alt Page de connexion, 50%]
+
+Suite à la clôturation du compte vous pouvez voir comme ci-dessous que le compte apparait toujours dans la liste mais que désormais il n'est plus écrit "Ouvert" mais "Clôture" ce qui indique que le compte est bel et bien clôturé.
+
+.Gestion des comptes - Après cloturation
+image::RessourcesAdoc/img/ResultatCloturerCompte.png[Alt Page de connexion, 50%]
+
+==== Générer une relevé de compte :
+``Réalisé par Enzo Fournet``
+
+*Prérequis : Être connecté en tant que guichetier ou chef d'agence et s'être rendu dans la gestion des clients*
+
+Lorsque vous arrivé dans la age de gestion des clients il vous suffit de selectionner un client puis de cliquer sur le bouton "Comptes client"  sur la droite de la page. 
+
+.gestion des clients
+image::RessourcesAdoc/img/MenuClient.png[Alt Page de connexion, 50%]
+
+Une fois sur la page de gestion des comptes du client vous pouvez voir la liste des comptes du client et vous pouvez cliquer sur le bouton "Relevé de compte" sur la droite de la page.
+
+.gestion des comptes
+image::RessourcesAdoc/img/RelCpt.png[Alt Page de connexion, 50%]
+
+Cela ouvrira une fenêtre qui vous permettra de séléectionner l'année et le mois du relevé de compte que vous voulez générer.
+
+.menu relevé de compte - choix de l'année et du mois
+image::RessourcesAdoc/img/RelCptChoix.png[Alt Page de connexion, 50%]
+
+Vous serez ensuite invité à choisir un emplacement pour enregistrer le relevé de compte.
+
+Exemple de relevé de compte :
+
+.exmeple de relevé de compte généré
+image::RessourcesAdoc/img/Relevé-de-compte.jpeg[Alt Page de connexion, 50%]
+
+=== Chef d'agence
+
+==== Gestion des Employés :
+``Réalisée par Enzo Fournet``
+
+==== Accéder à la gestion des employés :
+*Prérequis : Être connecté en tant que chef d'agence.*
+
+Une fois connecter en tant que chef s'agence vous pouvez 
+accéder à la gestion des employés en cliquant sur le bouton "Gestion" puis en cliquant sur "Employés".
+
+.Menu de gestion de la page d'accueil - Accès à la gestion des employés
+image::RessourcesAdoc/img/chefGestEmpl.png[Alt Page de connexion clique pour accéder à la gestion des employés, 50%]
+
+Une fois que vous avez accédé à la gestion des employés.
+
+.Gestion des employés
+image::RessourcesAdoc/img/GestEmpl.png[Alt page de gestion des emplyés, 70%]
+
+Vous pouvez voir la liste des employés de votre agence, vous avez alors la possibilité de double cliquer sur un employé pour le modifier ou le consulter en fonction de vos droits.
+Vous avez aussi la possibilité de fare un clique droit sur un employé pour faire apparaitre un menu contextuel qui vous permettra de modifier, de consulter ou de supprimer un employé en fonction de vos droits.
+
+Les boutons latéraux sont aussi utilisables pour modifier ou consulter un employé et seront dégrisés si vous avez pas les droits pour faire l'action demandée.
+
+==== Consultation d'un employé :
+*Prérequis : Être connecté en tant que chef d'agence et s'être rendu dans la gestion des employés*
+
+Une fois que vous avez accédé à la gestion des employés.
+Vous avez le droit de consulter n'importe quel employé de votre agence en double cliquant sur un employé ou en faisant un clique droit puis en cliquant sur "Consulter" ou encore en utilisant le boutons latéral.
+
+*ATTENTION* : Si vous double cliquer sur un emploté pour lequel vous avez les droit de modification vous serez redirigé vers la page de modification de l'employé et non de consultation.
+
+.Bouton latéral de consultation
+image::RessourcesAdoc/img/BoutonLat-Consult.png[Alt Bouton lattéral de consultation, 70%]
+
+.Clique droit sur un employé
+image::RessourcesAdoc/img/Bouton2Click-Consult.png[Alt Page de consultation d'un employé, 70%]
+
+Lorsque vous aurez accédé à la page de consultation d'un employé vous aurez accès à toutes les informations de l'employé.
+
+.Consultation d'un employé
+image::RessourcesAdoc/img/ConsultEmpl.png[Alt Page de consultation d'un employé, 70%]
+
+Pour revenir à la page de gestion des employés il vous suffit de cliquer sur le bouton "Ok" en bas à droite de la page.
+
+.Bouton de retour à la page de gestion des employés
+image::RessourcesAdoc/img/ConsultEmpl-btn.png[Alt Bouton de retour à la page de gestion des employés, 70%]
+
+==== Création d'un nouvel employé :
+
+*Prérequis : Être connecté en tant que chef d'agence et s'être rendu dans la gestion des employés*
+
+Une fois que vous avez accédé à la gestion des employés.
+Vous avez le droit de créer un nouvel employé en cliquant sur le bouton "Nouvel employé" en bas à gauche de la page.
+Vous devrez alors remplir tout les champs disponnible du formulaire de création d'un employé .
+
+.Page de création d'un nouvel employé
+image::RessourcesAdoc/img/CreaEmpl.png[Alt Page de création d'un compte, 70%]
+
+==== Modification d'un employé :
+
+*Prérequis : Être connecté en tant que chef d'agence et s'être rendu dans la gestion des employés*
+
+Une fois que vous avez accédé à la gestion des employés.
+Vous avez le droit de modifier tout les guichetier de votre agence et vous même en double cliquant sur un employé que vous pouvez modifir ou en faisant un clique droit puis en cliquant sur "Modifier" ou encore en utilisant le boutons latéral lorsque vous avez les droits nécessaire.
+
+*ATTENTION* : Si vous double cliquer sur un employé pour lequel vous n'avez les droit de modification vous serez redirigé vers la page de consulation de l'employé et non de modification.
+
+.Bouton latéral de modification
+image::RessourcesAdoc/img/BoutonLat-Modif.png[Alt Bouton lattéral de modification, 70%]
+
+.Clique droit sur un employé
+image::RessourcesAdoc/img/Bouton2Click-Modif.png[Alt Page de modification d'un employé, 70%]
+
+Loresque vous aurez accédé à la page de modification d'un employé vous aurez accès à toutes les informations de l'employé et vous pourrez modifier celle qui seront accéssible.
+
+.Modification d'un employé
+image::RessourcesAdoc/img/ModifEmpl.png[Alt Page de modification d'un employé, 70%]
+
+Pour Valider les modifications il vous suffit de cliquer sur le bouton "Modifier" en bas à droite de la page et pour annuler les modifications il vous suffit de cliquer sur le bouton "Annuler" en bas à droite de la page.
+
+.Bouton de validation des modifications et d'annulation
+image::RessourcesAdoc/img/ModifEmpl-btn.png[Alt Page de modification d'un employé, 70%]
+
+==== Suppression d'un employé :
+*Prérequis : Être connecté en tant que chef d'agence et s'être rendu dans la gestion des employés*
+
+Une fois que vous avez accédé à la gestion des employés.
+Vous avez seulement le droit de supprimer des guichetier de votre agence en faisant un clique droit puis en cliquant sur "Supprimer" ou encore en utilisant le boutons latéral lorsque vous avez les droits nécessaire.
+
+.Bouton latéral de suppression
+image::RessourcesAdoc/img/BoutonLat-Suppr.png[Alt Bouton lattéral de suppression, 70%]
+
+.Clique droit sur un employé
+image::RessourcesAdoc/img/Bouton2Click-Suppr.png[Alt Page de suppression d'un employé, 70%]
+
+Loresque vous aurez accédé à la page de suppression d'un employé vous aurez accès à toutes les informations de l'employé et vous pourrez supprimer l'employé.
+
+.Suppression d'un employé
+image::RessourcesAdoc/img/SupprEmpl.png[Alt Page de suppression d'un employé, 70%]
+
+Pour Valider la suppression il vous suffit de cliquer sur le bouton "Supprimer" en bas à droite de la page et pour annuler la suppression il vous suffit de cliquer sur le bouton "Annuler" en bas à droite de la page.
+
+
+==== Simuler un emprunt avec/sans assurance :
+``Réalisé par Julien Couderc``
+ 
+*Prérequis : Être connecté en tant que chef d'agence et s'être rendu dans la gestion des clients*
+
+Lorsque vous êtes dans la gestion des clients, un bouton en bas à droite "Simuler un emprunt" est activé, il vous suffit de cliquer dessus.
+
+.Bouton de simulation d'emprunt
+image::RessourcesAdoc/img/SimulerEmprunt.png[Alt Simuler emprunt, 50%]
+
+*Cas de la simulation de l'emprunt sans asurance* 
+
+Une fois fait, vous devez entrer les composantes de l'emprunt, il vous faut saisir un montant, une durée en années, un taux d'intérêts en pourcentage et les frais de dossier. Puis il vous faut choisir la façon dont l'emprunt va être payer puis si il faut une assurance d'emprunt ou non.
+
+.Champ simulation d'emprunt
+image::RessourcesAdoc/img/gestionSimulationEmprunt.png[Alt Simuler emprunt, 50%]
+
+Une fois les données saisies, faîtes simuler pour lancer la génération du fichier pdf.
+
+.Bouton de simulation d'emprunt sans assurance
+image::RessourcesAdoc/img/empruntAnneeSansAssu.png[Alt Simuler, 50%]
+
+Veuillez choisir un emplacement où télécharger le fichier de la simulation du client.
+
+.Bouton de téléchargement du fichier pdf
+image::RessourcesAdoc/img/telechargerEmprunt.png[Alt Télécharger, 50%]
+
+Une fois le document pdf téléchargé ou ouvert, vous obtiendrez sur la première page les informations du client, le récapitulatif des données de l'emprunt, la date de l'emprunt et enfin le tableau d'amortissement de l'emprunt.
+
+.pdf de la simulation de l'emprunt sans assurance
+image::RessourcesAdoc/img/pdfEmpruntSansAssu1.png[Alt pdf Emprunt, 50%]
+
+Sur la deuxième page du document, il y a le récapitulatif des coûts de l'emprunt. La première ligne rappelle le coût de l'emprunt qui va vous être demander comprenant les frais de dossier. La deuxième ligne rapelle le prix à payer chaque année.
+
+.pdf de la simulation de l'emprunt sans assurance - recapitulatif
+image::RessourcesAdoc/img/pdfEmpruntSansAssu2.png[Alt pdf Emprunt, 50%]
+
+*Cas de la simulation de l'emprunt sans asurance* 
+
+Une fois fait, vous devez entrer les composantes de l'emprunt, il vous faut saisir un montant, une durée en années, un taux d'intérêts en pourcentage et les frais de dossier. Puis il vous faut choisir la façon dont l'emprunt va être payer puis cocher avec assurance et ensuite entrer le pourcentage de l'assurance.
+
+.Champ simulation d'emprunt avec assurance
+image::RessourcesAdoc/img/gestionSimulationEmpruntAssu.png[Alt gestion Emprunt, 50%]
+
+Une fois les montants saisis et valides, il vous suffit de lancer la simulation de l'emprunt avec assurance.
+
+.Bouton de simulation d'emprunt avec assurance
+image::RessourcesAdoc/img/simulationEmpruntAssu.png[Alt simuler Emprunt, 50%]
+
+Veuillez choisir un emplacement où télécharger le fichier de la simulation du client.
+
+.Bouton de téléchargement du fichier pdf
+image::RessourcesAdoc/img/telechargerEmpruntAssu.png[Alt Télécharger, 50%]
+
+Une fois le document pdf téléchargé ou ouvert, vous obtiendrez sur la première page les informations du client, le récapitulatif des données de l'emprunt, la date de l'emprunt et enfin le tableau d'amortissement de l'emprunt.
+
+.pdf de la simulation de l'emprunt avec assurance
+image::RessourcesAdoc/img/pdfEmpruntAssu1.png[Alt pdf Emprunt1, 50%]
+
+Sur la page suivante, vous avez le récapitulatif de la simulation de l'assurance avec l'échéance de l'assurance, l'échéance à rembourser sans assurance et avec assurance.
+
+.pdf de la simulation de l'emprunt avec assurance
+image::RessourcesAdoc/img/pdfEmpruntAssu2.png[Alt pdf Emprunt2, 50%]
+
+Puis, sur la page suivante vous avez la simulation de l'emprunt mais cette fois ci avec l'assurance rajoutée.
+
+.pdf de la simulation de l'emprunt avec assurance - tableau d'amortissement
+image::RessourcesAdoc/img/pdfEmpruntAssu3.png[Alt pdf Emprunt3, 50%]
+
+Et pour finir, il y a le récapitulatif des coûts de l'emprunt. La première ligne rappelle le coût de l'emprunt qui va vous être demander comprenant les frais de dossier et des frais d'assurance. La deuxième ligne rappelle le prix à payer chaque mois avec le détail de l'échéance de l'assurance.
+
+.pdf de la simulation de l'emprunt avec assurance - recapitulatif
+image::RessourcesAdoc/img/pdfEmpruntAssu4.png[Alt pdf Emprunt4, 50%]
+
+==== Faire un débit exceptionnel :
+``Réalisé par Yannis Gibert``
+
+*Prérequis : Être connecté en tant que chef d'agence et s'être rendu dans la gestion des opérations d'un compte*
+
+Lorsque vous arrivé dans la page de gestion des opérations du compte il vous suffit de selectionner "Enregistrer débit", ce qui ouvrira la page de débit d'un compte.
+
+.gestion des opérations
+image::RessourcesAdoc/img/DebitExce.png[Alt Page des opérations, 50%]
+
+Une fois sur la page d'enregistrement des débits vous devez rentrer un montant du débit, selectionner le type d'opération et alors si vous le souhaitez vous pouvez cliquer sur le bouton "Debit Exceptionnel" qui n'est visible que si vous êtes connecté en tant que chef d'agence. En selectionnant ce dernier vous autoriser alors l'opération à dépasser le Découvert Autorisé.
+
+.page de création d'un débit - choix du type de débit - exceptionnel
+image::RessourcesAdoc/img/DebitExcePage.png[Alt Page de débit, 50%]
+
+En cliquant sur "Debiter" le debit s'effectuera et débitera le compte du montant choisit même si après l'opération le compte aura dépassé son Découvert autorisé.
+
+Et vous verrez alors le débit sur la page des opérations.
+
+.page des opérations - aprés débit exceptionnel
+image::RessourcesAdoc/img/DebitExceResultat.png[Alt Page de débit, 50%]
+
+==== Gestion des Prélèvements automatique :
+``Réalisée par Yannis Gibert``
+
+==== Accéder à la gestion des prélèvements automatique :
+*Prérequis : Être connecté en tant que chef d'agence ou guichetier et être sur la page de gestion des comptes.*
+
+Une fois sur la page de gestion des comptes en cliquant sur un compte non cloturé le bouton "Prélèvement" se dégrisera vous laissant alors la possibilité de cliquer dessus.
+
+.gestion des compte - selection d'un compte accés prélèvement
+image::RessourcesAdoc/img/ComptePrelev.png[Alt acces prelevement du compte, 50%]
+
+Après avoir cliqué dessus vous accédez à la page de gestion des prélèvements automatique du compte sélectionné
+
+.gestion des prélèvements automatique
+image::RessourcesAdoc/img/MenuPrelev.png[Alt page de gestion des prélèvements, 70%]
+
+Vous pouvez voir la liste des prélèvements automatique du compte, vous avez alors la possibilité de consulter, créer, modifier ou supprimer un prélèvement automatique.
+
+
+==== Consultation des prélèvement automatique :
+*Prérequis : Être connecté en tant que chef d'agence ou guichetier et s'être rendu sur la page de gestion des prélèvements automatique*
+
+Une fois que vous avez accédé à la gestion des prélèvements automatique vous avez la possibilité de consulter tout les prélèvements automatique du compte. Vous pouvez alors voir toute les informations sur ces derniers comme le montant du prélèvement, la date d'occurence du prélèvement, le bénéficiaire l'id du compte à qui appartient le prélèvement et l'id du prélèvement.
+
+image::RessourcesAdoc/img/MenuPrelevConsultation.png[Alt liste des prélèvements, 70%]
+
+
+==== Création d'un nouveau prélèvement:
+
+*Prérequis : Être connecté en tant que chef d'agence ou guichetier et s'être rendu sur la page de gestion des prélèvements automatique*
+
+Une fois que vous avez accédé à la gestion des prélèvements.
+Vous avez le droit de créer un nouveau prélèvent automatique en cliquant sur le bouton "Nouveau prélèvement" en bas à droite de la page ce qui vous ouvrira la page de création du prélèvement.
+
+.Liste des prélèvements automatique avant création
+image::RessourcesAdoc/img/MenuPrelevCrea.png[Alt liste des prélèvement avant création, 70%]
+
+Une fois dans cette page vous devez alors remplir tout les gens obligatoire qui sont le Montant du prélèvement, la date de prélèvement et le bénéficiaire.
+
+Une fois que tout est rempli vous n'avez plus qu'à cliquer sur le bouton "Ajouter" ce qui ajoutera le prélèvement automatique à la base de donnée. 
+
+.Création d'un prélèvement automatique
+image::RessourcesAdoc/img/MenuCreaPrelev.png[Alt Page de création d'un prélèvement, 70%]
+
+Vous le verrez alors afficher dans la liste des prélèvements automatique du compte.
+
+.Liste des prélèvements automatique après création
+image::RessourcesAdoc/img/CreerPrelevResultat.png[Alt resulstat de la création du prélèvement, 70%]
+
+==== Modification d'un prélèvement automatique :
+
+*Prérequis : Être connecté en tant que chef d'agence ou guichetier et s'être rendu sur la page de gestion des prélèvements automatique*
+
+Une fois que vous avez accédé à la gestion des prélèvements.
+Vous avez la possibilité de modifier un prélèvement automatique, Néanmoins il faut dans un premier temps avoir sélectionné un prélèvement automatique ce qui rendra disponible le bouton "Modifier un prélèvement".
+
+.modification d'un prélèvement automatique
+image::RessourcesAdoc/img/MenuprelevModif.png[Alt Bouton lattéral de modification, 70%]
+
+En cliquant dessus vous ouvrirez alors la page de modification du prélèvement automatique. Dans cette dernière vous aurez la possibilité de Montant du prélèvement, la date du prélèvement et le bénéficiare.
+
+Une fois vos modifications terminées il vous suffit de cliquer sur le bouton "Modifier" afin de valider les modifications du prélèvement ce qui mettra à jour la base de données avec vos modifications. 
+
+.Page de modification d'un prélèvement automatique
+image::RessourcesAdoc/img/ModifPrelev.png[Alt Page de modification d'un prélèvement, 70%]
+
+Vous verrez alors dans la liste des prélèvements le prélèvement avec les modifications apportés.
+
+.Liste des prélèvements automatique après modification
+image::RessourcesAdoc/img/ModifPrelevResultat.png[Alt resultat de la modification du prélèvement, 70%]
+
+==== Suppression d'un prélèvement automatique :
+*Prérequis : Être connecté en tant que chef d'agence ou guichetier et s'être rendu sur la page de gestion des prélèvements automatique*
+
+Une fois que vous avez accédé à la gestion des prélèvements.
+Vous avez la possibilité de supprimer un prélèvement automatique, Néanmoins il faut dans un premier temps avoir sélectionné un prélèvement automatique ce qui rendra disponible le bouton "Supprimer prélèvement".
+
+.bouton latéral de suppression
+image::RessourcesAdoc/img/MenuPrelevSupp.png[Alt Bouton lattéral de suppression, 70%]
+
+
+En cliquant dessus vous ouvrirez alors la page de suppression du prélèvement automatique. 
+
+Une fois dans cette page pour valider la suppression il vous suffit de cliquer sur le bouton "Supprimer", ce qui supprimera le prélèvement automatique de la base de données.
+
+.Page de suppression d'un prélèvement automatique
+image::RessourcesAdoc/img/SupprimerPrelev.png[Alt Page de suppression d'un prélèvement automatique, 70%]
+
+Vous verrez alors dans la liste des prélèvements que le prélèvement supprimé n'y apparait plus.
+
+.Liste des prélèvements automatique après suppression
+image::RessourcesAdoc/img/MenuPrelev.png[Alt menu des prélèvements, 70%]
+
+== Nous contacter
+
+Si vous avez des questions ou si vous avez besoin d'aide, n'hésitez pas à nous contacter à l'adresse suivante: support@DailyBank.com

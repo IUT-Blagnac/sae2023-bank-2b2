@@ -1,0 +1,397 @@
+package application.view;
+
+import java.util.ArrayList;
+
+import application.DailyBankState;
+import application.control.EmployesManagement;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.ListView;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.RadioMenuItem;
+import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+import model.data.Employe;
+
+/*
+ * @author Enzo Fournet
+ */
+public class EmployesManagementController {
+	// Etat courant de l'application
+	private DailyBankState dailyBankState;
+
+	// Contrôleur de Dialogue associé à EmployesManagementController
+	private EmployesManagement emDialogController;
+
+	// Fenêtre physique ou est la scène contenant le fichier xml contrôlé par this
+	private Stage primaryStage;
+
+	// Données de la fenêtre
+	private ObservableList<Employe> oListEmployes;
+
+
+	/**
+	 * Initialisation du contexte de la fenêtre de gestion des employés <br/>
+	 * Cette méthode est appelée par le contrôleur de dialogue EmployesManagement
+	 * lors de la création de la fenêtre <br/>
+	 * ELle permet de passer les références nécessaires à la gestion des employés
+	 * <br/>
+	 *
+	 * 
+	 * @param _containingStage
+	 * @param _em
+	 * @param _dbstate
+	 * @author Enzo Fournet
+	 *
+	 */
+	public void initContext(Stage _containingStage, EmployesManagement _em, DailyBankState _dbstate) {
+		this.emDialogController = _em;
+		this.primaryStage = _containingStage;
+		this.dailyBankState = _dbstate;
+		this.configure();
+		this.oListEmployes.addAll(this.emDialogController.getlisteEmployes(-1, "", "", ""));
+	}
+
+	/**
+	 *
+	 * Cette méthode est appelée par le contrôleur de dialogue EmployesManagement
+	 * lors de la création de la fenêtre <br/>
+	 * ELle permet de passer les références nécessaires à la gestion des employés et
+	 * de lancer la configuration de la fenêtre <br/>
+	 *
+	 * @author Enzo Fournet
+	 *
+	 */
+	private void configure() {
+		this.primaryStage.setOnCloseRequest(e -> this.closeWindow(e));
+
+		this.oListEmployes = FXCollections.observableArrayList();
+		this.lvEmployes.setItems(this.oListEmployes);
+		this.lvEmployes.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+		this.lvEmployes.getFocusModel().focus(-1);
+		this.lvEmployes.getSelectionModel().selectedItemProperty().addListener(e -> this.validateComponentState());
+		this.validateComponentState();
+	}
+
+	/**
+	 * Elle permet d'afficher la fenêtre de gestion des employés <br/>
+	 *
+	 * @author Enzo Fournet
+	 */
+	public void displayDialog() {
+		this.primaryStage.showAndWait();
+	}
+
+	/**
+	 * Cette méthode est appelée lorsque l'événement de fermeture de la fenêtre se produit.
+	 * Elle exécute l'action d'annulation et consomme l'événement pour éviter toute autre action par défaut.
+	 *
+	 * 
+	 * @param e L'événement de fermeture de la fenêtre.
+	 * @return null car aucun objet n'est renvoyé.
+	 * @author Enzo Fournet
+	 */
+	private Object closeWindow(WindowEvent e) {
+		this.doCancel();
+		e.consume();
+		return null;
+	}
+
+	// Attributs de la scene
+    @FXML
+	private TextField txtNum;
+	@FXML
+	private TextField txtNom;
+	@FXML
+	private TextField txtPrenom;
+	@FXML
+	private MenuButton menuDroit;
+	@FXML
+	private RadioMenuItem droitChef;
+	@FXML
+	private RadioMenuItem droitGuichetier;
+	@FXML
+	private RadioMenuItem droitAucun;
+	@FXML
+	private ListView<Employe> lvEmployes;
+	@FXML
+	private Button btnSuprEmploye;
+	@FXML
+	private Button btnModifEmploye;
+	@FXML
+	private Button btnConsultEmploye;
+	@FXML
+	private Button btnNouvelEmploye;
+	private ContextMenu contextMenu = new ContextMenu();
+
+	/**
+	 * Méthode appelée par le contrôleur lors de la fermeture de la fenêtre <br/>
+	 *
+	 * @author Enzo Fournet
+	 */
+    @FXML
+	private void doCancel() {
+		this.primaryStage.close();
+	}
+
+	/**
+	 * Méthode appelée par le contrôleur lors du cloque sur un employé<br/>
+	 * Elle permets de rendre actif les boutons de modification et de suppression<br/>
+	 * d'un employé ainsi que de consultation en fonction des droit de l'utilisateur actuelle<br/>
+	 *
+	 * @author Enzo Fournet
+	 */
+	@FXML
+    private void validateComponentState() {
+		int selectedIndice = this.lvEmployes.getSelectionModel().getSelectedIndex();
+		Employe selectedEmploye = this.lvEmployes.getSelectionModel().getSelectedItem();
+		Employe currentEmploye = this.dailyBankState.getEmployeActuel();
+
+		if (selectedIndice >= 0) {
+			if (selectedEmploye.droitsAccess.equals("chefAgence")) {
+				if (selectedEmploye.toString().equals(currentEmploye.toString())) {
+					this.btnConsultEmploye.setDisable(false);
+					this.btnModifEmploye.setDisable(false);
+					this.btnSuprEmploye.setDisable(true);
+				} else {
+					this.btnConsultEmploye.setDisable(false);
+					this.btnModifEmploye.setDisable(true);
+					this.btnSuprEmploye.setDisable(true);
+				}
+			} else {
+				this.btnConsultEmploye.setDisable(false);
+				this.btnModifEmploye.setDisable(false);
+				this.btnSuprEmploye.setDisable(false);
+			}
+		} else {
+			this.btnConsultEmploye.setDisable(true);
+			this.btnModifEmploye.setDisable(true);
+			this.btnSuprEmploye.setDisable(true);
+		}
+	}
+
+	/**
+	 * Cette méthode est appelée lors de la recherche d'un employé <br/>
+	 * Elle récupére les paramètre de recherche et les utilise pour rechercher correctement un employe<br/>
+	 *
+	 * @author Enzo Fournet
+	 */
+    @FXML
+	private void doRechercher() {
+		int numEmploye;
+		try {
+			String nc = this.txtNum.getText();
+			if (nc.equals("")) {
+				numEmploye = -1;
+			} else {
+				numEmploye = Integer.parseInt(nc);
+				if (numEmploye < 0) {
+					this.txtNum.setText("");
+					numEmploye = -1;
+				}
+			}
+		} catch (NumberFormatException nfe) {
+			this.txtNum.setText("");
+			numEmploye = -1;
+		}
+
+		String debutNom = this.txtNom.getText();
+		String debutPrenom = this.txtPrenom.getText();
+
+		if (numEmploye != -1) {
+			this.txtNom.setText("");
+			this.txtPrenom.setText("");
+		} else {
+			if (debutNom.equals("") && !debutPrenom.equals("")) {
+				this.txtPrenom.setText("");
+			}
+		}
+
+		String droit;
+
+		if (this.droitChef.isSelected()) {
+			droit = "chefAgence";
+		} else if (this.droitGuichetier.isSelected()) {
+			droit = "guichetier";
+		} else {
+			droit = "";
+		}
+
+		ArrayList<Employe> listeEmployes;
+		listeEmployes = this.emDialogController.getlisteEmployes(numEmploye, debutNom, debutPrenom, droit);
+		this.oListEmployes.clear();
+		this.oListEmployes.addAll(listeEmployes);
+	}
+
+	/**
+	 * Cette méthode est appelée lors de  d'un nouvel employé <br/>
+	 *
+	 * @author Enzo Fournet
+	 */
+	@FXML
+	private void doModifierEmploye() {
+		int selectedIndice = this.lvEmployes.getSelectionModel().getSelectedIndex();
+		if (selectedIndice >= 0) {
+			Employe cliMod = this.oListEmployes.get(selectedIndice);
+			Employe result = this.emDialogController.modifierEmploye(cliMod);
+			if (result != null) {
+				this.oListEmployes.set(selectedIndice, result);
+			}
+		}
+	}
+
+	/**
+	 * Cette méthode est appeler lors du clique sur le bouton de suppression d'un employé <br/>
+	 *
+	 * @author Enzo Fournet
+	 */
+	@FXML
+	private void doSupprimerEmploye() {
+		int selectedIndice = this.lvEmployes.getSelectionModel().getSelectedIndex();
+		if (selectedIndice >= 0) {
+			Employe cliSup = this.oListEmployes.get(selectedIndice);
+			if (this.emDialogController.supprimerEmploye(cliSup)) {
+				this.oListEmployes.remove(selectedIndice);
+			}
+		}
+	}
+
+
+	/**
+	 * Cette méthode est appeler lors du clique sur le bouton de consultation d'un employé <br/>
+	 * Elle permets de lancer la consultation d'un employé<br/>
+	 *
+	 * @author Enzo Fournet
+	 */
+	@FXML
+	public void doConsulterEmploye() {
+		int selectedIndice = this.lvEmployes.getSelectionModel().getSelectedIndex();
+		if (selectedIndice >= 0) {
+			Employe cliCons = this.oListEmployes.get(selectedIndice);
+			if (cliCons != null) {
+				this.emDialogController.consult(cliCons);
+			}
+		}
+	}
+
+	/**
+	 * Cette méthode est appeler lors du clique sur le bouton de création d'un employé <br/>
+	 * Elle permets de lancer la création d'un nouvel employé<br/>
+	 *
+	 * @author Enzo Fournet
+	 */
+	@FXML
+	private void doNouvelEmploye() {
+		Employe employe;
+		employe = this.emDialogController.nouvelEmploye();
+		if (employe != null) {
+			this.oListEmployes.add(employe);
+		}
+	}
+
+	/**
+	 * Les 3 méthode qui suivent permettent de chnager l'afficge du menu de droit dans la recherche des employés
+	 *
+	 * @author Enzo Fournet
+	 */
+	@FXML
+	private void droitChef() {
+		this.menuDroit.setText(this.droitChef.getText());
+	}
+
+	/**
+	 * Cette méthode est appelée lorsqu'on sélectionne l'option "Droit Guichetier".
+	 * Elle met à jour le libellé du menu de droite avec le texte de l'option "Droit
+	 * Guichetier".
+	 *
+	 * @author Enzo Fournet
+	 */
+	@FXML
+	private void droitGuichetier() {
+		this.menuDroit.setText(this.droitGuichetier.getText());
+	}
+
+	/**
+	 * Cette méthode est appelée lorsqu'on sélectionne l'option "Droit Aucun". Elle
+	 * met à jour le libellé du menu de droite avec le texte de l'option "Droit
+	 * Aucun".
+	 *
+	 * @author Enzo Fournet
+	 */
+	@FXML
+	private void droitAucun() {
+		this.menuDroit.setText(this.droitAucun.getText());
+	}
+
+	/**
+	 * Cette méthode est appeler lors d'un double clicque sur un employé de la liste <br/>
+	 * Elle permet au double clique de lancer la consulation ou la modification d'un employé<br/>
+	 * En fonction des droits de l'employé actuel sur l'employé selectionné<br/>
+	 *
+	 * 
+	 * @param event L'événement de la souris associé au clic sur la liste des
+	 *              employés.
+	 * @author Enzo Fournet
+	 */
+	@FXML
+	private void onClicList(MouseEvent event) {
+		int selectedIndice = this.lvEmployes.getSelectionModel().getSelectedIndex();
+		if (this.lvEmployes.getItems().size() != 0 && selectedIndice >= 0) {
+			MouseButton mb = event.getButton();
+			if (MouseButton.SECONDARY == mb) {
+				Employe selectedEmploye = this.lvEmployes.getSelectionModel().getSelectedItem();
+				Employe currentEmploye = this.dailyBankState.getEmployeActuel();
+				this.contextMenu.hide();
+				this.contextMenu = new ContextMenu();
+				if (selectedEmploye.toString().equals(currentEmploye.toString())
+						|| selectedEmploye.droitsAccess.equals("guichetier")) {
+					MenuItem menuItem1 = new MenuItem("Modifier");
+					menuItem1.setOnAction(e -> {
+						this.doModifierEmploye();
+					});
+					this.contextMenu.getItems().add(menuItem1);
+					if (!selectedEmploye.toString().equals(currentEmploye.toString())) {
+						MenuItem menuItem2 = new MenuItem("Supprimer");
+						menuItem2.setOnAction(e -> {
+							this.doSupprimerEmploye();
+						});
+						this.contextMenu.getItems().add(menuItem2);
+					}
+					MenuItem menuItem3 = new MenuItem("Consulter");
+					menuItem3.setOnAction(e -> {
+						this.doConsulterEmploye();
+					});
+					this.contextMenu.getItems().add(menuItem3);
+				} else {
+					MenuItem menuItem = new MenuItem("Consulter");
+					menuItem.setOnAction(e -> {
+						this.doConsulterEmploye();
+					});
+					this.contextMenu.getItems().add(menuItem);
+				}
+				this.contextMenu.show(this.lvEmployes, event.getScreenX(), event.getScreenY());
+			}
+			if (MouseButton.PRIMARY == mb) {
+				this.contextMenu.hide();
+				if (event.getClickCount() > 1) {
+					Employe selectedEmploye = this.lvEmployes.getSelectionModel().getSelectedItem();
+					Employe currentEmploye = this.dailyBankState.getEmployeActuel();
+					if (selectedEmploye.toString().equals(currentEmploye.toString())
+							|| selectedEmploye.droitsAccess.equals("guichetier")) {
+						this.doModifierEmploye();
+					} else {
+						this.doConsulterEmploye();
+					}
+				}
+			}
+		}
+	}
+}

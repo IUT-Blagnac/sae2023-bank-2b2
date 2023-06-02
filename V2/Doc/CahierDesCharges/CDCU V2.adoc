@@ -1,0 +1,200 @@
+= Cahier des Charges d'Utilisateur (CDCU)
+Version: 1.0
+Date: 2023-05-10
+:doctype: book
+:toc: left
+:toc-title: Table des matières
+:sectnums:
+
+Équipe : 2B2 +
+Membres de l'équipe : Enzo Fournet, Julien Couderc, Yannis Gibert +
+Projet: DailyBank
+
+---
+
+== Présentation du sujet
+
+Le sujet abordé concerne le développement d'une application JAVA-Oracle de gestion des comptes clients pour DailyBank. Cette initiative s'inscrit dans le cadre plus large de la transformation numérique des services bancaires en France, où les banques cherchent à répondre aux attentes croissantes des clients en matière de rapidité et d'efficacité des opérations bancaires. Les banques françaises ont investi massivement dans la modernisation de leurs outils et services afin de proposer des solutions bancaires plus rapides et accessibles.
+
+=== Contexte général
+
+Le secteur bancaire français s'adapte aux exigences croissantes de ses clients en matière de services instantanés en investissant massivement dans la transformation digitale. Les banques cherchent à moderniser leurs outils, automatiser les tâches et restructurer leurs réseaux pour offrir des services bancaires plus rapides et efficaces. Par exemple, La Banque Postale a lancé une banque mobile appelée "Ma French Bank" et d'autres banques ont également entrepris des initiatives similaires.
+
+Dans cette dynamique, la banque DailyBank souhaite développer une application JAVA-Oracle de gestion des comptes clients pour remplacer plusieurs outils obsolètes. Cette initiative s'inscrit dans le cadre de la restructuration de ses services bancaires et l'application sera déployée dans les 100 agences de son réseau.
+
+=== Objectifs
+
+Dans le cadre de ce projet, nous avons identifié quatre objectifs clés visant à améliorer la gestion des opérations bancaires pour les guichetiers et responsables d'agence, ainsi que la sécurité des transactions, le suivi des comptes clients et l'optimisation de la gestion des employés par le responsable d'agence.
+
+Pour commencer, notre premier objectif est de simplifier la gestion des opérations bancaires pour les guichetiers et responsables d'agence. Dans cette optique, nous nous efforçons de faciliter la création, la modification et la clôture de comptes clients. Nous envisageons de mettre en place des processus intuitifs et conviviaux qui permettront aux utilisateurs de gérer ces opérations de manière efficace. De plus, nous prévoyons d'automatiser les tâches répétitives et de simplifier les procédures internes afin de libérer du temps pour les activités à plus forte valeur ajoutée. Enfin, nous nous engageons à fournir une interface utilisateur intuitive et ergonomique, spécialement conçue pour répondre aux besoins spécifiques des guichetiers et responsables d'agence. De plus, nous avons l'idée d'effectuer les opérations de crédit pour un client, cette opération est faisable par les employés. Seul contrainte, un crédit ne peut pas dépasser 999 999€.
+
+En ce qui concerne la sécurité des transactions, notre deuxième objectif consiste à renforcer les mesures de sécurité. Nous prévoyons d'assurer une authentification sécurisée pour les guichetiers et responsables d'agence, en mettant en place des protocoles de sécurité robustes pour protéger les données sensibles et les transactions financières. De plus, nous envisageons de garantir la traçabilité des opérations bancaires afin de prévenir les fraudes et de détecter rapidement toute activité suspecte.
+
+Notre troisième objectif est de faciliter le suivi des comptes clients. Pour cela, nous prévoyons de centraliser les informations relatives aux comptes clients et aux transactions dans une base de données unique. Cette centralisation permettra aux utilisateurs d'accéder rapidement et facilement aux informations pertinentes grâce à des outils de recherche et de filtrage efficaces. De plus, nous offrirons des fonctionnalités de reporting et de suivi des transactions qui faciliteront la gestion des comptes clients et aideront à prendre des décisions éclairées.
+
+Enfin, notre quatrième objectif vise à optimiser la gestion des employés par le responsable d'agence. Pour atteindre cet objectif, nous cherchons à réduire le temps consacré aux tâches administratives et répétitives en automatisant certaines tâches. Nous prévoyons également de faciliter la communication et la collaboration entre les guichetiers et les responsables d'agence grâce à des outils intégrés. De plus, nous offrirons aux responsables d'agence des outils de gestion des employés tels que la création, la modification et la suppression des clients, ainsi que la facilitation de la planification des horaires de travail et la répartition des tâches entre les guichetiers. Enfin, nous proposerons des indicateurs de performance pour évaluer et améliorer la qualité du service et l'efficacité des employés, permettant ainsi une gestion optimale de l'équipe.
+
+En résumé, notre projet vise à apporter des améliorations significatives dans la gestion des opérations bancaires pour les guichetiers et responsables d'agence. En simplifiant les tâches administratives, en optimisant les procédures internes et en offrant une interface conviviale, nous cherchons à faciliter leur travail au quotidien. Parallèlement, nous mettons l'accent sur la sécurité des transactions, en mettant en place des mesures de protection avancées et une traçabilité rigoureuse pour garantir la confidentialité et la fiabilité des opérations financières. De plus, nous nous engageons à faciliter le suivi des comptes clients en centralisant les informations et en fournissant des outils de recherche et de reporting efficaces. Enfin, en optimisant la gestion des employés, nous visons à améliorer l'efficacité opérationnelle, la communication interne et la planification des ressources, contribuant ainsi à la qualité du service et à la satisfaction des clients.
+
+Notre approche professionnelle et nos objectifs clairement définis reflètent notre engagement envers le développement d'une solution bancaire efficace, sécurisée et axée sur les besoins des utilisateurs. Nous mettons tout en œuvre pour fournir une plateforme performante qui soutiendra les activités bancaires et renforcera la compétitivité de votre institution dans un environnement en constante évolution.
+
+=== Problématique
+
+Comment concevoir une application de gestion bancaire qui réponde aux besoins des guichetiers et responsables d'agence tout en garantissant la sécurité des transactions et la confidentialité des données ?
+
+== Analyse de l'existant
+
+Dans le code de notre application, différentes fonctionnalités ont été implémentées et réparties dans plusieurs packages. Tout d'abord, le package "application" contient les classes responsables du lancement de l'application et de la gestion de son état actuel.
+
+Ensuite, le package "application.control" permet de gérer les interactions entre la vue et le modèle. Chaque fenêtre possède un contrôleur associé, ce qui facilite la gestion des interactions.
+
+Le package "application.tool" contient des outils utiles pour faciliter certaines tâches dans les contrôleurs. Par exemple, on y trouve des énumérations telles que le mode d'édition ou la catégorie de l'opération.
+
+Le package "view" permet aux classes de se connecter aux fichiers FXML et de gérer les éléments de l'interface graphique. Les classes "Views" sont associées aux classes "Controllers", qui gèrent la logique de l'application.
+
+Le package "model.data" regroupe les classes-objets utilisées dans tous les contrôleurs. Par exemple, on y trouve les classes pour les employés, les clients et les agences bancaires.
+
+Le package "model.orm" est dédié à la gestion des connexions aux bases de données. Il contient les différentes classes nécessaires pour cela.
+
+Enfin, le package "model.orm.exception" gère toutes les exceptions qui peuvent survenir lors des opérations liées à la base de données.
+
+Dans le projet actuel, nous avons une première version V0 comprenant différents fichiers de code et des interfaces homme-machine (IHM) dédiées à la gestion d'une agence bancaire.
+
+La fonctionnalité de connexion est déjà mise en place, permettant aux utilisateurs de se connecter à l'aide d'un login et d'un mot de passe. Une fois connecté en tant qu'employé, l'utilisateur est redirigé vers une page d'accueil affichant le nom de l'agence et le nom de l'employé associé au compte.
+
+À partir de cette page, plusieurs fonctionnalités de gestion des clients sont disponibles. Il est possible d'ajouter un nouveau compte client à l'agence, ainsi que de rechercher des comptes clients existants. La recherche peut être effectuée en utilisant le numéro, le nom et le prénom du client. Cependant, il n'est pas possible de rechercher un client uniquement par son prénom. Si la recherche est laissée vide, tous les clients de l'agence sont affichés.
+
+En cliquant sur un client, l'utilisateur peut accéder aux informations détaillées de ses comptes et modifier ses informations personnelles. Les informations disponibles comprennent le nom, le prénom, l'identifiant, le numéro de compte, le solde et le découvert autorisé.
+
+Une fonctionnalité "Nouveau compte" est mentionnée, mais elle n'est pas encore implémentée dans la version actuelle du projet. Elle devrait permettre de créer un nouveau compte en demandant le découvert autorisé et le solde.
+
+Lorsque l'utilisateur clique sur le compte d'un client, une fonctionnalité lui permet de visualiser les opérations effectuées sur ce compte. Une nouvelle fenêtre s'ouvre, présentant les dates des opérations, le type (dépôt ou retrait) et le montant de chaque opération.
+
+La possibilité d'enregistrer un débit est également mentionnée. En cliquant sur un bouton dédié, l'utilisateur peut choisir entre un retrait en espèces ou un retrait par carte bleue, ainsi que spécifier le montant du retrait.
+
+De retour à la gestion du client, il est possible de modifier les informations personnelles telles que le nom, le prénom, l'adresse, le numéro de téléphone et l'e-mail.
+
+Si l'utilisateur se connecte en tant que chef d'agence, une fonctionnalité de gestion des employés est prévue, mais elle n'a pas encore été développée dans la version actuelle du projet. De plus, il peut rendre un client inactif.
+
+
+== Utilisateurs
+
+=== Responsables d'agence
+
+Les responsables d'agence sont des membres clés de l'équipe de direction de l'agence bancaire. Ils sont chargés de superviser l'ensemble des opérations de l'agence et de veiller à ce que les activités se déroulent de manière efficace et conforme aux réglementations en vigueur. Les responsables d'agence sont également responsables de la gestion des employés de l'agence. Ils ont accès à des fonctionnalités avancées du système bancaire, leur permettant de créer et de clôturer des comptes clients, de générer des rapports sur les activités financières et les performances des clients, ainsi que de gérer les informations personnelles des clients. Les responsables d'agence sont des utilisateurs clés du système, jouant un rôle central dans la supervision et la gestion globale de l'agence bancaire. De plus, ils peuvent effectuer les mêmes actions que les guichetiers.
+
+
+=== Guichetiers
+
+Les guichetiers sont les acteurs clés de l'agence bancaire. Leur rôle principal consiste à interagir directement avec les clients et à gérer les opérations courantes. Ils sont responsables de fournir un service de qualité aux clients, de traiter les dépôts, les retraits et les virements, ainsi que de répondre aux demandes d'informations sur les comptes. Les guichetiers ont besoin d'un accès sécurisé au système bancaire, où ils peuvent consulter les informations relatives aux clients, effectuer des transactions et mettre à jour les données des clients, comme les coordonnées personnelles.
+
+
+
+== Analyse des besoins incluant V0, V1 et V2
+
+=== V0 
+image::./RessourcesAdoc/svg/uc-initialv0.svg[]
+
+Le cahier des charges de la version 0 met l'accent sur les fonctionnalités de base nécessaires pour assurer le bon fonctionnement du système bancaire. Tout d'abord, la priorité est de mettre en place un système d'authentification sécurisé pour les guichetiers et les responsables d'agence. Cela garantira que seules les personnes autorisées auront accès aux fonctionnalités du système.
+
+Ensuite, la visualisation des comptes clients et des transactions sera essentielle pour les utilisateurs autorisés, elle est moins importante que la première. Ils pourront ainsi consulter les informations relatives aux comptes clients, y compris les soldes et les transactions effectuées. Cette fonctionnalité permettra de fournir un aperçu clair et précis des activités financières des clients.
+
+Et enfin, tout aussi importante que la fonctionnalité précédente, la fonctionnalité de débit doit être mise en place pour la version initiale de cette application. Il est important de savoir que l'on ne peut pas effectuer un débit si le solde mis à jour avec le montant du débit dépasse le découvert autorisé du client.
+
+=== V1 
+image::./RessourcesAdoc/svg/uc-initialv1.svg[]
+
+La version 1 du projet vise à étendre les fonctionnalités de base du système bancaire pour répondre à des besoins plus avancés. Tout d'abord, la fonctionnalité principale de cette version est la gestion avancée des comptes clients sera mise en place, permettant la création et la clôture des comptes. Cela offrira une plus grande flexibilité aux utilisateurs et facilitera la gestion des comptes clients. De plus, une fonctionnalité peu importante d'une modification d'un compte courant visant à modifier le découvert maximum autorisé va permettre une gestion maximum des comptes des clients.
+
+Pour cette fonctionnalité, il est nécessaire que l'utilisateur soit un responsable d'agence ainsi que le compte soit ouvert et créé.
+
+
+Lors de la clôture d'un compte, il n'est plus possible de le réouvrir, de le modifier mais aussi de faire des opérations dessus, on en peut simplement que consulter les opérations effectuées par le passé. Attention, il n'est évidemment pas possible de cloturer un compte possédant un solde différent de 0 afin de ne pas bloquer le solde du compte.
+
+De plus, il est nécessaire de mettre en place la gestion des opérations bancaires de base telles que les virements, les dépôts doit être prise en compte dans cette version avancée du système. Cela permettra aux utilisateurs d'effectuer les opérations courantes de manière efficace et sécurisée.
+Les dépôts ne peuvent pas dépasser la somme des 1 million d'euros par soucis de sécurité. De plus, pour les virements, il y a une vérification de la disponibilité des comptes destinataires du client, en effet, il est impossible d'effectuer le virement vers un compte clôturé ou alors un compte qui ne lui appartient pas. 
+
+Ensuite, la gestion des employés, notamment le "CRUD" (Create, Read, Update, Delete) étant un ajout essentiel, des guichetiers et des chefs d'agence sera prise en compte pour faciliter la gestion du personnel. La gestion des employés est centralisée entre les mains des chefs d'agence. Ils sont les seuls autorisés à créer de nouveaux employés en fournissant les informations nécessaires telles que le nom, le prénom, l'adresse, etc. 
+
+En outre, il est prévu d'intégrer un module de reporting spécialement conçu pour les responsables d'agence, elle est moins importante que celle précedente mais nécessaire dans une application d'agence bancaire. Ce module leur permettra de générer des rapports détaillés sur les activités financières, les tendances et les performances des clients. Ces informations seront précieuses pour prendre des décisions éclairées et optimiser les opérations bancaires.
+
+L'ergonomie et l'expérience utilisateur seront également améliorées dans cette version mais ne sera pas une priorité, cela sera une fonctionnalité bonus. Des efforts seront déployés pour rendre l'interface utilisateur conviviale, intuitive et facile à naviguer. Cela permettra aux utilisateurs d'interagir de manière fluide avec le système et d'effectuer leurs tâches plus rapidement et efficacement. L'ergonomie des listes d'employés et de clients sera améliorée afin de rendre les informations relatives aux employés et aux clients plus compréhensibles.
+
+Pour finir, tous les chefs d'agence ont la possibilité de consulter la liste complète des employés de toutes les agences, ce qui favorise une meilleure coordination. Les chefs d'agence sont également responsables de la modification des informations des guichetiers, tels que leur nom ou leur adresse, afin de maintenir les données à jour. Enfin, ils ont le pouvoir de supprimer les guichetiers de leur agence, en respectant scrupuleusement les politiques et procédures de l'entreprise. Cette approche garantit une gestion efficace du personnel tout en responsabilisant les chefs d'agence dans la prise de décisions liées à leur équipe. Ils peuvent effectuer des modifications sur leur propre profil, tels que mettre à jour leur nom, leur adresse, etc. Cependant, ils ne sont pas autorisés à se supprimer eux-mêmes du système. De plus, les chefs d'agence n'ont pas le pouvoir de modifier ou de supprimer d'autres chefs d'agence. Cette restriction vise à préserver l'intégrité des profils des chefs d'agence et à maintenir une structure de gestion claire et cohérente. Les règles de gestion assurent ainsi une gestion du personnel équilibrée et respectueuse des rôles et responsabilités de chaque individu au sein de l'organisation.
+
+
+
+
+
+=== V2 
+image::./RessourcesAdoc/svg/uc-initialv2.svg[]
+
+La version 2 du projet vise à apporter encore plus de fonctionnalités avancées au système bancaire. L'objectif est de permettre un contrôle plus complet des transactions.
+
+Les règles de gestion proposées visent à améliorer la gestion des comptes bancaires en intégrant un mécanisme de génération de relevés mensuels au format PDF. Ces relevés offriront une meilleure visualisation et compréhension des transactions effectuées sur une période donnée, facilitant ainsi la gestion des comptes pour les guichetiers. Les clients bénéficieront également d'un accès facile à leurs informations financières, favorisant ainsi une meilleure planification financière. En fournissant des relevés clairs et organisés, cette fonctionnalité contribuera à l'analyse des flux de fonds, à l'identification d'éventuelles erreurs et à la détection d'activités suspectes, tout en permettant aux clients de prendre des décisions financières éclairées.
+
+Ensuite, la gestion des prélèvements automatiques sera mise en place de façon primordiale, permettant de créer, lire, modifier et supprimer des prélèvements automatiques. Cela donne aux guichetiers la possibilité de configurer des paiements récurrents pour des factures régulières, réduisant ainsi le risque de manquer un paiement et offrant une tranquillité d'esprit supplémentaire.
+
+Pour le chef d'agence, des fonctionnalités spécifiques seront développées. La capacité d'effectuer un virement exceptionnel qui dépasse le découvert autorisé sera introduite. Cette fonctionnalité importante permettra au chef d'agence de gérer des situations exceptionnelles et d'aider les clients qui rencontrent des difficultés financières. En autorisant des virements exceptionnels, le chef d'agence pourra fournir une assistance ponctuelle aux clients en situation d'urgence ou confrontés à des dépenses imprévues. Cela permettra de renforcer la relation avec les clients et de leur offrir un soutien supplémentaire lorsque cela est nécessaire. Il faut que cette fonctionnalité soit uniquement réalisé par le chef d'agence, puisqu'elle est sensible et exceptionnelle.
+
+De plus, le chef d'agence aura la possibilité de simuler un emprunt. Cela facilitera la prise de décisions financières pour les clients, en leur fournissant une estimation précise des coûts et des conditions de l'emprunt. Les simulations d'assurance seront également possibles, permettant aux clients de comprendre les coûts, les avantages et les conditions associés à différents plans d'assurance. Mais cette fonctionnalité n'est pas impérative, son développement dépendra de l'avancée des autres focnctionnalités. Il est le seul à pouvoir effectuer cette simulation, les autres employés doivent se référer à lui pour obtenir ces informations. Les simulations doivent être présentées de manière claire et transparente aux clients. Tous les coûts, avantages et conditions associés à l'emprunt ou à l'assurance doivent être expliqués en détail, afin que les clients puissent prendre des décisions éclairées.
+
+En somme, la version 2 se concentre sur l'amélioration de l'expérience utilisateur, la fourniture de services plus flexibles et la facilitation des opérations bancaires pour le personnel de l'agence.
+
+
+
+
+== Analyse des contraintes
+
+=== Contraintes techniques
+
+Dans le cadre du développement de l'application JAVA-Oracle de gestion des comptes clients pour la banque DailyBank, il est important de tenir compte des contraintes techniques et organisationnelles qui peuvent avoir un impact sur la réalisation du projet.
+
+Compatibilité avec les systèmes d'information bancaires existants : Pour assurer l'interopérabilité avec les systèmes existants, il sera important de prendre en compte les formats de données, les protocoles de communication et les interfaces utilisées. Il faudra également veiller à la compatibilité avec les différents systèmes d'exploitation, les navigateurs web et les versions de logiciels utilisées dans les agences bancaires.
+
+Respect des normes de sécurité : La sécurité des transactions financières et des données des clients est une priorité absolue. Il faudra donc mettre en place des mécanismes de sécurité robustes pour protéger les informations sensibles. Cela peut inclure l'utilisation de protocoles de cryptage, d'authentification forte, de pare-feu, de surveillance en temps réel des activités suspectes, etc. Il sera également important de se conformer aux normes et réglementations en vigueur en matière de sécurité, comme PCI DSS, RGPD, etc.
+
+Fiabilité et performance : Pour garantir une utilisation fluide et efficace de l'application, il faudra s'assurer de sa fiabilité et de sa performance. Cela peut inclure des tests de charge pour simuler des situations de pic d'utilisation, des tests de résistance pour mesurer la capacité de l'application à résister à des pannes ou des défaillances, des tests de récupération pour mesurer le temps de reprise après une panne, etc. Il faudra également mettre en place des mécanismes de surveillance et d'alerte pour détecter rapidement les problèmes et y remédier.
+
+Utilisation de Java et Oracle : En utilisant Java et Oracle pour le développement de l'application, il sera possible de bénéficier des avantages de ces technologies, comme la portabilité, la performance, la sécurité, la stabilité, etc. Il faudra cependant veiller à respecter les bonnes pratiques de développement pour optimiser l'utilisation de ces outils, comme l'utilisation de frameworks, l'optimisation des requêtes SQL, la mise en cache des données, etc.
+
+=== Contraintes organisationnelles
+
+Formation des guichetiers et responsables d'agence à l'utilisation de l'application : Les employés des agences bancaires devront être formés à l'utilisation de DailyBank afin de maîtriser les fonctionnalités de l'application et de l'utiliser efficacement dans leur travail quotidien. Des sessions de formation devront être organisées pour garantir une bonne prise en main de l'outil par les utilisateurs.
+
+Mise en place d'un support technique pour les utilisateurs : Un support technique devra être mis en place pour accompagner les utilisateurs en cas de problèmes ou de questions sur l'utilisation de l'application. Ce support pourra être assuré par une équipe dédiée ou par le biais d'une assistance en ligne, afin de garantir un service rapide et efficace pour les utilisateurs en cas de besoin.
+
+Intégration de l'application au sein des processus internes de l'agence : L'application devra être conçue de manière à s'intégrer facilement aux processus existants au sein des agences bancaires, tels que la gestion des comptes clients, le suivi des transactions ou le reporting. Cette intégration pourra nécessiter des ajustements dans les procédures de travail des employés ou dans les systèmes d'information de l'agence. Il sera donc important de travailler en étroite collaboration avec les différentes équipes et de prévoir des phases de tests pour s'assurer que l'application s'intègre correctement aux processus internes de l'agence.
+
+Planification et respect des différentes phases de développement de la version V1 : Les développeurs devront suivre l'ordre de développement des cas d'utilisation pour la version du logiciel (V1), en respectant les délais impartis pour chaque phase. Il sera donc important de planifier ces différentes phases en amont et de s'assurer que les développements sont réalisés dans les temps pour garantir une livraison de l'application dans les délais impartis.
+
+=== Livrables exigées
+
+Vendredi 12 mai 17h00 : +
+- Rendu du Cahier Des Charges Version 1 +
+- Rendu du Gantt prévu Version 1
+
+Mardi 16 mai 17h00 : +
+- Rendu du Cahier Des Charges Version 2 +
+- Rendu du Gantt réalisé Version 1 +
+- Rendu du Gantt prévu Version 2 +
+- Rendu de la doc Utilisateur Version 1 +
+- Rendu du suivi de projet Version 1
+
+
+Mercredi 17 mai 17h00 : +
+- Rendu de la doc Technique Version 1 +
+- Rendu de la recette +
+- Rendu de la Version 1 du projet
+
+
+Vendredi 26 mai 17h00 : +
+- Rendu du Gantt réalisé Version 2 +
+- Rendu de la doc Utilisateur Version 2 +
+- Rendu de la doc Utilisateur Version 2 +
+- Rendu du code V2 +
+- Rendu de la recette V2 +
+- Rendu du jar du projet
+
+
+

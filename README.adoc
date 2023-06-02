@@ -1,0 +1,80 @@
+=== Readme projet
+
+==== Présentation de l'équipe et rôles respectifs
+
+===== Rôles en V0 :
+  - Responsable Gthub : Yannis Gibert 
+  - Chef de projet :  Julien Couderc 
+  - Responsable de la documentation et création du repo GitHub : Enzo Fournet
+
+===== Rôles en V1 :
+  - Developpeur en chef : Yannis Gibert 
+  - Chef de projet et developpeur : Julien Couderc 
+  - Responsable de la documentation et developpeur : Enzo Fournet
+  
+===== Rôles en V2 :
+  - Developpeur en chef : Enzo Fournet 
+  - Chef de projet et developpeur : Yannis Gibert
+  - Responsable de la documentation et developpeur : Julien Couderc
+
+==== Répartition des tâches et état d'avancement
+[options="header,footer"]
+|=======================
+|version|rôle     |use case   |cas...                 | Julien Couderc | Fournet Enzo | Yannis Gibert 
+|1    |Chef d’Agence    |CRUD employé  |C| |F| 
+|1    |Chef d’Agence    |CRUD employé  |R| |F| 
+|1    |Chef d’Agence |CRUD employé  |U| |F| 
+|1    |Chef d’Agence   |CRUD employé  |D| |F|
+|1    |Guichetier     | Compte | Créer|||F  
+|1    |Guichetier     | Compte | Créditer/Débiter|F|| 
+|1    |Guichetier     | Compte | Effectuer un virement|F|| 
+|1    |Guichetier     | Compte | Clôturer|||F 
+|2    |Chef d’Agence     | Compte | Débit exceptionnel|| |F 
+|2    |Chef d’Agence     | Emprunt | Simuler emprunt|F| | 
+|2    |Chef d’Agence     | Emprunt | Simuler assurance|F| | 
+|2    |Guichetier     | Compte | Effectuer un virement d'un compte vers un autre compte|F|| 
+|2    |Guichetier     | Compte | Relevé PDF||F| 
+|2    |Guichetier     | CRUD Prélèvement | C|||F  
+|2    |Guichetier     | CRUD Prélèvement | R|||F  
+|2    |Guichetier     | CRUD Prélèvement | U|||F  
+|2    |Guichetier     | CRUD Prélèvement | D|||F  
+|2    |Batch     | Prélèvements automatiques | || |F 
+|2    |Batch     | Reléves mensuels | ||F| 
+
+|=======================
+
+
+Chaque étudiant doit mettre son nom sur une des colonnes étudiant.
+Dans sa colonne il doit remplir la ligne correspondant à chaque partie qu'il a développé en indiquant
+
+*	*F* pour fonctionnel ou
+*	*D* pour encore en Développement
+
+==== Livrables
+
+[cols="1,2,2,5",options=header]
+|===
+| Date    | Nom         |  Lien                             | Retour
+| Sem.19  | CDC V1      | link:https://github.com/IUT-Blagnac/sae2023-bank-2b2/blob/edc440da309e82dd2bd9c6d4c684749f07064511/V1/Doc/CahierDesCharges/CDCU.adoc[lien vers le Cahier des Charges]  |   Penser à compléter le tableau d'avancement ci-dessus.U pour utilisateur pas utilisation.Pour plus de clareté donner un schéma d'architecture de l'appli et utiliser les UC pour V0 et V1 . Présenter les utilisateurs et leurs rôles.Il faut prioriser les fonctionnalités et donner leurs règles de gestion.Manque liste des livrables et dates.       
+|         |Gantt V1 Prévu| link:https://github.com/IUT-Blagnac/sae2023-bank-2b2/blob/edc440da309e82dd2bd9c6d4c684749f07064511/V1/Doc/Gantt/GanttPr%C3%A9visionnel.pdf[lien vers le Gantt Prévisionnel] | Essayer de produire un Gantt sur une seule page. Il manque des tâches notamment les tâches rédactionnelles. Il manque des tâches récap et les jalons. 
+| 16/05  | CdC V2final|        https://github.com/IUT-Blagnac/sae2023-bank-2b2/blob/main/V2/Doc/CahierDesCharges/CDCU%20V2.adoc[CDCV2 Final]                             |  Manque version/date. Dans la présentation vous oubliez de dire que vous reprenez une appli existante. Pour la présentation de l'existant il manque un UC V0 pour plus de clareté qui n'a pas à être dans analyse des besoins puisque déjà fait. TB V1 et V2 il manque juste la priorisation des fonctions. Note 16/20 bon travail. 
+|         | Gantt V1 Réalisé |          https://github.com/IUT-Blagnac/sae2023-bank-2b2/blob/main/V1/Doc/Gantt/GanttV1Finalis%C3%A9.pdf[GanttV1Finalisé]                     |   J'ai du mal à voir ce qui est fait, pas fait, en retard ... pas de légendes, pas d'explication, pas de comparatif avec Prévu.   
+|         | Gantt V2 Prevu|       https://github.com/IUT-Blagnac/sae2023-bank-2b2/blob/main/V2/Doc/Gantt/GanttV2Pr%C3%A9visionnel.pdf[GanttV2Prévu]  |    Je ne dois avoir que V2 avec les tâches V1 non terminées qui passent en V2. Celà allège votre Gantt et permet de le mettre sur une page ! 
+|         | Doc. Tec. V1 |    https://github.com/IUT-Blagnac/sae2023-bank-2b2/blob/main/V1/Doc/DocTechnique/DocTechnique.adoc[Doc technique V1]    | Vous rajouter une page de garde, -vous changez le titre "3-présentation de l'application" par ce que c'est le même que "titre 1". Vous pouvez mettre par exemples Fonctinnalité de l'application. Je trouve que votre doc. technique est bien structurée.
+|         | Doc User V1    | https://github.com/IUT-Blagnac/sae2023-bank-2b2/blob/main/V1/Doc/DocUtilisateur/DocUtilisateur.adoc[Doc utilisateur V1]       | Manque nom équipe. Mettre la présentation de l'appli pour les utilisateurs qui la découvre. Préciser la configuration nécéssaire. Rappeler les rôles dans l'application et classer les fonctions par type d'utilisateur. Comment je m'assure par exemple qu'un employé a bien été ajouté ? 
+|         | Recette V1  |     https://github.com/IUT-Blagnac/sae2023-bank-2b2/blob/main/V1/Doc/Recette/RecetteV1.adoc[RecetteV1]                 | Il faut corriger le comportement attendu de créditer un compte (qui consiste à déposer de l'argent dans le compte), Revoir le test clôturer un compte, rajouter le test de virement de compte à compte.  
+|         | Suivi projet V1| https://github.com/orgs/IUT-Blagnac/projects/64[Projet suivi github]  | Readme OK repository ok Pensez à commenter vos commits.J'ai des issues à to do (ex doc technique) alors que le livrable est dans le readme ?  Pensez à faire les issues V2. Il manque des Task List dans vos issues et des label (dev, doc, ...) .
+|         | jar V1| https://github.com/IUT-Blagnac/sae2023-bank-2b2/blob/main/V1/Dev/Jar/DailyBank-1.0-shaded.jar[jar V1]  | il faut revoir le test "créditer un compte" et le corriger dans votre cahier de recette.
+|         | Code V1| https://github.com/IUT-Blagnac/sae2023-bank-2b2/tree/b101fbaceb8644cb2e010bf3693e83b64d041fae/V1/Dev/Code/DailyBank_V1[Code V1]  | 
+|         | Javadoc V1| https://github.com/IUT-Blagnac/sae2023-bank-2b2/blob/main/V1/Doc/javaDoc/index.html[JavadocV1]  | 
+| 26/05   | Gantt V2  réalisé    |    https://github.com/IUT-Blagnac/sae2023-bank-2b2/blob/main/V2/Doc/Gantt/GanttV2_Finalis%C3%A9.pdf[GanttV2 finalisé]   | Suivi Projet : des efforts pour amaliorer le comparatif du Gantt même si encore confus avec des tâches V1 ; J'ai des commits le 30/05 pour une livraison attendue le 28/05 !! Il manque qq Task List dans vos issues. NOTE: 16/20
+|         | Doc. Util. V2 |   https://github.com/IUT-Blagnac/sae2023-bank-2b2/blob/main/V2/Doc/DocUtilisateur/DocUtilisateur.adoc[DocUtilisateur V2]      |   Présentation TB. Il reste qq fautes. Vous ne présentez pas les utilisateurs (ex. Préciser qu'un chef d'agence peut faire toutes les fonctionnalités d'un guichetier). Installation : qui délivre les identifiants aux guichetiers ?  Pour les fonctionnalités, vous devez également préciser comment on vérifie qu'une action a bien été réalisée (ex. ajout d'un compte, ajout d'un client en consultant la liste ...). NOTE 16/20      
+|         | Doc. Tec. V2 |     https://github.com/IUT-Blagnac/sae2023-bank-2b2/tree/main/V2/Doc/DocTechnique[DocTechnique V2]           |     
+|         | Code V2    |           https://github.com/IUT-Blagnac/sae2023-bank-2b2/tree/main/V2/Dev/Code[code V2]          | 
+|         | Javadoc V2    |        https://github.com/IUT-Blagnac/sae2023-bank-2b2/tree/main/V2/Doc/Javadoc-APP[Javadoc V2]             | 
+|         | Javadoc batch    |      https://github.com/IUT-Blagnac/sae2023-bank-2b2/tree/main/V2/Doc/Javadoc-Batch[Javadoc Batch]               | 
+|         | Recette V2 |       https://github.com/IUT-Blagnac/sae2023-bank-2b2/blob/main/V2/Doc/Recette/RecetteV2.adoc[recetteV2]               | 
+|         |  Chiffrage du projet |                      | 
+|         | `jar` projet |  https://github.com/IUT-Blagnac/sae2023-bank-2b2/tree/822985c8af89423c67f9560cf78755f0b1bdd96a/V2/Dev/Jar[jar du projet]  | 
+
+|===
